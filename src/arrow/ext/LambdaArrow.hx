@@ -1,0 +1,61 @@
+package arrow.ext;
+import arrow.Arrow;
+import arrow.ext.lambda.IterThunk;
+import arrow.ext.lambda.MapThunk;
+import arrow.ext.lambda.FoldThunk;
+import arrow.ext.lambda.FilterThunk;
+
+class LambdaArrow{
+
+	public static function gen(self:Arrow,i:Iterable<Dynamic>) {
+		
+	}
+	public static function iter(self:Arrow,f:Dynamic->Void):Arrow{
+		return new IterThunk(self,f);
+	}
+	public static function map(self:Arrow,f:Dynamic->Dynamic):Arrow{
+		return new MapThunk(self,f);
+	}
+	public static function fold(self:Arrow,first:Dynamic,f:Dynamic->Dynamic->Dynamic){
+		return new FoldThunk(first,self,f);
+	}
+	public static function filter(self:Arrow,f:Dynamic->Bool,?inverse:Bool){
+		return new FilterThunk(self,f,inverse);
+	}
+	public static function set(self:Arrow,?compare:Dynamic->Dynamic->Int){
+		return fold(self,new List<Dynamic>(),
+			function(first:List<Dynamic>,x:Dynamic){
+				var count = Lambda.count(first);
+				if (count == 0){
+					first.add(x);
+				}else{
+					var add:Bool = true;
+					for (item in first){
+						if (compare != null){
+							//TODO implement compare function.
+						}else{
+							if (x == item){
+								add = false;
+								break;
+							}
+						}
+					}
+					if (add){
+						first.add(x);
+					}
+				}
+			}
+		);
+	}
+	public static function doWhile(self:Arrow, proceed:Void->Bool) {
+		return self.repeat().then(
+			function (x:Dynamic) {
+				if (Reflect.callMethod(null, proceed, [])) {
+					Arrow.doRepeat(x);
+				}else {
+					Arrow.doDone(x);
+				}
+			}
+		);
+	}
+}
