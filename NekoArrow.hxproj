@@ -15,9 +15,6 @@
   <classpaths>
     <class path="src" />
     <class path="..\unit\src" />
-    <class path="..\zen\src" />
-    <class path="..\signals\src" />
-    <class path="..\ion\src" />
     <class path="unit" />
   </classpaths>
   <!-- Build options -->
@@ -26,7 +23,7 @@
     <option flashStrict="False" />
     <option mainClass="Full" />
     <option forcetraces="False" />
-    <option additional="" />
+    <option additional="-lib hsl-1&#xA;-lib hsl-pico-1" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

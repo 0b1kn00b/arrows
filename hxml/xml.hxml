@@ -1,0 +1,8 @@
+-xml arrow.xml
+-cp src
+-cp test
+-cp ../zen/src
+-cp ../unit/src
+-lib colhx
+-lib ion
+-main Full

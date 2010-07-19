@@ -1,8 +1,8 @@
 package test.arrow;
 import arrow.schedule.ScheduleManager;
+import haxe.Timer;
 import hxunit.TestCase;
 import arrow.Arrow;
-import data.type.Time;
 using arrow.ext.LambdaArrow;
 using arrow.ext.UnitArrow;
 
@@ -26,7 +26,7 @@ class ComplexTest extends TestCase{
 				self.assertEqual("f",x);
 				return x;
 			}
-		,new Time(1000));
+		,1000);
 		//trace(haxe.Timer.stamp());
 		var f = function (x:Dynamic){
 			trace("f called: "+ haxe.Timer.stamp());
@@ -47,7 +47,7 @@ class ComplexTest extends TestCase{
 			function (x:Dynamic){
 				self.assertTrue(true);
 			}
-		,new Time(4,TimeFormat.second));
+		,4000);
 		Arrow.lift(
 			function (?x:Dynamic){
 				count++;
@@ -60,12 +60,21 @@ class ComplexTest extends TestCase{
 		).repeat().then(as).run().start();
 	}
 	public function testAnimate() {
+		var t = Timer.stamp();
+		var t1 = t + 3;
+		
 		var as = asyncHandler(
 			function (x) { }
-		, new Time(4, TimeFormat.second));
+		, 6000);
 		Arrow.lift(
 			function (x) {
-				return Arrow.doRepeat(x);
+				trace ( t1);
+				trace ( Timer.stamp() );
+				if ( Timer.stamp() < t1) {
+					return Arrow.doRepeat(x);
+				}else {
+					return Arrow.doDone(x);
+				}
 			}
 		).animate(200).run().start();
 	}

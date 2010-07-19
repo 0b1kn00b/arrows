@@ -4,7 +4,6 @@ using arrow.ext.LambdaArrow;
 
 import hxunit.TestCase;
 import arrow.Arrow;
-import data.type.Time;
 using arrow.Arrow;
 
 class LambdaArrowTest extends TestCase{
@@ -77,7 +76,7 @@ class LambdaArrowTest extends TestCase{
 			function(x){
 				self.assertTrue(true);
 			}
-		,new Time(10,TimeFormat.minute));
+		,60000);
 		var list : List<Dynamic> = new List();
 
 		for (i in 0...100000){

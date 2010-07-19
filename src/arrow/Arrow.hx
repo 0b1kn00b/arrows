@@ -1,16 +1,30 @@
+/*
+ Copyright (c) <2010> <Laurence Taylor>
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+*/
 package arrow;
 
 import arrow.combinators.EventArrow;
-import org.osflash.signals.ISignal;
-
 import arrow.schedule.Scheduler;
 import haxe.Timer;
 import haxe.PosInfos;
-
-import data.type.Time;
-import ion.log.Logger;
-import ion.log.Log;
-import ion.log.LogLevel;
 
 import arrow.schedule.ScheduleManager;
 
@@ -29,8 +43,7 @@ import arrow.combinators.InnerRepeatThunk;
 import arrow.combinators.DelayArrow;
 import arrow.combinators.TerminalArrow;
 import arrow.combinators.OrThunk;
-import arrow.combinators.SignalConsumerArrow;
-import arrow.combinators.SignalDispatcherArrow;
+
 import arrow.combinators.PollThunk;
 import arrow.combinators.Loop;
 
@@ -40,7 +53,7 @@ import arrow.combinators.ElementArrow;
 import neko.vm.Thread;
 #end
 
-class Arrow extends ion.log.LogSupport{
+class Arrow{
 
 	public dynamic function error(e:Dynamic):Void {
 		trace(haxe.Stack.callStack());
@@ -51,7 +64,6 @@ class Arrow extends ion.log.LogSupport{
 	public var info:String;
 
 	public function new<A>(method:A->ArrowInstance->Void){
-		super();
 		this.method = method;
 		scheduler = ScheduleManager.getInstance().scheduler;
 	}
@@ -149,14 +161,6 @@ class Arrow extends ion.log.LogSupport{
 	
 	public function animate(ms:Int) {
 		return new AnimateThunk(this, ms);
-	}
-	
-	public function select(value:String) {
-		return this.then(
-			function(x) {
-				return Reflect.field(x, value);
-			}
-		);
 	}
 	
 	/*
@@ -268,12 +272,7 @@ class Arrow extends ion.log.LogSupport{
 	public static function delayA(ms:Int):Arrow{
 		return new DelayArrow(ms);
 	}
-	public function signalConsumerA(signal: ISignal < Dynamic > ):Arrow {
-		return new SignalConsumerArrow(signal);
-	}
-	public function signalDispatcherA(signal:ISignal<Dynamic>):Arrow {
-		return new SignalDispatcherArrow(signal);
-	}
+
 	public static function eventA(trigger:String) {
 		return new EventArrow(trigger);
 	}

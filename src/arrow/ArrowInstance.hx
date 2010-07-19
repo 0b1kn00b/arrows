@@ -1,18 +1,32 @@
+/*
+ Copyright (c) <2010> <Laurence Taylor>
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+*/
 package arrow;
 import arrow.schedule.call.ArrowCall;
 import haxe.Timer;
-import util.Counter;
-import ion.log.Logger;
-import ion.log.Log;
 import arrow.combinators.ProgressArrow;
 
 import arrow.schedule.ScheduleManager;
-import data.XQueue;
 
 import arrow.schedule.call.Call;
-import colhx.Stack;
-
-using util.ObjectUtil;
 
 #if neko
 	import neko.vm.Mutex;
@@ -22,32 +36,24 @@ using util.ObjectUtil;
 * Bookkeeping object for Arrow arrow instances.
 * Keeps track of continuations composing arrows, and sends them to the scheduler.
 */
-class ArrowInstance extends ion.log.LogSupport{
-	
-	public static var calldepthlimit:Int = 50;
-	public static var timelimit:Int = 30;
-	public static var interval:Int = 10;
+class ArrowInstance{
 	
 	public var progress(default,null):ProgressArrow;
-	public var cancellers:Array<Void->Void>;
-	public var calldepthCounter:Counter;
 	
-	public var stack:Stack<Arrow>;
+	public var stack:List<Arrow>;
 	public var uuid:String;
 	
+	private var cancellers : Array < Void->Void > ;
 	private var manager : ScheduleManager;
 	
 	public function new(asynca:Arrow,x:Dynamic){
-		super();
 		manager = ScheduleManager.getInstance();
-		uuid 	= util.UUID.get();
-
-		LOG = Logger.getInstance().getLog();
+		uuid 	= haxe.Md5.encode( Date.now().toString() ) + ":" + Std.string ( Math.round( Math.random() * 100000 ) ); 
 
 		this.cancellers = new Array();
-		this.calldepthCounter = new Counter(50);
+		//this.calldepthCounter = new Counter(50);
 
-		this.stack = new Stack();
+		this.stack = new List();
 		stack.push( Arrow.terminal());
 		stack.push( asynca );
 
@@ -67,13 +73,13 @@ class ArrowInstance extends ion.log.LogSupport{
 	 * @param x the return value of the last arrow
 	 * @param f the first arrow
 	 * @param g the second arrow
-	 * @param a predicate which returns true when the arrow is ready
+	 * @param a predicate closure which returns true when the arrow is ready
 	 */
 	public function cont(x:Dynamic = null,f:Arrow = null,g:Arrow = null,predicate:Void->Bool = null){
 		#if neko m.acquire(); 	#end
 		
-		if (g.isNotNull())stack.push(g);
-		if (f.isNotNull()) stack.push(f);
+		if (g != null)stack.push(g);
+		if (f != null) stack.push(f);
 		
 		#if arrow_debug_deep
 			trace(["\ncont:\n", "instance=", this, "\n", "x", x, "\n","f",f,"g",g,"length",stack.length]);
@@ -95,8 +101,8 @@ class ArrowInstance extends ion.log.LogSupport{
 	* invokes added cancellers
 	*/
 	public function cancel(){
-		#if debug
-			LOG.info("cancel " + [cancellers]);
+		#if arrow_debug
+			trace("cancel " + [cancellers]);
 		#end
 		for (item in cancellers){
 			Reflect.callMethod(null,item,[]);

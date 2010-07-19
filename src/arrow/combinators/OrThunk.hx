@@ -1,8 +1,29 @@
+/*
+ Copyright (c) <2010> <Laurence Taylor>
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+*/
 package arrow.combinators;
 import arrow.Arrow;
 import arrow.ArrowInstance;
 #if neko
-import neko.vm.Lock;
+	import neko.vm.Lock;
 #end
 
 class OrThunk extends Arrow{
@@ -21,7 +42,7 @@ class OrThunk extends Arrow{
 				var _a1 : Dynamic = null;
 				
 				var cancel : Void -> Void = function(){
-					trace("cancel all");
+					//trace("cancel all");
 					a0.cancel();
 					a1.cancel();
 				}
@@ -29,7 +50,7 @@ class OrThunk extends Arrow{
 
 				a0 = f.then(
 					Arrow.tuple( function(y:Dynamic){
-							trace("a0 called: a1 = "  + a1);
+							//trace("a0 called: a1 = "  + a1);
 							if (a1.cancel!=null){
 								trace ("do cancel a1");
 								a1.cancel();
@@ -37,7 +58,7 @@ class OrThunk extends Arrow{
 							if (_a1 != null && _a1.cancel != null) {
 								_a1.cancel();
 							}
-							trace("a = " + a + " y = " + y + " cancel = " + cancel);
+							//trace("a = " + a + " y = " + y + " cancel = " + cancel);
 							a.advance(cancel);
 							a.cont(y);
 						}
@@ -47,7 +68,7 @@ class OrThunk extends Arrow{
 				#if ( flash || js )
 				var _a0 = a0.then(Arrow.eventA(trigger)).then(
 					function(x:Dynamic){
-						trace("+++cancel a1");
+						//trace("+++cancel a1");
 						if (a1.cancel != null){
 							a1.cancel();
 						}
@@ -62,14 +83,14 @@ class OrThunk extends Arrow{
 				a1 = g.then(
 					Arrow.tuple(
 						function(y:Dynamic){
-							trace("a1 called: a0 = " + a0);
+							//trace("a1 called: a0 = " + a0);
 							if(a0.cancel!=null){
 								a0.cancel();
 							}
 							if (_a0.cancel != null) {
 								_a0.cancel();
 							}
-							trace("a = " + a + " y = " + y + " cancel = " + cancel);
+							//trace("a = " + a + " y = " + y + " cancel = " + cancel);
 							a.advance(cancel);
 							a.cont(y);
 						}
@@ -79,7 +100,7 @@ class OrThunk extends Arrow{
 				
 				var _a1 = a1.then(Arrow.eventA(trigger)).then(
 					function(x:Dynamic){
-						trace ("+++cancel a0");
+						//trace ("+++cancel a0");
 						if (a0.cancel!=null){
 							a0.cancel();
 						}

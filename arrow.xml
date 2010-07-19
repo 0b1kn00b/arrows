@@ -1,0 +1,3194 @@
+<haxe>
+	<class path="colhx.Collection" params="T" file="/home/doberman/stack/master/src/haxelib/colhx/1,1/colhx/Collection.hx" interface="1">
+		<length public="1" get="getLength" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+        The total number of items.
+    </haxe_doc>
+		</length>
+		<getLength><f a=""><c path="Int"/></f></getLength>
+		<contains public="1">
+			<f a="obj">
+				<t path="Null"><c path="colhx.Collection.T"/></t>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+        Returns true if this collection contains the object given.
+    </haxe_doc>
+		</contains>
+		<clear public="1">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+        Clears all items
+    </haxe_doc>
+		</clear>
+		<isEmpty public="1">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+        Returns true if the collection is empty.
+    </haxe_doc>
+		</isEmpty>
+		<toArray public="1">
+			<f a=""><c path="Array"><t path="Null"><c path="colhx.Collection.T"/></t></c></f>
+			<haxe_doc>
+        Converts the collection to an array.
+    </haxe_doc>
+		</toArray>
+		<iterator public="1"><f a=""><t path="Iterator"><t path="Null"><c path="colhx.Collection.T"/></t></t></f></iterator>
+		<haxe_doc>
+    A 'java-style' collection interface.
+</haxe_doc>
+	</class>
+	<class path="colhx.Queue" params="T" file="/home/doberman/stack/master/src/haxelib/colhx/1,1/colhx/Queue.hx">
+		<implements path="colhx.Collection"><c path="colhx.Queue.T"/></implements>
+		<length public="1" get="getLength" set="null"><c path="Int"/></length>
+		<list><c path="List"><t path="Null"><c path="colhx.Queue.T"/></t></c></list>
+		<getHead public="1" line="51">
+			<f a=""><t path="Null"><c path="colhx.Queue.T"/></t></f>
+			<haxe_doc>
+        Returns the item that was added first (i.e. at the front of the line).
+        Returns null if the queue is empty.
+    </haxe_doc>
+		</getHead>
+		<getTail public="1" line="61">
+			<f a=""><t path="Null"><c path="colhx.Queue.T"/></t></f>
+			<haxe_doc>
+        Returns the item that was just added.
+        Returns null if the queue is empty.
+    </haxe_doc>
+		</getTail>
+		<enqueue public="1" line="70">
+			<f a="item">
+				<t path="Null"><c path="colhx.Queue.T"/></t>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+        Adds the item to the head of the queue (i.e. the back of the line).
+    </haxe_doc>
+		</enqueue>
+		<dequeue public="1" line="78">
+			<f a=""><t path="Null"><c path="colhx.Queue.T"/></t></f>
+			<haxe_doc>
+        Removes and returns the item at the head of the queue (i.e. the front 
+        of the line). Returns null if the queue is empty.
+    </haxe_doc>
+		</dequeue>
+		<remove public="1" line="86">
+			<f a="obj">
+				<t path="Null"><c path="colhx.Queue.T"/></t>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+        Removes the object from the queue. Returns true if it was actually in
+        the queue.
+    </haxe_doc>
+		</remove>
+		<clear public="1" line="90"><f a=""><e path="Void"/></f></clear>
+		<getLength line="94"><f a=""><c path="Int"/></f></getLength>
+		<isEmpty public="1" line="98"><f a=""><e path="Bool"/></f></isEmpty>
+		<contains public="1" line="102"><f a="obj">
+	<t path="Null"><c path="colhx.Queue.T"/></t>
+	<e path="Bool"/>
+</f></contains>
+		<toArray public="1" line="110"><f a=""><c path="Array"><t path="Null"><c path="colhx.Queue.T"/></t></c></f></toArray>
+		<toString public="1" line="118">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+        Prints out a string representing the current object.
+        Example: "[Queue, size=4]"
+    </haxe_doc>
+		</toString>
+		<dump public="1" line="125">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+        Prints out all elements (for debug/demo purposes).
+    </haxe_doc>
+		</dump>
+		<iterator public="1" line="135">
+			<f a=""><t path="Iterator"><t path="Null"><c path="colhx.Queue.T"/></t></t></f>
+			<haxe_doc>
+        Iterates from head to tail (start of the line to the end of the line).
+    </haxe_doc>
+		</iterator>
+		<getInternalList public="1" line="143">
+			<f a=""><c path="List"><t path="Null"><c path="colhx.Queue.T"/></t></c></f>
+			<haxe_doc>
+        Returns the internal list used for the queue.
+        Use with caution
+    </haxe_doc>
+		</getInternalList>
+		<copy public="1" line="151">
+			<f a=""><c path="colhx.Queue"><c path="colhx.Queue.T"/></c></f>
+			<haxe_doc>
+        Returns a copy of the queue structure, but not a copy of the items 
+        themselves.
+    </haxe_doc>
+		</copy>
+		<new public="1" line="43">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+        Creates a new empy queue.
+    </haxe_doc>
+		</new>
+		<haxe_doc>
+    A standard FIFO queue. 
+    IMPORTANT: Items are added to the tail and removed at the head.
+</haxe_doc>
+	</class>
+	<class path="arrow.reactor.DebugBuffer" params="T" file="src/arrow/reactor/DebugBuffer.hx">
+		<extends path="colhx.Queue"><c path="arrow.reactor.DebugBuffer.T"/></extends>
+		<new public="1" line="7"><f a=""><e path="Void"/></f></new>
+	</class>
+	<enum path="ion.log.LogLevel" params="" file="/home/doberman/stack/master/src/haxelib/ion/dev/ion/log/LogLevel.hx">
+		<warn/>
+		<info/>
+		<fatal/>
+		<error/>
+		<debug/>
+		<custom a="id"><c path="String"/></custom>
+	</enum>
+	<class path="ion.log.Log" params="" file="/home/doberman/stack/master/src/haxelib/ion/dev/ion/log/Log.hx" interface="1">
+		<log public="1" get="getLog" set="null"><d/></log>
+		<getLog><f a=""><d/></f></getLog>
+		<_log><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></_log>
+		<info public="1"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></info>
+		<debug public="1"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></debug>
+		<warn public="1"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></warn>
+		<error public="1"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></error>
+		<fatal public="1"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></fatal>
+		<logger><c path="ion.log.Logger"/></logger>
+	</class>
+	<class path="EReg" params="" file="/home/doberman/stack/master/src/haxe/std/EReg.hx">
+		<r><d/></r>
+		<match public="1" line="85">
+			<f a="s">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the regular expression matches the String.
+		Updates the internal state accordingly.
+	</haxe_doc>
+		</match>
+		<matched public="1" line="125">
+			<f a="n">
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a matched group or throw an expection if there
+		is no such group. If [n = 0], the whole matched substring
+		is returned.
+	</haxe_doc>
+		</matched>
+		<matchedLeft public="1" line="152">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the part of the string that was as the left of
+		of the matched substring.
+	</haxe_doc>
+		</matchedLeft>
+		<matchedRight public="1" line="178">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the part of the string that was at the right of
+		of the matched substring.
+	</haxe_doc>
+		</matchedRight>
+		<matchedPos public="1" line="210">
+			<f a=""><a>
+	<pos><c path="Int"/></pos>
+	<len><c path="Int"/></len>
+</a></f>
+			<haxe_doc>
+		Returns the position of the matched substring within the
+		original matched string.
+	</haxe_doc>
+		</matchedPos>
+		<split public="1" line="230">
+			<f a="s">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Split a string by using the regular expression to match
+		the separators.
+	</haxe_doc>
+		</split>
+		<replace public="1" line="273">
+			<f a="s:by">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Replaces a pattern by another string. The [by] format can
+		contains [$1] to [$9] that will correspond to groups matched
+		while replacing. [$$] means the [$] character.
+	</haxe_doc>
+		</replace>
+		<customReplace public="1" line="339">
+			<f a="s:f">
+				<c path="String"/>
+				<f a="">
+					<c path="EReg"/>
+					<c path="String"/>
+				</f>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		For each occurence of the pattern in the string [s], the function [f] is called and
+		can return the string that needs to be replaced. All occurences are matched anyway,
+		and setting the [g] flag might cause some incorrect behavior on some platforms.
+	</haxe_doc>
+		</customReplace>
+		<new public="1" line="52">
+			<f a="r:opt">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Creates a new regular expression with pattern [r] and
+		options [opt].
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	Regular expressions are a way to find regular patterns into
+	Strings. Have a look at the tutorial on haXe website to learn
+	how to use them.
+</haxe_doc>
+	</class>
+	<class path="ion.log.logs.SimpleLog" params="" file="/home/doberman/stack/master/src/haxelib/ion/dev/ion/log/logs/SimpleLog.hx">
+		<implements path="ion.log.Log"/>
+		<pattern line="54" static="1"><c path="EReg"/></pattern>
+		<log public="1" get="getLog" set="null"><d/></log>
+		<getLog line="9"><f a=""><unknown/></f></getLog>
+		<_log line="12"><f a="arr">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></_log>
+		<info public="1" line="27"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></info>
+		<debug public="1" line="30"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></debug>
+		<warn public="1" line="33"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></warn>
+		<error public="1" line="36"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></error>
+		<fatal public="1" line="39"><f a="message">
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></fatal>
+		<__trace line="42"><f a="begin:message">
+	<c path="String"/>
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></__trace>
+		<parseString line="47"><f a="str:array">
+	<c path="String"/>
+	<c path="Array"><d/></c>
+	<c path="String"/>
+</f></parseString>
+		<logger><c path="ion.log.Logger"/></logger>
+		<name><c path="String"/></name>
+		<new public="1" line="23"><f a="name">
+	<c path="String"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.TestFrameworkPrimitive" params="" file="../unit/src/hxunit/TestFrameworkPrimitive.hx">
+		<name public="1" get="getName" set="null"><c path="String"/></name>
+		<getName line="9"><f a=""><c path="String"/></f></getName>
+		<new public="1" line="5"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="hxunit.TestSuite" params="" file="../unit/src/hxunit/TestSuite.hx">
+		<extends path="hxunit.TestFrameworkPrimitive"/>
+		<cases public="1"><c path="List"><c path="Class"><d/></c></c></cases>
+		<addCase public="1" line="11"><f a="value">
+	<c path="Class"><d/></c>
+	<e path="Void"/>
+</f></addCase>
+		<new public="1" line="7"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="test.arrow.ArrowSuite" params="" file="./test/arrow/ArrowSuite.hx">
+		<extends path="hxunit.TestSuite"/>
+		<new public="1" line="7"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="ion.log.LogInterface" params="" file="/home/doberman/stack/master/src/haxelib/ion/dev/ion/log/LogInterface.hx" interface="1">
+		<log public="1" get="getLog" set="null"><c path="ion.log.Log"/></log>
+		<getLog><f a=""><c path="ion.log.Log"/></f></getLog>
+	</class>
+	<class path="ion.log.LogSupport" params="" file="/home/doberman/stack/master/src/haxelib/ion/dev/ion/log/LogSupport.hx">
+		<implements path="ion.log.LogInterface"/>
+		<log public="1" get="getLog" set="null"><c path="ion.log.Log"/></log>
+		<getLog line="6"><f a=""><c path="ion.log.Log"/></f></getLog>
+		<new public="1" line="12"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.Arrow" params="" file="src/arrow/Arrow.hx">
+		<extends path="ion.log.LogSupport"/>
+		<terminal public="1" line="184" static="1"><f a=""><c path="arrow.combinators.TerminalArrow"/></f></terminal>
+		<fanoutA public="1" line="190" static="1"><f a=""><c path="arrow.combinators.ArrThunk"/></f></fanoutA>
+		<lift public="1" line="199" static="1"><f a="f">
+	<d/>
+	<c path="arrow.combinators.FunctionThunk"/>
+</f></lift>
+		<tuple public="1" line="206" static="1"><f a="?f">
+	<d/>
+	<c path="arrow.combinators.ArrThunk"/>
+</f></tuple>
+		<returnA public="1" line="213" static="1"><f a=""><c path="arrow.combinators.ArrThunk"/></f></returnA>
+		<constA public="1" line="220" static="1"><f a="value">
+	<d/>
+	<c path="arrow.combinators.ArrThunk"/>
+</f></constA>
+		<doRepeat public="1" line="231" static="1"><f a="?v">
+	<d/>
+	<c path="arrow.TaggedValue"/>
+</f></doRepeat>
+		<doDone public="1" line="237" static="1"><f a="?v">
+	<d/>
+	<c path="arrow.TaggedValue"/>
+</f></doDone>
+		<delayA public="1" line="243" static="1"><f a="time">
+	<c path="data.type.Time"/>
+	<c path="arrow.Arrow"/>
+</f></delayA>
+		<eventA public="1" line="249" static="1"><f a="trigger">
+	<d/>
+	<c path="arrow.combinators.EventArrow"/>
+</f></eventA>
+		<error public="1"><f a="">
+	<d/>
+	<e path="Void"/>
+</f></error>
+		<method public="1"><d/></method>
+		<info public="1"><c path="String"/></info>
+		<execute public="1" line="44"><f a="x:a">
+	<d/>
+	<c path="arrow.ArrowInstance"/>
+	<e path="Void"/>
+</f></execute>
+		<run public="1" line="47"><f a="?args">
+	<d/>
+	<c path="arrow.combinators.ProgressArrow"/>
+</f></run>
+		<name public="1" get="getName" set="null"><c path="String"/></name>
+		<getName line="52"><f a=""><c path="String"/></f></getName>
+		<toString public="1" line="54"><f a=""><c path="String"/></f></toString>
+		<then public="1" line="64">
+			<f a="f">
+				<d/>
+				<c path="arrow.combinators.ComposeThunk"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* Composititon combinator.
+	* @param f, a function or a FunctionThunk
+	* 
+	* compose, next, >>>
+	]]></haxe_doc>
+		</then>
+		<pair public="1" line="73">
+			<f a="?f">
+				<d/>
+				<c path="arrow.combinators.ProductThunk"/>
+			</f>
+			<haxe_doc>
+	* Product combinator.
+	* pair, ***
+	</haxe_doc>
+		</pair>
+		<first public="1" line="81">
+			<f a=""><c path="arrow.combinators.FirstThunk"/></f>
+			<haxe_doc>
+	* First combinator.
+	</haxe_doc>
+		</first>
+		<second public="1" line="88">
+			<f a=""><c path="arrow.combinators.SecondThunk"/></f>
+			<haxe_doc>
+	* Second combinator
+	</haxe_doc>
+		</second>
+		<fanout public="1" line="96">
+			<f a="?f">
+				<d/>
+				<c path="arrow.combinators.FanoutThunk"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* Fanout combinator.
+	* split &&&
+	]]></haxe_doc>
+		</fanout>
+		<bind public="1" line="105"><f a="?f">
+	<d/>
+	<c path="arrow.combinators.BindThunk"/>
+</f></bind>
+		<join public="1" line="116"><f a="f">
+	<d/>
+	<c path="arrow.combinators.JoinThunk"/>
+</f></join>
+		<repeat public="1" line="124"><f a=""><c path="arrow.combinators.RepeatThunk"/></f></repeat>
+		<or public="1" line="131"><f a="trigger:?f">
+	<d/>
+	<d/>
+	<c path="arrow.combinators.OrThunk"/>
+</f></or>
+		<getCallback public="1" line="139"><f a="numArgs">
+	<c path="Int"/>
+	<d/>
+</f></getCallback>
+		<dump public="1" line="161">
+			<f a="f">
+				<d/>
+				<c path="arrow.combinators.ComposeThunk"/>
+			</f>
+			<haxe_doc>
+	* for debug purposes
+	</haxe_doc>
+		</dump>
+		<print public="1" line="168"><f a=""><c path="arrow.combinators.ComposeThunk"/></f></print>
+		<isFunction line="177"><f a="f">
+	<unknown/>
+	<e path="Bool"/>
+</f></isFunction>
+		<new public="1" line="39"><f a="method">
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.combinators.ComposeThunk" params="" file="src/arrow/combinators/ComposeThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="8"><f a="f:g">
+	<c path="arrow.Arrow"/>
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.combinators.FanoutThunk" params="" file="src/arrow/combinators/FanoutThunk.hx">
+		<extends path="arrow.combinators.ComposeThunk"/>
+		<new public="1" line="6"><f a="f:g">
+	<c path="arrow.Arrow"/>
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.responder.TestResponder" params="" file="../unit/src/hxunit/responder/TestResponder.hx" interface="1">
+		<begin public="1"><f a=""><e path="Void"/></f></begin>
+		<consume public="1"><f a="v">
+	<c path="hxunit.TestResult"/>
+	<e path="Void"/>
+</f></consume>
+		<end public="1"><f a=""><e path="Void"/></f></end>
+	</class>
+	<class path="hxunit.responder.SimpleResponder" params="" file="../unit/src/hxunit/responder/SimpleResponder.hx">
+		<implements path="hxunit.responder.TestResponder"/>
+		<begin public="1" line="5"><f a=""><e path="Void"/></f></begin>
+		<consume public="1" line="8"><f a="v">
+	<c path="hxunit.TestResult"/>
+	<e path="Void"/>
+</f></consume>
+		<end public="1" line="11"><f a=""><e path="Void"/></f></end>
+		<new public="1" line="14"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="String" params="" file="/home/doberman/stack/master/src/haxe/std/String.hx" extern="1">
+		<fromCharCode public="1" static="1"><f a="code">
+	<c path="Int"/>
+	<c path="String"/>
+</f></fromCharCode>
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The number of characters in the String.
+	</haxe_doc>
+		</length>
+		<toUpperCase public="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an String where all characters have been uppercased.
+	</haxe_doc>
+		</toUpperCase>
+		<toLowerCase public="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an String where all characters have been lowercased.
+	</haxe_doc>
+		</toLowerCase>
+		<charAt public="1">
+			<f a="index">
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the character at the given position.
+		Returns the empty String if outside of String bounds.
+	</haxe_doc>
+		</charAt>
+		<charCodeAt public="1">
+			<f a="index">
+				<c path="Int"/>
+				<t path="Null"><c path="Int"/></t>
+			</f>
+			<haxe_doc>
+		Returns the character code at the given position.
+		Returns [null] if outside of String bounds.
+	</haxe_doc>
+		</charCodeAt>
+		<indexOf public="1">
+			<f a="value:?startIndex">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Returns the index of first occurence of [value]
+		Returns [1-1] if [value] is not found.
+		The optional [startIndex] parameter allows you to specify at which character to start searching.
+		The position returned is still relative to the beginning of the string.
+	</haxe_doc>
+		</indexOf>
+		<lastIndexOf public="1">
+			<f a="value:?startIndex">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Similar to [indexOf] but returns the latest index.
+	</haxe_doc>
+		</lastIndexOf>
+		<split public="1">
+			<f a="delimiter">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Split the string using the specified delimiter.
+	</haxe_doc>
+		</split>
+		<substr public="1">
+			<f a="pos:?len">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a part of the String, taking [len] characters starting from [pos].
+		If [len] is not specified, it takes all the remaining characters.
+	</haxe_doc>
+		</substr>
+		<toString public="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the String itself.
+	</haxe_doc>
+		</toString>
+		<cca><f a="pos">
+	<c path="Int"/>
+	<c path="Int"/>
+</f></cca>
+		<new public="1">
+			<f a="string">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Creates a copy from a given String.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	The basic String class.
+</haxe_doc>
+	</class>
+	<class path="List" params="T" file="/home/doberman/stack/master/src/haxe/std/List.hx">
+		<h><c path="Array"><d/></c></h>
+		<q><c path="Array"><d/></c></q>
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The number of elements in this list.
+	</haxe_doc>
+		</length>
+		<add public="1" line="56">
+			<f a="item">
+				<c path="List.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Add an element at the end of the list.
+	</haxe_doc>
+		</add>
+		<push public="1" line="76">
+			<f a="item">
+				<c path="List.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Push an element at the beginning of the list.
+	</haxe_doc>
+		</push>
+		<first public="1" line="100">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Returns the first element of the list, or null
+		if the list is empty.
+	</haxe_doc>
+		</first>
+		<last public="1" line="108">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Returns the last element of the list, or null
+		if the list is empty.
+	</haxe_doc>
+		</last>
+		<pop public="1" line="118">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Removes the first element of the list and
+		returns it or simply returns null if the
+		list is empty.
+	</haxe_doc>
+		</pop>
+		<isEmpty public="1" line="132">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+		Tells if a list is empty.
+	</haxe_doc>
+		</isEmpty>
+		<clear public="1" line="139">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Makes the list empty.
+	</haxe_doc>
+		</clear>
+		<remove public="1" line="149">
+			<f a="v">
+				<c path="List.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Remove the first element that is [== v] from the list.
+		Returns [true] if an element was removed, [false] otherwise.
+	</haxe_doc>
+		</remove>
+		<iterator public="1" line="190">
+			<f a=""><t path="Iterator"><c path="List.T"/></t></f>
+			<haxe_doc>
+		Returns an iterator on the elements of the list.
+	</haxe_doc>
+		</iterator>
+		<toString public="1" line="229">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns a displayable representation of the String.
+	</haxe_doc>
+		</toString>
+		<join public="1" line="249">
+			<f a="sep">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Join the element of the list by using the separator [sep].
+	</haxe_doc>
+		</join>
+		<filter public="1" line="268">
+			<f a="f">
+				<f a="">
+					<c path="List.T"/>
+					<e path="Bool"/>
+				</f>
+				<c path="List"><c path="List.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns a list filtered with [f]. The returned list
+		will contain all elements [x] for which [f(x) = true].
+	</haxe_doc>
+		</filter>
+		<map public="1" params="X" line="284">
+			<f a="f">
+				<f a="">
+					<c path="List.T"/>
+					<c path="map.X"/>
+				</f>
+				<c path="List"><c path="map.X"/></c>
+			</f>
+			<haxe_doc>
+		Returns a new list where all elements have been converted
+		by the function [f].
+	</haxe_doc>
+		</map>
+		<new public="1" line="49">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new empty list.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	A linked-list of elements. The list is composed of two-elements arrays
+	that are chained together. It's optimized so that adding or removing an
+	element doesn't imply to copy the whole array content everytime.
+</haxe_doc>
+	</class>
+	<enum path="Void" params="" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes"><haxe_doc>
+	The standard Void type. Only [null] values can be of the type [Void].
+</haxe_doc></enum>
+	<class path="Float" params="" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
+	The standard Float type, this is a double-precision IEEE 64bit float.
+</haxe_doc></class>
+	<class path="Int" params="" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes" extern="1">
+		<extends path="Float"/>
+		<haxe_doc>
+	The standard Int type. Its precision depends on the platform.
+</haxe_doc>
+	</class>
+	<typedef path="Null" params="T" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes">
+		<c path="Null.T"/>
+		<haxe_doc>
+	[Null] can be useful in two cases. In order to document some methods
+	that accepts or can return a [null] value, or for the Flash9 compiler and AS3
+	generator to distinguish between base values that can be null and others that
+	can't.
+</haxe_doc>
+	</typedef>
+	<enum path="Bool" params="" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes">
+		<true/>
+		<false/>
+		<haxe_doc>
+	The standard Boolean type is represented as an enum with two choices.
+</haxe_doc>
+	</enum>
+	<class path="Dynamic" params="T" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
+	Dynamic is an internal compiler type which has special behavior.
+	See the haXe language reference for more informations.
+</haxe_doc></class>
+	<typedef path="Iterator" params="T" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes">
+		<a>
+			<next><f a=""><c path="Iterator.T"/></f></next>
+			<hasNext><f a=""><e path="Bool"/></f></hasNext>
+		</a>
+		<haxe_doc>
+	An Iterator is a structure that permits to list a given container
+	values. It can be used by your own data structures. See the haXe
+	documentation for more informations.
+</haxe_doc>
+	</typedef>
+	<typedef path="Iterable" params="T" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes">
+		<a><iterator><f a=""><t path="Iterator"><c path="Iterable.T"/></t></f></iterator></a>
+		<haxe_doc>
+	An Iterable is a data structure which has an iterator() method.
+	See [Lambda] for generic functions on iterable structures.
+</haxe_doc>
+	</typedef>
+	<class path="ArrayAccess" params="T" file="/home/doberman/stack/master/src/haxe/std/StdTypes.hx" module="StdTypes" extern="1" interface="1"><haxe_doc>
+	ArrayAccess is used to indicate a class that can be accessed using brackets.
+	The type parameter represent the type of the elements stored.
+</haxe_doc></class>
+	<class path="arrow.combinators.ProductThunk" params="" file="src/arrow/combinators/ProductThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="7"><f a="f:g">
+	<c path="arrow.Arrow"/>
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.combinators.FirstThunk" params="" file="src/arrow/combinators/FirstThunk.hx">
+		<extends path="arrow.combinators.ProductThunk"/>
+		<new public="1" line="6"><f a="f">
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="ion.log.LogInstance" params="" file="/home/doberman/stack/master/src/haxelib/ion/dev/ion/log/LogInstance.hx">
+		<active public="1"><e path="Bool"/></active>
+		<log public="1"><c path="ion.log.Log"/></log>
+		<new public="1" line="4"><f a="log">
+	<c path="ion.log.Log"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.ArrowInstance" params="" file="src/arrow/ArrowInstance.hx">
+		<extends path="ion.log.LogSupport"/>
+		<calldepthlimit public="1" line="22" static="1"><c path="Int"/></calldepthlimit>
+		<timelimit public="1" line="23" static="1"><c path="Int"/></timelimit>
+		<interval public="1" line="24" static="1"><c path="Int"/></interval>
+		<progress public="1" set="null"><c path="arrow.combinators.ProgressArrow"/></progress>
+		<cancellers public="1"><c path="Array"><f a=""><e path="Void"/></f></c></cancellers>
+		<calldepthCounter public="1"><c path="util.Counter"/></calldepthCounter>
+		<stack public="1"><c path="colhx.Stack"><c path="arrow.Arrow"/></c></stack>
+		<uuid public="1"><c path="String"/></uuid>
+		<cont public="1" line="57"><f a="?x:?f:?g">
+	<d/>
+	<c path="arrow.Arrow"/>
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></cont>
+		<cancel public="1" line="80"><f a=""><e path="Void"/></f></cancel>
+		<signal public="1" line="93"><f a="name:?detail">
+	<c path="String"/>
+	<unknown/>
+	<e path="Void"/>
+</f></signal>
+		<addCanceller public="1" line="101"><f a="canceller">
+	<f a=""><e path="Void"/></f>
+	<e path="Void"/>
+</f></addCanceller>
+		<advance public="1" line="108"><f a="canceller">
+	<f a=""><e path="Void"/></f>
+	<e path="Void"/>
+</f></advance>
+		<toString public="1" line="113"><f a=""><c path="String"/></f></toString>
+		<new public="1" line="33"><f a="asynca:x">
+	<c path="arrow.Arrow"/>
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.error.HxUnitError" params="" file="../unit/src/hxunit/error/HxUnitError.hx">
+		<message public="1"><c path="String"/></message>
+		<pos public="1"><t path="haxe.PosInfos"/></pos>
+		<new public="1" line="9"><f a="message:?pos">
+	<c path="String"/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.error.AssertionError" params="" file="../unit/src/hxunit/error/AssertionError.hx">
+		<extends path="hxunit.error.HxUnitError"/>
+		<true public="1" line="11" static="1"><f a="?pos">
+	<t path="haxe.PosInfos"/>
+	<c path="hxunit.error.AssertionError"/>
+</f></true>
+		<toString public="1" line="14"><f a=""><c path="String"/></f></toString>
+		<new public="1" line="5"><f a="?message:?pos">
+	<c path="String"/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.reactor.predicate.Predicate" params="" file="src/arrow/reactor/predicate/Predicate.hx" interface="1">
+		<reactor public="1" set="null"><c path="arrow.reactor.IReactor"/></reactor>
+		<ask public="1"><f a=""><e path="Bool"/></f></ask>
+	</class>
+	<class path="arrow.reactor.predicate.NullPredicate" params="" file="src/arrow/reactor/predicate/NullPredicate.hx">
+		<implements path="arrow.reactor.predicate.Predicate"/>
+		<reactor public="1" set="null"><c path="arrow.reactor.IReactor"/></reactor>
+		<ask public="1" line="10"><f a=""><e path="Bool"/></f></ask>
+		<toString public="1" line="13"><f a=""><c path="String"/></f></toString>
+		<new public="1" line="7"><f a="reactor">
+	<c path="arrow.reactor.IReactor"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.reactor.predicate.CounterPredicate" params="" file="src/arrow/reactor/predicate/CounterPredicate.hx">
+		<extends path="arrow.reactor.predicate.NullPredicate"/>
+		<max public="1"><c path="Int"/></max>
+		<count><c path="Int"/></count>
+		<new public="1" line="9"><f a="reactor">
+	<c path="arrow.reactor.IReactor"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="reflect.Member" params="" file="../zen/src/reflect/Member.hx">
+		<declaredBy public="1" get="getDeclaredBy" set="setDeclaredBy"><c path="reflect.RType"><d/></c></declaredBy>
+		<getDeclaredBy line="6"><f a=""><c path="reflect.RType"><d/></c></f></getDeclaredBy>
+		<setDeclaredBy line="9"><f a="type">
+	<c path="reflect.RType"><d/></c>
+	<c path="reflect.RType"><d/></c>
+</f></setDeclaredBy>
+		<new public="1" line="12"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="reflect.Field" params="T" file="../zen/src/reflect/Field.hx">
+		<extends path="reflect.Member"/>
+		<value public="1" get="getValue" set="setValue"><c path="reflect.Field.T"/></value>
+		<getValue line="9"><f a=""><c path="reflect.Field.T"/></f></getValue>
+		<setValue line="12"><f a="value">
+	<c path="reflect.Field.T"/>
+	<c path="reflect.Field.T"/>
+</f></setValue>
+		<classRef public="1" get="getClassRef" set="setClassRef"><c path="Class"><d/></c></classRef>
+		<getClassRef line="17"><f a=""><c path="Class"><d/></c></f></getClassRef>
+		<setClassRef line="25"><f a="value">
+	<c path="Class"><d/></c>
+	<c path="Class"><d/></c>
+</f></setClassRef>
+		<new public="1" line="5"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.combinators.InnerRepeatThunk" params="" file="src/arrow/combinators/InnerRepeatThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<cancelled public="1"><e path="Bool"/></cancelled>
+		<cancel public="1"><d/></cancel>
+		<new public="1" line="11"><f a="f:a">
+	<c path="arrow.Arrow"/>
+	<c path="arrow.ArrowInstance"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<enum path="arrow.combinators.Loop" params="" file="src/arrow/combinators/InnerRepeatThunk.hx" module="arrow.combinators.InnerRepeatThunk">
+		<repeat/>
+		<done/>
+	</enum>
+	<class path="event.EventDispatcher" params="" file="../zen/src/event/EventDispatcher.hx" interface="1"><dispatchEvent public="1"><f a="m">
+	<c path="event.Event"/>
+	<e path="Void"/>
+</f></dispatchEvent></class>
+	<class path="event.EventListener" params="" file="../zen/src/event/EventListener.hx" interface="1">
+		<addEventListener public="1"><f a="name:listener:?params">
+	<c path="String"/>
+	<f a="">
+		<c path="event.Event"/>
+		<e path="Void"/>
+	</f>
+	<d/>
+	<e path="Void"/>
+</f></addEventListener>
+		<removeEventListener public="1"><f a="name:listener:?params">
+	<c path="String"/>
+	<f a="">
+		<c path="event.Event"/>
+		<e path="Void"/>
+	</f>
+	<d/>
+	<e path="Void"/>
+</f></removeEventListener>
+	</class>
+	<class path="arrow.combinators.ProgressArrow" params="" file="src/arrow/combinators/ProgressArrow.hx">
+		<extends path="arrow.Arrow"/>
+		<implements path="event.EventDispatcher"/>
+		<implements path="event.EventListener"/>
+		<instance><c path="arrow.ArrowInstance"/></instance>
+		<event_sys><c path="event.EventSystem"/></event_sys>
+		<cancel public="1" line="28"><f a=""><e path="Void"/></f></cancel>
+		<addEventListener public="1" line="32"><f a="name:method:?params">
+	<c path="String"/>
+	<f a="">
+		<c path="event.Event"/>
+		<e path="Void"/>
+	</f>
+	<d/>
+	<e path="Void"/>
+</f></addEventListener>
+		<removeEventListener public="1" line="35"><f a="name:method:?params">
+	<c path="String"/>
+	<f a="">
+		<c path="event.Event"/>
+		<e path="Void"/>
+	</f>
+	<d/>
+	<e path="Void"/>
+</f></removeEventListener>
+		<dispatchEvent public="1" line="38"><f a="e">
+	<c path="event.Event"/>
+	<e path="Void"/>
+</f></dispatchEvent>
+		<new public="1" line="17"><f a="instance">
+	<c path="arrow.ArrowInstance"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="util.Util" params="" file="../zen/src/util/Util.hx">
+		<isNull public="1" line="4" static="1"><f a="value">
+	<d/>
+	<e path="Bool"/>
+</f></isNull>
+		<isNotNull public="1" line="7" static="1"><f a="value">
+	<d/>
+	<e path="Bool"/>
+</f></isNotNull>
+	</class>
+	<class path="arrow.combinators.SecondThunk" params="" file="src/arrow/combinators/SecondThunk.hx">
+		<extends path="arrow.combinators.ProductThunk"/>
+		<new public="1" line="6"><f a="g">
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.TestCase" params="" file="../unit/src/hxunit/TestCase.hx">
+		<extends path="hxunit.TestFrameworkPrimitive"/>
+		<monitor public="1"><c path="hxunit.TestMonitor"/></monitor>
+		<timeout public="1"><c path="data.type.Time"/></timeout>
+		<setup public="1" line="19"><f a=""><e path="Void"/></f></setup>
+		<teardown public="1" line="20"><f a=""><e path="Void"/></f></teardown>
+		<assert line="22"><f a="type:expected:actual:pos">
+	<e path="hxunit.AType"/>
+	<d/>
+	<d/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></assert>
+		<assertTrue public="1" line="25"><f a="value:?pos">
+	<e path="Bool"/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></assertTrue>
+		<assertFalse public="1" line="26"><f a="value:?pos">
+	<e path="Bool"/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></assertFalse>
+		<assertEqual public="1" line="27"><f a="value0:value1:?pos">
+	<d/>
+	<d/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></assertEqual>
+		<assertNotNull public="1" line="29"><f a="value:?pos">
+	<d/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></assertNotNull>
+		<asyncHandler public="1" line="36"><f a="method:?timeout:?passThrough">
+	<d/>
+	<c path="data.type.Time"/>
+	<d/>
+	<f a="?a2">
+		<d/>
+		<e path="Void"/>
+	</f>
+</f></asyncHandler>
+		<toString public="1" line="53"><f a=""><c path="String"/></f></toString>
+		<filtrate public="1"><f a="">
+	<c path="String"/>
+	<e path="Bool"/>
+</f></filtrate>
+		<new public="1" line="14"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="hxunit.AnonymousTestCase" params="" file="../unit/src/hxunit/AnonymousTestCase.hx">
+		<extends path="hxunit.TestCase"/>
+		<new public="1" line="5"><f a=""><e path="Void"/></f></new>
+		<haxe_dynamic><d/></haxe_dynamic>
+	</class>
+	<class path="arrow.combinators.FunctionThunk" params="" file="src/arrow/combinators/FunctionThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="8"><f a="f">
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.ext.lambda.IterArrow" params="" file="src/arrow/ext/lambda/IterArrow.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="6"><f a="f">
+	<f a="">
+		<d/>
+		<e path="Void"/>
+	</f>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="reflect.Argument" params="T" file="../zen/src/reflect/Argument.hx">
+		<extends path="reflect.Field"><c path="reflect.Argument.T"/></extends>
+		<necessary public="1"><e path="Bool"/></necessary>
+		<new public="1" line="5"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="Class" params="T" file="/home/doberman/stack/master/src/haxe/std/Class.hx" extern="1"><haxe_doc>
+	An abstract type that represents a Class.
+	See [Type] for the haXe Reflection API.
+</haxe_doc></class>
+	<class path="Reflect" params="" file="/home/doberman/stack/master/src/haxe/std/Reflect.hx">
+		<hasField public="1" line="35" static="1">
+			<f a="o:field">
+				<d/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if an object has a field set. This doesn't take into account the object prototype (class methods).
+	</haxe_doc>
+		</hasField>
+		<field public="1" line="61" static="1">
+			<f a="o:field">
+				<d/>
+				<c path="String"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Returns the field of an object, or null if [o] is not an object or doesn't have this field.
+	</haxe_doc>
+		</field>
+		<setField public="1" line="87" static="1">
+			<f a="o:field:value">
+				<d/>
+				<c path="String"/>
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Set an object field value.
+	</haxe_doc>
+		</setField>
+		<callMethod public="1" line="105" static="1">
+			<f a="o:func:args">
+				<d/>
+				<d/>
+				<c path="Array"><d/></c>
+				<d/>
+			</f>
+			<haxe_doc>
+		Call a method with the given object and arguments.
+	</haxe_doc>
+		</callMethod>
+		<fields public="1" line="132" static="1">
+			<f a="o">
+				<d/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Returns the list of fields of an object, excluding its prototype (class methods).
+	</haxe_doc>
+		</fields>
+		<isFunction public="1" line="207" static="1">
+			<f a="f">
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value is a function or not.
+	</haxe_doc>
+		</isFunction>
+		<compare public="1" params="T" line="228" static="1">
+			<f a="a:b">
+				<c path="compare.T"/>
+				<c path="compare.T"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Generic comparison function, does not work for methods, see [compareMethods]
+	</haxe_doc>
+		</compare>
+		<compareMethods public="1" line="240" static="1">
+			<f a="f1:f2">
+				<d/>
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Compare two methods closures. Returns true if it's the same method of the same instance.
+		Does not work on Neko platform.
+	</haxe_doc>
+		</compareMethods>
+		<isObject public="1" line="272" static="1">
+			<f a="v">
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value is an object or not.
+
+	</haxe_doc>
+		</isObject>
+		<deleteField public="1" line="315" static="1">
+			<f a="o:f">
+				<d/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Delete an object field.
+	</haxe_doc>
+		</deleteField>
+		<copy public="1" params="T" line="342" static="1">
+			<f a="o">
+				<c path="copy.T"/>
+				<c path="copy.T"/>
+			</f>
+			<haxe_doc>
+		Make a copy of the fields of an object.
+	</haxe_doc>
+		</copy>
+		<makeVarArgs public="1" line="360" static="1">
+			<f a="f">
+				<f a="">
+					<c path="Array"><d/></c>
+					<d/>
+				</f>
+				<d/>
+			</f>
+			<haxe_doc>
+		Transform a function taking an array of arguments into a function that can
+		be called with any number of arguments.
+	</haxe_doc>
+		</makeVarArgs>
+		<haxe_doc>
+	The Reflect API is a way to manipulate values dynamicly through an
+	abstract interface in an untyped manner. Use with care.
+</haxe_doc>
+	</class>
+	<enum path="arrow.reactor.ReactorType" params="" file="src/arrow/reactor/ReactorType.hx"><NullReactor/></enum>
+	<class path="arrow.ext.lambda.MapThunk" params="" file="src/arrow/ext/lambda/MapThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="7"><f a="f:g">
+	<c path="arrow.Arrow"/>
+	<f a="">
+		<d/>
+		<d/>
+	</f>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="util.MathUtil" params="" file="../zen/src/util/MathUtil.hx">
+		<delta public="1" line="5" static="1"><f a="n0:n1">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></delta>
+		<normalize public="1" line="8" static="1"><f a="v:n0:n1">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></normalize>
+		<interpolate public="1" line="11" static="1"><f a="v:n0:n1">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></interpolate>
+		<map public="1" line="14" static="1"><f a="v:min0:max0:min1:max1">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></map>
+		<isOdd public="1" line="17" static="1"><f a="value">
+	<c path="Int"/>
+	<e path="Bool"/>
+</f></isOdd>
+		<isEven public="1" line="20" static="1"><f a="value">
+	<c path="Int"/>
+	<e path="Bool"/>
+</f></isEven>
+		<isInteger public="1" line="23" static="1"><f a="n">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isInteger>
+		<isNatural public="1" line="26" static="1"><f a="n">
+	<c path="Int"/>
+	<e path="Bool"/>
+</f></isNatural>
+		<isPrime public="1" line="29" static="1"><f a="n">
+	<c path="Int"/>
+	<e path="Bool"/>
+</f></isPrime>
+		<factorial public="1" line="42" static="1"><f a="n">
+	<c path="Int"/>
+	<c path="Int"/>
+</f></factorial>
+		<getDivisors public="1" line="56" static="1"><f a="n">
+	<c path="Int"/>
+	<c path="Array"><c path="Int"/></c>
+</f></getDivisors>
+		<round public="1" line="67" static="1"><f a="n:?c">
+	<c path="Float"/>
+	<c path="Int"/>
+	<c path="Float"/>
+</f></round>
+		<ceil public="1" line="71" static="1"><f a="n:?c">
+	<c path="Float"/>
+	<c path="Int"/>
+	<c path="Float"/>
+</f></ceil>
+		<floor public="1" line="75" static="1"><f a="n:?c">
+	<c path="Float"/>
+	<c path="Int"/>
+	<c path="Float"/>
+</f></floor>
+	</class>
+	<class path="hxunit.TestRunner" params="" file="../unit/src/hxunit/TestRunner.hx">
+		<gen><c path="hxunit.TestGenerator"/></gen>
+		<monitor><c path="hxunit.TestMonitor"/></monitor>
+		<responder public="1"><c path="hxunit.responder.TestResponder"/></responder>
+		<addSuite public="1" line="15"><f a="value">
+	<c path="Class"><d/></c>
+	<e path="Void"/>
+</f></addSuite>
+		<addCase public="1" line="18"><f a="value">
+	<c path="Class"><d/></c>
+	<e path="Void"/>
+</f></addCase>
+		<addTest public="1" line="21"><f a="?name:?method">
+	<c path="String"/>
+	<f a=""><e path="Void"/></f>
+	<e path="Void"/>
+</f></addTest>
+		<run public="1" line="24"><f a=""><e path="Void"/></f></run>
+		<advance public="1" line="28"><f a=""><e path="Void"/></f></advance>
+		<observe public="1"><f a="">
+	<d/>
+	<e path="Void"/>
+</f></observe>
+		<new public="1" line="11"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="IntIter" params="" file="/home/doberman/stack/master/src/haxe/std/IntIter.hx">
+		<min><c path="Int"/></min>
+		<max><c path="Int"/></max>
+		<hasNext public="1" line="46">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+		Returns true if the iterator has other items, false otherwise.
+	</haxe_doc>
+		</hasNext>
+		<next public="1" line="53">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Moves to the next item of the iterator.
+	</haxe_doc>
+		</next>
+		<new public="1" line="38">
+			<f a="min:max">
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+		Iterate from [min] (inclusive) to [max] (exclusive).
+		If [max <= min], the iterator will not act as a countdown.
+	]]></haxe_doc>
+		</new>
+		<haxe_doc>
+	Integer iterator. Used for interval implementation.
+</haxe_doc>
+	</class>
+	<class path="Math" params="" file="/home/doberman/stack/master/src/haxe/std/Math.hx" extern="1">
+		<PI public="1" set="null" static="1"><c path="Float"/></PI>
+		<NaN public="1" set="null" static="1"><c path="Float"/></NaN>
+		<NEGATIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></NEGATIVE_INFINITY>
+		<POSITIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></POSITIVE_INFINITY>
+		<abs public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></abs>
+		<min public="1" static="1"><f a="value1:value2">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></min>
+		<max public="1" static="1"><f a="value1:value2">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></max>
+		<sin public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></sin>
+		<cos public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></cos>
+		<atan2 public="1" static="1"><f a="value1:value2">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></atan2>
+		<tan public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></tan>
+		<exp public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></exp>
+		<log public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></log>
+		<sqrt public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></sqrt>
+		<round public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></round>
+		<floor public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></floor>
+		<ceil public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></ceil>
+		<atan public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></atan>
+		<asin public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></asin>
+		<acos public="1" static="1"><f a="value">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></acos>
+		<pow public="1" static="1"><f a="value1:value2">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></pow>
+		<random public="1" static="1"><f a=""><c path="Float"/></f></random>
+		<isFinite public="1" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isFinite>
+		<isNaN public="1" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isNaN>
+		<haxe_doc>
+	This class defines mathematical functions and constants.
+</haxe_doc>
+	</class>
+	<class path="event.Event" params="" file="../zen/src/event/Event.hx">
+		<name public="1" set="null"><c path="String"/></name>
+		<source public="1"><d/></source>
+		<new public="1" line="7"><f a="name:?source">
+	<c path="String"/>
+	<unknown/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.ext.lambda.FoldThunk" params="" file="src/arrow/ext/lambda/FoldThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="6"><f a="first:f:fold">
+	<d/>
+	<d/>
+	<f a=":">
+		<d/>
+		<d/>
+		<d/>
+	</f>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<enum path="ValueType" params="" file="/home/doberman/stack/master/src/haxe/std/Type.hx" module="Type">
+		<TUnknown/>
+		<TObject/>
+		<TNull/>
+		<TInt/>
+		<TFunction/>
+		<TFloat/>
+		<TEnum a="e"><c path="Enum"><d/></c></TEnum>
+		<TClass a="c"><c path="Class"><d/></c></TClass>
+		<TBool/>
+		<haxe_doc>
+	The diffent possible runtime types of a value.
+	See [Type] for the haXe Reflection API.
+</haxe_doc>
+	</enum>
+	<class path="Type" params="" file="/home/doberman/stack/master/src/haxe/std/Type.hx">
+		<getClass public="1" params="T" line="26" static="1">
+			<f a="o">
+				<c path="getClass.T"/>
+				<c path="Class"><c path="getClass.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns the class of a value or [null] if this value is not a Class instance.
+	</haxe_doc>
+		</getClass>
+		<getEnum public="1" line="79" static="1">
+			<f a="o">
+				<d/>
+				<c path="Enum"><d/></c>
+			</f>
+			<haxe_doc>
+		Returns the enum of a value or [null] if this value is not an Enum instance.
+	</haxe_doc>
+		</getEnum>
+		<getSuperClass public="1" line="119" static="1">
+			<f a="c">
+				<c path="Class"><d/></c>
+				<c path="Class"><d/></c>
+			</f>
+			<haxe_doc>
+		Returns the super-class of a class, or null if no super class.
+	</haxe_doc>
+		</getSuperClass>
+		<getClassName public="1" line="142" static="1">
+			<f a="c">
+				<c path="Class"><d/></c>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the complete name of a class.
+	</haxe_doc>
+		</getClassName>
+		<getEnumName public="1" line="167" static="1">
+			<f a="e">
+				<c path="Enum"><d/></c>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the complete name of an enum.
+	</haxe_doc>
+		</getEnumName>
+		<resolveClass public="1" line="184" static="1">
+			<f a="name">
+				<c path="String"/>
+				<c path="Class"><d/></c>
+			</f>
+			<haxe_doc>
+		Evaluates a class from a name. The class must have been compiled
+		to be accessible.
+	</haxe_doc>
+		</resolveClass>
+		<resolveEnum public="1" line="239" static="1">
+			<f a="name">
+				<c path="String"/>
+				<c path="Enum"><d/></c>
+			</f>
+			<haxe_doc>
+		Evaluates an enum from a name. The enum must have been compiled
+		to be accessible.
+	</haxe_doc>
+		</resolveEnum>
+		<createInstance public="1" params="T" line="289" static="1">
+			<f a="cl:args">
+				<c path="Class"><c path="createInstance.T"/></c>
+				<c path="Array"><d/></c>
+				<c path="createInstance.T"/>
+			</f>
+			<haxe_doc>
+		Creates an instance of the given class with the list of constructor arguments.
+	</haxe_doc>
+		</createInstance>
+		<createEmptyInstance public="1" params="T" line="341" static="1">
+			<f a="cl">
+				<c path="Class"><c path="createEmptyInstance.T"/></c>
+				<c path="createEmptyInstance.T"/>
+			</f>
+			<haxe_doc>
+		Similar to [Reflect.createInstance] excepts that the constructor is not called.
+		This enables you to create an instance without any side-effect.
+	</haxe_doc>
+		</createEmptyInstance>
+		<createEnum public="1" params="T" line="397" static="1">
+			<f a="e:constr:?params">
+				<c path="Enum"><c path="createEnum.T"/></c>
+				<c path="String"/>
+				<c path="Array"><d/></c>
+				<c path="createEnum.T"/>
+			</f>
+			<haxe_doc>
+		Create an instance of an enum by using a constructor name and parameters.
+	</haxe_doc>
+		</createEnum>
+		<createEnumIndex public="1" params="T" line="418" static="1">
+			<f a="e:index:?params">
+				<c path="Enum"><c path="createEnumIndex.T"/></c>
+				<c path="Int"/>
+				<c path="Array"><d/></c>
+				<c path="createEnumIndex.T"/>
+			</f>
+			<haxe_doc>
+		Create an instance of an enum by using a constructor index and parameters.
+	</haxe_doc>
+		</createEnumIndex>
+		<getInstanceFields public="1" line="443" static="1">
+			<f a="c">
+				<c path="Class"><d/></c>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Returns the list of instance fields.
+	</haxe_doc>
+		</getInstanceFields>
+		<getClassFields public="1" line="493" static="1">
+			<f a="c">
+				<c path="Class"><d/></c>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Returns the list of a class static fields.
+	</haxe_doc>
+		</getClassFields>
+		<getEnumConstructs public="1" line="536" static="1">
+			<f a="e">
+				<c path="Enum"><d/></c>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Returns all the available constructor names for an enum.
+	</haxe_doc>
+		</getEnumConstructs>
+		<typeof public="1" line="557" static="1">
+			<f a="v">
+				<d/>
+				<e path="ValueType"/>
+			</f>
+			<haxe_doc>
+		Returns the runtime type of a value.
+	</haxe_doc>
+		</typeof>
+		<enumEq public="1" params="T" line="680" static="1">
+			<f a="a:b">
+				<c path="enumEq.T"/>
+				<c path="enumEq.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Recursively compare two enums constructors and parameters.
+	</haxe_doc>
+		</enumEq>
+		<enumConstructor public="1" line="752" static="1">
+			<f a="e">
+				<d/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the constructor of an enum
+	</haxe_doc>
+		</enumConstructor>
+		<enumParameters public="1" line="767" static="1">
+			<f a="e">
+				<d/>
+				<c path="Array"><d/></c>
+			</f>
+			<haxe_doc>
+		Returns the parameters of an enum
+	</haxe_doc>
+		</enumParameters>
+		<enumIndex public="1" line="787" static="1">
+			<f a="e">
+				<d/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Returns the index of the constructor of an enum
+	</haxe_doc>
+		</enumIndex>
+		<haxe_doc>
+	The haXe Reflection API enables you to retreive informations about any value,
+	Classes and Enums at runtime.
+</haxe_doc>
+	</class>
+	<class path="util.ReflectUtil" params="" file="../zen/src/util/ReflectUtil.hx">
+		<isIterable public="1" line="4" static="1"><f a="value">
+	<d/>
+	<e path="Bool"/>
+</f></isIterable>
+		<isSubclassOf public="1" line="7" static="1"><f a="value:type">
+	<d/>
+	<c path="Class"><d/></c>
+	<e path="Bool"/>
+</f></isSubclassOf>
+		<isProperty public="1" line="18" static="1"><f a="value">
+	<d/>
+	<e path="Bool"/>
+</f></isProperty>
+		<typeof public="1" line="21" static="1"><f a="obj">
+	<d/>
+	<c path="Class"><d/></c>
+</f></typeof>
+		<typeName public="1" line="24" static="1"><f a="type">
+	<c path="Class"><d/></c>
+	<c path="String"/>
+</f></typeName>
+	</class>
+	<class path="Tuple" params="" file="src/Tuple.hx">
+		<data public="1" get="getData" set="null"><d/></data>
+		<getData line="7"><f a=""><unknown/></f></getData>
+		<length public="1" get="getLength" set="null"><c path="Int"/></length>
+		<getLength line="11"><f a=""><c path="Int"/></f></getLength>
+		<fst public="1" line="23"><f a=""><unknown/></f></fst>
+		<snd public="1" line="26"><f a=""><unknown/></f></snd>
+		<toString public="1" line="30"><f a=""><c path="String"/></f></toString>
+		<toTupleString public="1" line="33"><f a=""><c path="String"/></f></toTupleString>
+		<memoArray><c path="Array"><d/></c></memoArray>
+		<toArray public="1" line="68"><f a=""><c path="Array"><d/></c></f></toArray>
+		<applyArrayTo public="1" line="109"><f a="f">
+	<d/>
+	<unknown/>
+</f></applyArrayTo>
+		<new public="1" line="14"><f a="args">
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="Box" params="" file="src/Tuple.hx" module="Tuple">
+		<data public="1"><d/></data>
+		<new public="1" line="117"><f a="vals">
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="util.Counter" params="" file="../zen/src/util/Counter.hx">
+		<maxCount><c path="Int"/></maxCount>
+		<current><c path="Int"/></current>
+		<init public="1" line="9"><f a=""><e path="Void"/></f></init>
+		<step public="1" line="12"><f a=""><e path="Void"/></f></step>
+		<max public="1" line="15"><f a=""><e path="Void"/></f></max>
+		<isDone public="1" line="18"><f a=""><e path="Bool"/></f></isDone>
+		<new public="1" line="5"><f a="max">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="haxe.Timer" params="" file="/home/doberman/stack/master/src/haxe/std/haxe/Timer.hx">
+		<delay public="1" line="76" static="1"><f a="f:time_ms">
+	<f a=""><e path="Void"/></f>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></delay>
+		<stamp public="1" line="89" static="1">
+			<f a=""><c path="Float"/></f>
+			<haxe_doc>
+		Returns a timestamp, in seconds
+	</haxe_doc>
+		</stamp>
+		<id><t path="Null"><c path="Int"/></t></id>
+		<stop public="1" line="52"><f a=""><e path="Void"/></f></stop>
+		<run public="1" line="73"><f a=""><e path="Void"/></f></run>
+		<new public="1" line="38"><f a="time_ms">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="reflect.NamedField" params="T" file="../zen/src/reflect/NamedField.hx">
+		<extends path="reflect.Field"><c path="reflect.NamedField.T"/></extends>
+		<name public="1" get="getName" set="setName"><c path="reflect.Field"><c path="String"/></c></name>
+		<getName line="10"><f a=""><c path="reflect.Field"><c path="String"/></c></f></getName>
+		<setName line="13"><f a="value">
+	<c path="reflect.Field"><c path="String"/></c>
+	<c path="reflect.Field"><c path="String"/></c>
+</f></setName>
+		<new public="1" line="5"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="util.UUID" params="" file="../zen/src/util/UUID.hx"><get public="1" line="5" static="1"><f a=""><c path="String"/></f></get></class>
+	<class path="hxunit.TestMonitor" params="" file="../unit/src/hxunit/TestMonitor.hx">
+		<observers public="1"><c path="List"><f a="">
+	<d/>
+	<e path="Void"/>
+</f></c></observers>
+		<runner><c path="hxunit.TestRunner"/></runner>
+		<result><c path="hxunit.TestResult"/></result>
+		<unit><t path="hxunit.Unit"/></unit>
+		<atc><c path="hxunit.TestCase"/></atc>
+		<waits><c path="Hash"><t path="hxunit.Wait"/></c></waits>
+		<notify public="1" line="31"><f a="value">
+	<e path="hxunit.Message"/>
+	<e path="Void"/>
+</f></notify>
+		<run public="1" line="42"><f a=""><e path="Void"/></f></run>
+		<call line="52"><f a="name">
+	<c path="String"/>
+	<e path="Bool"/>
+</f></call>
+		<assert line="62"><f a="v">
+	<t path="hxunit.Assertion"/>
+	<e path="Void"/>
+</f></assert>
+		<handle line="66"><f a="name:value:passThrough">
+	<c path="String"/>
+	<unknown/>
+	<unknown/>
+	<e path="Void"/>
+</f></handle>
+		<callHandler line="79"><f a="method:?value:?passThrough">
+	<d/>
+	<d/>
+	<d/>
+	<e path="Void"/>
+</f></callHandler>
+		<error line="87"><f a="value">
+	<d/>
+	<e path="Void"/>
+</f></error>
+		<wait line="94"><f a=""><e path="Void"/></f></wait>
+		<timer><c path="haxe.Timer"/></timer>
+		<tick line="118"><f a=""><e path="Void"/></f></tick>
+		<done line="138"><f a=""><e path="Void"/></f></done>
+		<new public="1" line="20"><f a="unit:runner">
+	<t path="hxunit.Unit"/>
+	<c path="hxunit.TestRunner"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="util.EventUtil" params="" file="../zen/src/util/EventUtil.hx"/>
+	<class path="arrow.combinators.BindThunk" params="" file="src/arrow/combinators/BindThunk.hx">
+		<extends path="arrow.combinators.ComposeThunk"/>
+		<new public="1" line="5"><f a="f:g">
+	<c path="arrow.Arrow"/>
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="test.arrow.LambdaArrowTest" params="" file="./test/arrow/LambdaArrowTest.hx">
+		<extends path="hxunit.TestCase"/>
+		<testMap public="1" line="21"><f a=""><e path="Void"/></f></testMap>
+		<testIter public="1" line="43"><f a=""><e path="Void"/></f></testIter>
+		<testFilter public="1" line="61"><f a=""><e path="Void"/></f></testFilter>
+		<testLong public="1" line="76"><f a=""><e path="Void"/></f></testLong>
+		<new public="1" line="13"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.combinators.OrThunk" params="" file="src/arrow/combinators/OrThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="14"><f a="?trigger:f:g">
+	<c path="String"/>
+	<c path="arrow.Arrow"/>
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.combinators.ArrThunk" params="" file="src/arrow/combinators/ArrThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="9"><f a="f">
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.error.TestError" params="" file="../unit/src/hxunit/error/TestError.hx">
+		<extends path="hxunit.error.HxUnitError"/>
+		<e><d/></e>
+		<toString public="1" line="11"><f a=""><c path="String"/></f></toString>
+		<new public="1" line="7"><f a="message:error:?posInfos">
+	<c path="String"/>
+	<d/>
+	<unknown/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.TestResult" params="" file="../unit/src/hxunit/TestResult.hx">
+		<errors public="1"><c path="List"><c path="hxunit.error.HxUnitError"/></c></errors>
+		<assertions public="1"><c path="List"><t path="hxunit.Assertion"/></c></assertions>
+		<unit public="1"><t path="hxunit.Unit"/></unit>
+		<add public="1" line="16"><f a="value">
+	<t path="hxunit.Assertion"/>
+	<e path="Void"/>
+</f></add>
+		<toString public="1" line="19"><f a=""><c path="String"/></f></toString>
+		<new public="1" line="11"><f a="unit">
+	<t path="hxunit.Unit"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="StringBuf" params="" file="/home/doberman/stack/master/src/haxe/std/StringBuf.hx">
+		<add public="1" line="48">
+			<f a="?x">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds the representation of any value to the string buffer.
+	</haxe_doc>
+		</add>
+		<addSub public="1" line="61">
+			<f a="s:pos:?len">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds a part of a string to the string buffer.
+	</haxe_doc>
+		</addSub>
+		<addChar public="1" line="79">
+			<f a="c">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds a character to the string buffer.
+	</haxe_doc>
+		</addChar>
+		<toString public="1" line="95">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the content of the string buffer.
+		The buffer is not emptied by this operation.
+	</haxe_doc>
+		</toString>
+		<b><c path="String"/></b>
+		<new public="1" line="35">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new string buffer.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	A String buffer is an efficient way to build a big string by
+	appending small elements together.
+</haxe_doc>
+	</class>
+	<enum path="data.type.TimeFormat" params="" file="../zen/src/data/type/Time.hx" module="data.type.Time">
+		<second/>
+		<minute/>
+		<millisecond/>
+		<hour/>
+		<day/>
+	</enum>
+	<class path="data.type.Time" params="" file="../zen/src/data/type/Time.hx">
+		<fromTimeStamp public="1" line="14" static="1"><f a=""><c path="data.type.Time"/></f></fromTimeStamp>
+		<SECOND line="135" static="1"><c path="Float"/></SECOND>
+		<MINUTE line="136" static="1"><c path="Float"/></MINUTE>
+		<HOUR line="137" static="1"><c path="Float"/></HOUR>
+		<DAY line="138" static="1"><c path="Float"/></DAY>
+		<setValue public="1" line="25"><f a="timeDifference:?format">
+	<c path="Float"/>
+	<e path="data.type.TimeFormat"/>
+	<c path="data.type.Time"/>
+</f></setValue>
+		<plus public="1" line="42"><f a="timeDifference">
+	<c path="data.type.Time"/>
+	<c path="data.type.Time"/>
+</f></plus>
+		<minus public="1" line="46"><f a="timeDifference">
+	<c path="data.type.Time"/>
+	<c path="data.type.Time"/>
+</f></minus>
+		<getMilliSeconds public="1" line="50"><f a="?round">
+	<c path="Int"/>
+	<c path="Float"/>
+</f></getMilliSeconds>
+		<inMilliSeconds public="1" line="59"><f a=""><c path="Float"/></f></inMilliSeconds>
+		<getSeconds public="1" line="63"><f a="?round">
+	<c path="Int"/>
+	<c path="Float"/>
+</f></getSeconds>
+		<inSeconds public="1" line="72"><f a=""><c path="Float"/></f></inSeconds>
+		<getMinutes public="1" line="76"><f a="?round">
+	<c path="Int"/>
+	<c path="Float"/>
+</f></getMinutes>
+		<inMinutes public="1" line="85"><f a=""><c path="Float"/></f></inMinutes>
+		<getHours public="1" line="89"><f a="?round">
+	<c path="Int"/>
+	<c path="Float"/>
+</f></getHours>
+		<inHours public="1" line="97"><f a=""><c path="Float"/></f></inHours>
+		<getDays public="1" line="100"><f a="?round">
+	<c path="Int"/>
+	<c path="Float"/>
+</f></getDays>
+		<inDays public="1" line="108"><f a=""><c path="Float"/></f></inDays>
+		<toString public="1" line="111"><f a=""><c path="String"/></f></toString>
+		<evaluate line="114"><f a=""><e path="Void"/></f></evaluate>
+		<ms><c path="Float"/></ms>
+		<days><c path="Float"/></days>
+		<hours><c path="Float"/></hours>
+		<minutes><c path="Float"/></minutes>
+		<seconds><c path="Float"/></seconds>
+		<milliSeconds><c path="Float"/></milliSeconds>
+		<doEval><e path="Bool"/></doEval>
+		<new public="1" line="17"><f a="?timeDifference:?format">
+	<c path="Float"/>
+	<e path="data.type.TimeFormat"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<typedef path="haxe.PosInfos" params="" file="/home/doberman/stack/master/src/haxe/std/haxe/PosInfos.hx"><a>
+	<methodName><c path="String"/></methodName>
+	<lineNumber><c path="Int"/></lineNumber>
+	<fileName><c path="String"/></fileName>
+	<customParams><c path="Array"><d/></c></customParams>
+	<className><c path="String"/></className>
+</a></typedef>
+	<class path="Lambda" params="" file="/home/doberman/stack/master/src/haxe/std/Lambda.hx">
+		<array public="1" params="A" line="35" static="1">
+			<f a="it">
+				<t path="Iterable"><c path="array.A"/></t>
+				<c path="Array"><c path="array.A"/></c>
+			</f>
+			<haxe_doc>
+		Creates an [Array] from an [Iterable]
+	</haxe_doc>
+		</array>
+		<list public="1" params="A" line="48" static="1">
+			<f a="it">
+				<t path="Iterable"><c path="list.A"/></t>
+				<c path="List"><c path="list.A"/></c>
+			</f>
+			<haxe_doc>
+		Creates a [List] from an [Iterable]
+	</haxe_doc>
+		</list>
+		<map public="1" params="A:B" line="62" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="map.A"/></t>
+				<f a="">
+					<c path="map.A"/>
+					<c path="map.B"/>
+				</f>
+				<c path="List"><c path="map.B"/></c>
+			</f>
+			<haxe_doc>
+		Creates a new [Iterable] by appling the function 'f' to all
+		elements of the iterator 'it'.
+	</haxe_doc>
+		</map>
+		<mapi public="1" params="A:B" line="75" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="mapi.A"/></t>
+				<f a=":">
+					<c path="Int"/>
+					<c path="mapi.A"/>
+					<c path="mapi.B"/>
+				</f>
+				<c path="List"><c path="mapi.B"/></c>
+			</f>
+			<haxe_doc>
+		Similar to [map], but also pass an index for each item iterated.
+	</haxe_doc>
+		</mapi>
+		<has public="1" params="A" line="93" static="1">
+			<f a="it:elt:?cmp">
+				<t path="Iterable"><c path="has.A"/></t>
+				<c path="has.A"/>
+				<f a=":">
+					<c path="has.A"/>
+					<c path="has.A"/>
+					<e path="Bool"/>
+				</f>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the element is part of an iterable. The comparison
+		is made using the [==] operator. Optionally you can pass as
+		a third parameter a function that performs the comparison.
+		That function must take as arguments the two items to
+		compare and returns a boolean value.
+	</haxe_doc>
+		</has>
+		<exists public="1" params="A" line="112" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="exists.A"/></t>
+				<f a="">
+					<c path="exists.A"/>
+					<e path="Bool"/>
+				</f>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if at least one element of the iterable is found by using the specific function.
+	</haxe_doc>
+		</exists>
+		<foreach public="1" params="A" line="125" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="foreach.A"/></t>
+				<f a="">
+					<c path="foreach.A"/>
+					<e path="Bool"/>
+				</f>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if all elements of the iterable have the specified property defined by [f].
+	</haxe_doc>
+		</foreach>
+		<iter public="1" params="A" line="138" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="iter.A"/></t>
+				<f a="">
+					<c path="iter.A"/>
+					<e path="Void"/>
+				</f>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Call the function 'f' on all elements of the [Iterable] 'it'.
+	</haxe_doc>
+		</iter>
+		<filter public="1" params="A" line="149" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="filter.A"/></t>
+				<f a="">
+					<c path="filter.A"/>
+					<e path="Bool"/>
+				</f>
+				<c path="List"><c path="filter.A"/></c>
+			</f>
+			<haxe_doc>
+		Return the list of elements matching the function 'f'
+	</haxe_doc>
+		</filter>
+		<fold public="1" params="A:B" line="163" static="1">
+			<f a="it:f:first">
+				<t path="Iterable"><c path="fold.A"/></t>
+				<f a=":">
+					<c path="fold.A"/>
+					<c path="fold.B"/>
+					<c path="fold.B"/>
+				</f>
+				<c path="fold.B"/>
+				<c path="fold.B"/>
+			</f>
+			<haxe_doc>
+		Functional 'fold' using an [Iterable]
+	</haxe_doc>
+		</fold>
+		<count public="1" params="A" line="175" static="1">
+			<f a="it">
+				<t path="Iterable"><c path="count.A"/></t>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Count the number of elements in an [Iterable]
+	</haxe_doc>
+		</count>
+		<empty public="1" line="188" static="1">
+			<f a="it">
+				<t path="Iterable"><d/></t>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if an iterable does not contain any element.
+	</haxe_doc>
+		</empty>
+		<haxe_doc>
+	The [Lambda] class is a collection of functional methods in order to
+	use functional-style programming with haXe.
+</haxe_doc>
+	</class>
+	<class path="test.arrow.ComplexTest" params="" file="./test/arrow/ComplexTest.hx">
+		<extends path="hxunit.TestCase"/>
+		<debug public="1" line="14"><f a="?x">
+	<d/>
+	<d/>
+</f></debug>
+		<testRepeat public="1" line="42"><f a=""><e path="Void"/></f></testRepeat>
+		<testAnimate public="1" line="63"><f a=""><e path="Void"/></f></testAnimate>
+		<testIndependentLoop public="1" line="65"><f a=""><e path="Void"/></f></testIndependentLoop>
+		<new public="1" line="11"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.ext.lambda.MapArrow" params="" file="src/arrow/ext/lambda/MapArrow.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="8"><f a="f">
+	<f a="">
+		<d/>
+		<d/>
+	</f>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="Enum" params="T" file="/home/doberman/stack/master/src/haxe/std/Enum.hx" extern="1"><haxe_doc>
+	An abstract type that represents an Enum.
+	See [Type] for the haXe Reflection API.
+</haxe_doc></class>
+	<class path="arrow.ext.UnitArrow" params="" file="src/arrow/ext/UnitArrow.hx">
+		<testA public="1" line="8" static="1"><f a="t:f:?info">
+	<c path="hxunit.TestCase"/>
+	<f a="">
+		<d/>
+		<e path="Void"/>
+	</f>
+	<c path="String"/>
+	<c path="arrow.Arrow"/>
+</f></testA>
+		<arrivesOKA public="1" line="21" static="1"><f a="t">
+	<c path="hxunit.TestCase"/>
+	<c path="arrow.Arrow"/>
+</f></arrivesOKA>
+	</class>
+	<class path="arrow.combinators.DelayArrow" params="" file="src/arrow/combinators/DelayArrow.hx">
+		<extends path="arrow.Arrow"/>
+		<time><c path="data.type.Time"/></time>
+		<cancel public="1"><f a=""><e path="Void"/></f></cancel>
+		<new public="1" line="18"><f a="time">
+	<c path="data.type.Time"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.TestGenerator" params="" file="../unit/src/hxunit/TestGenerator.hx">
+		<DEFAULT_CASE public="1" line="7" static="1"><c path="String"/></DEFAULT_CASE>
+		<DEFAULT_SUITE public="1" line="8" static="1"><c path="String"/></DEFAULT_SUITE>
+		<defaultCase><c path="Class"><c path="hxunit.AnonymousTestCase"/></c></defaultCase>
+		<defaultSuite><c path="Class"><c path="hxunit.TestSuite"/></c></defaultSuite>
+		<tests public="1"><c path="List"><t path="hxunit.Unit"/></c></tests>
+		<anonCount><c path="Int"/></anonCount>
+		<addTest public="1" line="22"><f a="?name:?method:?testCase:?testSuite">
+	<c path="String"/>
+	<f a=""><e path="Void"/></f>
+	<c path="Class"><d/></c>
+	<c path="Class"><d/></c>
+	<e path="Void"/>
+</f></addTest>
+		<addCase public="1" line="32"><f a="testCase:?testSuite">
+	<c path="Class"><d/></c>
+	<c path="Class"><d/></c>
+	<e path="Void"/>
+</f></addCase>
+		<addSuite public="1" line="54"><f a="suite">
+	<c path="Class"><d/></c>
+	<e path="Void"/>
+</f></addSuite>
+		<new public="1" line="16"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.ext.lambda.FoldArrow" params="" file="src/arrow/ext/lambda/FoldArrow.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="8"><f a="f:first">
+	<f a=":">
+		<d/>
+		<d/>
+		<d/>
+	</f>
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.combinators.JoinThunk" params="" file="src/arrow/combinators/JoinThunk.hx">
+		<extends path="arrow.combinators.ComposeThunk"/>
+		<new public="1" line="7"><f a="f:g">
+	<c path="arrow.Arrow"/>
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.reactor.Call" params="" file="src/arrow/reactor/Call.hx">
+		<extends path="ion.log.LogSupport"/>
+		<invoke public="1" line="14"><f a=""><e path="Void"/></f></invoke>
+		<toString public="1" line="20"><f a=""><c path="String"/></f></toString>
+		<x><d/></x>
+		<arrow public="1" set="null"><c path="arrow.Arrow"/></arrow>
+		<instance><c path="arrow.ArrowInstance"/></instance>
+		<new public="1" line="8"><f a="x:instance:a">
+	<d/>
+	<c path="arrow.ArrowInstance"/>
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.ext.lambda.FilterThunk" params="" file="src/arrow/ext/lambda/FilterThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="7"><f a="f:filter:?inverse">
+	<d/>
+	<f a="">
+		<d/>
+		<e path="Bool"/>
+	</f>
+	<e path="Bool"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<enum path="reflect.AccessorType" params="" file="../zen/src/reflect/Property.hx" module="reflect.Property"/>
+	<class path="reflect.Property" params="T" file="../zen/src/reflect/Property.hx">
+		<extends path="reflect.NamedField"><c path="reflect.Property.T"/></extends>
+		<getter public="1" get="getGetter" set="setGetter"><c path="reflect.Method"><d/></c></getter>
+		<getGetter line="13"><f a=""><c path="reflect.Method"><d/></c></f></getGetter>
+		<setGetter line="16"><f a="method">
+	<c path="reflect.Method"><d/></c>
+	<c path="reflect.Method"><d/></c>
+</f></setGetter>
+		<setter public="1" get="getSetter" set="setSetter"><c path="reflect.Method"><d/></c></setter>
+		<getSetter line="20"><f a=""><c path="reflect.Method"><d/></c></f></getSetter>
+		<setSetter line="23"><f a="method">
+	<c path="reflect.Method"><d/></c>
+	<c path="reflect.Method"><d/></c>
+</f></setSetter>
+		<access public="1"><e path="reflect.Access"/></access>
+		<getValue line="29"><f a=""><c path="reflect.Property.T"/></f></getValue>
+		<setValue line="36"><f a="value">
+	<c path="reflect.Property.T"/>
+	<c path="reflect.Property.T"/>
+</f></setValue>
+		<new public="1" line="8"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="Full" params="" file="./Full.hx">
+		<main public="1" line="6" static="1"><f a=""><e path="Void"/></f></main>
+		<new public="1" line="10"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="event.EventSystem" params="" file="../zen/src/event/EventSystem.hx">
+		<implements path="event.EventListener"/>
+		<implements path="event.EventDispatcher"/>
+		<listeners><c path="Hash"><c path="List"><f a="">
+	<c path="event.Event"/>
+	<e path="Void"/>
+</f></c></c></listeners>
+		<target><d/></target>
+		<addEventListener public="1" line="12"><f a="name:method:?params">
+	<c path="String"/>
+	<f a="">
+		<c path="event.Event"/>
+		<e path="Void"/>
+	</f>
+	<d/>
+	<e path="Void"/>
+</f></addEventListener>
+		<removeEventListener public="1" line="25"><f a="name:method:?params">
+	<c path="String"/>
+	<f a="">
+		<c path="event.Event"/>
+		<e path="Void"/>
+	</f>
+	<d/>
+	<e path="Void"/>
+</f></removeEventListener>
+		<dispatchEvent public="1" line="33"><f a="e">
+	<c path="event.Event"/>
+	<e path="Void"/>
+</f></dispatchEvent>
+		<new public="1" line="8"><f a="?target">
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="hxunit.Test" params="" file="../unit/src/hxunit/Data.hx" module="hxunit.Data">
+		<name public="1"><c path="String"/></name>
+		<method public="1"><f a=""><e path="Void"/></f></method>
+		<new public="1" line="9"><f a="name:?method">
+	<c path="String"/>
+	<f a=""><e path="Void"/></f>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<typedef path="hxunit.Unit" params="" file="../unit/src/hxunit/Data.hx" module="hxunit.Data"><a>
+	<testcase><c path="Class"><c path="hxunit.TestCase"/></c></testcase>
+	<test><c path="hxunit.Test"/></test>
+	<suite><c path="Class"><c path="hxunit.TestSuite"/></c></suite>
+</a></typedef>
+	<typedef path="hxunit.Assertion" params="" file="../unit/src/hxunit/Data.hx" module="hxunit.Data"><a>
+	<type><e path="hxunit.AType"/></type>
+	<pos><t path="haxe.PosInfos"/></pos>
+	<expected><d/></expected>
+	<actual><d/></actual>
+</a></typedef>
+	<enum path="hxunit.AType" params="" file="../unit/src/hxunit/Data.hx" module="hxunit.Data">
+		<custom a="v"><f a=":">
+	<d/>
+	<d/>
+	<e path="Void"/>
+</f></custom>
+		<bool/>
+	</enum>
+	<typedef path="hxunit.Wait" params="" file="../unit/src/hxunit/Data.hx" module="hxunit.Data"><a>
+	<name><c path="String"/></name>
+	<method><d/></method>
+	<left><c path="data.type.Time"/></left>
+	<begin><c path="data.type.Time"/></begin>
+</a></typedef>
+	<enum path="hxunit.Message" params="" file="../unit/src/hxunit/Data.hx" module="hxunit.Data">
+		<wait a="value"><t path="hxunit.Wait"/></wait>
+		<handle a="name:value:passThrough">
+			<c path="String"/>
+			<d/>
+			<d/>
+		</handle>
+		<error a="v"><d/></error>
+		<assert a="v"><t path="hxunit.Assertion"/></assert>
+	</enum>
+	<class path="hxunit.Data" params="" file="../unit/src/hxunit/Data.hx">
+		<aTypeFunction public="1" line="48" static="1"><f a="t">
+	<e path="hxunit.AType"/>
+	<f a=":">
+		<d/>
+		<d/>
+		<e path="Void"/>
+	</f>
+</f></aTypeFunction>
+		<new public="1" line="45"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.reactor.IReactor" params="" file="src/arrow/reactor/IReactor.hx" interface="1">
+		<loop public="1"><f a=""><e path="Void"/></f></loop>
+		<enqueue public="1"><f a="value">
+	<c path="arrow.reactor.Call"/>
+	<e path="Void"/>
+</f></enqueue>
+		<step public="1"><f a=""><e path="Void"/></f></step>
+		<invoke><f a=""><e path="Bool"/></f></invoke>
+		<increment public="1"><f a=""><e path="Void"/></f></increment>
+		<decrement public="1"><f a=""><e path="Void"/></f></decrement>
+		<numPending public="1" set="null"><c path="Int"/></numPending>
+	</class>
+	<class path="arrow.reactor.NullReactor" params="" file="src/arrow/reactor/NullReactor.hx">
+		<implements path="arrow.reactor.IReactor"/>
+		<numPending public="1" set="null"><c path="Int"/></numPending>
+		<loop public="1" line="18"><f a=""><e path="Void"/></f></loop>
+		<increment public="1" line="23"><f a=""><e path="Void"/></f></increment>
+		<decrement public="1" line="26"><f a=""><e path="Void"/></f></decrement>
+		<step public="1" line="29"><f a=""><e path="Void"/></f></step>
+		<invoke line="34"><f a=""><e path="Bool"/></f></invoke>
+		<enqueue public="1" line="46"><f a="call">
+	<c path="arrow.reactor.Call"/>
+	<e path="Void"/>
+</f></enqueue>
+		<toString public="1" line="49"><f a=""><c path="String"/></f></toString>
+		<data><c path="arrow.reactor.DebugBuffer"><c path="arrow.reactor.Call"/></c></data>
+		<predicate><c path="arrow.reactor.predicate.Predicate"/></predicate>
+		<new public="1" line="13"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.reactor.ReactorFactory" params="" file="src/arrow/reactor/ReactorFactory.hx">
+		<create public="1" line="7" static="1"><f a="?key">
+	<e path="arrow.reactor.ReactorType"/>
+	<c path="arrow.reactor.IReactor"/>
+</f></create>
+		<defaultType public="1" line="18" static="1"><f a=""><e path="arrow.reactor.ReactorType"/></f></defaultType>
+		<new public="1" line="5"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="colhx.Stack" params="T" file="/home/doberman/stack/master/src/haxelib/colhx/1,1/colhx/Stack.hx">
+		<implements path="colhx.Collection"><c path="colhx.Stack.T"/></implements>
+		<length public="1" get="getLength" set="null"><c path="Int"/></length>
+		<list><c path="List"><t path="Null"><c path="colhx.Stack.T"/></t></c></list>
+		<getTop public="1" line="50">
+			<f a=""><t path="Null"><c path="colhx.Stack.T"/></t></f>
+			<haxe_doc>
+        Returns the item at the top of the stack.
+    </haxe_doc>
+		</getTop>
+		<getBottom public="1" line="57">
+			<f a=""><t path="Null"><c path="colhx.Stack.T"/></t></f>
+			<haxe_doc>
+        Returns the item at the bottom of the stack.
+    </haxe_doc>
+		</getBottom>
+		<push public="1" line="64">
+			<f a="item">
+				<t path="Null"><c path="colhx.Stack.T"/></t>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+        Adds the item to the top of the stack.
+    </haxe_doc>
+		</push>
+		<pop public="1" line="71">
+			<f a=""><t path="Null"><c path="colhx.Stack.T"/></t></f>
+			<haxe_doc>
+        Removes and returns the item on the top of the stack.
+    </haxe_doc>
+		</pop>
+		<remove public="1" line="79">
+			<f a="obj">
+				<t path="Null"><c path="colhx.Stack.T"/></t>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+        Removes the object from the stack. Returns true if it was actually in
+        the stack.
+    </haxe_doc>
+		</remove>
+		<clear public="1" line="83"><f a=""><e path="Void"/></f></clear>
+		<getLength line="87"><f a=""><c path="Int"/></f></getLength>
+		<isEmpty public="1" line="91"><f a=""><e path="Bool"/></f></isEmpty>
+		<contains public="1" line="95"><f a="obj">
+	<t path="Null"><c path="colhx.Stack.T"/></t>
+	<e path="Bool"/>
+</f></contains>
+		<toArray public="1" line="103"><f a=""><c path="Array"><t path="Null"><c path="colhx.Stack.T"/></t></c></f></toArray>
+		<iterator public="1" line="110">
+			<f a=""><t path="Iterator"><t path="Null"><c path="colhx.Stack.T"/></t></t></f>
+			<haxe_doc>
+        Iterates from top to bottom.
+    </haxe_doc>
+		</iterator>
+		<toString public="1" line="118">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+        Prints out a string representing the current object.
+        Example: "[Stack, size=4]"
+    </haxe_doc>
+		</toString>
+		<dump public="1" line="125">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+        Prints out all elements (for debug/demo purposes).
+    </haxe_doc>
+		</dump>
+		<getInternalList public="1" line="135">
+			<f a=""><c path="List"><t path="Null"><c path="colhx.Stack.T"/></t></c></f>
+			<haxe_doc>
+        Returns the internal list used by the stack. Use with caution.
+    </haxe_doc>
+		</getInternalList>
+		<copy public="1" line="143">
+			<f a=""><c path="colhx.Stack"><c path="colhx.Stack.T"/></c></f>
+			<haxe_doc>
+        Returns a copy of the stack structure, but not a copy of the items 
+        themselves.
+    </haxe_doc>
+		</copy>
+		<new public="1" line="43">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+        Creates a new empy stack.
+    </haxe_doc>
+		</new>
+		<haxe_doc>
+    A standard LIFO stack. 
+    IMPORTANT: Items are added to the head and removed at the head.
+</haxe_doc>
+	</class>
+	<class path="haxe.Log" params="" file="/home/doberman/stack/master/src/haxe/std/haxe/Log.hx">
+		<trace public="1" line="29" static="1"><f a="v:?infos">
+	<d/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></trace>
+		<clear public="1" line="43" static="1"><f a=""><e path="Void"/></f></clear>
+	</class>
+	<class path="arrow.TaggedValue" params="" file="src/arrow/TaggedValue.hx">
+		<tag public="1"><d/></tag>
+		<value public="1"><d/></value>
+		<new public="1" line="8"><f a="tag:value">
+	<d/>
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.Reactor" params="" file="src/arrow/Reactor.hx">
+		<extends path="ion.log.LogSupport"/>
+		<instance static="1"><c path="arrow.Reactor"/></instance>
+		<getInstance public="1" line="25" static="1"><f a=""><c path="arrow.Reactor"/></f></getInstance>
+		<scheduler public="1" set="null"><c path="arrow.reactor.IReactor"/></scheduler>
+		<run public="1" line="9"><f a=""><e path="Void"/></f></run>
+		<enqueue public="1" line="15"><f a="value">
+	<c path="arrow.reactor.Call"/>
+	<e path="Void"/>
+</f></enqueue>
+		<increment public="1" line="18"><f a=""><e path="Void"/></f></increment>
+		<decrement public="1" line="21"><f a=""><e path="Void"/></f></decrement>
+		<new line="31"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="Hash" params="T" file="/home/doberman/stack/master/src/haxe/std/Hash.hx">
+		<h><d/></h>
+		<set public="1" line="63">
+			<f a="key:value">
+				<c path="String"/>
+				<c path="Hash.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Set a value for the given key.
+	</haxe_doc>
+		</set>
+		<get public="1" line="80">
+			<f a="key">
+				<c path="String"/>
+				<t path="Null"><c path="Hash.T"/></t>
+			</f>
+			<haxe_doc>
+		Get a value for the given key.
+	</haxe_doc>
+		</get>
+		<exists public="1" line="102">
+			<f a="key">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value exists for the given key.
+		In particular, it's useful to tells if a key has
+		a [null] value versus no value.
+	</haxe_doc>
+		</exists>
+		<remove public="1" line="133">
+			<f a="key">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Removes a hashtable entry. Returns [true] if
+		there was such entry.
+	</haxe_doc>
+		</remove>
+		<keys public="1" line="165">
+			<f a=""><t path="Iterator"><c path="String"/></t></f>
+			<haxe_doc>
+		Returns an iterator of all keys in the hashtable.
+	</haxe_doc>
+		</keys>
+		<iterator public="1" line="195">
+			<f a=""><t path="Iterator"><c path="Hash.T"/></t></f>
+			<haxe_doc>
+		Returns an iterator of all values in the hashtable.
+	</haxe_doc>
+		</iterator>
+		<toString public="1" line="240">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an displayable representation of the hashtable content.
+	</haxe_doc>
+		</toString>
+		<new public="1" line="38">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new empty hashtable.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	Hashtable over a set of elements, using [String] as keys.
+	Other kind of keys are not possible on all platforms since they
+	can't always be implemented efficiently.
+</haxe_doc>
+	</class>
+	<class path="arrow.ext.LambdaArrow" params="" file="src/arrow/ext/LambdaArrow.hx">
+		<iter public="1" line="10" static="1"><f a="self:f">
+	<c path="arrow.Arrow"/>
+	<f a="">
+		<d/>
+		<e path="Void"/>
+	</f>
+	<c path="arrow.Arrow"/>
+</f></iter>
+		<map public="1" line="13" static="1"><f a="self:f">
+	<c path="arrow.Arrow"/>
+	<f a="">
+		<d/>
+		<d/>
+	</f>
+	<c path="arrow.Arrow"/>
+</f></map>
+		<fold public="1" line="16" static="1"><f a="self:first:f">
+	<c path="arrow.Arrow"/>
+	<d/>
+	<f a=":">
+		<d/>
+		<d/>
+		<d/>
+	</f>
+	<c path="arrow.ext.lambda.FoldThunk"/>
+</f></fold>
+		<filter public="1" line="19" static="1"><f a="self:f:?inverse">
+	<c path="arrow.Arrow"/>
+	<f a="">
+		<d/>
+		<e path="Bool"/>
+	</f>
+	<e path="Bool"/>
+	<c path="arrow.ext.lambda.FilterThunk"/>
+</f></filter>
+		<set public="1" line="22" static="1"><f a="self:?compare">
+	<c path="arrow.Arrow"/>
+	<f a=":">
+		<d/>
+		<d/>
+		<c path="Int"/>
+	</f>
+	<c path="arrow.ext.lambda.FoldThunk"/>
+</f></set>
+	</class>
+	<class path="reflect.Method" params="T" file="../zen/src/reflect/Method.hx">
+		<extends path="reflect.NamedField"><c path="reflect.Method.T"/></extends>
+		<arguments public="1"><c path="Array"><c path="reflect.Argument"><d/></c></c></arguments>
+		<getValue line="10"><f a=""><c path="reflect.Method.T"/></f></getValue>
+		<new public="1" line="7"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="Array" params="T" file="/home/doberman/stack/master/src/haxe/std/Array.hx" extern="1">
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The length of the Array
+	</haxe_doc>
+		</length>
+		<concat public="1">
+			<f a="a">
+				<c path="Array"><c path="Array.T"/></c>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns a new Array by appending [a] to [this].
+	</haxe_doc>
+		</concat>
+		<join public="1">
+			<f a="sep">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a representation of an array with [sep] for separating each element.
+	</haxe_doc>
+		</join>
+		<pop public="1">
+			<f a=""><t path="Null"><c path="Array.T"/></t></f>
+			<haxe_doc>
+		Removes the last element of the array and returns it.
+	</haxe_doc>
+		</pop>
+		<push public="1">
+			<f a="x">
+				<c path="Array.T"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Adds the element [x] at the end of the array.
+	</haxe_doc>
+		</push>
+		<reverse public="1">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Reverse the order of elements of the Array.
+	</haxe_doc>
+		</reverse>
+		<shift public="1">
+			<f a=""><t path="Null"><c path="Array.T"/></t></f>
+			<haxe_doc>
+		Removes the first element and returns it.
+	</haxe_doc>
+		</shift>
+		<slice public="1">
+			<f a="pos:?end">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Copies the range of the array starting at [pos] up to,
+		but not including, [end]. Both [pos] and [end] can be
+		negative to count from the end: -1 is the last item in
+		the array.
+	</haxe_doc>
+		</slice>
+		<sort public="1">
+			<f a="f">
+				<f a=":">
+					<c path="Array.T"/>
+					<c path="Array.T"/>
+					<c path="Int"/>
+				</f>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+		Sort the Array according to the comparison function [f].
+		[f(x,y)] should return [0] if [x == y], [>0] if [x > y]
+		and [<0] if [x < y].
+	]]></haxe_doc>
+		</sort>
+		<splice public="1">
+			<f a="pos:len">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Removes [len] elements starting from [pos] an returns them.
+	</haxe_doc>
+		</splice>
+		<toString public="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns a displayable representation of the Array content.
+	</haxe_doc>
+		</toString>
+		<unshift public="1">
+			<f a="x">
+				<c path="Array.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds the element [x] at the start of the array.
+	</haxe_doc>
+		</unshift>
+		<insert public="1">
+			<f a="pos:x">
+				<c path="Int"/>
+				<c path="Array.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Inserts the element [x] at the position [pos].
+		All elements after [pos] are moved one index ahead.
+	</haxe_doc>
+		</insert>
+		<remove public="1">
+			<f a="x">
+				<c path="Array.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Removes the first occurence of [x].
+		Returns false if [x] was not present.
+		Elements are compared by using standard equality.
+	</haxe_doc>
+		</remove>
+		<copy public="1">
+			<f a=""><c path="Array"><c path="Array.T"/></c></f>
+			<haxe_doc>
+		Returns a copy of the Array. The values are not
+		copied, only the Array structure.
+	</haxe_doc>
+		</copy>
+		<iterator public="1">
+			<f a=""><t path="Iterator"><t path="Null"><c path="Array.T"/></t></t></f>
+			<haxe_doc>
+		Returns an iterator of the Array values.
+	</haxe_doc>
+		</iterator>
+		<new public="1">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new Array.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	An Array is a storage for values. You can access it using indexes or
+	with its API. On the server side, it's often better to use a [List] which
+	is less memory and CPU consuming, unless you really need indexed access.
+</haxe_doc>
+	</class>
+	<class path="Std" params="" file="/home/doberman/stack/master/src/haxe/std/Std.hx">
+		<is public="1" line="34" static="1">
+			<f a="v:t">
+				<d/>
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value v is of the type t.
+	</haxe_doc>
+		</is>
+		<string public="1" line="54" static="1">
+			<f a="s">
+				<d/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Convert any value to a String
+	</haxe_doc>
+		</string>
+		<int public="1" line="74" static="1">
+			<f a="x">
+				<c path="Float"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Convert a Float to an Int, rounded down.
+	</haxe_doc>
+		</int>
+		<parseInt public="1" line="90" static="1">
+			<f a="x">
+				<c path="String"/>
+				<t path="Null"><c path="Int"/></t>
+			</f>
+			<haxe_doc>
+		Convert a String to an Int, parsing different possible representations. Returns [null] if could not be parsed.
+	</haxe_doc>
+		</parseInt>
+		<parseFloat public="1" line="131" static="1">
+			<f a="x">
+				<c path="String"/>
+				<c path="Float"/>
+			</f>
+			<haxe_doc>
+		Convert a String to a Float, parsing different possible reprensations.
+	</haxe_doc>
+		</parseFloat>
+		<random public="1" line="153" static="1">
+			<f a="x">
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Return a random integer between 0 included and x excluded.
+	</haxe_doc>
+		</random>
+		<haxe_doc>
+	The Std class provides standard methods for manipulating basic types.
+</haxe_doc>
+	</class>
+	<class path="arrow.ProgressEvent" params="" file="src/arrow/ProgressEvent.hx">
+		<extends path="event.Event"/>
+		<detail public="1"><d/></detail>
+		<new public="1" line="6"><f a="name:?detail:?source">
+	<c path="String"/>
+	<unknown/>
+	<unknown/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.combinators.RepeatThunk" params="" file="src/arrow/combinators/RepeatThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="6"><f a="f">
+	<c path="arrow.Arrow"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="data.XQueue" params="T" file="../zen/src/data/XQueue.hx">
+		<content><c path="List"><c path="data.XQueue.T"/></c></content>
+		<enqueue public="1" line="27"><f a="value">
+	<c path="data.XQueue.T"/>
+	<e path="Void"/>
+</f></enqueue>
+		<dequeue public="1" line="30"><f a=""><c path="data.XQueue.T"/></f></dequeue>
+		<toString public="1" line="33"><f a=""><c path="String"/></f></toString>
+		<new public="1" line="24"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="test.arrow.ArrowTest" params="" file="./test/arrow/ArrowTest.hx">
+		<extends path="hxunit.TestCase"/>
+		<testSimpleArrow public="1" line="41"><f a=""><e path="Void"/></f></testSimpleArrow>
+		<testPair public="1" line="52"><f a=""><e path="Void"/></f></testPair>
+		<testFirst public="1" line="63"><f a=""><e path="Void"/></f></testFirst>
+		<testSecond public="1" line="73"><f a=""><e path="Void"/></f></testSecond>
+		<testFanout public="1" line="82"><f a=""><e path="Void"/></f></testFanout>
+		<testBind public="1" line="91"><f a=""><e path="Void"/></f></testBind>
+		<testJoin public="1" line="103"><f a=""><e path="Void"/></f></testJoin>
+		<testRepeat public="1" line="114"><f a=""><e path="Void"/></f></testRepeat>
+		<testDelay public="1" line="133"><f a=""><e path="Void"/></f></testDelay>
+		<testNormal public="1" line="184"><f a=""><e path="Void"/></f></testNormal>
+		<testReturnA public="1" line="200"><f a=""><e path="Void"/></f></testReturnA>
+		<f0 public="1" line="210"><f a="x">
+	<c path="Float"/>
+	<d/>
+</f></f0>
+		<f1 public="1" line="216"><f a="x">
+	<c path="Float"/>
+	<d/>
+</f></f1>
+		<debug public="1" line="222"><f a="x">
+	<d/>
+	<d/>
+</f></debug>
+		<g line="226"><f a="x">
+	<d/>
+	<unknown/>
+</f></g>
+		<new public="1" line="28"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="test.arrow.TestDynamic" params="" file="./test/arrow/ArrowTest.hx" module="test.arrow.ArrowTest">
+		<resolve public="1" line="233"><f a="key">
+	<d/>
+	<f a=""><c path="test.arrow.TestDynamicFunctionSource"/></f>
+</f></resolve>
+		<new public="1" line="231"><f a=""><e path="Void"/></f></new>
+		<haxe_dynamic><d/></haxe_dynamic>
+	</class>
+	<class path="test.arrow.TestDynamicFunctionSource" params="" file="./test/arrow/ArrowTest.hx" module="test.arrow.ArrowTest">
+		<whatAmI public="1" line="239"><f a=""><c path="test.arrow.TestDynamicFunctionSource"/></f></whatAmI>
+		<new public="1" line="238"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.combinators.TerminalArrow" params="" file="src/arrow/combinators/TerminalArrow.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="8"><f a=""><e path="Void"/></f></new>
+	</class>
+	<enum path="reflect.Access" params="" file="../zen/src/reflect/Access.hx">
+		<write/>
+		<readwrite/>
+		<read/>
+		<assignment/>
+	</enum>
+	<class path="arrow.combinators.EventArrow" params="" file="src/arrow/combinators/EventArrow.hx">
+		<extends path="arrow.Arrow"/>
+		<trigger><d/></trigger>
+		<new public="1" line="12"><f a="trigger">
+	<d/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="ion.log.Logger" params="" file="/home/doberman/stack/master/src/haxelib/ion/dev/ion/log/Logger.hx">
+		<instance static="1"><c path="ion.log.Logger"/></instance>
+		<getInstance public="1" line="5" static="1"><f a=""><c path="ion.log.Logger"/></f></getInstance>
+		<getLog public="1" line="14"><f a="?source">
+	<d/>
+	<c path="ion.log.Log"/>
+</f></getLog>
+		<isActive public="1" line="40"><f a="key">
+	<c path="String"/>
+	<e path="Bool"/>
+</f></isActive>
+		<loggers><c path="Hash"><c path="ion.log.LogInstance"/></c></loggers>
+		<new line="11"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="arrow.ext.lambda.FilterArrow" params="" file="src/arrow/ext/lambda/FilterArrow.hx">
+		<extends path="arrow.Arrow"/>
+		<f><f a="">
+	<d/>
+	<e path="Bool"/>
+</f></f>
+		<new public="1" line="8"><f a="filter:?inverse:?pos">
+	<f a="">
+		<d/>
+		<e path="Bool"/>
+	</f>
+	<e path="Bool"/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="arrow.ext.lambda.IterThunk" params="" file="src/arrow/ext/lambda/IterThunk.hx">
+		<extends path="arrow.Arrow"/>
+		<new public="1" line="7"><f a="f:iter">
+	<d/>
+	<f a="">
+		<d/>
+		<e path="Void"/>
+	</f>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="reflect.RType" params="T" file="../zen/src/reflect/RType.hx">
+		<extends path="reflect.NamedField"><c path="reflect.RType.T"/></extends>
+		<create public="1" params="A" line="5" static="1"><f a="type">
+	<c path="reflect.RType"><c path="create.A"/></c>
+	<c path="create.A"/>
+</f></create>
+		<methods public="1" get="getMethods" set="setMethods"><c path="Hash"><c path="reflect.Method"><d/></c></c></methods>
+		<getMethods line="9"><f a=""><c path="Hash"><c path="reflect.Method"><d/></c></c></f></getMethods>
+		<setMethods public="1" line="29"><f a="value">
+	<c path="Hash"><c path="reflect.Method"><d/></c></c>
+	<c path="Hash"><c path="reflect.Method"><d/></c></c>
+</f></setMethods>
+		<properties public="1"><c path="Hash"><c path="reflect.Property"><d/></c></c></properties>
+		<superclass public="1"><c path="reflect.RType"><d/></c></superclass>
+		<constructor public="1"><c path="reflect.Method"><d/></c></constructor>
+		<new public="1" line="40"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="StringTools" params="" file="/home/doberman/stack/master/src/haxe/std/StringTools.hx">
+		<urlEncode public="1" line="38" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Encode an URL by using the standard format.
+	</haxe_doc>
+		</urlEncode>
+		<urlDecode public="1" line="59" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Decode an URL using the standard format.
+	</haxe_doc>
+		</urlDecode>
+		<htmlEscape public="1" line="80" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Escape HTML special characters of the string.
+	</haxe_doc>
+		</htmlEscape>
+		<htmlUnescape public="1" line="87" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Unescape HTML special characters of the string.
+	</haxe_doc>
+		</htmlUnescape>
+		<startsWith public="1" line="98" static="1">
+			<f a="s:start">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the string [s] starts with the string [start].
+	</haxe_doc>
+		</startsWith>
+		<endsWith public="1" line="105" static="1">
+			<f a="s:end">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the string [s] ends with the string [end].
+	</haxe_doc>
+		</endsWith>
+		<isSpace public="1" line="114" static="1">
+			<f a="s:pos">
+				<c path="String"/>
+				<c path="Int"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the character in the string [s] at position [pos] is a space.
+	</haxe_doc>
+		</isSpace>
+		<ltrim public="1" line="122" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the left of the String [s].
+	</haxe_doc>
+		</ltrim>
+		<rtrim public="1" line="141" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the right of the String [s].
+	</haxe_doc>
+		</rtrim>
+		<trim public="1" line="161" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the beginning and the end of the String [s].
+	</haxe_doc>
+		</trim>
+		<rpad public="1" line="172" static="1">
+			<f a="s:c:l">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Pad the string [s] by appending [c] at its right until it reach [l] characters.
+	</haxe_doc>
+		</rpad>
+		<lpad public="1" line="194" static="1">
+			<f a="s:c:l">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Pad the string [s] by appending [c] at its left until it reach [l] characters.
+	</haxe_doc>
+		</lpad>
+		<replace public="1" line="219" static="1">
+			<f a="s:sub:by">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Replace all occurences of the string [sub] in the string [s] by the string [by].
+	</haxe_doc>
+		</replace>
+		<hex public="1" line="230" static="1">
+			<f a="n:?digits">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Encode a number into a hexadecimal representation, with an optional number of zeros for left padding.
+	</haxe_doc>
+		</hex>
+		<haxe_doc>
+	The StringTools class contains some extra functionalities for [String]
+	manipulation. It's stored in a different class in order to prevent
+	the standard [String] of being bloated and thus increasing the size of
+	each application using it.
+</haxe_doc>
+	</class>
+	<class path="@Main" params="" file=""><init line="1" static="1"><e path="Void"/></init></class>
+</haxe>

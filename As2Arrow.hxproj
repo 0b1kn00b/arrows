@@ -26,7 +26,7 @@
     <option flashStrict="False" />
     <option mainClass="Full" />
     <option forcetraces="False" />
-    <option additional="" />
+    <option additional="-lib hsl-1&#xA;-lib hsl-pico-1" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

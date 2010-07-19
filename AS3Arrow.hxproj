@@ -16,9 +16,9 @@
     <class path="src" />
     <class path="..\zen\src" />
     <class path="..\unit\src" />
-    <class path="..\signals\src" />
     <class path="..\ion\src" />
     <class path="unit" />
+    <class path="..\..\platform\x\src\hx\hxhsl\hsl-pico source" />
   </classpaths>
   <!-- Build options -->
   <build>

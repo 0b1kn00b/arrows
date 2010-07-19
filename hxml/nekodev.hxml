@@ -1,0 +1,10 @@
+-neko debug/arrow.n
+-cp src
+-cp test
+-cp ../zen/src
+-cp ../unit/src
+-cp ../signals/src
+-main Dev
+
+-cmd neko debug/arrow.n
+

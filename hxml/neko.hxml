@@ -1,0 +1,10 @@
+-neko build/arrow.n
+-cp src
+-cp test
+-cp ../zen/src
+-cp ../unit/src
+-cp ../signals/src
+-main Full
+
+-cmd neko build/arrow.n
+

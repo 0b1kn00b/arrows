@@ -2,7 +2,6 @@ package test.arrow;
  
 import hxunit.TestCase;
 
-import data.type.Time;
 
 import arrow.Arrow;
 import arrow.combinators.ProductThunk;
@@ -106,7 +105,7 @@ class ArrowTest extends TestCase{
 			function(x:Dynamic){
 				self.assertEqual(num,x);
 			}
-		,new Time(90,TimeFormat.second));
+		,90000);
 		var g0 = function(x:Dynamic):Dynamic{
 			var out  = x + 1;
 			if (out<num){
@@ -123,21 +122,9 @@ class ArrowTest extends TestCase{
 			function (x:Dynamic){
 				self.assertTrue(true);
 			}
-		,new Time(3,TimeFormat.second));
+		,3000);
 		Arrow.delayA(2000).then(as).run().start();
 	}
-	/*9
-	public function testSignalA() {
-		//TODO how to test this?
-		var self = this;
-		var a = this.asyncHandler(
-			function(x) {
-				self.assertTrue(true);
-			}
-		);
-		var sig = new org.osflash.signals.Signal(this);
-		var arr = Arrow.returnA().signalConsumerA(sig).run();
-	}*/
 	public function testReturnA(){
 		var self = this;
 		var as = asyncHandler(

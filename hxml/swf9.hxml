@@ -1,0 +1,13 @@
+-swf build/arrow9.swf
+-cp .
+-cp src
+-cp test
+-cp ../zen/src
+-cp ../unit/src
+-cp ../signals/src
+-lib colhx
+-lib ion
+-swf-header 1000:800:300:f3f3f3
+-swf-version 9
+-main Full
+-cmd flashplayerd build/arrow9.swf
