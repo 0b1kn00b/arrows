@@ -1,30 +1,30 @@
 package test.arrow;
 
-using arrow.ext.LambdaArrow;
+import haxe.test.TestCase;
+import haxe.test.Assert;
 
-import hxunit.TestCase;
-import arrow.Arrow;
-using arrow.Arrow;
+import haxe.functional.arrows.Arrow;
+import haxe.functional.arrows.ext.LambdaArrow;
+
+
+
+using haxe.functional.arrows.Arrow;
+using haxe.functional.arrows.ext.LambdaArrow;
 
 class LambdaArrowTest extends TestCase{
 
 	public function new(){
 		super();
-	//	AsyncArrow.registerClass(arrow.ext.LambdaArrow);
-	}
-	override public function setup(){
-	}
-	override public function teardown(){
 	}
 	public function testMap(){
 		var self = this;
 		var count = 0;
-		var as = asyncHandler(
+		var as = Assert.createEvent(
 			function (x:Dynamic) {
 				var a = [1, 2, 3];
 				var b = Lambda.array(x);
 				for (i in 0...a.length) {
-					self.assertEqual ( a[i] , b[i]);
+					Assert.equals ( a[i] , b[i]);
 				}
 				
 			}
@@ -39,27 +39,27 @@ class LambdaArrowTest extends TestCase{
 				}
 			}
 		);
-		a.then(as).run(["a","b","c"]).start();
+		a.then(as.lift()).run(["a","b","c"]).start();
 	}
 	public function testIter(){
 		var self = this;
 		var a = 0;
 		var arr = [1,2,3];
 
-		var as = asyncHandler(
+		var as = Assert.createEvent(
 			function (x){
-				self.assertEqual(6,a);
+				Assert.equals(6,a);
 			}
 		);
 		Arrow.returnA().iter(
 			function(x){
 				a += x;
 			}
-		).then(as).run(arr).start();
+		).then(as.lift()).run(arr).start();
 	}
 	public function testFilter(){
 		var self = this;
-		var as = asyncHandler(
+		var as = Assert.createEvent(
 			function(x){
 				self.assertTrue(Lambda.count(x) == 1);
 			}
@@ -68,22 +68,20 @@ class LambdaArrowTest extends TestCase{
 			function (x){
 				return x == 1;
 			}
-		).then(as).run([1,2,3]).start();
+		).then(as.lift()).run([1,2,3]).start();
 	}
 	public function testLong(){
 		var self = this;
-		var as = asyncHandler(
+		var as = Assert.createEvent(
 			function(x){
 				self.assertTrue(true);
 			}
 		,60000);
 		var list : List<Dynamic> = new List();
 
-		for (i in 0...100000){
+		for (i in 0...10000){
 			list.add(Math.random());
-		}
-		trace("built");
-		
+		}	
 		Arrow.returnA().map(
 			function(x){
 				var a = x+1/2;
@@ -92,12 +90,12 @@ class LambdaArrowTest extends TestCase{
 				return c;
 
 			}
-		).then(as).run(list).start();
+		).then(as.lift()).run(list).start();
 
 	}/*
 	public function testInfiniteLoop(){
 		var self = this;
-		var as = asyncHandler(
+		var as = Assert.createEvent(
 			function(x){
 				self.assertTrue(true);
 			}

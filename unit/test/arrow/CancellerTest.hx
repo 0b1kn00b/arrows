@@ -4,10 +4,13 @@
  */
 
 package test.arrow;
-import data.type.Time;
-import hxunit.TestCase;
-import arrow.schedule.ScheduleManager;
-import arrow.Arrow;
+import haxe.test.TestCase;
+import haxe.test.Assert;
+
+import haxe.functional.arrows.schedule.ScheduleManager;
+import haxe.functional.arrows.Arrow;
+
+using haxe.functional.arrows.Arrow;
 
 class CancellerTest extends TestCase{
 
@@ -16,22 +19,21 @@ class CancellerTest extends TestCase{
 	}
 	public function testCanceller() {
 		var self = this;
-		var async = asyncHandler(
+		var async = Assert.createEvent(
 			function(x) {
 				self.assertTrue(true);
 			}
 		); 
-		var a = Arrow.delayA(new Time(10));
-		trace ( ScheduleManager.getInstance().pending.length );
+		var a = Arrow.delayA(10);
 		var b = Arrow.returnA().then(a).run();
-		trace ( ScheduleManager.getInstance().pending.length );
+//		trace ( ScheduleManager.getInstance().pending.length );
 		b.cancel();
 		Arrow.begin();
-		trace ( ScheduleManager.getInstance().pending.length );
-		Arrow.returnA().then(async).run();
-		trace ( ScheduleManager.getInstance().pending.length );
+	//	trace ( ScheduleManager.getInstance().pending.length );
+		Arrow.returnA().then(async.lift()).run();
+	//	trace ( ScheduleManager.getInstance().pending.length );
 		Arrow.begin();
-		trace( ScheduleManager.getInstance().pending.length);
+		//trace( ScheduleManager.getInstance().pending.length);
 		
 	}
 	

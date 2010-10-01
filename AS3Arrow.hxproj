@@ -14,11 +14,9 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\zen\src" />
-    <class path="..\unit\src" />
-    <class path="..\ion\src" />
     <class path="unit" />
     <class path="..\..\platform\x\src\hx\hxhsl\hsl-pico source" />
+    <class path="..\stax\src\main\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>

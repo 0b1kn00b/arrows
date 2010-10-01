@@ -1,7 +1,11 @@
 package test.arrow;
-import hxunit.TestCase;
-import arrow.Arrow;
 
+import haxe.test.Assert;
+import haxe.test.TestCase;
+
+import haxe.functional.arrows.Arrow;
+
+using haxe.functional.arrows.Arrow;
 class JsArrowTest extends TestCase{
 	
 	public function new(){
@@ -9,12 +13,12 @@ class JsArrowTest extends TestCase{
 	}
 	public function testElement(){
 		var self = this;
-		var async = asyncHandler(
+		var async = Assert.createEvent(
 			function(x:Dynamic){
-				self.assertNotNull(x);
+				Assert.notNull(x);
 			}
 		);
-		Arrow.elementA("test").dump(async).run();
+		Arrow.elementA("test").dump(async.lift()).run();
 	}
 
 }

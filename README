@@ -4,14 +4,35 @@ Usage.
 	//lifts function f and passes output to arrow/function g at completion.
 	//start initiates the arrow scheduler
 	//can use Arrow.begin();
-	Arrow.lift(f).then(g).run(x).start();
+	Arrow.liftF(f).then( Arrow.liftF(g) ).run(x).start();
+	/*
+		or, with using haxe.functional.arrows.Arrow;
+	*/
+	function (x){
+		return x * 2;
+	}.lift().then( g.lift() ).run();
+	Arrow.begin();
 	
 For more information on arrows, see:
 http://en.wikipedia.org/wiki/Arrow_(computer_science)
 http://www.cs.umd.edu/projects/PL/arrowlets/
 http://www.cs.umd.edu/~jfoster/arrows.pdf
 
-Known issues.
-some of the classes in arrow.ext are reliant upon classes which are not released anywhre at this time. the port of signals may be released in future but it is more likely that I will move to hsl-1 for the signals implementaton.
 
-I´m not sure the scheduler is completely reliable in terminating automatically, although no test cases have confirmed this yet
+note: ONLY THE COMBINATORS ARE SUPPORTED, THE SCHEDULING ALGORITHM MAY CHANGE WITHOUT WARNING.
+
+To begin the scheduler, either arrowInstance.start() or Arrow.begin() should be used, being that the same name cannot be used for a static function and a class function in the same class. No arrows can be guaranteed to be called after begin() or start() as functionality differs across schedulers and platforms, this being the most restrictive case.
+
+DEPENDENCIES
+Hsl is used as the basis for certain functions in Arrows, all platform specific events systems are mediated through it, for a more even api.
+
+Known issues.
+1) Php functionality is unknown at present.
+
+2) Animate is not implemented in single threaded environments.
+
+3) The poll system used for the delay arrow in single threaded systems is extremely rudimentary.
+
+4) natty Or combinator bug turns up now and again.
+
+5) I´m not sure the scheduler is completely reliable in terminating automatically, although no test cases have confirmed this yet.

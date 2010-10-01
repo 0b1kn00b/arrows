@@ -1,4 +1,5 @@
 import hxunit.TestRunner;
+import test.arrow.FunctionArrowTest;
 
 class Dev{
 	public static function main(){
@@ -18,8 +19,9 @@ class Dev{
 		//t.addCase(test.arrow.TupleTest);
 		//t.select(["testSimpleArrow"]);
 		//t.select(["testOr"]);
-		//t.select(["testAnimate"]);
+		//t.select(["testPair"]);
 		//t.addCase(test.arrow.CancellerTest);
+		//t.addCase(FunctionArrowTest);
 		#if js
 			js.Lib.window.onload = function (e) {t.run();};
 		#else

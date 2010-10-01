@@ -1,11 +1,15 @@
 package test.arrow;
  
-import hxunit.TestCase;
+import haxe.test.TestCase;
+import haxe.test.Assert;
+import Prelude;
+using Prelude;
 
+import haxe.functional.arrows.Arrow;
+using haxe.functional.arrows.Arrow;
 
-import arrow.Arrow;
-import arrow.combinators.ProductThunk;
-import arrow.ArrowInstance;
+import haxe.functional.arrows.combinators.ProductThunk;
+import haxe.functional.arrows.ArrowInstance;
 
 #if flash9
 import flash.events.Event;
@@ -16,94 +20,80 @@ import js.Dom;
 #end
 
 
-using arrow.ext.UnitArrow;
 
 class ArrowTest extends TestCase{
-	public function new(){
-		/*
-		filtrate = function(str:String){
-			return str == "testSimpleArrow";
-		}*/
-		super();
-	}
-	override public function setup(){
-
-	}
-	override public function teardown(){
-		
+	public function new() {
+			super();
 	}
 	public function testSimpleArrow(){
-		var self = this;
-		var f3 = this.testA(
+		var f3 = (
 			function(x){
-				self.assertEqual(x,162);
+				Assert.equals(x,162);
 			}
-		);
-		Arrow.lift(f0).then(f1).then(f3).then(debug).run(80).start();
+		).tuple();
+		f0.lift().then(f1.lift()).then(f3).then(debug.lift()).run(80).start();
 	}
 	
 	public function testPair(){
-		var self = this;
-		var as = this.testA(
-			function (x){
-				self.assertEqual(x.fst(),11);
-				self.assertEqual(x.snd(),20);
-			}
-		);
-		var a = Arrow.tuple(f0).pair(f1).then(as).run(new Tuple([10,10])).start();
+		var as = 
+		function (x:Tuple2<Int,Int>) {	
+			Assert.equals(x.productElement(0),11);
+			Assert.equals(x.productElement(1),20);
+		}.tuple();
+		var a = f0.tuple().pair(f1.tuple()).then(as).run(Tuple2.create(10,10)).start();
 	}
 	public function testFirst(){
-		var self = this;
-		var as = asyncHandler( function(x:Dynamic){
-			self.assertEqual(x.fst(),11);
-			self.assertEqual(x.snd(),10);
-		});
-		Arrow.lift(f0).first().then(Arrow.tuple(as)).run(new Tuple([10,10])).start();
+		var as = Assert.createEvent( 
+			function(x:Tuple2<Dynamic,Dynamic>){
+				Assert.equals(x.productElement(0),11);
+				Assert.equals(x.productElement(1),10);
+			}
+		);
+		f0.lift().first().then(as.tuple()).run(Tuple2.create(10,10)).start();
 	}
 	
 	public function testSecond(){
-		var self = this;
-		var as = asyncHandler( function(x:Dynamic){
-			self.assertEqual(x.fst(),10);
-			self.assertEqual(x.snd(),11);
-		});
-		Arrow.lift(f0).second().dump(as).run(new Tuple([10,10])).start();
-	}
-	public function testFanout(){
-		var self = this;
-		var as = asyncHandler( function(x:Dynamic){
-			self.assertEqual(11,x.fst());
-			self.assertEqual(20,x.snd());
-		});
-		Arrow.lift(f0).fanout(f1).dump(as).run(10).start();
-	}
-	public function testBind(){
-		var self = this;
-		var as = asyncHandler(
-			function (x:Tuple){
-				self.assertEqual(10,x.fst());
-				self.assertEqual(11,x.snd());
+		var as = Assert.createEvent( 
+			function(x:Tuple2<Dynamic,Dynamic>){
+				Assert.equals(x.productElement(0),10);
+				Assert.equals(x.productElement(1),11);
 			}
 		);
-		Arrow.tuple(f0).bind(as).run(10).start();
+		f0.lift().second().dump(as.tuple()).run(Tuple2.create(10,10)).start();
+	}
+	public function testFanout(){
+		var as = Assert.createEvent( 
+			function(x:Tuple2<Dynamic,Dynamic>){
+				Assert.equals(11,x.productElement(0));
+				Assert.equals(20,x.productElement(1));
+			}
+		);
+		f0.lift().fanout(f1.lift()).dump(as.tuple()).run(10).start();
+	}
+	public function testTie(){
+		var as = Assert.createEvent(
+			function (x:Tuple2<Dynamic,Dynamic>){
+				Assert.equals(10,x.productElement(0));
+				Assert.equals(11,x.productElement(1));
+			}
+		);
+		f0.lift().tie(as.tuple()).run(10).start();
 	}
 	
 	public function testJoin(){
-		var self = this;
-		var as = asyncHandler(
-			function (x:Dynamic){
-				self.assertEqual(x.fst(),11);
-				self.assertEqual(x.snd(),22);
+		var as = Assert.createEvent(
+			function (x:Tuple2<Dynamic,Dynamic>){
+				Assert.equals(x.productElement(0),11);
+				Assert.equals(x.productElement(1),22);
 			}
 		);
-		Arrow.lift(f0).join(f1).dump(as).run(10).start();
+		f0.lift().join(f1.tuple()).dump(as.tuple()).run(10).start();
 	}
 	public function testRepeat(){
-		var self = this;
 		var num = 10;
-		var as = asyncHandler(
+		var as = Assert.createEvent(
 			function(x:Dynamic){
-				self.assertEqual(num,x);
+				Assert.equals(num,x);
 			}
 		,90000);
 		var g0 = function(x:Dynamic):Dynamic{
@@ -114,25 +104,24 @@ class ArrowTest extends TestCase{
 				return Arrow.doDone(out);
 			}
 		}
-		Arrow.lift(g0).repeat().dump(as).run(0).start();
+		g0.lift().repeat().dump(as.lift()).run(0).start();
 	}
 	public function testDelay(){
-		var self = this;
-		var as = asyncHandler(
+		var as = Assert.createEvent(
 			function (x:Dynamic){
-				self.assertTrue(true);
+				Assert.isTrue(true);
 			}
 		,3000);
-		Arrow.delayA(2000).then(as).run().start();
+		Arrow.delayA(2000).then(as.lift()).run().start();
 	}
 	public function testReturnA(){
 		var self = this;
-		var as = asyncHandler(
+		var as = Assert.createEvent(
 			function(x){
-				self.assertEqual("test",x);
+				Assert.equals("test",x);
 			}
 		);
-		Arrow.returnA().then(as).run("test").start();
+		Arrow.returnA().then(as.lift()).run("test").start();
 	}
 	public function f0(x:Float):Dynamic{
 		//debug(x);

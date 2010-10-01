@@ -14,11 +14,9 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\ion\src" />
-    <class path="..\signals\src" />
-    <class path="..\unit\src" />
-    <class path="..\zen\src" />
     <class path="unit" />
+    <class path="..\stax\src\main\haxe" />
+    <class path="..\..\platform\x\src\hx\hxhsl\hsl-pico source" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -26,7 +24,7 @@
     <option flashStrict="False" />
     <option mainClass="Full" />
     <option forcetraces="False" />
-    <option additional="-lib hsl-1&#xA;-lib hsl-pico-1" />
+    <option additional="" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
