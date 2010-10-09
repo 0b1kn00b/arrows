@@ -92,5 +92,11 @@ class ProgressArrow extends Arrow, implements Signaler<Progress>{
 	public function unbindVoid(listener:Void -> Dynamic):Void {
 		internalSignaler.unbindVoid(listener);
 	}
+	public function addNotificationTarget(v:Signaler<Void>) {
+		internalSignaler.addNotificationTarget(v);
+	}
+	public function removeNotificationTarget(v:Signaler<Void>) {
+		internalSignaler.removeNotificationTarget(v);
+	}
 	override private function getName(){ return "ProgressArrow"; }
 }

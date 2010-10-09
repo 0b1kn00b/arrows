@@ -30,16 +30,19 @@ class Invoker{
 	public dynamic function error(e:Dynamic){
 		trace("An error occurred: " + e + "\n" + haxe.Stack.exceptionStack()); 
 	}
-	public function invoke() {
+	public function invoke():Dynamic {
 		try {
 			var n = scheduler.buffer.dequeue();
 			if (n.isReady()) {
 				n.invoke();
+				return;
 			}else {
 				scheduler.buffer.enqueue(n);
+				return true;
 			}
 		}catch(e:Dynamic){
 			error(e);
+			return;
 		}
 	}
 	public function toString():String {

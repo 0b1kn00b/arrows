@@ -47,16 +47,25 @@ class InlineReactor extends ConcreteReactor{
 	}
 	override public function start(){
 		
-		global_timeout = new TimeConstraint(10);
+		global_timeout = new TimeConstraint(this.manager.timeout);
 		
 		while (run_state.proceed() && global_timeout.proceed()) {
 			if (queued.proceed()) {
-				manager.invoker.invoke();
+				if ( manager.invoker.invoke() != null ) {
+					// TODO naive.
+					// If invoker returns something it means it's banging on a negative
+					// predicate, so calm down.
+					#if neko
+					neko.Sys.sleep(manager.interval);
+					#elseif php
+					php.Sys.sleep(manager.interval);
+					#end
+				}
 			}else if (pending.proceed()) {
 				#if neko
-				neko.Sys.sleep(manager.interval / 1000);
+				neko.Sys.sleep(manager.interval);
 				#elseif php
-				php.Sys.sleep(manager.interval / 1000 );
+				php.Sys.sleep(manager.interval);
 				#end
 			}else if (manager.autoTerminate == true) {
 				break;

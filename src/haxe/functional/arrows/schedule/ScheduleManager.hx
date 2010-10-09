@@ -47,20 +47,19 @@ class ScheduleManager{
 	public var invoker				: Invoker;
 	public var pending				: ArrowCounter;
 	public var autoTerminate		: Bool;
-	public var interval				: Int;
+	public var interval				: Float;
 	public var timeout				: Int;
 	public var instances			: Hash<ArrowInstance>;
-	
+
 	private function new() {
 		autoTerminate   = true;
 		instances 		= new Hash();
-		interval 		= 10;
+		interval 		= 0.01;// 
 		pending 		= new ArrowCounter(this);
 		buffer		 	= new Buffer();
 		invoker 		= new Invoker(this);
 		scheduler 		= getDefaultReactor();
 		timeout 		= 30;
-
 	}
 
 	private function getDefaultReactor():Scheduler{

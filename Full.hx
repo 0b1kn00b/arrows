@@ -21,14 +21,13 @@ class Full{
 	}
 	public function new(){
 		var t = new Runner();
-		//t.add(	new ArrowTest()			);
+		t.add(	new ArrowTest()			);
 		t.add( 	new CancellerTest()		);
-		//t.add(	new ComplexTest()		);
+		t.add(	new ComplexTest()		);
 		//t.add( 	new ErrorTest()			);
 		//t.add( 	new FunctionArrowTest()	);
 		//t.add( 	new LambdaArrowTest()	);
 		//t.add( 	new SchedulerTest() 	);
-		//t.add( 	new SchedulerTest()		);
 		//t.add(	new TraceObjectTest()	);
 		
 		var r = Report.create(t);
