@@ -63,7 +63,7 @@ class OrThunk extends Arrow{
 							a.cont(y);
 						}.tuple()
 					).run(x);
-				var b0 = a0.signal().then(
+				var b0 = a0.signalA().then(
 					function(x:Dynamic){
 						if (a1.cancel != null) {	a1.cancel(); }
 						if (b1 != null && b1.cancel != null) { b1.cancel(); }
@@ -80,7 +80,7 @@ class OrThunk extends Arrow{
 					}.tuple()
 				).run(x);
 
-				var b1 = a1.signal().then(
+				var b1 = a1.signalA().then(
 					function(x:Dynamic){
 						if (a0.cancel!=null){a0.cancel();}
 						if (b0 != null && b0.cancel != null) {b0.cancel();}

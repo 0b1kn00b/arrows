@@ -189,7 +189,6 @@ class Arrow{
 	* returns a function that builds a @code Tuple2 from one value;
 	*/
 	public static function fanoutA() {
-			//TODO type this;
 		return 
 		function(x:Dynamic):Tuple2<Dynamic,Dynamic>{
 			return Tuple2.create(x,x);
@@ -249,7 +248,7 @@ class Arrow{
 		return new EventArrow(trigger);
 	}
 	*/
-	public function signal() {
+	public function signalA() {
 		return new SignalArrow();
 	}
 	/*
@@ -285,6 +284,9 @@ class Function1Arrow {
 	}
 	public static function tuple < P1, R > (f:Function1 < P1, R > ):Arrow {
 		return Arrow.tupleF(f);
+	}
+	public static function then < P01, R0 , P11 , R1> (f0:Function1<P01,R0>,f1:Function1 < P11, R1 > ):Arrow {
+		return f0.lift().then( f1.lift() );
 	}
 }
 class Function2Arrow {

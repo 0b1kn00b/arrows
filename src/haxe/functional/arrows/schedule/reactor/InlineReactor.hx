@@ -52,7 +52,7 @@ class InlineReactor extends ConcreteReactor{
 		while (run_state.proceed() && global_timeout.proceed()) {
 			if (queued.proceed()) {
 				if ( manager.invoker.invoke() != null ) {
-					// TODO naive.
+					// TODO naive implementation.
 					// If invoker returns something it means it's banging on a negative
 					// predicate, so calm down.
 					#if neko
@@ -62,6 +62,7 @@ class InlineReactor extends ConcreteReactor{
 					#end
 				}
 			}else if (pending.proceed()) {
+				trace ("pending");
 				#if neko
 				neko.Sys.sleep(manager.interval);
 				#elseif php
@@ -70,9 +71,6 @@ class InlineReactor extends ConcreteReactor{
 			}else if (manager.autoTerminate == true) {
 				break;
 			}
-		}
-		if (!global_timeout.proceed()){
-			trace (" global timeout " );
 		}
 	}
 	override public function terminate(){

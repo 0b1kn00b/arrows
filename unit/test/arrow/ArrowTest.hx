@@ -1,15 +1,4 @@
 package test.arrow;
- 
-import haxe.test.TestCase;
-import haxe.test.Assert;
-import Prelude;
-using Prelude;
-
-import haxe.functional.arrows.Arrow;
-using haxe.functional.arrows.Arrow;
-
-import haxe.functional.arrows.combinators.ProductThunk;
-import haxe.functional.arrows.ArrowInstance;
 
 #if flash9
 import flash.events.Event;
@@ -19,6 +8,16 @@ import js.Dom;
 #elseif neko
 #end
 
+import Prelude;
+import haxe.test.Assert;
+import haxe.test.TestCase;
+
+import haxe.functional.arrows.Arrow;
+import haxe.functional.arrows.ArrowInstance;
+import haxe.functional.arrows.combinators.ProductThunk;
+
+using Prelude;
+using haxe.functional.arrows.Arrow;
 
 
 class ArrowTest extends TestCase{
@@ -31,7 +30,7 @@ class ArrowTest extends TestCase{
 				Assert.equals(x,162);
 			}
 		).tuple();
-		f0.lift().then(f1.lift()).then(f3).then(debug.lift()).run(80).start();
+		f0.then(f1).then(f3).then(debug.lift()).run(80).start();
 	}
 	
 	public function testPair(){
