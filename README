@@ -6,7 +6,7 @@ Usage.
 	//can use Arrow.begin();
 	Arrow.liftF(f).then( Arrow.liftF(g) ).run(x).start();
 	/*
-		or, with using haxe.functional.arrows.Arrow;
+		or, with: using haxe.functional.arrows.Arrow;
 	*/
 	function (x){
 		return x * 2;
@@ -24,7 +24,7 @@ note: ONLY THE COMBINATORS ARE SUPPORTED, THE SCHEDULING ALGORITHM MAY CHANGE WI
 To begin the scheduler, either arrowInstance.start() or Arrow.begin() should be used, being that the same name cannot be used for a static function and a class function in the same class. No arrows can be guaranteed to be called after begin() or start() as functionality differs across schedulers and platforms, this being the most restrictive case.
 
 DEPENDENCIES
-Hsl is used as the basis for certain functions in Arrows, all platform specific events systems are mediated through it, for a more even api.
+HXHsl is used as the basis for certain functions in Arrows, all platform specific events systems are mediated through it, for a more even api. Stax is used for unit testing, to further integration between the two projects.
 
 Known issues.
 1) Php functionality is unknown at present.
