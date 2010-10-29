@@ -1,16 +1,16 @@
 import haxe.test.Runner;
 import haxe.test.ui.Report;
-import test.arrow.ArrowTest;
-import test.arrow.CancellerTest;
-import test.arrow.ComplexTest;
-import test.arrow.ErrorTest;
-import test.arrow.FunctionArrowTest;
+import haxe.reactive.arrow.ArrowTest;
+import haxe.reactive.arrow.CancellerTest;
+import haxe.reactive.arrow.ComplexTest;
+import haxe.reactive.arrow.ErrorTest;
+import haxe.reactive.arrow.FunctionArrowTest;
 #if js
-import test.arrow.JsArrowTest;
+import haxe.reactive.arrow.JsArrowTest;
 #end
-import test.arrow.LambdaArrowTest;
-import test.arrow.SchedulerTest;
-import test.arrow.TraceObjectTest;
+import haxe.reactive.arrow.LambdaArrowTest;
+import haxe.reactive.arrow.SchedulerTest;
+import haxe.reactive.arrow.TraceObjectTest;
 #if js
 	import js.Dom;	
 #end

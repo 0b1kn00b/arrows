@@ -40,7 +40,7 @@ class ProgressArrow extends Arrow, implements Signaler<Progress>{
 	var instance:ArrowInstance;
 
 	public function new(instance:ArrowInstance) {
-		internalSignaler = new DirectSignaler(this);
+		internalSignaler = new DirectSignaler<Progress>(this);
 		this.instance = instance;
 		var self = this;
 		super(

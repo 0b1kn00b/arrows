@@ -52,7 +52,7 @@ class Buffer implements Subject{
 		var found:Bool = false;
 		var call : ArrowCall ;
 		for (item in list) {
-			call = cast (item);
+			call = cast ( item , ArrowCall );
 			if (call.data.instance.uuid == v) {
 				//trace("removed " + v);
 				list.remove(call);

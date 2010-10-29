@@ -27,7 +27,7 @@ import haxe.functional.arrows.ArrowInstance;
 import haxe.functional.arrows.schedule.call.Call;
 import haxe.functional.arrows.schedule.event.SchedulerEvent;
 import haxe.functional.arrows.schedule.event.SchedulerEventType;
-#if ( neko || php )
+#if ( neko || php || cpp)
 		import haxe.functional.arrows.schedule.reactor.InlineReactor;
 #elseif (flash || js)
 		import haxe.functional.arrows.schedule.reactor.TimeReentryReactor;

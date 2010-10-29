@@ -1,5 +1,5 @@
 import hxunit.TestRunner;
-import test.arrow.FunctionArrowTest;
+import haxe.reactive.arrow.FunctionArrowTest;
 
 class Dev{
 	public static function main(){
@@ -7,20 +7,20 @@ class Dev{
 	}
 	public function new(){
 		var t = new TestRunner();
-		//t.addSuite(test.arrow.SchedulerTestSuite);
+		//t.addSuite(haxe.reactive.arrow.SchedulerTestSuite);
 		//t.select(["testEventA"]);
-		//t.addCase(test.arrow.ArrowInstanceTest);
-		t.addCase(test.arrow.ArrowTest);
+		//t.addCase(haxe.reactive.arrow.ArrowInstanceTest);
+		t.addCase(haxe.reactive.arrow.ArrowTest);
 		//t.select(["testJoin"]);
-		//t.addCase(test.arrow.SignalTest);
-		//t.addCase(test.arrow.NumPendingTest);
-		//t.addCase(test.arrow.ComplexTest);
-		//t.addCase(test.arrow.SocketTest);
-		//t.addCase(test.arrow.TupleTest);
+		//t.addCase(haxe.reactive.arrow.SignalTest);
+		//t.addCase(haxe.reactive.arrow.NumPendingTest);
+		//t.addCase(haxe.reactive.arrow.ComplexTest);
+		//t.addCase(haxe.reactive.arrow.SocketTest);
+		//t.addCase(haxe.reactive.arrow.TupleTest);
 		//t.select(["testSimpleArrow"]);
 		//t.select(["testOr"]);
 		//t.select(["testPair"]);
-		//t.addCase(test.arrow.CancellerTest);
+		//t.addCase(haxe.reactive.arrow.CancellerTest);
 		//t.addCase(FunctionArrowTest);
 		#if js
 			js.Lib.window.onload = function (e) {t.run();};

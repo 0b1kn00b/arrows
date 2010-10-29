@@ -110,7 +110,7 @@ class ArrowInstance{
 	public function cancel(){
 		for (item in cancellers){
 			Reflect.callMethod(null,item,[]);
-		}
+		}	
 		this.cancellers = new Array();
 		
 		manager.pending.decrement(this.uuid);
