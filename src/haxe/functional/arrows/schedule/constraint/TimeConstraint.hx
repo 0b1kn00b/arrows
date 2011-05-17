@@ -25,7 +25,7 @@ import haxe.Timer;
 
 class TimeConstraint implements Constraint{
 	public var span:Float;
-	public function new(span:Float = 0.3){
+	public function new(span:Float = 0.9){
 		this.span = span;
 		this.mark = -1;
 	}

@@ -27,7 +27,7 @@ class TimeReentryReactor extends AbstractReentryReactor {
 	
 	public function new(manager) {
 		super(manager);
-		constraint = new TimeConstraint();
+		constraint = new TimeConstraint( #if flash9 1 / flash.Lib.current.stage.frameRate #end);
 	}
 	
 }

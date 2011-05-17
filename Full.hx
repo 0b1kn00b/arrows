@@ -15,7 +15,7 @@ import haxe.reactive.arrow.TraceObjectTest;
 	import js.Dom;	
 #end
 class Full{
-	public static function main(){
+	public static function main() {	
 		var a = new Full();
 		
 	}

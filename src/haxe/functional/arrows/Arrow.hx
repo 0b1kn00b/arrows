@@ -151,6 +151,9 @@ class Arrow{
 		return new RepeatThunk(this);
 	}
 
+	public function forever() {
+		return this.then( function(x) { return Arrow.doRepeat(x);}.tuple() ).repeat();
+	}
 	/*
 	* Either-or combinator. 
 	*/
@@ -219,11 +222,10 @@ class Arrow{
 		}.tuple();
 	}
 	public static function constA<A>(value:A){
-		//TODO implement constA
 		return 
-		function (v:Dynamic):A{
+		function (v:Dynamic):A {	
 			return value;
-		}.lift();
+		}.tuple();
 	}
 	/*
 	* Loop repeat constant
@@ -243,12 +245,10 @@ class Arrow{
 	public static function delayA(ms:Int):Arrow{
 		return new DelayArrow(ms);
 	}
-	/* depricated in favour of signals
 	public static function eventA(trigger:String) {
 		return new EventArrow(trigger);
 	}
-	*/
-	public function signalA() {
+	public static function signalA() {
 		return new SignalArrow();
 	}
 	/*
@@ -278,6 +278,11 @@ class Arrow{
 	
 	///////////////////EXPERIMENTAL//////////////////
 }
+class ThunkArrow {
+	public function lift<R>(f:Thunk<R>):Arrow{
+		return Arrow.liftF(f);
+	}
+}
 class Function1Arrow {
 	public static function lift<P1, R>(f:Function1<P1, R>):Arrow {
 		return Arrow.liftF(f);
@@ -285,20 +290,22 @@ class Function1Arrow {
 	public static function tuple < P1, R > (f:Function1 < P1, R > ):Arrow {
 		return Arrow.tupleF(f);
 	}
-	public static function then < P01, R0 , P11 , R1> (f0:Function1<P01,R0>,f1:Function1 < P11, R1 > ):Arrow {
-		return f0.lift().then( f1.lift() );
+	public static function then < P01, R0 > (a:Arrow,f0:Function1<P01,R0>):Arrow {
+		return a.then( f0.lift() );
 	}
 }
 class Function2Arrow {
 	public static function lift < P1, P2, R > (f:Function2 < P1, P2, R > ):Arrow {
 		return Arrow.liftF(f);
 	}
-	//If a function has more than one parameter, it is unlikely to be tuple aware.
-	/*
 	public static function tuple < P1, P2, R > (f:Function2 < P1, P2, R > ):Arrow {
 		return Arrow.tupleF(f);
 	}
-	*/
+}
+class Function3Arrow {
+	public static function lift < P1, P2, P3, R > (f:Function3 < P1, P2, P3, R > ):Arrow {
+			return Arrow.liftF(f);
+	}
 }
 using Std;
 class TupleArrowExtension {

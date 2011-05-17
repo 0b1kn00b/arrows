@@ -3,6 +3,7 @@ package haxe.reactive.arrow;
 #if flash9
 import flash.events.Event;
 import flash.display.Sprite;
+import flash.events.EventDispatcher;
 #elseif js
 import js.Dom;
 #elseif neko
@@ -30,7 +31,7 @@ class ArrowTest extends TestCase{
 				Assert.equals(x,162);
 			}
 		).tuple();
-		f0.then(f1).then(f3).then(debug.lift()).run(80).start();
+		f0.lift().then(f1.lift()).then(f3).then(debug.lift()).run(80).start();
 	}
 	
 	public function testPair(){
@@ -121,6 +122,17 @@ class ArrowTest extends TestCase{
 			}
 		);
 		Arrow.returnA().then(as.lift()).run("test").start();
+	}
+	public function testEventArrow() {
+		var self = this;
+		var dispatcher = new EventDispatcher();
+		var as = Assert.createEvent(
+			function(x) {
+					Assert.isTrue(true);
+			}
+		);
+		Arrow.eventA("trigger").then(as.lift()).run(dispatcher).start();
+		dispatcher.dispatchEvent(new Event("trigger"));
 	}
 	public function f0(x:Float):Dynamic{
 		//debug(x);

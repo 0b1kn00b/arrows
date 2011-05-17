@@ -19,15 +19,26 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
 */
-package arrow.ext;
-import Arrow
-class ReflectArrow{
+package haxe.functional.arrows.ext;
+import Prelude;
+
+import haxe.data.collections.List;
+import haxe.util.ObjectExtensions;
+import haxe.util.StringExtensions;
+
+import haxe.functional.arrows.Arrow;
+
+using haxe.functional.arrows.Arrow;
+using haxe.util.StringExtensions;
+class ReflectArrow {
 	
-	public static function field(self:Arrow,name:String){
-		return self.then(
-			function (object:Dynamic){
-				return Reflect.field(object,name);
-			}
-		);
+	public static function extractValue(t:Tuple2<String,Dynamic>){
+		return Reflect.field(t._2, t._1);
+	}
+	public static function extractFieldValueTuple(t:Tuple2<String,Dynamic>) {
+		return Tuple2.create( t._1 , extractValue(t) );
+	}
+	public static function extractFieldValueSourceTuple(t:Tuple2 < String, Dynamic > ) {
+		return extractFieldValueTuple(t).entuple(t._2);
 	}
 }

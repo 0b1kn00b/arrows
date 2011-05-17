@@ -62,7 +62,7 @@ class InlineReactor extends ConcreteReactor{
 					#end
 				}
 			}else if (pending.proceed()) {
-				trace ("pending");
+				//trace ("pending");
 				#if neko
 				neko.Sys.sleep(manager.interval);
 				#elseif php

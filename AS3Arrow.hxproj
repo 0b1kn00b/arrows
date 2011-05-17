@@ -14,7 +14,7 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\platform\x\src\hx\hxhsl\hsl-pico source" />
+    <class path="..\..\os\x\src\hx\hxhsl\hsl-pico source" />
     <class path="..\stax\src\main\haxe" />
     <class path="unit" />
   </classpaths>
@@ -23,8 +23,8 @@
     <option directives="" />
     <option flashStrict="False" />
     <option mainClass="Full" />
-    <option forcetraces="False" />
-    <option additional="" />
+    <option enabledebug="False" />
+    <option additional="--dead-code-elimination" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

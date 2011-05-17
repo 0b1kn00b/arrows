@@ -32,14 +32,14 @@ class EventArrow extends Arrow{
 	public function new(trigger:String){
 		var self = this;
 		super(
-			function (target:Dynamic,a:ArrowInstance){
+			function (target:Dynamic, a:ArrowInstance) {
 				var cancel : Void->Void = null;
 				var handler : Function1<Dynamic,Dynamic>= null;
 				
 				cancel = function(){
 					target.removeEventListener(trigger,handler);
 				}
-				handler = function(value:Dynamic){
+				handler = function(value:Dynamic) {
 					cancel();
 					a.advance(cancel);
 					a.cont(value);

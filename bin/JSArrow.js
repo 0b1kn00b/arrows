@@ -114,333 +114,6 @@ haxe.test.ui.common.ResultAggregator.prototype.start = function(runner) {
 	$s.pop();
 }
 haxe.test.ui.common.ResultAggregator.prototype.__class__ = haxe.test.ui.common.ResultAggregator;
-haxe.test.TestCase = function(p) { if( p === $_ ) return; {
-	$s.push("haxe.test.TestCase::new");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}}
-haxe.test.TestCase.__name__ = ["haxe","test","TestCase"];
-haxe.test.TestCase.prototype.after = function() {
-	$s.push("haxe.test.TestCase::after");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}
-haxe.test.TestCase.prototype.afterAll = function() {
-	$s.push("haxe.test.TestCase::afterAll");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertCanceled = function(future,assertions,timeout) {
-	$s.push("haxe.test.TestCase::assertCanceled");
-	var $spos = $s.length;
-	{
-		var $tmp = haxe.test.Assert.canceled(future,assertions,timeout);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertContains = function(values,match,msg,pos) {
-	$s.push("haxe.test.TestCase::assertContains");
-	var $spos = $s.length;
-	haxe.test.Assert.contains(values,match,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertDelivered = function(future,assertions,timeout) {
-	$s.push("haxe.test.TestCase::assertDelivered");
-	var $spos = $s.length;
-	{
-		var $tmp = haxe.test.Assert.delivered(future,assertions,timeout);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertEquals = function(expected,value,equal,msg,pos) {
-	$s.push("haxe.test.TestCase::assertEquals");
-	var $spos = $s.length;
-	if(equal != null) {
-		haxe.test.Assert.isTrue(equal(expected,value),((msg != null?msg:(("expected " + expected) + " but found ") + value)),pos);
-	}
-	else {
-		haxe.test.Assert.equals(expected,value,null,msg,pos);
-	}
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertEqualsOneOf = function(value,possibilities,msg,pos) {
-	$s.push("haxe.test.TestCase::assertEqualsOneOf");
-	var $spos = $s.length;
-	haxe.test.Assert.equalsOneOf(value,possibilities,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertFalse = function(value,msg,pos) {
-	$s.push("haxe.test.TestCase::assertFalse");
-	var $spos = $s.length;
-	haxe.test.Assert.isFalse(value,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertFloatEquals = function(expected,value,approx,msg,pos) {
-	$s.push("haxe.test.TestCase::assertFloatEquals");
-	var $spos = $s.length;
-	haxe.test.Assert.floatEquals(expected,value,approx,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertIs = function(value,type,msg,pos) {
-	$s.push("haxe.test.TestCase::assertIs");
-	var $spos = $s.length;
-	haxe.test.Assert["is"](value,type,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertLooksLike = function(expected,value,recursive,msg,pos) {
-	$s.push("haxe.test.TestCase::assertLooksLike");
-	var $spos = $s.length;
-	haxe.test.Assert.looksLike(expected,value,recursive,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertMatches = function(pattern,value,msg,pos) {
-	$s.push("haxe.test.TestCase::assertMatches");
-	var $spos = $s.length;
-	haxe.test.Assert.matches(pattern,value,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertNotContains = function(values,match,msg,pos) {
-	$s.push("haxe.test.TestCase::assertNotContains");
-	var $spos = $s.length;
-	haxe.test.Assert.notContains(values,match,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertNotDelivered = function(future,timeout,pos) {
-	$s.push("haxe.test.TestCase::assertNotDelivered");
-	var $spos = $s.length;
-	{
-		var $tmp = haxe.test.Assert.notDelivered(future,timeout,pos);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertNotEquals = function(expected,value,msg,pos) {
-	$s.push("haxe.test.TestCase::assertNotEquals");
-	var $spos = $s.length;
-	haxe.test.Assert.notEquals(expected,value,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertNotNull = function(value,msg,pos) {
-	$s.push("haxe.test.TestCase::assertNotNull");
-	var $spos = $s.length;
-	haxe.test.Assert.notNull(value,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertNull = function(value,msg,pos) {
-	$s.push("haxe.test.TestCase::assertNull");
-	var $spos = $s.length;
-	haxe.test.Assert.isNull(value,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertStringContains = function(match,value,msg,pos) {
-	$s.push("haxe.test.TestCase::assertStringContains");
-	var $spos = $s.length;
-	haxe.test.Assert.stringContains(match,value,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertStringSequence = function(sequence,value,msg,pos) {
-	$s.push("haxe.test.TestCase::assertStringSequence");
-	var $spos = $s.length;
-	haxe.test.Assert.stringSequence(sequence,value,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertThat = function(obj,cond,msg,pos) {
-	$s.push("haxe.test.TestCase::assertThat");
-	var $spos = $s.length;
-	haxe.test.Assert.that(obj,cond,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertThrowsException = function(method,type,msg,pos) {
-	$s.push("haxe.test.TestCase::assertThrowsException");
-	var $spos = $s.length;
-	haxe.test.Assert.throwsException(method,type,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.assertTrue = function(cond,msg,pos) {
-	$s.push("haxe.test.TestCase::assertTrue");
-	var $spos = $s.length;
-	haxe.test.Assert.isTrue(cond,msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.before = function() {
-	$s.push("haxe.test.TestCase::before");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}
-haxe.test.TestCase.prototype.beforeAll = function() {
-	$s.push("haxe.test.TestCase::beforeAll");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}
-haxe.test.TestCase.prototype.fail = function(msg,pos) {
-	$s.push("haxe.test.TestCase::fail");
-	var $spos = $s.length;
-	if(msg == null) msg = "failure expected";
-	haxe.test.Assert.fail(msg,pos);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.not = function(c) {
-	$s.push("haxe.test.TestCase::not");
-	var $spos = $s.length;
-	{
-		var $tmp = haxe.test.MustMatcherExtensions.negate(c);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-haxe.test.TestCase.prototype.warn = function(msg) {
-	$s.push("haxe.test.TestCase::warn");
-	var $spos = $s.length;
-	haxe.test.Assert.warn(msg);
-	$s.pop();
-}
-haxe.test.TestCase.prototype.__class__ = haxe.test.TestCase;
-if(typeof test=='undefined') test = {}
-if(!test.arrow) test.arrow = {}
-test.arrow.LambdaArrowTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.LambdaArrowTest::new");
-	var $spos = $s.length;
-	haxe.test.TestCase.apply(this,[]);
-	$s.pop();
-}}
-test.arrow.LambdaArrowTest.__name__ = ["test","arrow","LambdaArrowTest"];
-test.arrow.LambdaArrowTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.LambdaArrowTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.LambdaArrowTest.prototype.testFilter = function() {
-	$s.push("test.arrow.LambdaArrowTest::testFilter");
-	var $spos = $s.length;
-	var self = this;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.LambdaArrowTest::testFilter@63");
-		var $spos = $s.length;
-		self.assertTrue(Lambda.count(x) == 1,null,{ fileName : "LambdaArrowTest.hx", lineNumber : 64, className : "test.arrow.LambdaArrowTest", methodName : "testFilter"});
-		$s.pop();
-	});
-	haxe.functional.arrows.ext.LambdaArrow.filter(haxe.functional.arrows.Arrow.returnA(),function(x) {
-		$s.push("test.arrow.LambdaArrowTest::testFilter@68");
-		var $spos = $s.length;
-		{
-			var $tmp = x == 1;
-			$s.pop();
-			return $tmp;
-		}
-		$s.pop();
-	}).then(haxe.functional.arrows.Function1Arrow.lift($as)).run([1,2,3]).start();
-	$s.pop();
-}
-test.arrow.LambdaArrowTest.prototype.testIter = function() {
-	$s.push("test.arrow.LambdaArrowTest::testIter");
-	var $spos = $s.length;
-	var self = this;
-	var a = 0;
-	var arr = [1,2,3];
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.LambdaArrowTest::testIter@50");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(6,a,null,null,{ fileName : "LambdaArrowTest.hx", lineNumber : 51, className : "test.arrow.LambdaArrowTest", methodName : "testIter"});
-		$s.pop();
-	});
-	haxe.functional.arrows.ext.LambdaArrow.iter(haxe.functional.arrows.Arrow.returnA(),function(x) {
-		$s.push("test.arrow.LambdaArrowTest::testIter@55");
-		var $spos = $s.length;
-		a += x;
-		$s.pop();
-	}).then(haxe.functional.arrows.Function1Arrow.lift($as)).run(arr).start();
-	$s.pop();
-}
-test.arrow.LambdaArrowTest.prototype.testLong = function() {
-	$s.push("test.arrow.LambdaArrowTest::testLong");
-	var $spos = $s.length;
-	var self = this;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.LambdaArrowTest::testLong@76");
-		var $spos = $s.length;
-		self.assertTrue(true,null,{ fileName : "LambdaArrowTest.hx", lineNumber : 77, className : "test.arrow.LambdaArrowTest", methodName : "testLong"});
-		$s.pop();
-	},60000);
-	var list = new List();
-	{
-		var _g = 0;
-		while(_g < 10000) {
-			var i = _g++;
-			list.add(Math.random());
-		}
-	}
-	haxe.functional.arrows.ext.LambdaArrow.map(haxe.functional.arrows.Arrow.returnA(),function(x) {
-		$s.push("test.arrow.LambdaArrowTest::testLong@86");
-		var $spos = $s.length;
-		var a = x + 1 / 2;
-		var b = 87984 + 134123412233;
-		var c = a + b;
-		{
-			$s.pop();
-			return c;
-		}
-		$s.pop();
-	}).then(haxe.functional.arrows.Function1Arrow.lift($as)).run(list).start();
-	$s.pop();
-}
-test.arrow.LambdaArrowTest.prototype.testMap = function() {
-	$s.push("test.arrow.LambdaArrowTest::testMap");
-	var $spos = $s.length;
-	var self = this;
-	var count = 0;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.LambdaArrowTest::testMap@23");
-		var $spos = $s.length;
-		var a = [1,2,3];
-		var b = Lambda.array(x);
-		{
-			var _g1 = 0, _g = a.length;
-			while(_g1 < _g) {
-				var i = _g1++;
-				haxe.test.Assert.equals(a[i],b[i],null,null,{ fileName : "LambdaArrowTest.hx", lineNumber : 27, className : "test.arrow.LambdaArrowTest", methodName : "testMap"});
-			}
-		}
-		$s.pop();
-	});
-	var a = haxe.functional.arrows.ext.LambdaArrow.map(haxe.functional.arrows.Arrow.returnA(),function(x) {
-		$s.push("test.arrow.LambdaArrowTest::testMap@34");
-		var $spos = $s.length;
-		{
-			var $tmp = (function($this) {
-				var $r;
-				switch(x) {
-				case "a":{
-					$r = 1;
-				}break;
-				case "b":{
-					$r = 2;
-				}break;
-				case "c":{
-					$r = 3;
-				}break;
-				default:{
-					$r = null;
-				}break;
-				}
-				return $r;
-			}(this));
-			$s.pop();
-			return $tmp;
-		}
-		$s.pop();
-	});
-	a.then(haxe.functional.arrows.Function1Arrow.lift($as)).run(["a","b","c"]).start();
-	$s.pop();
-}
-test.arrow.LambdaArrowTest.prototype.__class__ = test.arrow.LambdaArrowTest;
 if(!haxe.functional) haxe.functional = {}
 haxe.functional.Foldable = function() { }
 haxe.functional.Foldable.__name__ = ["haxe","functional","Foldable"];
@@ -1284,6 +957,358 @@ haxe.data.collections._List.Nil.__name__ = ["haxe","data","collections","_List",
 haxe.data.collections._List.Nil.__super__ = haxe.data.collections.List;
 for(var k in haxe.data.collections.List.prototype ) haxe.data.collections._List.Nil.prototype[k] = haxe.data.collections.List.prototype[k];
 haxe.data.collections._List.Nil.prototype.__class__ = haxe.data.collections._List.Nil;
+haxe.test.TestCase = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.test.TestCase::new");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}}
+haxe.test.TestCase.__name__ = ["haxe","test","TestCase"];
+haxe.test.TestCase.prototype.after = function() {
+	$s.push("haxe.test.TestCase::after");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}
+haxe.test.TestCase.prototype.afterAll = function() {
+	$s.push("haxe.test.TestCase::afterAll");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertCanceled = function(future,assertions,timeout) {
+	$s.push("haxe.test.TestCase::assertCanceled");
+	var $spos = $s.length;
+	{
+		var $tmp = haxe.test.Assert.canceled(future,assertions,timeout);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertContains = function(values,match,msg,pos) {
+	$s.push("haxe.test.TestCase::assertContains");
+	var $spos = $s.length;
+	haxe.test.Assert.contains(values,match,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertDelivered = function(future,assertions,timeout) {
+	$s.push("haxe.test.TestCase::assertDelivered");
+	var $spos = $s.length;
+	{
+		var $tmp = haxe.test.Assert.delivered(future,assertions,timeout);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertEquals = function(expected,value,equal,msg,pos) {
+	$s.push("haxe.test.TestCase::assertEquals");
+	var $spos = $s.length;
+	if(equal != null) {
+		haxe.test.Assert.isTrue(equal(expected,value),((msg != null?msg:(("expected " + expected) + " but found ") + value)),pos);
+	}
+	else {
+		haxe.test.Assert.equals(expected,value,null,msg,pos);
+	}
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertEqualsOneOf = function(value,possibilities,msg,pos) {
+	$s.push("haxe.test.TestCase::assertEqualsOneOf");
+	var $spos = $s.length;
+	haxe.test.Assert.equalsOneOf(value,possibilities,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertFalse = function(value,msg,pos) {
+	$s.push("haxe.test.TestCase::assertFalse");
+	var $spos = $s.length;
+	haxe.test.Assert.isFalse(value,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertFloatEquals = function(expected,value,approx,msg,pos) {
+	$s.push("haxe.test.TestCase::assertFloatEquals");
+	var $spos = $s.length;
+	haxe.test.Assert.floatEquals(expected,value,approx,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertIs = function(value,type,msg,pos) {
+	$s.push("haxe.test.TestCase::assertIs");
+	var $spos = $s.length;
+	haxe.test.Assert["is"](value,type,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertLooksLike = function(expected,value,recursive,msg,pos) {
+	$s.push("haxe.test.TestCase::assertLooksLike");
+	var $spos = $s.length;
+	haxe.test.Assert.looksLike(expected,value,recursive,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertMatches = function(pattern,value,msg,pos) {
+	$s.push("haxe.test.TestCase::assertMatches");
+	var $spos = $s.length;
+	haxe.test.Assert.matches(pattern,value,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertNotContains = function(values,match,msg,pos) {
+	$s.push("haxe.test.TestCase::assertNotContains");
+	var $spos = $s.length;
+	haxe.test.Assert.notContains(values,match,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertNotDelivered = function(future,timeout,pos) {
+	$s.push("haxe.test.TestCase::assertNotDelivered");
+	var $spos = $s.length;
+	{
+		var $tmp = haxe.test.Assert.notDelivered(future,timeout,pos);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertNotEquals = function(expected,value,msg,pos) {
+	$s.push("haxe.test.TestCase::assertNotEquals");
+	var $spos = $s.length;
+	haxe.test.Assert.notEquals(expected,value,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertNotNull = function(value,msg,pos) {
+	$s.push("haxe.test.TestCase::assertNotNull");
+	var $spos = $s.length;
+	haxe.test.Assert.notNull(value,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertNull = function(value,msg,pos) {
+	$s.push("haxe.test.TestCase::assertNull");
+	var $spos = $s.length;
+	haxe.test.Assert.isNull(value,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertStringContains = function(match,value,msg,pos) {
+	$s.push("haxe.test.TestCase::assertStringContains");
+	var $spos = $s.length;
+	haxe.test.Assert.stringContains(match,value,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertStringSequence = function(sequence,value,msg,pos) {
+	$s.push("haxe.test.TestCase::assertStringSequence");
+	var $spos = $s.length;
+	haxe.test.Assert.stringSequence(sequence,value,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertThat = function(obj,cond,msg,pos) {
+	$s.push("haxe.test.TestCase::assertThat");
+	var $spos = $s.length;
+	haxe.test.Assert.that(obj,cond,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertThrowsException = function(method,type,msg,pos) {
+	$s.push("haxe.test.TestCase::assertThrowsException");
+	var $spos = $s.length;
+	haxe.test.Assert.throwsException(method,type,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.assertTrue = function(cond,msg,pos) {
+	$s.push("haxe.test.TestCase::assertTrue");
+	var $spos = $s.length;
+	haxe.test.Assert.isTrue(cond,msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.before = function() {
+	$s.push("haxe.test.TestCase::before");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}
+haxe.test.TestCase.prototype.beforeAll = function() {
+	$s.push("haxe.test.TestCase::beforeAll");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}
+haxe.test.TestCase.prototype.fail = function(msg,pos) {
+	$s.push("haxe.test.TestCase::fail");
+	var $spos = $s.length;
+	if(msg == null) msg = "failure expected";
+	haxe.test.Assert.fail(msg,pos);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.not = function(c) {
+	$s.push("haxe.test.TestCase::not");
+	var $spos = $s.length;
+	{
+		var $tmp = haxe.test.MustMatcherExtensions.negate(c);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+haxe.test.TestCase.prototype.warn = function(msg) {
+	$s.push("haxe.test.TestCase::warn");
+	var $spos = $s.length;
+	haxe.test.Assert.warn(msg);
+	$s.pop();
+}
+haxe.test.TestCase.prototype.__class__ = haxe.test.TestCase;
+if(!haxe.reactive) haxe.reactive = {}
+if(!haxe.reactive.arrow) haxe.reactive.arrow = {}
+haxe.reactive.arrow.ComplexTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.ComplexTest::new");
+	var $spos = $s.length;
+	haxe.test.TestCase.apply(this,[]);
+	$s.pop();
+}}
+haxe.reactive.arrow.ComplexTest.__name__ = ["haxe","reactive","arrow","ComplexTest"];
+haxe.reactive.arrow.ComplexTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.ComplexTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.ComplexTest.prototype.debug = function(x) {
+	$s.push("haxe.reactive.arrow.ComplexTest::debug");
+	var $spos = $s.length;
+	haxe.Log.trace("result = " + x,{ fileName : "ComplexTest.hx", lineNumber : 24, className : "haxe.reactive.arrow.ComplexTest", methodName : "debug"});
+	{
+		$s.pop();
+		return x;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.ComplexTest.prototype.testAnimate = function() {
+	$s.push("haxe.reactive.arrow.ComplexTest::testAnimate");
+	var $spos = $s.length;
+	var t = haxe.Timer.stamp();
+	var t1 = t + 3;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testAnimate@70");
+		var $spos = $s.length;
+		haxe.test.Assert.isTrue(haxe.Timer.stamp() > t1,null,{ fileName : "ComplexTest.hx", lineNumber : 71, className : "haxe.reactive.arrow.ComplexTest", methodName : "testAnimate"});
+		$s.pop();
+	},6000);
+	haxe.functional.arrows.Function1Arrow.lift(function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testAnimate@75");
+		var $spos = $s.length;
+		if(haxe.Timer.stamp() < t1) {
+			{
+				var $tmp = haxe.functional.arrows.Arrow.doRepeat(x);
+				$s.pop();
+				return $tmp;
+			}
+		}
+		else {
+			{
+				var $tmp = haxe.functional.arrows.Arrow.doDone(x);
+				$s.pop();
+				return $tmp;
+			}
+		}
+		$s.pop();
+	}).animate(200).then(haxe.functional.arrows.Function1Arrow.lift($as)).run().start();
+	$s.pop();
+}
+haxe.reactive.arrow.ComplexTest.prototype.testIndependentLoop = function() {
+	$s.push("haxe.reactive.arrow.ComplexTest::testIndependentLoop");
+	var $spos = $s.length;
+	var arr = new Array();
+	var arr2 = new Array();
+	var comp = [];
+	{
+		var _g = 0;
+		while(_g < 5) {
+			var i = _g++;
+			arr.push(i);
+			arr2.push(i);
+		}
+	}
+	var self = this;
+	var a = haxe.functional.arrows.ext.LambdaArrow.iter(haxe.functional.arrows.Arrow.returnA(),function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testIndependentLoop@94");
+		var $spos = $s.length;
+		comp.push(x);
+		$s.pop();
+	});
+	a.info = "show count a";
+	var b = haxe.functional.arrows.ext.LambdaArrow.iter(haxe.functional.arrows.Arrow.returnA(),function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testIndependentLoop@100");
+		var $spos = $s.length;
+		comp.push(x);
+		$s.pop();
+	});
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testIndependentLoop@105");
+		var $spos = $s.length;
+		haxe.test.Assert.equals([0,0,1,1,2,2,3,3,4,4],comp,null,null,{ fileName : "ComplexTest.hx", lineNumber : 106, className : "haxe.reactive.arrow.ComplexTest", methodName : "testIndependentLoop"});
+		$s.pop();
+	});
+	b.info = "show count b";
+	a.pair(b).then(haxe.functional.arrows.Function1Arrow.tuple($as)).run(Tuple2.create(arr,arr2)).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ComplexTest.prototype.testOr = function() {
+	$s.push("haxe.reactive.arrow.ComplexTest::testOr");
+	var $spos = $s.length;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testOr@30");
+		var $spos = $s.length;
+		haxe.test.Assert.equals("g",x,null,null,{ fileName : "ComplexTest.hx", lineNumber : 31, className : "haxe.reactive.arrow.ComplexTest", methodName : "testOr"});
+		{
+			$s.pop();
+			return x;
+		}
+		$s.pop();
+	},1000);
+	var f = function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testOr@35");
+		var $spos = $s.length;
+		{
+			$s.pop();
+			return "f";
+		}
+		$s.pop();
+	}
+	var g = function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testOr@38");
+		var $spos = $s.length;
+		{
+			$s.pop();
+			return "g";
+		}
+		$s.pop();
+	}
+	var a0 = haxe.functional.arrows.Arrow.delayA(500).then(haxe.functional.arrows.Function1Arrow.lift(f));
+	var a1 = haxe.functional.arrows.Arrow.delayA(400).then(haxe.functional.arrows.Function1Arrow.lift(g));
+	a0.or(a1).then(haxe.functional.arrows.Function1Arrow.lift($as)).run(2).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ComplexTest.prototype.testRepeat = function() {
+	$s.push("haxe.reactive.arrow.ComplexTest::testRepeat");
+	var $spos = $s.length;
+	var count = 0;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testRepeat@50");
+		var $spos = $s.length;
+		haxe.test.Assert.isTrue(true,null,{ fileName : "ComplexTest.hx", lineNumber : 51, className : "haxe.reactive.arrow.ComplexTest", methodName : "testRepeat"});
+		$s.pop();
+	},4000);
+	haxe.functional.arrows.Function1Arrow.lift(function(x) {
+		$s.push("haxe.reactive.arrow.ComplexTest::testRepeat@54");
+		var $spos = $s.length;
+		count++;
+		if(count < 10) {
+			{
+				var $tmp = haxe.functional.arrows.Arrow.doRepeat();
+				$s.pop();
+				return $tmp;
+			}
+		}
+		else {
+			{
+				var $tmp = haxe.functional.arrows.Arrow.doDone();
+				$s.pop();
+				return $tmp;
+			}
+		}
+		$s.pop();
+	}).repeat().then(haxe.functional.arrows.Function1Arrow.lift($as)).run().start();
+	$s.pop();
+}
+haxe.reactive.arrow.ComplexTest.prototype.__class__ = haxe.reactive.arrow.ComplexTest;
 List = function(p) { if( p === $_ ) return; {
 	$s.push("List::new");
 	var $spos = $s.length;
@@ -1499,164 +1524,6 @@ List.prototype.toString = function() {
 	$s.pop();
 }
 List.prototype.__class__ = List;
-test.arrow.ComplexTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.ComplexTest::new");
-	var $spos = $s.length;
-	haxe.test.TestCase.apply(this,[]);
-	$s.pop();
-}}
-test.arrow.ComplexTest.__name__ = ["test","arrow","ComplexTest"];
-test.arrow.ComplexTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.ComplexTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.ComplexTest.prototype.debug = function(x) {
-	$s.push("test.arrow.ComplexTest::debug");
-	var $spos = $s.length;
-	haxe.Log.trace("result = " + x,{ fileName : "ComplexTest.hx", lineNumber : 24, className : "test.arrow.ComplexTest", methodName : "debug"});
-	{
-		$s.pop();
-		return x;
-	}
-	$s.pop();
-}
-test.arrow.ComplexTest.prototype.testAnimate = function() {
-	$s.push("test.arrow.ComplexTest::testAnimate");
-	var $spos = $s.length;
-	var t = haxe.Timer.stamp();
-	var t1 = t + 3;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ComplexTest::testAnimate@70");
-		var $spos = $s.length;
-		haxe.test.Assert.isTrue(haxe.Timer.stamp() > t1,null,{ fileName : "ComplexTest.hx", lineNumber : 71, className : "test.arrow.ComplexTest", methodName : "testAnimate"});
-		$s.pop();
-	},6000);
-	haxe.functional.arrows.Function1Arrow.lift(function(x) {
-		$s.push("test.arrow.ComplexTest::testAnimate@75");
-		var $spos = $s.length;
-		if(haxe.Timer.stamp() < t1) {
-			{
-				var $tmp = haxe.functional.arrows.Arrow.doRepeat(x);
-				$s.pop();
-				return $tmp;
-			}
-		}
-		else {
-			{
-				var $tmp = haxe.functional.arrows.Arrow.doDone(x);
-				$s.pop();
-				return $tmp;
-			}
-		}
-		$s.pop();
-	}).animate(200).then(haxe.functional.arrows.Function1Arrow.lift($as)).run().start();
-	$s.pop();
-}
-test.arrow.ComplexTest.prototype.testIndependentLoop = function() {
-	$s.push("test.arrow.ComplexTest::testIndependentLoop");
-	var $spos = $s.length;
-	var arr = new Array();
-	var arr2 = new Array();
-	var comp = [];
-	{
-		var _g = 0;
-		while(_g < 5) {
-			var i = _g++;
-			arr.push(i);
-			arr2.push(i);
-		}
-	}
-	var self = this;
-	var a = haxe.functional.arrows.ext.LambdaArrow.iter(haxe.functional.arrows.Arrow.returnA(),function(x) {
-		$s.push("test.arrow.ComplexTest::testIndependentLoop@94");
-		var $spos = $s.length;
-		comp.push(x);
-		$s.pop();
-	});
-	a.info = "show count a";
-	var b = haxe.functional.arrows.ext.LambdaArrow.iter(haxe.functional.arrows.Arrow.returnA(),function(x) {
-		$s.push("test.arrow.ComplexTest::testIndependentLoop@100");
-		var $spos = $s.length;
-		comp.push(x);
-		$s.pop();
-	});
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ComplexTest::testIndependentLoop@105");
-		var $spos = $s.length;
-		haxe.test.Assert.equals([0,0,1,1,2,2,3,3,4,4],comp,null,null,{ fileName : "ComplexTest.hx", lineNumber : 106, className : "test.arrow.ComplexTest", methodName : "testIndependentLoop"});
-		$s.pop();
-	});
-	b.info = "show count b";
-	a.pair(b).then(haxe.functional.arrows.Function1Arrow.tuple($as)).run(Tuple2.create(arr,arr2)).start();
-	$s.pop();
-}
-test.arrow.ComplexTest.prototype.testOr = function() {
-	$s.push("test.arrow.ComplexTest::testOr");
-	var $spos = $s.length;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ComplexTest::testOr@30");
-		var $spos = $s.length;
-		haxe.test.Assert.equals("g",x,null,null,{ fileName : "ComplexTest.hx", lineNumber : 31, className : "test.arrow.ComplexTest", methodName : "testOr"});
-		{
-			$s.pop();
-			return x;
-		}
-		$s.pop();
-	},1000);
-	var f = function(x) {
-		$s.push("test.arrow.ComplexTest::testOr@35");
-		var $spos = $s.length;
-		{
-			$s.pop();
-			return "f";
-		}
-		$s.pop();
-	}
-	var g = function(x) {
-		$s.push("test.arrow.ComplexTest::testOr@38");
-		var $spos = $s.length;
-		{
-			$s.pop();
-			return "g";
-		}
-		$s.pop();
-	}
-	var a0 = haxe.functional.arrows.Arrow.delayA(500).then(haxe.functional.arrows.Function1Arrow.lift(f));
-	var a1 = haxe.functional.arrows.Arrow.delayA(400).then(haxe.functional.arrows.Function1Arrow.lift(g));
-	a0.or(a1).then(haxe.functional.arrows.Function1Arrow.lift($as)).run(2).start();
-	$s.pop();
-}
-test.arrow.ComplexTest.prototype.testRepeat = function() {
-	$s.push("test.arrow.ComplexTest::testRepeat");
-	var $spos = $s.length;
-	var count = 0;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ComplexTest::testRepeat@50");
-		var $spos = $s.length;
-		haxe.test.Assert.isTrue(true,null,{ fileName : "ComplexTest.hx", lineNumber : 51, className : "test.arrow.ComplexTest", methodName : "testRepeat"});
-		$s.pop();
-	},4000);
-	haxe.functional.arrows.Function1Arrow.lift(function(x) {
-		$s.push("test.arrow.ComplexTest::testRepeat@54");
-		var $spos = $s.length;
-		count++;
-		if(count < 10) {
-			{
-				var $tmp = haxe.functional.arrows.Arrow.doRepeat();
-				$s.pop();
-				return $tmp;
-			}
-		}
-		else {
-			{
-				var $tmp = haxe.functional.arrows.Arrow.doDone();
-				$s.pop();
-				return $tmp;
-			}
-		}
-		$s.pop();
-	}).repeat().then(haxe.functional.arrows.Function1Arrow.lift($as)).run().start();
-	$s.pop();
-}
-test.arrow.ComplexTest.prototype.__class__ = test.arrow.ComplexTest;
 haxe.test.Must = function() { }
 haxe.test.Must.__name__ = ["haxe","test","Must"];
 haxe.test.Must.equal = function(expected,equal) {
@@ -1990,7 +1857,7 @@ haxe.functional.arrows.Arrow.fanoutA = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = haxe.functional.arrows.Function1Arrow.tuple(function(x) {
-			$s.push("haxe.functional.arrows.Arrow::fanoutA@194");
+			$s.push("haxe.functional.arrows.Arrow::fanoutA@193");
 			var $spos = $s.length;
 			{
 				var $tmp = Tuple2.create(x,x);
@@ -2029,7 +1896,7 @@ haxe.functional.arrows.Arrow.returnA = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = haxe.functional.arrows.Function1Arrow.tuple(function(x) {
-			$s.push("haxe.functional.arrows.Arrow::returnA@218");
+			$s.push("haxe.functional.arrows.Arrow::returnA@217");
 			var $spos = $s.length;
 			{
 				$s.pop();
@@ -2047,7 +1914,7 @@ haxe.functional.arrows.Arrow.constA = function(value) {
 	var $spos = $s.length;
 	{
 		var $tmp = haxe.functional.arrows.Function1Arrow.lift(function(v) {
-			$s.push("haxe.functional.arrows.Arrow::constA@225");
+			$s.push("haxe.functional.arrows.Arrow::constA@224");
 			var $spos = $s.length;
 			{
 				$s.pop();
@@ -2265,8 +2132,8 @@ haxe.functional.arrows.Arrow.prototype.second = function() {
 	}
 	$s.pop();
 }
-haxe.functional.arrows.Arrow.prototype.signal = function() {
-	$s.push("haxe.functional.arrows.Arrow::signal");
+haxe.functional.arrows.Arrow.prototype.signalA = function() {
+	$s.push("haxe.functional.arrows.Arrow::signalA");
 	var $spos = $s.length;
 	{
 		var $tmp = new haxe.functional.arrows.combinators.SignalArrow();
@@ -2373,6 +2240,239 @@ IntIter.prototype.next = function() {
 	$s.pop();
 }
 IntIter.prototype.__class__ = IntIter;
+haxe.reactive.arrow.ArrowTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.ArrowTest::new");
+	var $spos = $s.length;
+	haxe.test.TestCase.apply(this,[]);
+	$s.pop();
+}}
+haxe.reactive.arrow.ArrowTest.__name__ = ["haxe","reactive","arrow","ArrowTest"];
+haxe.reactive.arrow.ArrowTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.ArrowTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.ArrowTest.prototype.debug = function(x) {
+	$s.push("haxe.reactive.arrow.ArrowTest::debug");
+	var $spos = $s.length;
+	{
+		$s.pop();
+		return x;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.f0 = function(x) {
+	$s.push("haxe.reactive.arrow.ArrowTest::f0");
+	var $spos = $s.length;
+	var out = x + 1;
+	this.debug(out);
+	{
+		$s.pop();
+		return out;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.f1 = function(x) {
+	$s.push("haxe.reactive.arrow.ArrowTest::f1");
+	var $spos = $s.length;
+	var out = x * 2;
+	this.debug(out);
+	{
+		$s.pop();
+		return out;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.g = function(x) {
+	$s.push("haxe.reactive.arrow.ArrowTest::g");
+	var $spos = $s.length;
+	{
+		$s.pop();
+		return x;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testDelay = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testDelay");
+	var $spos = $s.length;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testDelay@110");
+		var $spos = $s.length;
+		haxe.test.Assert.isTrue(true,null,{ fileName : "ArrowTest.hx", lineNumber : 111, className : "haxe.reactive.arrow.ArrowTest", methodName : "testDelay"});
+		$s.pop();
+	},3000);
+	haxe.functional.arrows.Arrow.delayA(2000).then(haxe.functional.arrows.Function1Arrow.lift($as)).run().start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testFanout = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testFanout");
+	var $spos = $s.length;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testFanout@65");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(11,x.productElement(0),null,null,{ fileName : "ArrowTest.hx", lineNumber : 66, className : "haxe.reactive.arrow.ArrowTest", methodName : "testFanout"});
+		haxe.test.Assert.equals(20,x.productElement(1),null,null,{ fileName : "ArrowTest.hx", lineNumber : 67, className : "haxe.reactive.arrow.ArrowTest", methodName : "testFanout"});
+		$s.pop();
+	});
+	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).fanout(haxe.functional.arrows.Function1Arrow.lift($closure(this,"f1"))).dump(haxe.functional.arrows.Function1Arrow.tuple($as)).run(10).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testFirst = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testFirst");
+	var $spos = $s.length;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testFirst@46");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(x.productElement(0),11,null,null,{ fileName : "ArrowTest.hx", lineNumber : 47, className : "haxe.reactive.arrow.ArrowTest", methodName : "testFirst"});
+		haxe.test.Assert.equals(x.productElement(1),10,null,null,{ fileName : "ArrowTest.hx", lineNumber : 48, className : "haxe.reactive.arrow.ArrowTest", methodName : "testFirst"});
+		$s.pop();
+	});
+	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).first().then(haxe.functional.arrows.Function1Arrow.tuple($as)).run(Tuple2.create(10,10)).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testJoin = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testJoin");
+	var $spos = $s.length;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testJoin@84");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(x.productElement(0),11,null,null,{ fileName : "ArrowTest.hx", lineNumber : 85, className : "haxe.reactive.arrow.ArrowTest", methodName : "testJoin"});
+		haxe.test.Assert.equals(x.productElement(1),22,null,null,{ fileName : "ArrowTest.hx", lineNumber : 86, className : "haxe.reactive.arrow.ArrowTest", methodName : "testJoin"});
+		$s.pop();
+	});
+	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).join(haxe.functional.arrows.Function1Arrow.tuple($closure(this,"f1"))).dump(haxe.functional.arrows.Function1Arrow.tuple($as)).run(10).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testPair = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testPair");
+	var $spos = $s.length;
+	var $as = haxe.functional.arrows.Function1Arrow.tuple(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testPair@38");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(x.productElement(0),11,null,null,{ fileName : "ArrowTest.hx", lineNumber : 39, className : "haxe.reactive.arrow.ArrowTest", methodName : "testPair"});
+		haxe.test.Assert.equals(x.productElement(1),20,null,null,{ fileName : "ArrowTest.hx", lineNumber : 40, className : "haxe.reactive.arrow.ArrowTest", methodName : "testPair"});
+		$s.pop();
+	});
+	var a = haxe.functional.arrows.Function1Arrow.tuple($closure(this,"f0")).pair(haxe.functional.arrows.Function1Arrow.tuple($closure(this,"f1"))).then($as).run(Tuple2.create(10,10)).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testRepeat = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testRepeat");
+	var $spos = $s.length;
+	var num = 10;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testRepeat@94");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(num,x,null,null,{ fileName : "ArrowTest.hx", lineNumber : 95, className : "haxe.reactive.arrow.ArrowTest", methodName : "testRepeat"});
+		$s.pop();
+	},90000);
+	var g0 = function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testRepeat@98");
+		var $spos = $s.length;
+		var out = x + 1;
+		if(out < num) {
+			{
+				var $tmp = haxe.functional.arrows.Arrow.doRepeat(out);
+				$s.pop();
+				return $tmp;
+			}
+		}
+		else {
+			{
+				var $tmp = haxe.functional.arrows.Arrow.doDone(out);
+				$s.pop();
+				return $tmp;
+			}
+		}
+		$s.pop();
+	}
+	haxe.functional.arrows.Function1Arrow.lift(g0).repeat().dump(haxe.functional.arrows.Function1Arrow.lift($as)).run(0).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testReturnA = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testReturnA");
+	var $spos = $s.length;
+	var self = this;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testReturnA@119");
+		var $spos = $s.length;
+		haxe.test.Assert.equals("test",x,null,null,{ fileName : "ArrowTest.hx", lineNumber : 120, className : "haxe.reactive.arrow.ArrowTest", methodName : "testReturnA"});
+		$s.pop();
+	});
+	haxe.functional.arrows.Arrow.returnA().then(haxe.functional.arrows.Function1Arrow.lift($as)).run("test").start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testSecond = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testSecond");
+	var $spos = $s.length;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testSecond@56");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(x.productElement(0),10,null,null,{ fileName : "ArrowTest.hx", lineNumber : 57, className : "haxe.reactive.arrow.ArrowTest", methodName : "testSecond"});
+		haxe.test.Assert.equals(x.productElement(1),11,null,null,{ fileName : "ArrowTest.hx", lineNumber : 58, className : "haxe.reactive.arrow.ArrowTest", methodName : "testSecond"});
+		$s.pop();
+	});
+	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).second().dump(haxe.functional.arrows.Function1Arrow.tuple($as)).run(Tuple2.create(10,10)).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testSimpleArrow = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testSimpleArrow");
+	var $spos = $s.length;
+	var f3 = haxe.functional.arrows.Function1Arrow.tuple((function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testSimpleArrow@29");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(x,162,null,null,{ fileName : "ArrowTest.hx", lineNumber : 30, className : "haxe.reactive.arrow.ArrowTest", methodName : "testSimpleArrow"});
+		$s.pop();
+	}));
+	haxe.functional.arrows.Function1Arrow.then($closure(this,"f0"),$closure(this,"f1")).then(f3).then(haxe.functional.arrows.Function1Arrow.lift($closure(this,"debug"))).run(80).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.testTie = function() {
+	$s.push("haxe.reactive.arrow.ArrowTest::testTie");
+	var $spos = $s.length;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.ArrowTest::testTie@74");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(10,x.productElement(0),null,null,{ fileName : "ArrowTest.hx", lineNumber : 75, className : "haxe.reactive.arrow.ArrowTest", methodName : "testTie"});
+		haxe.test.Assert.equals(11,x.productElement(1),null,null,{ fileName : "ArrowTest.hx", lineNumber : 76, className : "haxe.reactive.arrow.ArrowTest", methodName : "testTie"});
+		$s.pop();
+	});
+	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).tie(haxe.functional.arrows.Function1Arrow.tuple($as)).run(10).start();
+	$s.pop();
+}
+haxe.reactive.arrow.ArrowTest.prototype.__class__ = haxe.reactive.arrow.ArrowTest;
+haxe.reactive.arrow.TestDynamic = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.TestDynamic::new");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}}
+haxe.reactive.arrow.TestDynamic.__name__ = ["haxe","reactive","arrow","TestDynamic"];
+haxe.reactive.arrow.TestDynamic.prototype.resolve = function(key) {
+	$s.push("haxe.reactive.arrow.TestDynamic::resolve");
+	var $spos = $s.length;
+	{
+		var $tmp = $closure(new haxe.reactive.arrow.TestDynamicFunctionSource(),"whatAmI");
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.TestDynamic.prototype.__class__ = haxe.reactive.arrow.TestDynamic;
+haxe.reactive.arrow.TestDynamicFunctionSource = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.TestDynamicFunctionSource::new");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}}
+haxe.reactive.arrow.TestDynamicFunctionSource.__name__ = ["haxe","reactive","arrow","TestDynamicFunctionSource"];
+haxe.reactive.arrow.TestDynamicFunctionSource.prototype.whatAmI = function() {
+	$s.push("haxe.reactive.arrow.TestDynamicFunctionSource::whatAmI");
+	var $spos = $s.length;
+	{
+		$s.pop();
+		return this;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.TestDynamicFunctionSource.prototype.__class__ = haxe.reactive.arrow.TestDynamicFunctionSource;
 haxe.test.MustMatcherExtensions = function() { }
 haxe.test.MustMatcherExtensions.__name__ = ["haxe","test","MustMatcherExtensions"];
 haxe.test.MustMatcherExtensions.negate = function(c) {
@@ -2567,9 +2667,6 @@ haxe.test.ui.common.ReportTools.skipResult = function(report,stats,isOk) {
 			case 2:
 			{
 				$r = !isOk;
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -3861,9 +3958,6 @@ haxe.data.collections.Map = function(korder,kequal,khash,kshow,vorder,vequal,vha
 				{
 					$r = Stax.error("No value for this key");
 				}break;
-				default:{
-					$r = null;
-				}break;
 				}
 				return $r;
 			}(this));
@@ -4100,9 +4194,6 @@ haxe.data.collections.Map.prototype.containsKey = function(k) {
 			var v = $e[2];
 			{
 				$r = true;
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -4368,9 +4459,6 @@ haxe.data.collections.Map.prototype.getOrElse = function(k,def) {
 			{
 				$r = def();
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -4395,9 +4483,6 @@ haxe.data.collections.Map.prototype.getOrElseC = function(k,c) {
 			case 0:
 			{
 				$r = c;
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -5518,6 +5603,7 @@ if(!hsl.haxe) hsl.haxe = {}
 hsl.haxe.Signaler = function() { }
 hsl.haxe.Signaler.__name__ = ["hsl","haxe","Signaler"];
 hsl.haxe.Signaler.prototype.addBubblingTarget = null;
+hsl.haxe.Signaler.prototype.addNotificationTarget = null;
 hsl.haxe.Signaler.prototype.bind = null;
 hsl.haxe.Signaler.prototype.bindAdvanced = null;
 hsl.haxe.Signaler.prototype.bindVoid = null;
@@ -5525,6 +5611,7 @@ hsl.haxe.Signaler.prototype.dispatch = null;
 hsl.haxe.Signaler.prototype.getIsListenedTo = null;
 hsl.haxe.Signaler.prototype.isListenedTo = null;
 hsl.haxe.Signaler.prototype.removeBubblingTarget = null;
+hsl.haxe.Signaler.prototype.removeNotificationTarget = null;
 hsl.haxe.Signaler.prototype.subject = null;
 hsl.haxe.Signaler.prototype.unbind = null;
 hsl.haxe.Signaler.prototype.unbindAdvanced = null;
@@ -5549,6 +5636,15 @@ hsl.haxe.DirectSignaler.prototype.addBubblingTarget = function(value) {
 		this.bubblingTargets = new List();
 	}
 	this.bubblingTargets.add(value);
+	$s.pop();
+}
+hsl.haxe.DirectSignaler.prototype.addNotificationTarget = function(value) {
+	$s.push("hsl.haxe.DirectSignaler::addNotificationTarget");
+	var $spos = $s.length;
+	if(null == this.notificationTargets) {
+		this.notificationTargets = new List();
+	}
+	this.notificationTargets.add(value);
 	$s.pop();
 }
 hsl.haxe.DirectSignaler.prototype.bind = function(listener) {
@@ -5584,12 +5680,22 @@ hsl.haxe.DirectSignaler.prototype.bindVoid = function(listener) {
 hsl.haxe.DirectSignaler.prototype.bubble = function(data,origin) {
 	$s.push("hsl.haxe.DirectSignaler::bubble");
 	var $spos = $s.length;
-	{ var $it0 = this.bubblingTargets.iterator();
-	while( $it0.hasNext() ) { var bubblingTarget = $it0.next();
-	{
-		bubblingTarget.dispatch(data,origin,{ fileName : "DirectSignaler.hx", lineNumber : 80, className : "hsl.haxe.DirectSignaler", methodName : "bubble"});
+	if(null != this.bubblingTargets) {
+		{ var $it0 = this.bubblingTargets.iterator();
+		while( $it0.hasNext() ) { var bubblingTarget = $it0.next();
+		{
+			bubblingTarget.dispatch(data,origin,{ fileName : "DirectSignaler.hx", lineNumber : 88, className : "hsl.haxe.DirectSignaler", methodName : "bubble"});
+		}
+		}}
 	}
-	}}
+	if(null != this.notificationTargets) {
+		{ var $it1 = this.notificationTargets.iterator();
+		while( $it1.hasNext() ) { var notificationTarget = $it1.next();
+		{
+			notificationTarget.dispatch(null,origin,{ fileName : "DirectSignaler.hx", lineNumber : 93, className : "hsl.haxe.DirectSignaler", methodName : "bubble"});
+		}
+		}}
+	}
 	$s.pop();
 }
 hsl.haxe.DirectSignaler.prototype.bubblingTargets = null;
@@ -5603,13 +5709,25 @@ hsl.haxe.DirectSignaler.prototype.dispatch = function(data,origin,positionInform
 		throw new haxe.exception.Exception("Some data that was passed is null, but this signaler has been set to reject null data.",null,1);
 	}
 	origin = (null == origin?this.subject:origin);
-	if(3 == this.sentinel.callListener(data,this.subject,origin,3) && null != this.bubblingTargets) {
-		{ var $it0 = this.bubblingTargets.iterator();
-		while( $it0.hasNext() ) { var bubblingTarget = $it0.next();
+	if(3 == this.sentinel.callListener(data,this.subject,origin,3)) {
 		{
-			bubblingTarget.dispatch(data,origin,{ fileName : "DirectSignaler.hx", lineNumber : 80, className : "hsl.haxe.DirectSignaler", methodName : "bubble"});
+			if(null != this.bubblingTargets) {
+				{ var $it0 = this.bubblingTargets.iterator();
+				while( $it0.hasNext() ) { var bubblingTarget = $it0.next();
+				{
+					bubblingTarget.dispatch(data,origin,{ fileName : "DirectSignaler.hx", lineNumber : 88, className : "hsl.haxe.DirectSignaler", methodName : "bubble"});
+				}
+				}}
+			}
+			if(null != this.notificationTargets) {
+				{ var $it1 = this.notificationTargets.iterator();
+				while( $it1.hasNext() ) { var notificationTarget = $it1.next();
+				{
+					notificationTarget.dispatch(null,origin,{ fileName : "DirectSignaler.hx", lineNumber : 93, className : "hsl.haxe.DirectSignaler", methodName : "bubble"});
+				}
+				}}
+			}
 		}
-		}}
 	}
 	$s.pop();
 }
@@ -5634,12 +5752,21 @@ hsl.haxe.DirectSignaler.prototype.getOrigin = function(origin) {
 	$s.pop();
 }
 hsl.haxe.DirectSignaler.prototype.isListenedTo = null;
+hsl.haxe.DirectSignaler.prototype.notificationTargets = null;
 hsl.haxe.DirectSignaler.prototype.rejectNullData = null;
 hsl.haxe.DirectSignaler.prototype.removeBubblingTarget = function(value) {
 	$s.push("hsl.haxe.DirectSignaler::removeBubblingTarget");
 	var $spos = $s.length;
 	if(null != this.bubblingTargets) {
 		this.bubblingTargets.remove(value);
+	}
+	$s.pop();
+}
+hsl.haxe.DirectSignaler.prototype.removeNotificationTarget = function(value) {
+	$s.push("hsl.haxe.DirectSignaler::removeNotificationTarget");
+	var $spos = $s.length;
+	if(null != this.notificationTargets) {
+		this.notificationTargets.remove(value);
 	}
 	$s.pop();
 }
@@ -6211,38 +6338,6 @@ haxe.test.Notifier.prototype.remove = function(h) {
 	$s.pop();
 }
 haxe.test.Notifier.prototype.__class__ = haxe.test.Notifier;
-test.arrow.SchedulerTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.SchedulerTest::new");
-	var $spos = $s.length;
-	haxe.test.TestCase.apply(this,[]);
-	$s.pop();
-}}
-test.arrow.SchedulerTest.__name__ = ["test","arrow","SchedulerTest"];
-test.arrow.SchedulerTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.SchedulerTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.SchedulerTest.prototype.testSimpleCancel = function() {
-	$s.push("test.arrow.SchedulerTest::testSimpleCancel");
-	var $spos = $s.length;
-	var arr = null;
-	var a = haxe.test.Assert.createAsync(function() {
-		$s.push("test.arrow.SchedulerTest::testSimpleCancel@21");
-		var $spos = $s.length;
-		haxe.test.Assert.isTrue(haxe.functional.arrows.schedule.ScheduleManager.getInstance().buffer.getLength() == 0,null,{ fileName : "SchedulerTest.hx", lineNumber : 22, className : "test.arrow.SchedulerTest", methodName : "testSimpleCancel"});
-		$s.pop();
-	});
-	arr = haxe.functional.arrows.Arrow.returnA().run();
-	(function($this) {
-		var $r;
-		var $t = arr;
-		if(Std["is"]($t,haxe.functional.arrows.combinators.ProgressArrow)) $t;
-		else throw "Class cast error";
-		$r = $t;
-		return $r;
-	}(this)).cancel();
-	a();
-	$s.pop();
-}
-test.arrow.SchedulerTest.prototype.__class__ = test.arrow.SchedulerTest;
 haxe.test.ui.common.IReport = function() { }
 haxe.test.ui.common.IReport.__name__ = ["haxe","test","ui","common","IReport"];
 haxe.test.ui.common.IReport.prototype.displayHeader = null;
@@ -6606,34 +6701,6 @@ hsl.haxe.Signal.prototype.toString = function() {
 	$s.pop();
 }
 hsl.haxe.Signal.prototype.__class__ = hsl.haxe.Signal;
-test.arrow.CancellerTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.CancellerTest::new");
-	var $spos = $s.length;
-	haxe.test.TestCase.apply(this,[]);
-	$s.pop();
-}}
-test.arrow.CancellerTest.__name__ = ["test","arrow","CancellerTest"];
-test.arrow.CancellerTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.CancellerTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.CancellerTest.prototype.testCanceller = function() {
-	$s.push("test.arrow.CancellerTest::testCanceller");
-	var $spos = $s.length;
-	var self = this;
-	var async = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.CancellerTest::testCanceller@23");
-		var $spos = $s.length;
-		self.assertTrue(true,null,{ fileName : "CancellerTest.hx", lineNumber : 24, className : "test.arrow.CancellerTest", methodName : "testCanceller"});
-		$s.pop();
-	});
-	var a = haxe.functional.arrows.Arrow.delayA(10);
-	var b = haxe.functional.arrows.Arrow.returnA().then(a).run();
-	b.cancel();
-	haxe.functional.arrows.Arrow.begin();
-	haxe.functional.arrows.Arrow.returnA().then(haxe.functional.arrows.Function1Arrow.lift(async)).run();
-	haxe.functional.arrows.Arrow.begin();
-	$s.pop();
-}
-test.arrow.CancellerTest.prototype.__class__ = test.arrow.CancellerTest;
 if(!haxe.util) haxe.util = {}
 haxe.util.ObjectExtensions = function() { }
 haxe.util.ObjectExtensions.__name__ = ["haxe","util","ObjectExtensions"];
@@ -7437,9 +7504,6 @@ haxe.functional.FoldableExtensions.forAll = function(foldable,f) {
 					case false:{
 						$r = false;
 					}break;
-					default:{
-						$r = null;
-					}break;
 					}
 					return $r;
 				}(this));
@@ -7470,9 +7534,6 @@ haxe.functional.FoldableExtensions.forAny = function(foldable,f) {
 					case true:{
 						$r = true;
 					}break;
-					default:{
-						$r = null;
-					}break;
 					}
 					return $r;
 				}(this));
@@ -7502,9 +7563,6 @@ haxe.functional.FoldableExtensions.exists = function(foldable,f) {
 			case 0:
 			{
 				$r = false;
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -8435,63 +8493,6 @@ haxe.functional.arrows.combinators.BindThunk.prototype.getName = function() {
 	$s.pop();
 }
 haxe.functional.arrows.combinators.BindThunk.prototype.__class__ = haxe.functional.arrows.combinators.BindThunk;
-test.arrow.TraceObjectTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.TraceObjectTest::new");
-	var $spos = $s.length;
-	haxe.test.TestCase.apply(this,[]);
-	$s.pop();
-}}
-test.arrow.TraceObjectTest.__name__ = ["test","arrow","TraceObjectTest"];
-test.arrow.TraceObjectTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.TraceObjectTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.TraceObjectTest.prototype.nullMethod = function(x,a) {
-	$s.push("test.arrow.TraceObjectTest::nullMethod");
-	var $spos = $s.length;
-	{
-		$s.pop();
-		return x;
-	}
-	$s.pop();
-}
-test.arrow.TraceObjectTest.prototype.testTraceArrow = function() {
-	$s.push("test.arrow.TraceObjectTest::testTraceArrow");
-	var $spos = $s.length;
-	try {
-		haxe.Log.trace(new haxe.functional.arrows.Arrow($closure(this,"nullMethod")),{ fileName : "TraceObjectTest.hx", lineNumber : 15, className : "test.arrow.TraceObjectTest", methodName : "testTraceArrow"});
-	}
-	catch( $e0 ) {
-		{
-			var e = $e0;
-			{
-				$e = [];
-				while($s.length >= $spos) $e.unshift($s.pop());
-				$s.push($e[0]);
-				this.fail(null,{ fileName : "TraceObjectTest.hx", lineNumber : 17, className : "test.arrow.TraceObjectTest", methodName : "testTraceArrow"});
-			}
-		}
-	}
-	$s.pop();
-}
-test.arrow.TraceObjectTest.prototype.testTraceArrowInstance = function() {
-	$s.push("test.arrow.TraceObjectTest::testTraceArrowInstance");
-	var $spos = $s.length;
-	try {
-		new haxe.functional.arrows.ArrowInstance(new haxe.functional.arrows.Arrow($closure(this,"nullMethod")),1);
-	}
-	catch( $e0 ) {
-		{
-			var e = $e0;
-			{
-				$e = [];
-				while($s.length >= $spos) $e.unshift($s.pop());
-				$s.push($e[0]);
-				this.fail(null,{ fileName : "TraceObjectTest.hx", lineNumber : 24, className : "test.arrow.TraceObjectTest", methodName : "testTraceArrowInstance"});
-			}
-		}
-	}
-	$s.pop();
-}
-test.arrow.TraceObjectTest.prototype.__class__ = test.arrow.TraceObjectTest;
 haxe.functional.PartialFunction2 = function() { }
 haxe.functional.PartialFunction2.__name__ = ["haxe","functional","PartialFunction2"];
 haxe.functional.PartialFunction2.prototype.call = null;
@@ -8535,239 +8536,6 @@ haxe.functional.arrows.pattern.Subject.prototype.attach = null;
 haxe.functional.arrows.pattern.Subject.prototype.detach = null;
 haxe.functional.arrows.pattern.Subject.prototype.notify = null;
 haxe.functional.arrows.pattern.Subject.prototype.__class__ = haxe.functional.arrows.pattern.Subject;
-test.arrow.ArrowTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.ArrowTest::new");
-	var $spos = $s.length;
-	haxe.test.TestCase.apply(this,[]);
-	$s.pop();
-}}
-test.arrow.ArrowTest.__name__ = ["test","arrow","ArrowTest"];
-test.arrow.ArrowTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.ArrowTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.ArrowTest.prototype.debug = function(x) {
-	$s.push("test.arrow.ArrowTest::debug");
-	var $spos = $s.length;
-	{
-		$s.pop();
-		return x;
-	}
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.f0 = function(x) {
-	$s.push("test.arrow.ArrowTest::f0");
-	var $spos = $s.length;
-	var out = x + 1;
-	this.debug(out);
-	{
-		$s.pop();
-		return out;
-	}
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.f1 = function(x) {
-	$s.push("test.arrow.ArrowTest::f1");
-	var $spos = $s.length;
-	var out = x * 2;
-	this.debug(out);
-	{
-		$s.pop();
-		return out;
-	}
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.g = function(x) {
-	$s.push("test.arrow.ArrowTest::g");
-	var $spos = $s.length;
-	{
-		$s.pop();
-		return x;
-	}
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testDelay = function() {
-	$s.push("test.arrow.ArrowTest::testDelay");
-	var $spos = $s.length;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ArrowTest::testDelay@111");
-		var $spos = $s.length;
-		haxe.test.Assert.isTrue(true,null,{ fileName : "ArrowTest.hx", lineNumber : 112, className : "test.arrow.ArrowTest", methodName : "testDelay"});
-		$s.pop();
-	},3000);
-	haxe.functional.arrows.Arrow.delayA(2000).then(haxe.functional.arrows.Function1Arrow.lift($as)).run().start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testFanout = function() {
-	$s.push("test.arrow.ArrowTest::testFanout");
-	var $spos = $s.length;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ArrowTest::testFanout@66");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(11,x.productElement(0),null,null,{ fileName : "ArrowTest.hx", lineNumber : 67, className : "test.arrow.ArrowTest", methodName : "testFanout"});
-		haxe.test.Assert.equals(20,x.productElement(1),null,null,{ fileName : "ArrowTest.hx", lineNumber : 68, className : "test.arrow.ArrowTest", methodName : "testFanout"});
-		$s.pop();
-	});
-	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).fanout(haxe.functional.arrows.Function1Arrow.lift($closure(this,"f1"))).dump(haxe.functional.arrows.Function1Arrow.tuple($as)).run(10).start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testFirst = function() {
-	$s.push("test.arrow.ArrowTest::testFirst");
-	var $spos = $s.length;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ArrowTest::testFirst@47");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(x.productElement(0),11,null,null,{ fileName : "ArrowTest.hx", lineNumber : 48, className : "test.arrow.ArrowTest", methodName : "testFirst"});
-		haxe.test.Assert.equals(x.productElement(1),10,null,null,{ fileName : "ArrowTest.hx", lineNumber : 49, className : "test.arrow.ArrowTest", methodName : "testFirst"});
-		$s.pop();
-	});
-	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).first().then(haxe.functional.arrows.Function1Arrow.tuple($as)).run(Tuple2.create(10,10)).start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testJoin = function() {
-	$s.push("test.arrow.ArrowTest::testJoin");
-	var $spos = $s.length;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ArrowTest::testJoin@85");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(x.productElement(0),11,null,null,{ fileName : "ArrowTest.hx", lineNumber : 86, className : "test.arrow.ArrowTest", methodName : "testJoin"});
-		haxe.test.Assert.equals(x.productElement(1),22,null,null,{ fileName : "ArrowTest.hx", lineNumber : 87, className : "test.arrow.ArrowTest", methodName : "testJoin"});
-		$s.pop();
-	});
-	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).join(haxe.functional.arrows.Function1Arrow.tuple($closure(this,"f1"))).dump(haxe.functional.arrows.Function1Arrow.tuple($as)).run(10).start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testPair = function() {
-	$s.push("test.arrow.ArrowTest::testPair");
-	var $spos = $s.length;
-	var $as = haxe.functional.arrows.Function1Arrow.tuple(function(x) {
-		$s.push("test.arrow.ArrowTest::testPair@39");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(x.productElement(0),11,null,null,{ fileName : "ArrowTest.hx", lineNumber : 40, className : "test.arrow.ArrowTest", methodName : "testPair"});
-		haxe.test.Assert.equals(x.productElement(1),20,null,null,{ fileName : "ArrowTest.hx", lineNumber : 41, className : "test.arrow.ArrowTest", methodName : "testPair"});
-		$s.pop();
-	});
-	var a = haxe.functional.arrows.Function1Arrow.tuple($closure(this,"f0")).pair(haxe.functional.arrows.Function1Arrow.tuple($closure(this,"f1"))).then($as).run(Tuple2.create(10,10)).start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testRepeat = function() {
-	$s.push("test.arrow.ArrowTest::testRepeat");
-	var $spos = $s.length;
-	var num = 10;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ArrowTest::testRepeat@95");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(num,x,null,null,{ fileName : "ArrowTest.hx", lineNumber : 96, className : "test.arrow.ArrowTest", methodName : "testRepeat"});
-		$s.pop();
-	},90000);
-	var g0 = function(x) {
-		$s.push("test.arrow.ArrowTest::testRepeat@99");
-		var $spos = $s.length;
-		var out = x + 1;
-		if(out < num) {
-			{
-				var $tmp = haxe.functional.arrows.Arrow.doRepeat(out);
-				$s.pop();
-				return $tmp;
-			}
-		}
-		else {
-			{
-				var $tmp = haxe.functional.arrows.Arrow.doDone(out);
-				$s.pop();
-				return $tmp;
-			}
-		}
-		$s.pop();
-	}
-	haxe.functional.arrows.Function1Arrow.lift(g0).repeat().dump(haxe.functional.arrows.Function1Arrow.lift($as)).run(0).start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testReturnA = function() {
-	$s.push("test.arrow.ArrowTest::testReturnA");
-	var $spos = $s.length;
-	var self = this;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ArrowTest::testReturnA@120");
-		var $spos = $s.length;
-		haxe.test.Assert.equals("test",x,null,null,{ fileName : "ArrowTest.hx", lineNumber : 121, className : "test.arrow.ArrowTest", methodName : "testReturnA"});
-		$s.pop();
-	});
-	haxe.functional.arrows.Arrow.returnA().then(haxe.functional.arrows.Function1Arrow.lift($as)).run("test").start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testSecond = function() {
-	$s.push("test.arrow.ArrowTest::testSecond");
-	var $spos = $s.length;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ArrowTest::testSecond@57");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(x.productElement(0),10,null,null,{ fileName : "ArrowTest.hx", lineNumber : 58, className : "test.arrow.ArrowTest", methodName : "testSecond"});
-		haxe.test.Assert.equals(x.productElement(1),11,null,null,{ fileName : "ArrowTest.hx", lineNumber : 59, className : "test.arrow.ArrowTest", methodName : "testSecond"});
-		$s.pop();
-	});
-	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).second().dump(haxe.functional.arrows.Function1Arrow.tuple($as)).run(Tuple2.create(10,10)).start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testSimpleArrow = function() {
-	$s.push("test.arrow.ArrowTest::testSimpleArrow");
-	var $spos = $s.length;
-	var f3 = haxe.functional.arrows.Function1Arrow.tuple((function(x) {
-		$s.push("test.arrow.ArrowTest::testSimpleArrow@30");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(x,162,null,null,{ fileName : "ArrowTest.hx", lineNumber : 31, className : "test.arrow.ArrowTest", methodName : "testSimpleArrow"});
-		$s.pop();
-	}));
-	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).then(haxe.functional.arrows.Function1Arrow.lift($closure(this,"f1"))).then(f3).then(haxe.functional.arrows.Function1Arrow.lift($closure(this,"debug"))).run(80).start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.testTie = function() {
-	$s.push("test.arrow.ArrowTest::testTie");
-	var $spos = $s.length;
-	var $as = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.ArrowTest::testTie@75");
-		var $spos = $s.length;
-		haxe.test.Assert.equals(10,x.productElement(0),null,null,{ fileName : "ArrowTest.hx", lineNumber : 76, className : "test.arrow.ArrowTest", methodName : "testTie"});
-		haxe.test.Assert.equals(11,x.productElement(1),null,null,{ fileName : "ArrowTest.hx", lineNumber : 77, className : "test.arrow.ArrowTest", methodName : "testTie"});
-		$s.pop();
-	});
-	haxe.functional.arrows.Function1Arrow.lift($closure(this,"f0")).tie(haxe.functional.arrows.Function1Arrow.tuple($as)).run(10).start();
-	$s.pop();
-}
-test.arrow.ArrowTest.prototype.__class__ = test.arrow.ArrowTest;
-test.arrow.TestDynamic = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.TestDynamic::new");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}}
-test.arrow.TestDynamic.__name__ = ["test","arrow","TestDynamic"];
-test.arrow.TestDynamic.prototype.resolve = function(key) {
-	$s.push("test.arrow.TestDynamic::resolve");
-	var $spos = $s.length;
-	{
-		var $tmp = $closure(new test.arrow.TestDynamicFunctionSource(),"whatAmI");
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-test.arrow.TestDynamic.prototype.__class__ = test.arrow.TestDynamic;
-test.arrow.TestDynamicFunctionSource = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.TestDynamicFunctionSource::new");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}}
-test.arrow.TestDynamicFunctionSource.__name__ = ["test","arrow","TestDynamicFunctionSource"];
-test.arrow.TestDynamicFunctionSource.prototype.whatAmI = function() {
-	$s.push("test.arrow.TestDynamicFunctionSource::whatAmI");
-	var $spos = $s.length;
-	{
-		$s.pop();
-		return this;
-	}
-	$s.pop();
-}
-test.arrow.TestDynamicFunctionSource.prototype.__class__ = test.arrow.TestDynamicFunctionSource;
 haxe.test.ui.Report = function() { }
 haxe.test.ui.Report.__name__ = ["haxe","test","ui","Report"];
 haxe.test.ui.Report.create = function(runner,displaySuccessResults,headerDisplayMode) {
@@ -10619,9 +10387,6 @@ haxe.text.json.JValueExtensions.get = function(v,k) {
 			{
 				$r = Stax.error((("Expected to find field " + k) + " in ") + v);
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -10646,9 +10411,6 @@ haxe.text.json.JValueExtensions.getOrElse = function(v,k,def) {
 			case 0:
 			{
 				$r = def();
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -11558,6 +11320,38 @@ haxe.functional.arrows.combinators.PollThunk.__name__ = ["haxe","functional","ar
 haxe.functional.arrows.combinators.PollThunk.__super__ = haxe.functional.arrows.Arrow;
 for(var k in haxe.functional.arrows.Arrow.prototype ) haxe.functional.arrows.combinators.PollThunk.prototype[k] = haxe.functional.arrows.Arrow.prototype[k];
 haxe.functional.arrows.combinators.PollThunk.prototype.__class__ = haxe.functional.arrows.combinators.PollThunk;
+haxe.reactive.arrow.SchedulerTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.SchedulerTest::new");
+	var $spos = $s.length;
+	haxe.test.TestCase.apply(this,[]);
+	$s.pop();
+}}
+haxe.reactive.arrow.SchedulerTest.__name__ = ["haxe","reactive","arrow","SchedulerTest"];
+haxe.reactive.arrow.SchedulerTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.SchedulerTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.SchedulerTest.prototype.testSimpleCancel = function() {
+	$s.push("haxe.reactive.arrow.SchedulerTest::testSimpleCancel");
+	var $spos = $s.length;
+	var arr = null;
+	var a = haxe.test.Assert.createAsync(function() {
+		$s.push("haxe.reactive.arrow.SchedulerTest::testSimpleCancel@21");
+		var $spos = $s.length;
+		haxe.test.Assert.isTrue(haxe.functional.arrows.schedule.ScheduleManager.getInstance().buffer.getLength() == 0,null,{ fileName : "SchedulerTest.hx", lineNumber : 22, className : "haxe.reactive.arrow.SchedulerTest", methodName : "testSimpleCancel"});
+		$s.pop();
+	});
+	arr = haxe.functional.arrows.Arrow.returnA().run();
+	(function($this) {
+		var $r;
+		var $t = arr;
+		if(Std["is"]($t,haxe.functional.arrows.combinators.ProgressArrow)) $t;
+		else throw "Class cast error";
+		$r = $t;
+		return $r;
+	}(this)).cancel();
+	a();
+	$s.pop();
+}
+haxe.reactive.arrow.SchedulerTest.prototype.__class__ = haxe.reactive.arrow.SchedulerTest;
 haxe.test.ui.common.ClassResult = function(className,setupName,teardownName) { if( className === $_ ) return; {
 	$s.push("haxe.test.ui.common.ClassResult::new");
 	var $spos = $s.length;
@@ -12047,11 +11841,12 @@ haxe.functional.arrows.schedule.ScheduleManager = function(p) { if( p === $_ ) r
 	var $spos = $s.length;
 	this.autoTerminate = true;
 	this.instances = new Hash();
-	this.interval = 10;
+	this.interval = 0.01;
 	this.pending = new haxe.functional.arrows.schedule.ArrowCounter(this);
 	this.buffer = new haxe.functional.arrows.schedule.Buffer();
 	this.invoker = new haxe.functional.arrows.schedule.Invoker(this);
 	this.scheduler = this.getDefaultReactor();
+	this.timeout = 30;
 	$s.pop();
 }}
 haxe.functional.arrows.schedule.ScheduleManager.__name__ = ["haxe","functional","arrows","schedule","ScheduleManager"];
@@ -13136,9 +12931,17 @@ haxe.functional.arrows.schedule.Invoker.prototype.invoke = function() {
 		var n = this.scheduler.buffer.dequeue();
 		if(n.isReady()) {
 			n.invoke();
+			{
+				$s.pop();
+				return;
+			}
 		}
 		else {
 			this.scheduler.buffer.enqueue(n);
+			{
+				$s.pop();
+				return true;
+			}
 		}
 	}
 	catch( $e0 ) {
@@ -13149,6 +12952,10 @@ haxe.functional.arrows.schedule.Invoker.prototype.invoke = function() {
 				while($s.length >= $spos) $e.unshift($s.pop());
 				$s.push($e[0]);
 				this.error(e);
+				{
+					$s.pop();
+					return;
+				}
 			}
 		}
 	}
@@ -13202,6 +13009,34 @@ StringBuf.prototype.toString = function() {
 	$s.pop();
 }
 StringBuf.prototype.__class__ = StringBuf;
+haxe.reactive.arrow.CancellerTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.CancellerTest::new");
+	var $spos = $s.length;
+	haxe.test.TestCase.apply(this,[]);
+	$s.pop();
+}}
+haxe.reactive.arrow.CancellerTest.__name__ = ["haxe","reactive","arrow","CancellerTest"];
+haxe.reactive.arrow.CancellerTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.CancellerTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.CancellerTest.prototype.testCanceller = function() {
+	$s.push("haxe.reactive.arrow.CancellerTest::testCanceller");
+	var $spos = $s.length;
+	var self = this;
+	var async = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.CancellerTest::testCanceller@23");
+		var $spos = $s.length;
+		self.assertTrue(true,null,{ fileName : "CancellerTest.hx", lineNumber : 24, className : "haxe.reactive.arrow.CancellerTest", methodName : "testCanceller"});
+		$s.pop();
+	});
+	var a = haxe.functional.arrows.Arrow.delayA(10);
+	var b = haxe.functional.arrows.Arrow.returnA().then(a).run();
+	b.cancel();
+	haxe.functional.arrows.Arrow.begin();
+	haxe.functional.arrows.Arrow.returnA().then(haxe.functional.arrows.Function1Arrow.lift(async)).run();
+	haxe.functional.arrows.Arrow.begin();
+	$s.pop();
+}
+haxe.reactive.arrow.CancellerTest.prototype.__class__ = haxe.reactive.arrow.CancellerTest;
 haxe.functional.arrows.combinators.ProgressArrow = function(instance) { if( instance === $_ ) return; {
 	$s.push("haxe.functional.arrows.combinators.ProgressArrow::new");
 	var $spos = $s.length;
@@ -13223,6 +13058,12 @@ haxe.functional.arrows.combinators.ProgressArrow.prototype.addBubblingTarget = f
 	$s.push("haxe.functional.arrows.combinators.ProgressArrow::addBubblingTarget");
 	var $spos = $s.length;
 	this.internalSignaler.addBubblingTarget(value);
+	$s.pop();
+}
+haxe.functional.arrows.combinators.ProgressArrow.prototype.addNotificationTarget = function(v) {
+	$s.push("haxe.functional.arrows.combinators.ProgressArrow::addNotificationTarget");
+	var $spos = $s.length;
+	this.internalSignaler.addNotificationTarget(v);
 	$s.pop();
 }
 haxe.functional.arrows.combinators.ProgressArrow.prototype.bind = function(listener) {
@@ -13293,6 +13134,12 @@ haxe.functional.arrows.combinators.ProgressArrow.prototype.removeBubblingTarget 
 	$s.push("haxe.functional.arrows.combinators.ProgressArrow::removeBubblingTarget");
 	var $spos = $s.length;
 	this.internalSignaler.removeBubblingTarget(value);
+	$s.pop();
+}
+haxe.functional.arrows.combinators.ProgressArrow.prototype.removeNotificationTarget = function(v) {
+	$s.push("haxe.functional.arrows.combinators.ProgressArrow::removeNotificationTarget");
+	var $spos = $s.length;
+	this.internalSignaler.removeNotificationTarget(v);
 	$s.pop();
 }
 haxe.functional.arrows.combinators.ProgressArrow.prototype.subject = null;
@@ -13421,7 +13268,7 @@ haxe.functional.arrows.combinators.OrThunk = function(f,g) { if( f === $_ ) retu
 			a.cont(y);
 			$s.pop();
 		})).run(x);
-		var b01 = a0.signal().then(haxe.functional.arrows.Function1Arrow.lift(function(x1) {
+		var b01 = a0.signalA().then(haxe.functional.arrows.Function1Arrow.lift(function(x1) {
 			$s.push("haxe.functional.arrows.combinators.OrThunk::new@45@67");
 			var $spos = $s.length;
 			if($closure(a1,"cancel") != null) {
@@ -13445,7 +13292,7 @@ haxe.functional.arrows.combinators.OrThunk = function(f,g) { if( f === $_ ) retu
 			a.cont(y);
 			$s.pop();
 		})).run(x);
-		var b11 = a1.signal().then(haxe.functional.arrows.Function1Arrow.lift(function(x1) {
+		var b11 = a1.signalA().then(haxe.functional.arrows.Function1Arrow.lift(function(x1) {
 			$s.push("haxe.functional.arrows.combinators.OrThunk::new@45@84");
 			var $spos = $s.length;
 			if($closure(a0,"cancel") != null) {
@@ -13481,6 +13328,16 @@ haxe.functional.arrows.Function1Arrow.tuple = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = haxe.functional.arrows.Arrow.tupleF(f);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+haxe.functional.arrows.Function1Arrow.then = function(f0,f1) {
+	$s.push("haxe.functional.arrows.Function1Arrow::then");
+	var $spos = $s.length;
+	{
+		var $tmp = haxe.functional.arrows.Function1Arrow.lift(f0).then(haxe.functional.arrows.Function1Arrow.lift(f1));
 		$s.pop();
 		return $tmp;
 	}
@@ -13528,7 +13385,7 @@ haxe.functional.arrows.FactoryExtension.lift = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = haxe.functional.arrows.Function1Arrow.lift(function(x) {
-			$s.push("haxe.functional.arrows.FactoryExtension::lift@318");
+			$s.push("haxe.functional.arrows.FactoryExtension::lift@320");
 			var $spos = $s.length;
 			{
 				var $tmp = f();
@@ -14659,6 +14516,15 @@ ArrayExtensions.map = function(a,f) {
 	}
 	$s.pop();
 }
+ArrayExtensions.then = function(a1,a2) {
+	$s.push("ArrayExtensions::then");
+	var $spos = $s.length;
+	{
+		$s.pop();
+		return a2;
+	}
+	$s.pop();
+}
 ArrayExtensions.flatMap = function(a,f) {
 	$s.push("ArrayExtensions::flatMap");
 	var $spos = $s.length;
@@ -14937,7 +14803,7 @@ Function0Extensions.swallow = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function() {
-			$s.push("Function0Extensions::swallow@524");
+			$s.push("Function0Extensions::swallow@527");
 			var $spos = $s.length;
 			try {
 				f();
@@ -14965,7 +14831,7 @@ Function0Extensions.thenDo = function(f1,f2) {
 	var $spos = $s.length;
 	{
 		var $tmp = function() {
-			$s.push("Function0Extensions::thenDo@533");
+			$s.push("Function0Extensions::thenDo@536");
 			var $spos = $s.length;
 			f1();
 			f2();
@@ -14981,7 +14847,7 @@ Function0Extensions.returning = function(f,thunk) {
 	var $spos = $s.length;
 	{
 		var $tmp = function() {
-			$s.push("Function0Extensions::returning@539");
+			$s.push("Function0Extensions::returning@542");
 			var $spos = $s.length;
 			f();
 			{
@@ -15011,7 +14877,7 @@ Function0Extensions.promote = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a) {
-			$s.push("Function0Extensions::promote@549");
+			$s.push("Function0Extensions::promote@552");
 			var $spos = $s.length;
 			{
 				var $tmp = f();
@@ -15030,7 +14896,7 @@ Function0Extensions.promoteEffect = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a) {
-			$s.push("Function0Extensions::promoteEffect@555");
+			$s.push("Function0Extensions::promoteEffect@558");
 			var $spos = $s.length;
 			f();
 			$s.pop();
@@ -15057,7 +14923,7 @@ Function0Extensions.toEffect = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function() {
-			$s.push("Function0Extensions::toEffect@571");
+			$s.push("Function0Extensions::toEffect@574");
 			var $spos = $s.length;
 			f();
 			$s.pop();
@@ -15085,7 +14951,7 @@ Function1Extensions.swallowWith = function(f,d) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a) {
-			$s.push("Function1Extensions::swallowWith@581");
+			$s.push("Function1Extensions::swallowWith@584");
 			var $spos = $s.length;
 			try {
 				{
@@ -15116,12 +14982,28 @@ Function1Extensions.swallowWith = function(f,d) {
 	}
 	$s.pop();
 }
+Function1Extensions.thenDo = function(f1,f2) {
+	$s.push("Function1Extensions::thenDo");
+	var $spos = $s.length;
+	{
+		var $tmp = function(p1) {
+			$s.push("Function1Extensions::thenDo@593");
+			var $spos = $s.length;
+			f1(p1);
+			f2(p1);
+			$s.pop();
+		}
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
 Function1Extensions.returning = function(f,thunk) {
 	$s.push("Function1Extensions::returning");
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1) {
-			$s.push("Function1Extensions::returning@590");
+			$s.push("Function1Extensions::returning@599");
 			var $spos = $s.length;
 			f(p1);
 			{
@@ -15151,7 +15033,7 @@ Function1Extensions.compose = function(f1,f2) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(u) {
-			$s.push("Function1Extensions::compose@600");
+			$s.push("Function1Extensions::compose@609");
 			var $spos = $s.length;
 			{
 				var $tmp = f1(f2(u));
@@ -15181,7 +15063,7 @@ Function1Extensions.lazy = function(f,p1) {
 	var r = null;
 	{
 		var $tmp = function() {
-			$s.push("Function1Extensions::lazy@610");
+			$s.push("Function1Extensions::lazy@619");
 			var $spos = $s.length;
 			{
 				var $tmp = (r == null?(function($this) {
@@ -15205,7 +15087,7 @@ Function1Extensions.toEffect = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1) {
-			$s.push("Function1Extensions::toEffect@615");
+			$s.push("Function1Extensions::toEffect@624");
 			var $spos = $s.length;
 			f(p1);
 			$s.pop();
@@ -15233,7 +15115,7 @@ Function2Extensions.swallowWith = function(f,d) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2) {
-			$s.push("Function2Extensions::swallowWith@625");
+			$s.push("Function2Extensions::swallowWith@634");
 			var $spos = $s.length;
 			try {
 				{
@@ -15264,12 +15146,28 @@ Function2Extensions.swallowWith = function(f,d) {
 	}
 	$s.pop();
 }
+Function2Extensions.thenDo = function(f1,f2) {
+	$s.push("Function2Extensions::thenDo");
+	var $spos = $s.length;
+	{
+		var $tmp = function(p1,p2) {
+			$s.push("Function2Extensions::thenDo@643");
+			var $spos = $s.length;
+			f1(p1,p2);
+			f2(p1,p2);
+			$s.pop();
+		}
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
 Function2Extensions.returning = function(f,thunk) {
 	$s.push("Function2Extensions::returning");
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2) {
-			$s.push("Function2Extensions::returning@634");
+			$s.push("Function2Extensions::returning@649");
 			var $spos = $s.length;
 			f(p1,p2);
 			{
@@ -15299,7 +15197,7 @@ Function2Extensions.flip = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p2,p1) {
-			$s.push("Function2Extensions::flip@644");
+			$s.push("Function2Extensions::flip@659");
 			var $spos = $s.length;
 			{
 				var $tmp = f(p1,p2);
@@ -15318,11 +15216,11 @@ Function2Extensions.curry = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1) {
-			$s.push("Function2Extensions::curry@649");
+			$s.push("Function2Extensions::curry@664");
 			var $spos = $s.length;
 			{
 				var $tmp = function(p2) {
-					$s.push("Function2Extensions::curry@649@650");
+					$s.push("Function2Extensions::curry@664@665");
 					var $spos = $s.length;
 					{
 						var $tmp = f(p1,p2);
@@ -15346,7 +15244,7 @@ Function2Extensions.uncurry = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2) {
-			$s.push("Function2Extensions::uncurry@656");
+			$s.push("Function2Extensions::uncurry@671");
 			var $spos = $s.length;
 			{
 				var $tmp = (f(p1))(p2);
@@ -15366,7 +15264,7 @@ Function2Extensions.lazy = function(f,p1,p2) {
 	var r = null;
 	{
 		var $tmp = function() {
-			$s.push("Function2Extensions::lazy@663");
+			$s.push("Function2Extensions::lazy@678");
 			var $spos = $s.length;
 			{
 				var $tmp = (r == null?(function($this) {
@@ -15390,7 +15288,7 @@ Function2Extensions.toEffect = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2) {
-			$s.push("Function2Extensions::toEffect@668");
+			$s.push("Function2Extensions::toEffect@683");
 			var $spos = $s.length;
 			f(p1,p2);
 			$s.pop();
@@ -15418,7 +15316,7 @@ Function3Extensions.swallowWith = function(f,d) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b,c) {
-			$s.push("Function3Extensions::swallowWith@678");
+			$s.push("Function3Extensions::swallowWith@693");
 			var $spos = $s.length;
 			try {
 				{
@@ -15449,12 +15347,28 @@ Function3Extensions.swallowWith = function(f,d) {
 	}
 	$s.pop();
 }
+Function3Extensions.thenDo = function(f1,f2) {
+	$s.push("Function3Extensions::thenDo");
+	var $spos = $s.length;
+	{
+		var $tmp = function(p1,p2,p3) {
+			$s.push("Function3Extensions::thenDo@702");
+			var $spos = $s.length;
+			f1(p1,p2,p3);
+			f2(p1,p2,p3);
+			$s.pop();
+		}
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
 Function3Extensions.returning = function(f,thunk) {
 	$s.push("Function3Extensions::returning");
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3) {
-			$s.push("Function3Extensions::returning@687");
+			$s.push("Function3Extensions::returning@708");
 			var $spos = $s.length;
 			f(p1,p2,p3);
 			{
@@ -15484,15 +15398,15 @@ Function3Extensions.curry = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1) {
-			$s.push("Function3Extensions::curry@697");
+			$s.push("Function3Extensions::curry@718");
 			var $spos = $s.length;
 			{
 				var $tmp = function(p2) {
-					$s.push("Function3Extensions::curry@697@698");
+					$s.push("Function3Extensions::curry@718@719");
 					var $spos = $s.length;
 					{
 						var $tmp = function(p3) {
-							$s.push("Function3Extensions::curry@697@698@699");
+							$s.push("Function3Extensions::curry@718@719@720");
 							var $spos = $s.length;
 							{
 								var $tmp = f(p1,p2,p3);
@@ -15521,7 +15435,7 @@ Function3Extensions.uncurry = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3) {
-			$s.push("Function3Extensions::uncurry@706");
+			$s.push("Function3Extensions::uncurry@727");
 			var $spos = $s.length;
 			{
 				var $tmp = ((f(p1))(p2))(p3);
@@ -15541,7 +15455,7 @@ Function3Extensions.lazy = function(f,p1,p2,p3) {
 	var r = null;
 	{
 		var $tmp = function() {
-			$s.push("Function3Extensions::lazy@713");
+			$s.push("Function3Extensions::lazy@734");
 			var $spos = $s.length;
 			{
 				var $tmp = (r == null?(function($this) {
@@ -15565,7 +15479,7 @@ Function3Extensions.toEffect = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3) {
-			$s.push("Function3Extensions::toEffect@718");
+			$s.push("Function3Extensions::toEffect@739");
 			var $spos = $s.length;
 			f(p1,p2,p3);
 			$s.pop();
@@ -15593,7 +15507,7 @@ Function4Extensions.swallowWith = function(f,def) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b,c,d) {
-			$s.push("Function4Extensions::swallowWith@728");
+			$s.push("Function4Extensions::swallowWith@749");
 			var $spos = $s.length;
 			try {
 				{
@@ -15624,12 +15538,28 @@ Function4Extensions.swallowWith = function(f,def) {
 	}
 	$s.pop();
 }
+Function4Extensions.thenDo = function(f1,f2) {
+	$s.push("Function4Extensions::thenDo");
+	var $spos = $s.length;
+	{
+		var $tmp = function(p1,p2,p3,p4) {
+			$s.push("Function4Extensions::thenDo@758");
+			var $spos = $s.length;
+			f1(p1,p2,p3,p4);
+			f2(p1,p2,p3,p4);
+			$s.pop();
+		}
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
 Function4Extensions.returning = function(f,thunk) {
 	$s.push("Function4Extensions::returning");
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3,p4) {
-			$s.push("Function4Extensions::returning@737");
+			$s.push("Function4Extensions::returning@764");
 			var $spos = $s.length;
 			f(p1,p2,p3,p4);
 			{
@@ -15659,19 +15589,19 @@ Function4Extensions.curry = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1) {
-			$s.push("Function4Extensions::curry@747");
+			$s.push("Function4Extensions::curry@774");
 			var $spos = $s.length;
 			{
 				var $tmp = function(p2) {
-					$s.push("Function4Extensions::curry@747@748");
+					$s.push("Function4Extensions::curry@774@775");
 					var $spos = $s.length;
 					{
 						var $tmp = function(p3) {
-							$s.push("Function4Extensions::curry@747@748@749");
+							$s.push("Function4Extensions::curry@774@775@776");
 							var $spos = $s.length;
 							{
 								var $tmp = function(p4) {
-									$s.push("Function4Extensions::curry@747@748@749@750");
+									$s.push("Function4Extensions::curry@774@775@776@777");
 									var $spos = $s.length;
 									{
 										var $tmp = f(p1,p2,p3,p4);
@@ -15705,7 +15635,7 @@ Function4Extensions.uncurry = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3,p4) {
-			$s.push("Function4Extensions::uncurry@758");
+			$s.push("Function4Extensions::uncurry@785");
 			var $spos = $s.length;
 			{
 				var $tmp = (((f(p1))(p2))(p3))(p4);
@@ -15725,7 +15655,7 @@ Function4Extensions.lazy = function(f,p1,p2,p3,p4) {
 	var r = null;
 	{
 		var $tmp = function() {
-			$s.push("Function4Extensions::lazy@765");
+			$s.push("Function4Extensions::lazy@792");
 			var $spos = $s.length;
 			{
 				var $tmp = (r == null?(function($this) {
@@ -15749,7 +15679,7 @@ Function4Extensions.toEffect = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3,p4) {
-			$s.push("Function4Extensions::toEffect@770");
+			$s.push("Function4Extensions::toEffect@797");
 			var $spos = $s.length;
 			f(p1,p2,p3,p4);
 			$s.pop();
@@ -15777,7 +15707,7 @@ Function5Extensions.swallowWith = function(f,def) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b,c,d,e) {
-			$s.push("Function5Extensions::swallowWith@780");
+			$s.push("Function5Extensions::swallowWith@807");
 			var $spos = $s.length;
 			try {
 				{
@@ -15808,12 +15738,28 @@ Function5Extensions.swallowWith = function(f,def) {
 	}
 	$s.pop();
 }
+Function5Extensions.thenDo = function(f1,f2) {
+	$s.push("Function5Extensions::thenDo");
+	var $spos = $s.length;
+	{
+		var $tmp = function(p1,p2,p3,p4,p5) {
+			$s.push("Function5Extensions::thenDo@816");
+			var $spos = $s.length;
+			f1(p1,p2,p3,p4,p5);
+			f2(p1,p2,p3,p4,p5);
+			$s.pop();
+		}
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
 Function5Extensions.returning = function(f,thunk) {
 	$s.push("Function5Extensions::returning");
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3,p4,p5) {
-			$s.push("Function5Extensions::returning@789");
+			$s.push("Function5Extensions::returning@822");
 			var $spos = $s.length;
 			f(p1,p2,p3,p4,p5);
 			{
@@ -15843,23 +15789,23 @@ Function5Extensions.curry = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1) {
-			$s.push("Function5Extensions::curry@799");
+			$s.push("Function5Extensions::curry@832");
 			var $spos = $s.length;
 			{
 				var $tmp = function(p2) {
-					$s.push("Function5Extensions::curry@799@800");
+					$s.push("Function5Extensions::curry@832@833");
 					var $spos = $s.length;
 					{
 						var $tmp = function(p3) {
-							$s.push("Function5Extensions::curry@799@800@801");
+							$s.push("Function5Extensions::curry@832@833@834");
 							var $spos = $s.length;
 							{
 								var $tmp = function(p4) {
-									$s.push("Function5Extensions::curry@799@800@801@802");
+									$s.push("Function5Extensions::curry@832@833@834@835");
 									var $spos = $s.length;
 									{
 										var $tmp = function(p5) {
-											$s.push("Function5Extensions::curry@799@800@801@802@803");
+											$s.push("Function5Extensions::curry@832@833@834@835@836");
 											var $spos = $s.length;
 											{
 												var $tmp = f(p1,p2,p3,p4,p5);
@@ -15898,7 +15844,7 @@ Function5Extensions.uncurry = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3,p4,p5) {
-			$s.push("Function5Extensions::uncurry@812");
+			$s.push("Function5Extensions::uncurry@845");
 			var $spos = $s.length;
 			{
 				var $tmp = ((((f(p1))(p2))(p3))(p4))(p5);
@@ -15918,7 +15864,7 @@ Function5Extensions.lazy = function(f,p1,p2,p3,p4,p5) {
 	var r = null;
 	{
 		var $tmp = function() {
-			$s.push("Function5Extensions::lazy@819");
+			$s.push("Function5Extensions::lazy@852");
 			var $spos = $s.length;
 			{
 				var $tmp = (r == null?(function($this) {
@@ -15942,7 +15888,7 @@ Function5Extensions.toEffect = function(f) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(p1,p2,p3,p4,p5) {
-			$s.push("Function5Extensions::toEffect@824");
+			$s.push("Function5Extensions::toEffect@857");
 			var $spos = $s.length;
 			f(p1,p2,p3,p4,p5);
 			$s.pop();
@@ -15982,9 +15928,6 @@ OptionExtensions.toArray = function(o) {
 			{
 				$r = [v];
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16010,14 +15953,20 @@ OptionExtensions.map = function(o,f) {
 			{
 				$r = Option.Some(f(v));
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
 		$s.pop();
 		return $tmp;
+	}
+	$s.pop();
+}
+OptionExtensions.then = function(o1,o2) {
+	$s.push("OptionExtensions::then");
+	var $spos = $s.length;
+	{
+		$s.pop();
+		return o2;
 	}
 	$s.pop();
 }
@@ -16037,9 +15986,6 @@ OptionExtensions.foreach = function(o,f) {
 			var v = $e[2];
 			{
 				$r = f(v);
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16065,9 +16011,6 @@ OptionExtensions.filter = function(o,f) {
 			var v = $e[2];
 			{
 				$r = (f(v)?Option.Some(v):Option.None);
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16103,9 +16046,6 @@ OptionExtensions.flatten = function(o1) {
 			var o2 = $e[2];
 			{
 				$r = o2;
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16143,15 +16083,9 @@ OptionExtensions.zip = function(o1,o2) {
 					{
 						$r = Option.Some(DynamicExtensions.entuple(v1,v2));
 					}break;
-					default:{
-						$r = null;
-					}break;
 					}
 					return $r;
 				}($this));
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16178,9 +16112,6 @@ OptionExtensions.get = function(o) {
 			{
 				$r = v;
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16205,9 +16136,6 @@ OptionExtensions.orElse = function(o1,thunk) {
 			var v = $e[2];
 			{
 				$r = o1;
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16244,9 +16172,6 @@ OptionExtensions.orEither = function(o1,thunk) {
 			{
 				$r = EitherExtensions.toLeft(v);
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16281,9 +16206,6 @@ OptionExtensions.getOrElse = function(o,thunk) {
 			var v = $e[2];
 			{
 				$r = v;
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16320,9 +16242,6 @@ OptionExtensions.isEmpty = function(o) {
 			{
 				$r = false;
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16336,7 +16255,7 @@ OptionExtensions.decompose = function(v) {
 	var $spos = $s.length;
 	{
 		var $tmp = OptionExtensions.getOrElse(OptionExtensions.map(v,function(v1) {
-			$s.push("OptionExtensions::decompose@932");
+			$s.push("OptionExtensions::decompose@968");
 			var $spos = $s.length;
 			{
 				var $tmp = (haxe.data.transcode.TranscodeJValue.getDecomposerFor(Type["typeof"](v1)))(v1);
@@ -16414,9 +16333,6 @@ EitherExtensions.flip = function(e) {
 			{
 				$r = Either.Left(v);
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16465,9 +16381,6 @@ EitherExtensions.isLeft = function(e) {
 			{
 				$r = false;
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16491,9 +16404,6 @@ EitherExtensions.isRight = function(e) {
 			case 1:
 			{
 				$r = true;
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16545,9 +16455,6 @@ EitherExtensions.get = function(e) {
 			{
 				$r = v;
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16573,9 +16480,6 @@ EitherExtensions.mapLeft = function(e,f) {
 			var v = $e[2];
 			{
 				$r = Either.Right(v);
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16603,9 +16507,6 @@ EitherExtensions.map = function(e,f1,f2) {
 			{
 				$r = Either.Right(f2(v));
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16632,9 +16533,6 @@ EitherExtensions.mapRight = function(e,f) {
 			{
 				$r = Either.Right(f(v));
 			}break;
-			default:{
-				$r = null;
-			}break;
 			}
 			return $r;
 		}(this));
@@ -16660,9 +16558,6 @@ EitherExtensions.flatMap = function(e,f1,f2) {
 			var v = $e[2];
 			{
 				$r = f2(v);
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16697,9 +16592,6 @@ EitherExtensions.composeLeft = function(e1,e2,ac,bc) {
 					{
 						$r = Either.Left(v1);
 					}break;
-					default:{
-						$r = null;
-					}break;
 					}
 					return $r;
 				}($this));
@@ -16721,15 +16613,9 @@ EitherExtensions.composeLeft = function(e1,e2,ac,bc) {
 					{
 						$r = Either.Right(bc(v1,v2));
 					}break;
-					default:{
-						$r = null;
-					}break;
 					}
 					return $r;
 				}($this));
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16764,9 +16650,6 @@ EitherExtensions.composeRight = function(e1,e2,ac,bc) {
 					{
 						$r = Either.Right(v2);
 					}break;
-					default:{
-						$r = null;
-					}break;
 					}
 					return $r;
 				}($this));
@@ -16788,15 +16671,9 @@ EitherExtensions.composeRight = function(e1,e2,ac,bc) {
 					{
 						$r = Either.Right(bc(v1,v2));
 					}break;
-					default:{
-						$r = null;
-					}break;
 					}
 					return $r;
 				}($this));
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -16983,12 +16860,6 @@ haxe.functional.arrows.combinators.InnerRepeatThunk.prototype.getName = function
 	$s.pop();
 }
 haxe.functional.arrows.combinators.InnerRepeatThunk.prototype.__class__ = haxe.functional.arrows.combinators.InnerRepeatThunk;
-if(typeof org=='undefined') org = {}
-if(!org.flashdevelop) org.flashdevelop = {}
-if(!org.flashdevelop.utils) org.flashdevelop.utils = {}
-org.flashdevelop.utils.TraceLevel = function() { }
-org.flashdevelop.utils.TraceLevel.__name__ = ["org","flashdevelop","utils","TraceLevel"];
-org.flashdevelop.utils.TraceLevel.prototype.__class__ = org.flashdevelop.utils.TraceLevel;
 haxe.functional.arrows.ext.lambda.FoldArrow = function(f,first) { if( f === $_ ) return; {
 	$s.push("haxe.functional.arrows.ext.lambda.FoldArrow::new");
 	var $spos = $s.length;
@@ -17131,7 +17002,14 @@ haxe.functional.arrows.schedule.Buffer.prototype.remove = function(v) {
 	{ var $it0 = this.list.iterator();
 	while( $it0.hasNext() ) { var item = $it0.next();
 	{
-		call = item;
+		call = (function($this) {
+			var $r;
+			var $t = item;
+			if(Std["is"]($t,haxe.functional.arrows.schedule.call.ArrowCall)) $t;
+			else throw "Class cast error";
+			$r = $t;
+			return $r;
+		}(this));
 		if(call.data.instance.uuid == v) {
 			this.list.remove(call);
 			found = true;
@@ -17234,82 +17112,6 @@ Std.random = function(x) {
 	$s.pop();
 }
 Std.prototype.__class__ = Std;
-test.arrow.ErrorTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.ErrorTest::new");
-	var $spos = $s.length;
-	haxe.test.TestCase.apply(this,[]);
-	$s.pop();
-}}
-test.arrow.ErrorTest.__name__ = ["test","arrow","ErrorTest"];
-test.arrow.ErrorTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.ErrorTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.ErrorTest.prototype.f0 = function(x) {
-	$s.push("test.arrow.ErrorTest::f0");
-	var $spos = $s.length;
-	{
-		$s.pop();
-		return x;
-	}
-	$s.pop();
-}
-test.arrow.ErrorTest.prototype.f1 = function() {
-	$s.push("test.arrow.ErrorTest::f1");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}
-test.arrow.ErrorTest.prototype.simpleAssert = function() {
-	$s.push("test.arrow.ErrorTest::simpleAssert");
-	var $spos = $s.length;
-	var self = this;
-	{
-		var $tmp = haxe.functional.arrows.Function1Arrow.lift(haxe.test.Assert.createEvent(function(x) {
-			$s.push("test.arrow.ErrorTest::simpleAssert@28");
-			var $spos = $s.length;
-			self.assertTrue(true,null,{ fileName : "ErrorTest.hx", lineNumber : 29, className : "test.arrow.ErrorTest", methodName : "simpleAssert"});
-			$s.pop();
-		}));
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-test.arrow.ErrorTest.prototype.testParameterMismatchNumberError_ExpectOneReceiveZero = function() {
-	$s.push("test.arrow.ErrorTest::testParameterMismatchNumberError_ExpectOneReceiveZero");
-	var $spos = $s.length;
-	haxe.functional.arrows.Arrow.liftF($closure(this,"f0")).then(this.simpleAssert()).run();
-	$s.pop();
-}
-test.arrow.ErrorTest.prototype.testParameterMismatchNumberError_ExpectZeroReceiveOne = function() {
-	$s.push("test.arrow.ErrorTest::testParameterMismatchNumberError_ExpectZeroReceiveOne");
-	var $spos = $s.length;
-	haxe.functional.arrows.Arrow.liftF($closure(this,"f1")).then(this.simpleAssert()).run("bosh");
-	$s.pop();
-}
-test.arrow.ErrorTest.prototype.__class__ = test.arrow.ErrorTest;
-test.arrow.JsArrowTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.JsArrowTest::new");
-	var $spos = $s.length;
-	haxe.test.TestCase.apply(this,[]);
-	$s.pop();
-}}
-test.arrow.JsArrowTest.__name__ = ["test","arrow","JsArrowTest"];
-test.arrow.JsArrowTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.JsArrowTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.JsArrowTest.prototype.testElement = function() {
-	$s.push("test.arrow.JsArrowTest::testElement");
-	var $spos = $s.length;
-	var self = this;
-	var async = haxe.test.Assert.createEvent(function(x) {
-		$s.push("test.arrow.JsArrowTest::testElement@17");
-		var $spos = $s.length;
-		haxe.test.Assert.notNull(x,null,{ fileName : "JsArrowTest.hx", lineNumber : 18, className : "test.arrow.JsArrowTest", methodName : "testElement"});
-		$s.pop();
-	});
-	haxe.functional.arrows.Arrow.elementA("test").dump(haxe.functional.arrows.Function1Arrow.lift(async)).run();
-	$s.pop();
-}
-test.arrow.JsArrowTest.prototype.__class__ = test.arrow.JsArrowTest;
 haxe.functional.arrows.combinators.FirstThunk = function(f) { if( f === $_ ) return; {
 	$s.push("haxe.functional.arrows.combinators.FirstThunk::new");
 	var $spos = $s.length;
@@ -17526,6 +17328,59 @@ haxe.rtti.Meta.getFields = function(t) {
 	$s.pop();
 }
 haxe.rtti.Meta.prototype.__class__ = haxe.rtti.Meta;
+haxe.reactive.arrow.ErrorTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.ErrorTest::new");
+	var $spos = $s.length;
+	haxe.test.TestCase.apply(this,[]);
+	$s.pop();
+}}
+haxe.reactive.arrow.ErrorTest.__name__ = ["haxe","reactive","arrow","ErrorTest"];
+haxe.reactive.arrow.ErrorTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.ErrorTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.ErrorTest.prototype.f0 = function(x) {
+	$s.push("haxe.reactive.arrow.ErrorTest::f0");
+	var $spos = $s.length;
+	{
+		$s.pop();
+		return x;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.ErrorTest.prototype.f1 = function() {
+	$s.push("haxe.reactive.arrow.ErrorTest::f1");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}
+haxe.reactive.arrow.ErrorTest.prototype.simpleAssert = function() {
+	$s.push("haxe.reactive.arrow.ErrorTest::simpleAssert");
+	var $spos = $s.length;
+	var self = this;
+	{
+		var $tmp = haxe.functional.arrows.Function1Arrow.lift(haxe.test.Assert.createEvent(function(x) {
+			$s.push("haxe.reactive.arrow.ErrorTest::simpleAssert@28");
+			var $spos = $s.length;
+			self.assertTrue(true,null,{ fileName : "ErrorTest.hx", lineNumber : 29, className : "haxe.reactive.arrow.ErrorTest", methodName : "simpleAssert"});
+			$s.pop();
+		}));
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.ErrorTest.prototype.testParameterMismatchNumberError_ExpectOneReceiveZero = function() {
+	$s.push("haxe.reactive.arrow.ErrorTest::testParameterMismatchNumberError_ExpectOneReceiveZero");
+	var $spos = $s.length;
+	haxe.functional.arrows.Arrow.liftF($closure(this,"f0")).then(this.simpleAssert()).run();
+	$s.pop();
+}
+haxe.reactive.arrow.ErrorTest.prototype.testParameterMismatchNumberError_ExpectZeroReceiveOne = function() {
+	$s.push("haxe.reactive.arrow.ErrorTest::testParameterMismatchNumberError_ExpectZeroReceiveOne");
+	var $spos = $s.length;
+	haxe.functional.arrows.Arrow.liftF($closure(this,"f1")).then(this.simpleAssert()).run("bosh");
+	$s.pop();
+}
+haxe.reactive.arrow.ErrorTest.prototype.__class__ = haxe.reactive.arrow.ErrorTest;
 haxe.functional.arrows.schedule.constraint.ArrowCounterConstraint = function(manager) { if( manager === $_ ) return; {
 	$s.push("haxe.functional.arrows.schedule.constraint.ArrowCounterConstraint::new");
 	var $spos = $s.length;
@@ -17696,14 +17551,14 @@ Future.prototype.filter = function(f) {
 	var $spos = $s.length;
 	var fut = new Future();
 	this.deliverTo(function(t) {
-		$s.push("Future::filter@255");
+		$s.push("Future::filter@259");
 		var $spos = $s.length;
 		if(f(t)) fut.deliver(t);
 		else fut.forceCancel();
 		$s.pop();
 	});
 	this.ifCanceled(function() {
-		$s.push("Future::filter@257");
+		$s.push("Future::filter@261");
 		var $spos = $s.length;
 		fut.forceCancel();
 		$s.pop();
@@ -17719,15 +17574,15 @@ Future.prototype.flatMap = function(f) {
 	var $spos = $s.length;
 	var fut = new Future();
 	this.deliverTo(function(t) {
-		$s.push("Future::flatMap@235");
+		$s.push("Future::flatMap@239");
 		var $spos = $s.length;
 		f(t).deliverTo(function(s) {
-			$s.push("Future::flatMap@235@236");
+			$s.push("Future::flatMap@239@240");
 			var $spos = $s.length;
 			fut.deliver(s);
 			$s.pop();
 		}).ifCanceled(function() {
-			$s.push("Future::flatMap@235@238");
+			$s.push("Future::flatMap@239@242");
 			var $spos = $s.length;
 			fut.forceCancel();
 			$s.pop();
@@ -17735,7 +17590,7 @@ Future.prototype.flatMap = function(f) {
 		$s.pop();
 	});
 	this.ifCanceled(function() {
-		$s.push("Future::flatMap@243");
+		$s.push("Future::flatMap@247");
 		var $spos = $s.length;
 		fut.forceCancel();
 		$s.pop();
@@ -17829,6 +17684,15 @@ Future.prototype.map = function(f) {
 	}
 	$s.pop();
 }
+Future.prototype.then = function(f) {
+	$s.push("Future::then");
+	var $spos = $s.length;
+	{
+		$s.pop();
+		return f;
+	}
+	$s.pop();
+}
 Future.prototype.toArray = function() {
 	$s.push("Future::toArray");
 	var $spos = $s.length;
@@ -17865,7 +17729,7 @@ Future.prototype.zip = function(f2) {
 	var zipped = new Future();
 	var f1 = this;
 	var deliverZip = function() {
-		$s.push("Future::zip@272");
+		$s.push("Future::zip@276");
 		var $spos = $s.length;
 		if(f1.isDelivered() && f2.isDelivered()) {
 			zipped.deliver(Tuple2.create(OptionExtensions.get(f1.value()),OptionExtensions.get(f2.value())));
@@ -17873,19 +17737,19 @@ Future.prototype.zip = function(f2) {
 		$s.pop();
 	}
 	f1.deliverTo(function(v) {
-		$s.push("Future::zip@280");
+		$s.push("Future::zip@284");
 		var $spos = $s.length;
 		deliverZip();
 		$s.pop();
 	});
 	f2.deliverTo(function(v) {
-		$s.push("Future::zip@281");
+		$s.push("Future::zip@285");
 		var $spos = $s.length;
 		deliverZip();
 		$s.pop();
 	});
 	zipped.allowCancelOnlyIf(function() {
-		$s.push("Future::zip@283");
+		$s.push("Future::zip@287");
 		var $spos = $s.length;
 		{
 			var $tmp = f1.cancel() || f2.cancel();
@@ -17895,13 +17759,13 @@ Future.prototype.zip = function(f2) {
 		$s.pop();
 	});
 	f1.ifCanceled(function() {
-		$s.push("Future::zip@285");
+		$s.push("Future::zip@289");
 		var $spos = $s.length;
 		zipped.forceCancel();
 		$s.pop();
 	});
 	f2.ifCanceled(function() {
-		$s.push("Future::zip@286");
+		$s.push("Future::zip@290");
 		var $spos = $s.length;
 		zipped.forceCancel();
 		$s.pop();
@@ -18039,7 +17903,7 @@ _Prelude.AbstractProduct.prototype.productDecompose = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = haxe.text.json.JValue.JArray(ArrayExtensions.map(this._productElements,function(t) {
-			$s.push("_Prelude.AbstractProduct::productDecompose@374");
+			$s.push("_Prelude.AbstractProduct::productDecompose@378");
 			var $spos = $s.length;
 			{
 				var $tmp = (haxe.data.transcode.TranscodeJValue.getDecomposerFor(Type["typeof"](t)))(t);
@@ -18539,7 +18403,7 @@ Stax._createOrderImpl = function(impl) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b) {
-			$s.push("Stax::_createOrderImpl@620");
+			$s.push("Stax::_createOrderImpl@624");
 			var $spos = $s.length;
 			{
 				var $tmp = (a == b || (a == null && b == null)?0:(a == null?-1:(b == null?1:impl(a,b))));
@@ -18586,7 +18450,7 @@ Stax.getOrderForType = function(v) {
 			case 8:
 			{
 				$r = function(a,b) {
-					$s.push("Stax::getOrderForType@642");
+					$s.push("Stax::getOrderForType@646");
 					var $spos = $s.length;
 					{
 						var $tmp = ((a == b)?0:(((a) > (b)?1:-1)));
@@ -18599,7 +18463,7 @@ Stax.getOrderForType = function(v) {
 			case 4:
 			{
 				$r = Stax._createOrderImpl(function(a,b) {
-					$s.push("Stax::getOrderForType@644");
+					$s.push("Stax::getOrderForType@648");
 					var $spos = $s.length;
 					{
 						var _g = 0, _g1 = Reflect.fields(a);
@@ -18641,7 +18505,7 @@ Stax.getOrderForType = function(v) {
 							var $r;
 							var i = 0;
 							var fields = ArrayExtensions.sortWith(ArrayExtensions.filter(ArrayExtensions.map(Type.getInstanceFields(c),function(v1) {
-								$s.push("Stax::getOrderForType@664");
+								$s.push("Stax::getOrderForType@668");
 								var $spos = $s.length;
 								var fieldMeta = Stax._getMetaDataField(c,v1);
 								var weight = (fieldMeta != null && Reflect.hasField(fieldMeta,"order")?Reflect.field(fieldMeta,"order"):1);
@@ -18652,7 +18516,7 @@ Stax.getOrderForType = function(v) {
 								}
 								$s.pop();
 							}),function(v1) {
-								$s.push("Stax::getOrderForType@671");
+								$s.push("Stax::getOrderForType@675");
 								var $spos = $s.length;
 								{
 									var $tmp = v1._2 != 0;
@@ -18661,7 +18525,7 @@ Stax.getOrderForType = function(v) {
 								}
 								$s.pop();
 							}),function(a,b) {
-								$s.push("Stax::getOrderForType@671");
+								$s.push("Stax::getOrderForType@675");
 								var $spos = $s.length;
 								var c1 = a._3 - b._3;
 								if(c1 != 0) {
@@ -18676,10 +18540,10 @@ Stax.getOrderForType = function(v) {
 								$s.pop();
 							});
 							$r = Stax._createOrderImpl(function(a,b) {
-								$s.push("Stax::getOrderForType@677");
+								$s.push("Stax::getOrderForType@681");
 								var $spos = $s.length;
 								var values = ArrayExtensions.map(ArrayExtensions.filter(fields,function(v1) {
-									$s.push("Stax::getOrderForType@677@678");
+									$s.push("Stax::getOrderForType@681@682");
 									var $spos = $s.length;
 									{
 										var $tmp = !Reflect.isFunction(Reflect.field(a,v1._1));
@@ -18688,7 +18552,7 @@ Stax.getOrderForType = function(v) {
 									}
 									$s.pop();
 								}),function(v1) {
-									$s.push("Stax::getOrderForType@677@678");
+									$s.push("Stax::getOrderForType@681@682");
 									var $spos = $s.length;
 									{
 										var $tmp = Tuple3.create(Reflect.field(a,v1._1),Reflect.field(b,v1._1),v1._2);
@@ -18717,7 +18581,7 @@ Stax.getOrderForType = function(v) {
 							});
 							return $r;
 						}($this)):(Type.getInstanceFields(c).remove("compare")?Stax._createOrderImpl(function(a,b) {
-							$s.push("Stax::getOrderForType@687");
+							$s.push("Stax::getOrderForType@691");
 							var $spos = $s.length;
 							{
 								var $tmp = (a).compare(b);
@@ -18735,7 +18599,7 @@ Stax.getOrderForType = function(v) {
 			var e = $e[2];
 			{
 				$r = Stax._createOrderImpl(function(a,b) {
-					$s.push("Stax::getOrderForType@693");
+					$s.push("Stax::getOrderForType@697");
 					var $spos = $s.length;
 					var v1 = a[1] - b[1];
 					if(0 != v1) {
@@ -18765,7 +18629,7 @@ Stax.getOrderForType = function(v) {
 			case 0:
 			{
 				$r = Stax._createOrderImpl(function(a,b) {
-					$s.push("Stax::getOrderForType@707");
+					$s.push("Stax::getOrderForType@711");
 					var $spos = $s.length;
 					{
 						var $tmp = Stax.error("at least one of the arguments should be null");
@@ -18778,9 +18642,6 @@ Stax.getOrderForType = function(v) {
 			case 5:
 			{
 				$r = Stax.error("unable to compare on a function");
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -18827,7 +18688,7 @@ Stax._fieldsWithMeta = function(c,name) {
 	var i = 0;
 	{
 		var $tmp = ArrayExtensions.map(ArrayExtensions.sortWith(ArrayExtensions.filter(ArrayExtensions.map(Type.getInstanceFields(c),function(v) {
-			$s.push("Stax::_fieldsWithMeta@727");
+			$s.push("Stax::_fieldsWithMeta@731");
 			var $spos = $s.length;
 			var fieldMeta = Stax._getMetaDataField(c,v);
 			var inc = (fieldMeta == null || !Reflect.hasField(fieldMeta,name) || Reflect.field(fieldMeta,name));
@@ -18838,7 +18699,7 @@ Stax._fieldsWithMeta = function(c,name) {
 			}
 			$s.pop();
 		}),function(v) {
-			$s.push("Stax::_fieldsWithMeta@731");
+			$s.push("Stax::_fieldsWithMeta@735");
 			var $spos = $s.length;
 			{
 				var $tmp = v._2;
@@ -18847,7 +18708,7 @@ Stax._fieldsWithMeta = function(c,name) {
 			}
 			$s.pop();
 		}),function(a,b) {
-			$s.push("Stax::_fieldsWithMeta@733");
+			$s.push("Stax::_fieldsWithMeta@737");
 			var $spos = $s.length;
 			var c1 = a._3 - b._3;
 			if(c1 != 0) {
@@ -18861,7 +18722,7 @@ Stax._fieldsWithMeta = function(c,name) {
 			}
 			$s.pop();
 		}),function(v) {
-			$s.push("Stax::_fieldsWithMeta@738");
+			$s.push("Stax::_fieldsWithMeta@742");
 			var $spos = $s.length;
 			{
 				var $tmp = v._1;
@@ -18880,7 +18741,7 @@ Stax._createEqualImpl = function(impl) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b) {
-			$s.push("Stax::_createEqualImpl@743");
+			$s.push("Stax::_createEqualImpl@747");
 			var $spos = $s.length;
 			{
 				var $tmp = (a == b || (a == null && b == null)?true:(a == null || b == null?false:impl(a,b)));
@@ -18927,7 +18788,7 @@ Stax.getEqualForType = function(v) {
 			case 8:
 			{
 				$r = function(a,b) {
-					$s.push("Stax::getEqualForType@764");
+					$s.push("Stax::getEqualForType@768");
 					var $spos = $s.length;
 					{
 						var $tmp = a == b;
@@ -18940,7 +18801,7 @@ Stax.getEqualForType = function(v) {
 			case 4:
 			{
 				$r = Stax._createEqualImpl(function(a,b) {
-					$s.push("Stax::getEqualForType@766");
+					$s.push("Stax::getEqualForType@770");
 					var $spos = $s.length;
 					{
 						var _g = 0, _g1 = Reflect.fields(a);
@@ -18981,10 +18842,10 @@ Stax.getEqualForType = function(v) {
 							var $r;
 							var fields = Stax._fieldsWithMeta(c,"equalHash");
 							$r = Stax._createEqualImpl(function(a,b) {
-								$s.push("Stax::getEqualForType@785");
+								$s.push("Stax::getEqualForType@789");
 								var $spos = $s.length;
 								var values = ArrayExtensions.map(fields,function(v1) {
-									$s.push("Stax::getEqualForType@785@786");
+									$s.push("Stax::getEqualForType@789@790");
 									var $spos = $s.length;
 									{
 										var $tmp = Tuple2.create(Reflect.field(a,v1),Reflect.field(b,v1));
@@ -19013,7 +18874,7 @@ Stax.getEqualForType = function(v) {
 							});
 							return $r;
 						}($this)):(Type.getInstanceFields(c).remove("equals")?Stax._createEqualImpl(function(a,b) {
-							$s.push("Stax::getEqualForType@796");
+							$s.push("Stax::getEqualForType@800");
 							var $spos = $s.length;
 							{
 								var $tmp = (a).equals(b);
@@ -19031,7 +18892,7 @@ Stax.getEqualForType = function(v) {
 			var e = $e[2];
 			{
 				$r = Stax._createEqualImpl(function(a,b) {
-					$s.push("Stax::getEqualForType@802");
+					$s.push("Stax::getEqualForType@806");
 					var $spos = $s.length;
 					if(0 != a[1] - b[1]) {
 						$s.pop();
@@ -19059,7 +18920,7 @@ Stax.getEqualForType = function(v) {
 			case 0:
 			{
 				$r = Stax._createEqualImpl(function(a,b) {
-					$s.push("Stax::getEqualForType@814");
+					$s.push("Stax::getEqualForType@818");
 					var $spos = $s.length;
 					{
 						var $tmp = Stax.error("at least one of the arguments should be null");
@@ -19072,9 +18933,6 @@ Stax.getEqualForType = function(v) {
 			case 5:
 			{
 				$r = Stax._createEqualImpl($closure(Reflect,"compareMethods"));
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -19089,7 +18947,7 @@ Stax._createShowImpl = function(impl) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(v) {
-			$s.push("Stax::_createShowImpl@821");
+			$s.push("Stax::_createShowImpl@825");
 			var $spos = $s.length;
 			{
 				var $tmp = (null == v?"null":impl(v));
@@ -19136,7 +18994,7 @@ Stax.getShowForType = function(v) {
 			case 8:
 			{
 				$r = Stax._createShowImpl(function(v1) {
-					$s.push("Stax::getShowForType@844");
+					$s.push("Stax::getShowForType@848");
 					var $spos = $s.length;
 					{
 						$s.pop();
@@ -19148,7 +19006,7 @@ Stax.getShowForType = function(v) {
 			case 4:
 			{
 				$r = Stax._createShowImpl(function(v1) {
-					$s.push("Stax::getShowForType@846");
+					$s.push("Stax::getShowForType@850");
 					var $spos = $s.length;
 					var buf = [];
 					{
@@ -19185,10 +19043,10 @@ Stax.getShowForType = function(v) {
 							var $r;
 							var fields = Stax._fieldsWithMeta(c,"show");
 							$r = Stax._createShowImpl(function(v1) {
-								$s.push("Stax::getShowForType@864");
+								$s.push("Stax::getShowForType@868");
 								var $spos = $s.length;
 								var values = ArrayExtensions.map(ArrayExtensions.filter(ArrayExtensions.map(fields,function(f) {
-									$s.push("Stax::getShowForType@864@865");
+									$s.push("Stax::getShowForType@868@869");
 									var $spos = $s.length;
 									{
 										var $tmp = Reflect.field(v1,f);
@@ -19197,7 +19055,7 @@ Stax.getShowForType = function(v) {
 									}
 									$s.pop();
 								}),function(v2) {
-									$s.push("Stax::getShowForType@864@865");
+									$s.push("Stax::getShowForType@868@869");
 									var $spos = $s.length;
 									{
 										var $tmp = !Reflect.isFunction(v2);
@@ -19206,7 +19064,7 @@ Stax.getShowForType = function(v) {
 									}
 									$s.pop();
 								}),function(v2) {
-									$s.push("Stax::getShowForType@864@865");
+									$s.push("Stax::getShowForType@868@869");
 									var $spos = $s.length;
 									{
 										var $tmp = (Stax.getShowFor(v2))(v2);
@@ -19224,7 +19082,7 @@ Stax.getShowForType = function(v) {
 							});
 							return $r;
 						}($this)):(Type.getInstanceFields(c).remove("toString")?Stax._createShowImpl(function(v1) {
-							$s.push("Stax::getShowForType@869");
+							$s.push("Stax::getShowForType@873");
 							var $spos = $s.length;
 							{
 								var $tmp = Reflect.field(v1,"toString").apply(v1,[]);
@@ -19233,7 +19091,7 @@ Stax.getShowForType = function(v) {
 							}
 							$s.pop();
 						}):Stax._createShowImpl(function(v1) {
-							$s.push("Stax::getShowForType@871");
+							$s.push("Stax::getShowForType@875");
 							var $spos = $s.length;
 							{
 								var $tmp = Type.getClassName(Type.getClass(v1));
@@ -19251,7 +19109,7 @@ Stax.getShowForType = function(v) {
 			var e = $e[2];
 			{
 				$r = Stax._createShowImpl(function(v1) {
-					$s.push("Stax::getShowForType@874");
+					$s.push("Stax::getShowForType@878");
 					var $spos = $s.length;
 					var buf = v1[0];
 					var params = v1.slice(2);
@@ -19281,7 +19139,7 @@ Stax.getShowForType = function(v) {
 			case 0:
 			{
 				$r = function(v1) {
-					$s.push("Stax::getShowForType@887");
+					$s.push("Stax::getShowForType@891");
 					var $spos = $s.length;
 					{
 						$s.pop();
@@ -19293,7 +19151,7 @@ Stax.getShowForType = function(v) {
 			case 5:
 			{
 				$r = Stax._createShowImpl(function(v1) {
-					$s.push("Stax::getShowForType@889");
+					$s.push("Stax::getShowForType@893");
 					var $spos = $s.length;
 					{
 						$s.pop();
@@ -19301,9 +19159,6 @@ Stax.getShowForType = function(v) {
 					}
 					$s.pop();
 				});
-			}break;
-			default:{
-				$r = null;
 			}break;
 			}
 			return $r;
@@ -19318,7 +19173,7 @@ Stax._createHashImpl = function(impl) {
 	var $spos = $s.length;
 	{
 		var $tmp = function(v) {
-			$s.push("Stax::_createHashImpl@893");
+			$s.push("Stax::_createHashImpl@897");
 			var $spos = $s.length;
 			if(null == v) {
 				$s.pop();
@@ -19369,7 +19224,7 @@ Stax.getHashForType = function(v) {
 			case 8:
 			{
 				$r = Stax._createHashImpl(function(v1) {
-					$s.push("Stax::getHashForType@910");
+					$s.push("Stax::getHashForType@914");
 					var $spos = $s.length;
 					{
 						var $tmp = Stax.error("can't retrieve hascode for TUnknown: " + v1);
@@ -19382,7 +19237,7 @@ Stax.getHashForType = function(v) {
 			case 4:
 			{
 				$r = Stax._createHashImpl(function(v1) {
-					$s.push("Stax::getHashForType@912");
+					$s.push("Stax::getHashForType@916");
 					var $spos = $s.length;
 					var s = (Stax.getShowFor(v1))(v1);
 					{
@@ -19416,11 +19271,11 @@ Stax.getHashForType = function(v) {
 								var $r;
 								var fields1 = Stax._fieldsWithMeta(c,"equalHash");
 								$r = Stax._createHashImpl(function(v1) {
-									$s.push("Stax::getHashForType@928");
+									$s.push("Stax::getHashForType@932");
 									var $spos = $s.length;
 									var className = Type.getClassName(c);
 									var values = ArrayExtensions.filter(ArrayExtensions.map(fields1,function(f) {
-										$s.push("Stax::getHashForType@928@930");
+										$s.push("Stax::getHashForType@932@934");
 										var $spos = $s.length;
 										{
 											var $tmp = Reflect.field(v1,f);
@@ -19429,7 +19284,7 @@ Stax.getHashForType = function(v) {
 										}
 										$s.pop();
 									}),function(v2) {
-										$s.push("Stax::getHashForType@928@930");
+										$s.push("Stax::getHashForType@932@934");
 										var $spos = $s.length;
 										{
 											var $tmp = !Reflect.isFunction(v2);
@@ -19440,7 +19295,7 @@ Stax.getHashForType = function(v) {
 									});
 									{
 										var $tmp = ArrayExtensions.foldl(values,9901 * StringExtensions.hashCode(className),function(v2,e) {
-											$s.push("Stax::getHashForType@928@931");
+											$s.push("Stax::getHashForType@932@935");
 											var $spos = $s.length;
 											{
 												var $tmp = v2 + (333667 * ((Stax.getHashFor(e))(e) + 197192));
@@ -19456,7 +19311,7 @@ Stax.getHashForType = function(v) {
 								});
 								return $r;
 							}($this)):(Type.getInstanceFields(c).remove("hashCode")?Stax._createHashImpl(function(v1) {
-								$s.push("Stax::getHashForType@934");
+								$s.push("Stax::getHashForType@938");
 								var $spos = $s.length;
 								{
 									var $tmp = Reflect.field(v1,"hashCode").apply(v1,[]);
@@ -19476,7 +19331,7 @@ Stax.getHashForType = function(v) {
 			var e = $e[2];
 			{
 				$r = Stax._createHashImpl(function(v1) {
-					$s.push("Stax::getHashForType@940");
+					$s.push("Stax::getHashForType@944");
 					var $spos = $s.length;
 					var hash = StringExtensions.hashCode(v1[0]) * 6151;
 					{
@@ -19497,7 +19352,7 @@ Stax.getHashForType = function(v) {
 			case 5:
 			{
 				$r = Stax._createHashImpl(function(v1) {
-					$s.push("Stax::getHashForType@947");
+					$s.push("Stax::getHashForType@951");
 					var $spos = $s.length;
 					{
 						var $tmp = Stax.error("function can't provide a hash code");
@@ -19510,7 +19365,7 @@ Stax.getHashForType = function(v) {
 			case 0:
 			{
 				$r = function(v1) {
-					$s.push("Stax::getHashForType@949");
+					$s.push("Stax::getHashForType@953");
 					var $spos = $s.length;
 					{
 						$s.pop();
@@ -19521,7 +19376,7 @@ Stax.getHashForType = function(v) {
 			}break;
 			default:{
 				$r = function(v1) {
-					$s.push("Stax::getHashForType@951");
+					$s.push("Stax::getHashForType@955");
 					var $spos = $s.length;
 					{
 						$s.pop();
@@ -19543,7 +19398,7 @@ Stax.noop1 = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a) {
-			$s.push("Stax::noop1@956");
+			$s.push("Stax::noop1@960");
 			var $spos = $s.length;
 			null;
 			$s.pop();
@@ -19558,7 +19413,7 @@ Stax.noop2 = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b) {
-			$s.push("Stax::noop2@959");
+			$s.push("Stax::noop2@963");
 			var $spos = $s.length;
 			null;
 			$s.pop();
@@ -19573,7 +19428,7 @@ Stax.noop3 = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b,c) {
-			$s.push("Stax::noop3@962");
+			$s.push("Stax::noop3@966");
 			var $spos = $s.length;
 			null;
 			$s.pop();
@@ -19588,7 +19443,7 @@ Stax.noop4 = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b,c,d) {
-			$s.push("Stax::noop4@965");
+			$s.push("Stax::noop4@969");
 			var $spos = $s.length;
 			null;
 			$s.pop();
@@ -19603,7 +19458,7 @@ Stax.noop5 = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a,b,c,d,e) {
-			$s.push("Stax::noop5@968");
+			$s.push("Stax::noop5@972");
 			var $spos = $s.length;
 			null;
 			$s.pop();
@@ -19618,7 +19473,7 @@ Stax.identity = function() {
 	var $spos = $s.length;
 	{
 		var $tmp = function(a) {
-			$s.push("Stax::identity@972");
+			$s.push("Stax::identity@976");
 			var $spos = $s.length;
 			{
 				$s.pop();
@@ -19636,12 +19491,12 @@ Stax.unfold = function(initial,unfolder) {
 	var $spos = $s.length;
 	{
 		var $tmp = { iterator : function() {
-			$s.push("Stax::unfold@977");
+			$s.push("Stax::unfold@981");
 			var $spos = $s.length;
 			var _next = Option.None;
 			var _progress = initial;
 			var precomputeNext = function() {
-				$s.push("Stax::unfold@977@981");
+				$s.push("Stax::unfold@981@985");
 				var $spos = $s.length;
 				var $e = (unfolder(_progress));
 				switch( $e[1] ) {
@@ -19662,7 +19517,7 @@ Stax.unfold = function(initial,unfolder) {
 			precomputeNext();
 			{
 				var $tmp = { hasNext : function() {
-					$s.push("Stax::unfold@977@996");
+					$s.push("Stax::unfold@981@1000");
 					var $spos = $s.length;
 					{
 						var $tmp = !OptionExtensions.isEmpty(_next);
@@ -19671,7 +19526,7 @@ Stax.unfold = function(initial,unfolder) {
 					}
 					$s.pop();
 				}, next : function() {
-					$s.push("Stax::unfold@977@1000");
+					$s.push("Stax::unfold@981@1004");
 					var $spos = $s.length;
 					var n = OptionExtensions.get(_next);
 					precomputeNext();
@@ -19752,6 +19607,136 @@ haxe.functional.arrows.combinators.FanoutThunk.prototype.getName = function() {
 	$s.pop();
 }
 haxe.functional.arrows.combinators.FanoutThunk.prototype.__class__ = haxe.functional.arrows.combinators.FanoutThunk;
+haxe.reactive.arrow.LambdaArrowTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.LambdaArrowTest::new");
+	var $spos = $s.length;
+	haxe.test.TestCase.apply(this,[]);
+	$s.pop();
+}}
+haxe.reactive.arrow.LambdaArrowTest.__name__ = ["haxe","reactive","arrow","LambdaArrowTest"];
+haxe.reactive.arrow.LambdaArrowTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.LambdaArrowTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.LambdaArrowTest.prototype.testFilter = function() {
+	$s.push("haxe.reactive.arrow.LambdaArrowTest::testFilter");
+	var $spos = $s.length;
+	var self = this;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.LambdaArrowTest::testFilter@63");
+		var $spos = $s.length;
+		self.assertTrue(Lambda.count(x) == 1,null,{ fileName : "LambdaArrowTest.hx", lineNumber : 64, className : "haxe.reactive.arrow.LambdaArrowTest", methodName : "testFilter"});
+		$s.pop();
+	});
+	haxe.functional.arrows.ext.LambdaArrow.filter(haxe.functional.arrows.Arrow.returnA(),function(x) {
+		$s.push("haxe.reactive.arrow.LambdaArrowTest::testFilter@68");
+		var $spos = $s.length;
+		{
+			var $tmp = x == 1;
+			$s.pop();
+			return $tmp;
+		}
+		$s.pop();
+	}).then(haxe.functional.arrows.Function1Arrow.lift($as)).run([1,2,3]).start();
+	$s.pop();
+}
+haxe.reactive.arrow.LambdaArrowTest.prototype.testIter = function() {
+	$s.push("haxe.reactive.arrow.LambdaArrowTest::testIter");
+	var $spos = $s.length;
+	var self = this;
+	var a = 0;
+	var arr = [1,2,3];
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.LambdaArrowTest::testIter@50");
+		var $spos = $s.length;
+		haxe.test.Assert.equals(6,a,null,null,{ fileName : "LambdaArrowTest.hx", lineNumber : 51, className : "haxe.reactive.arrow.LambdaArrowTest", methodName : "testIter"});
+		$s.pop();
+	});
+	haxe.functional.arrows.ext.LambdaArrow.iter(haxe.functional.arrows.Arrow.returnA(),function(x) {
+		$s.push("haxe.reactive.arrow.LambdaArrowTest::testIter@55");
+		var $spos = $s.length;
+		a += x;
+		$s.pop();
+	}).then(haxe.functional.arrows.Function1Arrow.lift($as)).run(arr).start();
+	$s.pop();
+}
+haxe.reactive.arrow.LambdaArrowTest.prototype.testLong = function() {
+	$s.push("haxe.reactive.arrow.LambdaArrowTest::testLong");
+	var $spos = $s.length;
+	var self = this;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.LambdaArrowTest::testLong@76");
+		var $spos = $s.length;
+		self.assertTrue(true,null,{ fileName : "LambdaArrowTest.hx", lineNumber : 77, className : "haxe.reactive.arrow.LambdaArrowTest", methodName : "testLong"});
+		$s.pop();
+	},60000);
+	var list = new List();
+	{
+		var _g = 0;
+		while(_g < 10000) {
+			var i = _g++;
+			list.add(Math.random());
+		}
+	}
+	haxe.functional.arrows.ext.LambdaArrow.map(haxe.functional.arrows.Arrow.returnA(),function(x) {
+		$s.push("haxe.reactive.arrow.LambdaArrowTest::testLong@86");
+		var $spos = $s.length;
+		var a = x + 1 / 2;
+		var b = 87984 + 134123412233;
+		var c = a + b;
+		{
+			$s.pop();
+			return c;
+		}
+		$s.pop();
+	}).then(haxe.functional.arrows.Function1Arrow.lift($as)).run(list).start();
+	$s.pop();
+}
+haxe.reactive.arrow.LambdaArrowTest.prototype.testMap = function() {
+	$s.push("haxe.reactive.arrow.LambdaArrowTest::testMap");
+	var $spos = $s.length;
+	var self = this;
+	var count = 0;
+	var $as = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.LambdaArrowTest::testMap@23");
+		var $spos = $s.length;
+		var a = [1,2,3];
+		var b = Lambda.array(x);
+		{
+			var _g1 = 0, _g = a.length;
+			while(_g1 < _g) {
+				var i = _g1++;
+				haxe.test.Assert.equals(a[i],b[i],null,null,{ fileName : "LambdaArrowTest.hx", lineNumber : 27, className : "haxe.reactive.arrow.LambdaArrowTest", methodName : "testMap"});
+			}
+		}
+		$s.pop();
+	});
+	var a = haxe.functional.arrows.ext.LambdaArrow.map(haxe.functional.arrows.Arrow.returnA(),function(x) {
+		$s.push("haxe.reactive.arrow.LambdaArrowTest::testMap@34");
+		var $spos = $s.length;
+		{
+			var $tmp = (function($this) {
+				var $r;
+				switch(x) {
+				case "a":{
+					$r = 1;
+				}break;
+				case "b":{
+					$r = 2;
+				}break;
+				case "c":{
+					$r = 3;
+				}break;
+				}
+				return $r;
+			}(this));
+			$s.pop();
+			return $tmp;
+		}
+		$s.pop();
+	});
+	a.then(haxe.functional.arrows.Function1Arrow.lift($as)).run(["a","b","c"]).start();
+	$s.pop();
+}
+haxe.reactive.arrow.LambdaArrowTest.prototype.__class__ = haxe.reactive.arrow.LambdaArrowTest;
 haxe.functional.P = function() { }
 haxe.functional.P.__name__ = ["haxe","functional","P"];
 haxe.functional.P.isNull = function() {
@@ -20158,20 +20143,20 @@ haxe.exception.ArgumentNullException.__name__ = ["haxe","exception","ArgumentNul
 haxe.exception.ArgumentNullException.__super__ = haxe.exception.Exception;
 for(var k in haxe.exception.Exception.prototype ) haxe.exception.ArgumentNullException.prototype[k] = haxe.exception.Exception.prototype[k];
 haxe.exception.ArgumentNullException.prototype.__class__ = haxe.exception.ArgumentNullException;
-test.arrow.FunctionArrowTest = function(p) { if( p === $_ ) return; {
-	$s.push("test.arrow.FunctionArrowTest::new");
+haxe.reactive.arrow.FunctionArrowTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.FunctionArrowTest::new");
 	var $spos = $s.length;
 	haxe.test.TestCase.apply(this,[]);
 	$s.pop();
 }}
-test.arrow.FunctionArrowTest.__name__ = ["test","arrow","FunctionArrowTest"];
-test.arrow.FunctionArrowTest.__super__ = haxe.test.TestCase;
-for(var k in haxe.test.TestCase.prototype ) test.arrow.FunctionArrowTest.prototype[k] = haxe.test.TestCase.prototype[k];
-test.arrow.FunctionArrowTest.prototype.testLift = function() {
-	$s.push("test.arrow.FunctionArrowTest::testLift");
+haxe.reactive.arrow.FunctionArrowTest.__name__ = ["haxe","reactive","arrow","FunctionArrowTest"];
+haxe.reactive.arrow.FunctionArrowTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.FunctionArrowTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.FunctionArrowTest.prototype.testLift = function() {
+	$s.push("haxe.reactive.arrow.FunctionArrowTest::testLift");
 	var $spos = $s.length;
 	var a = function(x) {
-		$s.push("test.arrow.FunctionArrowTest::testLift@23");
+		$s.push("haxe.reactive.arrow.FunctionArrowTest::testLift@23");
 		var $spos = $s.length;
 		{
 			var $tmp = x + 1;
@@ -20183,7 +20168,7 @@ test.arrow.FunctionArrowTest.prototype.testLift = function() {
 	haxe.functional.arrows.Function1Arrow.lift(a).run(1).start();
 	$s.pop();
 }
-test.arrow.FunctionArrowTest.prototype.__class__ = test.arrow.FunctionArrowTest;
+haxe.reactive.arrow.FunctionArrowTest.prototype.__class__ = haxe.reactive.arrow.FunctionArrowTest;
 haxe.test.ui.common.FixtureResult = function(methodName) { if( methodName === $_ ) return; {
 	$s.push("haxe.test.ui.common.FixtureResult::new");
 	var $spos = $s.length;
@@ -20859,6 +20844,29 @@ haxe.functional.arrows.ext.lambda.FoldThunk.__name__ = ["haxe","functional","arr
 haxe.functional.arrows.ext.lambda.FoldThunk.__super__ = haxe.functional.arrows.Arrow;
 for(var k in haxe.functional.arrows.Arrow.prototype ) haxe.functional.arrows.ext.lambda.FoldThunk.prototype[k] = haxe.functional.arrows.Arrow.prototype[k];
 haxe.functional.arrows.ext.lambda.FoldThunk.prototype.__class__ = haxe.functional.arrows.ext.lambda.FoldThunk;
+haxe.reactive.arrow.JsArrowTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.JsArrowTest::new");
+	var $spos = $s.length;
+	haxe.test.TestCase.apply(this,[]);
+	$s.pop();
+}}
+haxe.reactive.arrow.JsArrowTest.__name__ = ["haxe","reactive","arrow","JsArrowTest"];
+haxe.reactive.arrow.JsArrowTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.JsArrowTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.JsArrowTest.prototype.testElement = function() {
+	$s.push("haxe.reactive.arrow.JsArrowTest::testElement");
+	var $spos = $s.length;
+	var self = this;
+	var async = haxe.test.Assert.createEvent(function(x) {
+		$s.push("haxe.reactive.arrow.JsArrowTest::testElement@17");
+		var $spos = $s.length;
+		haxe.test.Assert.notNull(x,null,{ fileName : "JsArrowTest.hx", lineNumber : 18, className : "haxe.reactive.arrow.JsArrowTest", methodName : "testElement"});
+		$s.pop();
+	});
+	haxe.functional.arrows.Arrow.elementA("test").dump(haxe.functional.arrows.Function1Arrow.lift(async)).run();
+	$s.pop();
+}
+haxe.reactive.arrow.JsArrowTest.prototype.__class__ = haxe.reactive.arrow.JsArrowTest;
 haxe.functional.arrows.ext.lambda.IterArrow = function(f) { if( f === $_ ) return; {
 	$s.push("haxe.functional.arrows.ext.lambda.IterArrow::new");
 	var $spos = $s.length;
@@ -20993,15 +21001,74 @@ haxe.functional.arrows.schedule.call.ArrowCallObject.prototype.invoke = function
 	$s.pop();
 }
 haxe.functional.arrows.schedule.call.ArrowCallObject.prototype.__class__ = haxe.functional.arrows.schedule.call.ArrowCallObject;
+haxe.reactive.arrow.TraceObjectTest = function(p) { if( p === $_ ) return; {
+	$s.push("haxe.reactive.arrow.TraceObjectTest::new");
+	var $spos = $s.length;
+	haxe.test.TestCase.apply(this,[]);
+	$s.pop();
+}}
+haxe.reactive.arrow.TraceObjectTest.__name__ = ["haxe","reactive","arrow","TraceObjectTest"];
+haxe.reactive.arrow.TraceObjectTest.__super__ = haxe.test.TestCase;
+for(var k in haxe.test.TestCase.prototype ) haxe.reactive.arrow.TraceObjectTest.prototype[k] = haxe.test.TestCase.prototype[k];
+haxe.reactive.arrow.TraceObjectTest.prototype.nullMethod = function(x,a) {
+	$s.push("haxe.reactive.arrow.TraceObjectTest::nullMethod");
+	var $spos = $s.length;
+	{
+		$s.pop();
+		return x;
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.TraceObjectTest.prototype.testTraceArrow = function() {
+	$s.push("haxe.reactive.arrow.TraceObjectTest::testTraceArrow");
+	var $spos = $s.length;
+	try {
+		haxe.Log.trace(new haxe.functional.arrows.Arrow($closure(this,"nullMethod")),{ fileName : "TraceObjectTest.hx", lineNumber : 15, className : "haxe.reactive.arrow.TraceObjectTest", methodName : "testTraceArrow"});
+	}
+	catch( $e0 ) {
+		{
+			var e = $e0;
+			{
+				$e = [];
+				while($s.length >= $spos) $e.unshift($s.pop());
+				$s.push($e[0]);
+				this.fail(null,{ fileName : "TraceObjectTest.hx", lineNumber : 17, className : "haxe.reactive.arrow.TraceObjectTest", methodName : "testTraceArrow"});
+			}
+		}
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.TraceObjectTest.prototype.testTraceArrowInstance = function() {
+	$s.push("haxe.reactive.arrow.TraceObjectTest::testTraceArrowInstance");
+	var $spos = $s.length;
+	try {
+		new haxe.functional.arrows.ArrowInstance(new haxe.functional.arrows.Arrow($closure(this,"nullMethod")),1);
+	}
+	catch( $e0 ) {
+		{
+			var e = $e0;
+			{
+				$e = [];
+				while($s.length >= $spos) $e.unshift($s.pop());
+				$s.push($e[0]);
+				this.fail(null,{ fileName : "TraceObjectTest.hx", lineNumber : 24, className : "haxe.reactive.arrow.TraceObjectTest", methodName : "testTraceArrowInstance"});
+			}
+		}
+	}
+	$s.pop();
+}
+haxe.reactive.arrow.TraceObjectTest.prototype.__class__ = haxe.reactive.arrow.TraceObjectTest;
 Full = function(p) { if( p === $_ ) return; {
 	$s.push("Full::new");
 	var $spos = $s.length;
 	var t = new haxe.test.Runner();
-	t.add(new test.arrow.CancellerTest());
+	t.add(new haxe.reactive.arrow.ArrowTest());
+	t.add(new haxe.reactive.arrow.CancellerTest());
+	t.add(new haxe.reactive.arrow.ComplexTest());
 	var r = haxe.test.ui.Report.create(t);
-	t.add(new test.arrow.JsArrowTest());
+	t.add(new haxe.reactive.arrow.JsArrowTest());
 	js.Lib.window.onload = function(e) {
-		$s.push("Full::new@39");
+		$s.push("Full::new@37");
 		var $spos = $s.length;
 		t.run();
 		$s.pop();
@@ -21652,11 +21719,6 @@ hsl.haxe._DirectSignaler.PropagationStatus.STOPPED = 2;
 hsl.haxe._DirectSignaler.PropagationStatus.UNDISTURBED = 3;
 js.Lib.onerror = null;
 haxe.test.TestHandler.POLLING_TIME = 10;
-org.flashdevelop.utils.TraceLevel.INFO = 0;
-org.flashdevelop.utils.TraceLevel.DEBUG = 1;
-org.flashdevelop.utils.TraceLevel.WARNING = 2;
-org.flashdevelop.utils.TraceLevel.ERROR = 3;
-org.flashdevelop.utils.TraceLevel.FATAL = 4;
 haxe.Timer.arr = new Array();
 _Prelude.AbstractProduct._baseHashes = [[786433,24593],[196613,3079,389],[1543,49157,196613,97],[12289,769,393241,193,53]];
 FieldOrder.Ascending = 1;
