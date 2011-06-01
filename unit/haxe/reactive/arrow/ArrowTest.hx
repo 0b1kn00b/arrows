@@ -6,24 +6,42 @@ import flash.display.Sprite;
 import flash.events.EventDispatcher;
 #elseif js
 import js.Dom;
-#elseif neko
+import js.Env;
+import zen.env.event.EventDispatcher;
+import zen.env.event.EventSystem;
+import zen.env.event.Event;
+#elseif (neko || cpp)
+import zen.env.event.EventDispatcher;
+import zen.env.event.EventSystem;
+import zen.env.event.Event;
 #end
 
 import Prelude;
+import PreludeExtensions;
 import haxe.test.Assert;
 import haxe.test.TestCase;
 
-import haxe.functional.arrows.Arrow;
-import haxe.functional.arrows.ArrowInstance;
-import haxe.functional.arrows.combinators.ProductThunk;
+import haxe.reactive.arrows.Arrow;
+import haxe.reactive.arrows.ArrowInstance;
+import haxe.reactive.arrows.combinators.ProductThunk;
 
 using Prelude;
-using haxe.functional.arrows.Arrow;
+using PreludeExtensions;
 
+import haxe.reactive.arrows.Arrow;
+using haxe.reactive.arrows.Arrow;
 
 class ArrowTest extends TestCase{
 	public function new() {
 			super();
+	}
+	public function testUnit() {
+		var as = Assert.createEvent( function(x) Assert.isTrue(true) );
+		as.lift().run().start();
+	}
+	public function testBin() {
+		var as = Assert.createEvent( function(x) Assert.isTrue(true) );
+		f0.then(as).run(3).start();
 	}
 	public function testSimpleArrow(){
 		var f3 = (
@@ -31,7 +49,8 @@ class ArrowTest extends TestCase{
 				Assert.equals(x,162);
 			}
 		).tuple();
-		f0.lift().then(f1.lift()).then(f3).then(debug.lift()).run(80).start();
+
+		f0.then(f1).then(f3).then(debug).run(80).start();
 	}
 	
 	public function testPair(){
@@ -42,6 +61,7 @@ class ArrowTest extends TestCase{
 		}.tuple();
 		var a = f0.tuple().pair(f1.tuple()).then(as).run(Tuple2.create(10,10)).start();
 	}
+	
 	public function testFirst(){
 		var as = Assert.createEvent( 
 			function(x:Tuple2<Dynamic,Dynamic>){
@@ -49,7 +69,7 @@ class ArrowTest extends TestCase{
 				Assert.equals(x.productElement(1),10);
 			}
 		);
-		f0.lift().first().then(as.tuple()).run(Tuple2.create(10,10)).start();
+		f0.first().then(as.tuple()).run(Tuple2.create(10,10)).start();
 	}
 	
 	public function testSecond(){
@@ -59,8 +79,9 @@ class ArrowTest extends TestCase{
 				Assert.equals(x.productElement(1),11);
 			}
 		);
-		f0.lift().second().dump(as.tuple()).run(Tuple2.create(10,10)).start();
+		f0.second().then(as.tuple()).run(Tuple2.create(10,10)).start();
 	}
+	
 	public function testFanout(){
 		var as = Assert.createEvent( 
 			function(x:Tuple2<Dynamic,Dynamic>){
@@ -68,8 +89,9 @@ class ArrowTest extends TestCase{
 				Assert.equals(20,x.productElement(1));
 			}
 		);
-		f0.lift().fanout(f1.lift()).dump(as.tuple()).run(10).start();
+		f0.fanout(f1).then(as.tuple()).run(10).start();
 	}
+	
 	public function testTie(){
 		var as = Assert.createEvent(
 			function (x:Tuple2<Dynamic,Dynamic>){
@@ -77,7 +99,7 @@ class ArrowTest extends TestCase{
 				Assert.equals(11,x.productElement(1));
 			}
 		);
-		f0.lift().tie(as.tuple()).run(10).start();
+		f0.tie(as.tuple()).run(10).start();
 	}
 	
 	public function testJoin(){
@@ -87,8 +109,9 @@ class ArrowTest extends TestCase{
 				Assert.equals(x.productElement(1),22);
 			}
 		);
-		f0.lift().join(f1.tuple()).dump(as.tuple()).run(10).start();
+		f0.join(f1.tuple()).then(as.tuple()).run(10).start();
 	}
+	
 	public function testRepeat(){
 		var num = 10;
 		var as = Assert.createEvent(
@@ -104,16 +127,18 @@ class ArrowTest extends TestCase{
 				return Arrow.doDone(out);
 			}
 		}
-		g0.lift().repeat().dump(as.lift()).run(0).start();
+		g0.repeat().then(as).run(0).start();
 	}
+	
 	public function testDelay(){
 		var as = Assert.createEvent(
 			function (x:Dynamic){
 				Assert.isTrue(true);
 			}
 		,3000);
-		Arrow.delayA(2000).then(as.lift()).run().start();
+		Arrow.delayA(2000).then(as).run().start();
 	}
+	
 	public function testReturnA(){
 		var self = this;
 		var as = Assert.createEvent(
@@ -121,21 +146,23 @@ class ArrowTest extends TestCase{
 				Assert.equals("test",x);
 			}
 		);
-		Arrow.returnA().then(as.lift()).run("test").start();
+		Arrow.returnA().then(as).run("test").start();
 	}
+	
 	public function testEventArrow() {
 		var self = this;
-		var dispatcher = new EventDispatcher();
+		var dispatcher = #if flash new EventDispatcher(); #else new zen.env.event.EventSystem(this); #end
 		var as = Assert.createEvent(
 			function(x) {
 					Assert.isTrue(true);
 			}
 		);
-		Arrow.eventA("trigger").then(as.lift()).run(dispatcher).start();
-		dispatcher.dispatchEvent(new Event("trigger"));
+		Arrow.eventA("trigger").then(as).run(dispatcher);
+		Arrow.delayA(100).then( function(x) { dispatcher.dispatchEvent(new Event("trigger")); } ).run();
+		Arrow.begin();
 	}
-	public function f0(x:Float):Dynamic{
-		//debug(x);
+	public function f0(x:Float):Float{
+		debug(x);
 		var out =  x+1;
 		debug(out);
 		return out;
@@ -146,6 +173,7 @@ class ArrowTest extends TestCase{
 		debug(out);
 		return out;
 	}
+	
 	public function debug(x:Dynamic):Dynamic{
 		//trace("DEBUG : " + Std.string(x));
 		return x;

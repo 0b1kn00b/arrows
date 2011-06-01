@@ -3,13 +3,13 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import haxe.functional.arrows.Arrow;
-import haxe.functional.arrows.ext.LambdaArrow;
+import haxe.reactive.arrows.Arrow;
+import haxe.reactive.arrows.ext.LambdaArrow;
 
 
 
-using haxe.functional.arrows.Arrow;
-using haxe.functional.arrows.ext.LambdaArrow;
+using haxe.reactive.arrows.Arrow;
+using haxe.reactive.arrows.ext.LambdaArrow;
 
 class LambdaArrowTest extends TestCase{
 

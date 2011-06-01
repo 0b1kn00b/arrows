@@ -1,8 +1,8 @@
 package haxe.reactive.arrow;
 
-import haxe.functional.arrows.Arrow;
-import haxe.functional.arrows.combinators.ProgressArrow;
-using haxe.functional.arrows.Arrow;
+import haxe.reactive.arrows.Arrow;
+import haxe.reactive.arrows.combinators.ProgressArrow;
+using haxe.reactive.arrows.Arrow;
 
 import Prelude;
 using Prelude;
@@ -10,10 +10,9 @@ using Prelude;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import haxe.functional.arrows.schedule.ScheduleManager;
 import haxe.Timer;
 
-using haxe.functional.arrows.ext.LambdaArrow;
+using haxe.reactive.arrows.ext.LambdaArrow;
 
 class ComplexTest extends TestCase{
 	
@@ -27,21 +26,21 @@ class ComplexTest extends TestCase{
 
 	public function testOr(){
 		var as = Assert.createEvent(
-			function (x:Dynamic):Dynamic {
+			function (x:Dynamic):Void {
+				trace(x);
 				Assert.equals("g", x);
-				return x;
 			}
-		,1000);
-		var f = function (x:Dynamic){
+		,2000);
+		var f = function (x:Dynamic):String{
 			return "f";
 		}
-		var g = function (x:Dynamic){
+		var g = function (x:Dynamic):String{
 			return "g";
 		}
 		// f called later than g, should therefore be cancelled.
-		var a0 = Arrow.delayA(500).then(f.lift());
-		var a1 = Arrow.delayA(400).then(g.lift());
-		a0.or(a1).then(as.lift()).run(2).start();
+		var a0 = Arrow.delayA(500).then(f);
+		var a1 = Arrow.delayA(400).then(g);
+		a0.or(a1).then(as).run(2).start();
 	}
 	
 	public function testRepeat(){
@@ -105,7 +104,7 @@ class ComplexTest extends TestCase{
 			function (x) {
 				Assert.equals( [ 0 , 0 , 1 , 1 ,2 ,2 ,3 ,3 ,4 ,4 ] , comp );
 			}
-		);
+		,3000);
 		b.info = "show count b";
 		a.pair(b).then(as.tuple()).run(Tuple2.create(arr,arr2)).start();
 	}

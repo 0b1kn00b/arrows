@@ -3,11 +3,10 @@ package haxe.reactive.arrow;
 import haxe.test.Assert;
 import haxe.test.TestCase;
 
-import haxe.functional.arrows.Arrow;
-import haxe.functional.arrows.combinators.ProgressArrow;
-import haxe.functional.arrows.schedule.ScheduleManager;
+import haxe.reactive.arrows.Arrow;
+import haxe.reactive.arrows.combinators.ProgressArrow;
 
-using haxe.functional.arrows.Arrow;
+using haxe.reactive.arrows.Arrow;
 
 class SchedulerTest extends TestCase{
 

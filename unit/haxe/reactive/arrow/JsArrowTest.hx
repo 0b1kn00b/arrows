@@ -3,9 +3,9 @@ package haxe.reactive.arrow;
 import haxe.test.Assert;
 import haxe.test.TestCase;
 
-import haxe.functional.arrows.Arrow;
+import haxe.reactive.arrows.Arrow;
 
-using haxe.functional.arrows.Arrow;
+using haxe.reactive.arrows.Arrow;
 class JsArrowTest extends TestCase{
 	
 	public function new(){

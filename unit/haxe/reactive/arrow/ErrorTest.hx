@@ -3,8 +3,8 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import haxe.functional.arrows.Arrow;
-using haxe.functional.arrows.Arrow;
+import haxe.reactive.arrows.Arrow;
+using haxe.reactive.arrows.Arrow;
 
 class ErrorTest extends TestCase{
 
@@ -12,10 +12,10 @@ class ErrorTest extends TestCase{
 		super();
 	}
 	function testParameterMismatchNumberError_ExpectOneReceiveZero(){
-		Arrow.liftF(f0).then(simpleAssert()).run();
+		Arrow.lift(f0).then(simpleAssert()).run().start();
 	}
 	function testParameterMismatchNumberError_ExpectZeroReceiveOne(){
-		Arrow.liftF(f1).then(simpleAssert()).run("bosh");
+		Arrow.lift(f1).then(simpleAssert()).run("bosh").start();
 	}
 	function f0(x){
 		return x;

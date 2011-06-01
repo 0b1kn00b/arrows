@@ -7,10 +7,9 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import haxe.functional.arrows.schedule.ScheduleManager;
-import haxe.functional.arrows.Arrow;
+import haxe.reactive.arrows.Arrow;
 
-using haxe.functional.arrows.Arrow;
+using haxe.reactive.arrows.Arrow;
 
 class CancellerTest extends TestCase{
 

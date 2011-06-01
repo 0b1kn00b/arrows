@@ -1,4 +1,0 @@
-cpp
-haxe_206
-true
-D:\stack\platform\win\programs\Motion-Twin\haxe\lib\hxcpp/2,06,1/

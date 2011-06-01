@@ -24,7 +24,7 @@
     <option flashStrict="False" />
     <option mainClass="Full" />
     <option enabledebug="False" />
-    <option additional="--dead-code-elimination" />
+    <option additional="" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
