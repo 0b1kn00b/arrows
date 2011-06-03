@@ -28,15 +28,18 @@ class EventSystem implements EventDispatcher, implements EventListener{
 
 	}
 	public function dispatchEvent(e:Event){
-		//trace("dispatchEvent");
+		//trace("dispatchEvent from " + this.source);
 		var these = listeners.get(e.name);
-		e.source = source ;
+		e.source = source;
 		if (these!=null){
 			for (listener in these){
 				//trace(listener);
 				Reflect.callMethod(null,listener,[e]);
 			}
 		}
+	}
+	public function toString() {
+		return "event system : " + Lambda.count(listeners);
 	}
 	
 }

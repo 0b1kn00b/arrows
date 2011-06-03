@@ -1,16 +1,17 @@
 import haxe.reactive.arrow.BootstrapTest;
-import haxe.reactive.arrow.SpeedTest;
+//import haxe.reactive.arrow.LeakCheck;
+//import haxe.reactive.arrow.SpeedTest;
 import haxe.test.Runner;
 import haxe.test.ui.Report;
-import haxe.reactive.arrow.ArrowTest;
-import haxe.reactive.arrow.CancellerTest;
-import haxe.reactive.arrow.ComplexTest;
-import haxe.reactive.arrow.ErrorTest;
-import haxe.reactive.arrow.FunctionArrowTest;
+//import haxe.reactive.arrow.ArrowTest;
+//import haxe.reactive.arrow.CancellerTest;
+//import haxe.reactive.arrow.ComplexTest;
+//import haxe.reactive.arrow.ErrorTest;
+//import haxe.reactive.arrow.FunctionArrowTest;
 #if js
-import haxe.reactive.arrow.JsArrowTest;
+//import haxe.reactive.arrow.JsArrowTest;
 #end
-import haxe.reactive.arrow.LambdaArrowTest;
+//import haxe.reactive.arrow.LambdaArrowTest;
 //import haxe.reactive.arrow.SchedulerTest;
 #if js
 	import js.Dom;	
@@ -24,19 +25,19 @@ class Full{
 		var t = new Runner();
 		t.add( new BootstrapTest() );
 		//t.add(		new SpeedTest()			);
-		t.add(	new ArrowTest()			);
-		t.add( 	new CancellerTest()		);
-		t.add(	new ComplexTest()		);
+		t.add(	new haxe.reactive.arrow.ArrowTest()			);
+		//t.add( 	new CancellerTest()		);
+		t.add(	new haxe.reactive.arrow.ComplexTest()		);
 		//t.add( 	new ErrorTest()			);
 		//t.add( 	new FunctionArrowTest()	);
-		t.add( 	new LambdaArrowTest()	);
+		//t.add( 	new LambdaArrowTest()	);
 		//t.add( 	new SchedulerTest() 	);
 		//t.add(	new TraceObjectTest()	);
-		
+		//t.add( new LeakCheck() );
 		var r = Report.create(t);
 		
 		#if js
-			t.add( new JsArrowTest() );
+			//t.add( new JsArrowTest() );
 			js.Lib.window.onload = function (e) {t.run();};
 		#else
 			t.run();

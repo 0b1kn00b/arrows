@@ -7,9 +7,9 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import haxe.reactive.arrows.Arrow;
+import arrow.Arrow;
 
-using haxe.reactive.arrows.Arrow;
+using arrow.Arrow;
 
 class CancellerTest extends TestCase{
 
@@ -25,14 +25,14 @@ class CancellerTest extends TestCase{
 		); 
 		var a = Arrow.delayA(10);
 		var b = Arrow.returnA().then(a).run();
-//		trace ( ScheduleManager.getInstance().pending.length );
+		trace ( untyped Arrow.scheduler.pending );
 		b.cancel();
 		Arrow.begin();
-	//	trace ( ScheduleManager.getInstance().pending.length );
-		Arrow.returnA().then(async.lift()).run();
-	//	trace ( ScheduleManager.getInstance().pending.length );
+		trace ( untyped Arrow.scheduler.pending );
+		Arrow.returnA().then(async).run().start();
+		trace ( untyped Arrow.scheduler.pending );
 		Arrow.begin();
-		//trace( ScheduleManager.getInstance().pending.length);
+		trace ( untyped Arrow.scheduler.pending );
 		
 	}
 	

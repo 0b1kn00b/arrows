@@ -3,8 +3,8 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import haxe.reactive.arrows.Arrow;
-using haxe.reactive.arrows.Arrow;
+import arrow.Arrow;
+using arrow.Arrow;
 
 class ErrorTest extends TestCase{
 

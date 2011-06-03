@@ -21,15 +21,15 @@ import PreludeExtensions;
 import haxe.test.Assert;
 import haxe.test.TestCase;
 
-import haxe.reactive.arrows.Arrow;
-import haxe.reactive.arrows.ArrowInstance;
-import haxe.reactive.arrows.combinators.ProductThunk;
+import arrow.Arrow;
+import arrow.ArrowInstance;
+import arrow.verb.Product;
 
 using Prelude;
 using PreludeExtensions;
 
-import haxe.reactive.arrows.Arrow;
-using haxe.reactive.arrows.Arrow;
+import arrow.Arrow;
+using arrow.Arrow;
 
 class ArrowTest extends TestCase{
 	public function new() {
@@ -40,76 +40,140 @@ class ArrowTest extends TestCase{
 		as.lift().run().start();
 	}
 	public function testBin() {
-		var as = Assert.createEvent( function(x) Assert.isTrue(true) );
-		f0.then(as).run(3).start();
-	}
-	public function testSimpleArrow(){
-		var f3 = (
-			function(x){
-				Assert.equals(x,162);
-			}
-		).tuple();
-
-		f0.then(f1).then(f3).then(debug).run(80).start();
+		var as = Assert.createEvent( function(x:String) Assert.equals("hello",x) );
+		takesFloatReturnsString_hello.then(as.lift()).run(3).start();
 	}
 	
+	public function testSimpleArrow(){
+		var f3 = (
+			function(x:Float){
+				Assert.equals(x,162);
+			}
+		);
+
+		takesFloatReturnsFloat.then(takesFloatReturnsFloat2.lift()).then(f3.pass()).then(debug.lift()).run(80).start();
+	}
+	public function testSimpleArrowChangeType() {
+		var assert = (
+			function(x:String):Dynamic{
+				Assert.equals("world",x);
+			}
+		);
+		
+		var f2s = takesFloatReturnsString.lift();
+		var f2f = takesFloatReturnsFloat.lift();
+		
+		f2f
+			.then(f2s)
+				.then(assert.pass())
+					.then(debug.lift())
+						.run(80).start();
+	}
+	
+	public function testIncompatibleTypeSignaturesSoFar() {
+			var assert = (
+			function(x:String):Dynamic{
+				Assert.equals("world",x);
+			}
+		);
+		
+		var f2s = takesFloatReturnsString.lift();
+		var f2f = takesFloatReturnsFloat.lift();
+		
+		#if deep
+		f2s
+			.then(f2f)
+				.then(assert.pass())
+					.then(debug.lift())
+						.run(80).start();
+		#end
+		assert("world");
+	}
 	public function testPair(){
 		var as = 
-		function (x:Tuple2<Int,Int>) {	
-			Assert.equals(x.productElement(0),11);
-			Assert.equals(x.productElement(1),20);
-		}.tuple();
-		var a = f0.tuple().pair(f1.tuple()).then(as).run(Tuple2.create(10,10)).start();
+		function (x:Tuple2<Float,Float>):Dynamic {	
+			Assert.equals(11,x.productElement(0));
+			Assert.equals(20,x.productElement(1));
+		};
+		var f2f 	= takesFloatReturnsFloat.pass();
+		var f2f2 	= takesFloatReturnsFloat2.pass();
+		
+		var a = f2f.pair(f2f2).then(as.pass()).run(Tuple2.create(10,10)).start();
 	}
 	
 	public function testFirst(){
-		var as = Assert.createEvent( 
-			function(x:Tuple2<Dynamic,Dynamic>){
-				Assert.equals(x.productElement(0),11);
-				Assert.equals(x.productElement(1),10);
-			}
-		);
-		f0.first().then(as.tuple()).run(Tuple2.create(10,10)).start();
+		var as  = 
+			Assert.createEvent( 
+				function(x:Tuple2<Float,Float>):Dynamic {
+					Assert.equals(x.productElement(0),11);
+					Assert.equals(x.productElement(1), 10);
+				}
+			);
+		var f2f = takesFloatReturnsFloat.lift();
+		f2f.first().then(as.pass()).run(Tuple2.create(10,10)).start();
 	}
 	
 	public function testSecond(){
 		var as = Assert.createEvent( 
-			function(x:Tuple2<Dynamic,Dynamic>){
+			function(x:Tuple2<Float,Float>){
 				Assert.equals(x.productElement(0),10);
 				Assert.equals(x.productElement(1),11);
 			}
 		);
-		f0.second().then(as.tuple()).run(Tuple2.create(10,10)).start();
+		var f2f = takesFloatReturnsFloat.lift();
+		f2f.second().then(as.pass()).run(Tuple2.create(10,10)).start();
 	}
-	
+
 	public function testFanout(){
 		var as = Assert.createEvent( 
-			function(x:Tuple2<Dynamic,Dynamic>){
+			function(x:Tuple2 < Float, Float > ):Dynamic {
+				//trace(x);
+				//trace(Std.is(x, Tuple2));
 				Assert.equals(11,x.productElement(0));
 				Assert.equals(20,x.productElement(1));
 			}
 		);
-		f0.fanout(f1).then(as.tuple()).run(10).start();
+		var a0 = takesFloatReturnsFloat.lift();
+		var a1 = takesFloatReturnsFloat2.lift();
+		a0.fanout(a1)
+				.then(as.pass())
+					.run(10).start();
 	}
 	
-	public function testTie(){
-		var as = Assert.createEvent(
-			function (x:Tuple2<Dynamic,Dynamic>){
-				Assert.equals(10,x.productElement(0));
-				Assert.equals(11,x.productElement(1));
+	public function testFanoutIncompatibleTypingWithFanout() {
+				var as = Assert.createEvent( 
+			function(x:Tuple2 < Float, String > ):Dynamic {
+				//trace(x);
+				//trace(Std.is(x, Tuple2));
+				Assert.equals(11,x.productElement(0));
+				Assert.equals("world",x.productElement(1));
 			}
 		);
-		f0.tie(as.tuple()).run(10).start();
+		var a0 = takesFloatReturnsFloat.lift();
+		var a1 = takesFloatReturnsString.lift();
+		a0.fanout(a1)
+				.then(as.pass())
+					.run(10).start();
+	}
+	
+	public function testBind(){
+		var as = Assert.createEvent(
+			function (x:Tuple2<Float,Float>){
+				Assert.equals(10,x.productElement(0));
+				Assert.equals(11, x.productElement(1));
+			}
+		);
+		takesFloatReturnsFloat.lift().bind(as.pass()).run(10).start();
 	}
 	
 	public function testJoin(){
 		var as = Assert.createEvent(
-			function (x:Tuple2<Dynamic,Dynamic>){
+			function (x:Tuple2<Float,Float>){
 				Assert.equals(x.productElement(0),11);
 				Assert.equals(x.productElement(1),22);
 			}
 		);
-		f0.join(f1.tuple()).then(as.tuple()).run(10).start();
+		takesFloatReturnsFloat.lift().join(takesFloatReturnsFloat2.pass()).then(as.pass()).run(10).start();
 	}
 	
 	public function testRepeat(){
@@ -127,7 +191,7 @@ class ArrowTest extends TestCase{
 				return Arrow.doDone(out);
 			}
 		}
-		g0.repeat().then(as).run(0).start();
+		g0.lift().repeat().then(as.lift()).run(0).start();
 	}
 	
 	public function testDelay(){
@@ -136,20 +200,20 @@ class ArrowTest extends TestCase{
 				Assert.isTrue(true);
 			}
 		,3000);
-		Arrow.delayA(2000).then(as).run().start();
+		Arrow.delay(2000).then(as.lift()).run().start();
 	}
 	
-	public function testReturnA(){
+	public function testIdentity(){
 		var self = this;
 		var as = Assert.createEvent(
-			function(x){
+			function(x:String){
 				Assert.equals("test",x);
 			}
 		);
-		Arrow.returnA().then(as).run("test").start();
+		Arrow.identity().then(as.lift()).run("test").start();
 	}
 	
-	public function testEventArrow() {
+	public function testEvent() {
 		var self = this;
 		var dispatcher = #if flash new EventDispatcher(); #else new zen.env.event.EventSystem(this); #end
 		var as = Assert.createEvent(
@@ -157,23 +221,32 @@ class ArrowTest extends TestCase{
 					Assert.isTrue(true);
 			}
 		);
-		Arrow.eventA("trigger").then(as).run(dispatcher);
-		Arrow.delayA(100).then( function(x) { dispatcher.dispatchEvent(new Event("trigger")); } ).run();
+		Arrow.event("trigger").then(as.lift()).run(dispatcher);
+		Arrow.delay(100).then( 
+			function(x) { 
+				dispatcher.dispatchEvent(new #if !flash zen.env.event.#end Event("trigger")); 
+			}.lift()
+		).run();
 		Arrow.begin();
 	}
-	public function f0(x:Float):Float{
-		debug(x);
+	public function takesFloatReturnsFloat(x:Float):Float{
+		debug(["f2f",x]);
 		var out =  x+1;
 		debug(out);
 		return out;
 	}
-	public function f1(x:Float):Dynamic{
-		//debug(x);
+	public function takesFloatReturnsFloat2(x:Float):Float {
+		debug(["f2f2",x]);	
 		var out = x*2;
 		debug(out);
 		return out;
 	}
-	
+	public function takesFloatReturnsString_hello(x:Float):String {
+		return "hello";
+	}
+	public function takesFloatReturnsString(x:Float):String {
+		return "world";
+	}
 	public function debug(x:Dynamic):Dynamic{
 		//trace("DEBUG : " + Std.string(x));
 		return x;

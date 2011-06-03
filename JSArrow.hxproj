@@ -17,6 +17,8 @@
     <class path="unit" />
     <class path="..\stax\src\main\haxe" />
     <class path="..\..\platform\x\src\hx\hxhsl\hsl-pico source" />
+    <class path="experimental" />
+    <class path="..\play\FasterGroup\src" />
   </classpaths>
   <!-- Build options -->
   <build>

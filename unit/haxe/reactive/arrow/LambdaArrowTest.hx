@@ -3,13 +3,13 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import haxe.reactive.arrows.Arrow;
-import haxe.reactive.arrows.ext.LambdaArrow;
+import arrow.Arrow;
+import arrow.ext.LambdaArrow;
 
 
 
-using haxe.reactive.arrows.Arrow;
-using haxe.reactive.arrows.ext.LambdaArrow;
+using arrow.Arrow;
+using arrow.ext.LambdaArrow;
 
 class LambdaArrowTest extends TestCase{
 
@@ -92,7 +92,36 @@ class LambdaArrowTest extends TestCase{
 			}
 		).then(as.lift()).run(list).start();
 
-	}/*
+	}
+	public function testIndependentLoop() {
+		var arr = new Array<Int>();
+		var arr2 = new Array<Int>();
+		var comp = [];
+		for (i in 0...5){
+			arr.push(i);
+			arr2.push(i + 4);
+		}
+		var self = this;
+		var a = Arrow.returnA().iter(
+			function (x:Dynamic){
+				comp.push(x);
+			}
+		);
+		a.info = "show count a";
+		var b = Arrow.returnA().iter(
+			function(x:Dynamic){
+				comp.push(x);
+			}
+		);
+		var as = Assert.createEvent(
+			function (x) {
+				Assert.equals( [ 0 , 0 , 1 , 1 ,2 ,2 ,3 ,3 ,4 ,4 ] , comp );
+			}
+		,3000);
+		b.info = "show count b";
+		a.pair(b).then(as.tuple()).run(Tuple2.create(arr,arr2)).start();
+	}
+	/*
 	public function testInfiniteLoop(){
 		var self = this;
 		var as = Assert.createEvent(

@@ -14,17 +14,17 @@ using PreludeExtensions;
 using haxe.data.collections.IterableExtensions;
 using haxe.data.collections.ArrayExtensions;
 
-import haxe.reactive.arrows.Arrow;
-using haxe.reactive.arrows.Arrow;
+import arrow.Arrow;
+using arrow.Arrow;
 
-using haxe.reactive.arrows.ext.LambdaArrow;
+using arrow.ext.LambdaArrow;
 
 class SpeedTest extends TestCase {
 
 	public var out:Iterable<Dynamic>;
 	private var in0: Iterable<Dynamic>;
 	
-	public static var how_many : Int = 1000000;
+	public static var how_many : Int = 2000000;
 	public function new() {
 		super();
 	}

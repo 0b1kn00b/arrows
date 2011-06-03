@@ -9,10 +9,10 @@ import haxe.test.TestCase;
 
 import Prelude;
 
-import haxe.reactive.arrows.Arrow;
+import arrow.Arrow;
 
 using Prelude;
-using haxe.reactive.arrows.Arrow;
+using arrow.Arrow;
 
 class FunctionArrowTest extends TestCase {
 
