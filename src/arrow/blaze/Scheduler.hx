@@ -19,24 +19,27 @@ import arrow.ArrowInstance;
 import arrow.Arrow;
 
 interface Scheduler {
+	private var current	: Arrow<Dynamic,Dynamic>;
 	private var queue	: XQueue<Arrow<Dynamic,Dynamic>>;
-	//private var stack	: Array<Arrow>;
-	private var pending : Hash<ArrowInstance>;
+
+	private var pending : Hash<ArrowInstance<Dynamic>>;
 	
 	public function wait():Void;
 	public function start():Void;
 	public function stop():Void;
 	public function enqueue(v:Arrow<Dynamic,Dynamic>):Void;
-	//public function push(v:Arrow):Void;
-	public function register(v:ArrowInstance):Void;
-	public function unregister(v:ArrowInstance):Void;
-	public function cancel(v:ArrowInstance):Void;
+	
+	public function register(v:ArrowInstance<Dynamic>):Void;
+	public function unregister(v:ArrowInstance<Dynamic>):Void;
+	
+	public function cancel(v:ArrowInstance<Dynamic>):Void;
 }
 class AsynchronousGapScheduler implements Scheduler {
+	var current				: Arrow<Dynamic,Dynamic>;
 	var interval			: Dynamic;
 	var queue				: XQueue<Arrow<Dynamic,Dynamic>>;
-	//var stack				: Array<Arrow>;
-	var pending 			: Hash<ArrowInstance>;
+	
+	var pending 			: Hash<ArrowInstance<Dynamic>>;
 	var max_depth			: Int;
 	var count				: Int;
 	var state				: String;
@@ -56,21 +59,24 @@ class AsynchronousGapScheduler implements Scheduler {
 	}
 	public function start():Void {
 		if ( state == "running" ) return;
-		var a 	: Arrow<Dynamic,Dynamic> = null;
 		var empty		= false;
 		state = "running";
 		count = 0;
 		while ((count++ < max_depth) && (empty == false)) {
-			a = this.queue.dequeue();
+			current = this.queue.dequeue();
 			//a = this.stack.pop();
-			if (a == null) {
+			if (current == null) {
 				empty = true;
 				break;
-			}else if (a.active) {
-				if ( (a.predicate== null) || a.predicate() ) {
-					a.invoke();
-				}else {
-					this.queue.enqueue(a);
+			}else {
+				//trace(a.instance);
+				if (current.active) {
+					if ( (current.predicate== null) || current.predicate() ) {
+						current.invoke();
+					}else {
+						this.queue.enqueue(current);
+					}
+					current = null;
 				}
 			}
 		}
@@ -83,24 +89,24 @@ class AsynchronousGapScheduler implements Scheduler {
 		}
 		state = "waiting";
 		#if (flash || js)
-		untyped window.setTimeout("arrow.blaze.AsynchronousGapScheduler.self.start()",100);
+			untyped window.setTimeout("arrow.blaze.AsynchronousGapScheduler.self.start()",100);
 		#end
 	}
 	public function stop():Void {
+		trace("Explicit Stop");
 		state = "stopped";
 	}
-
 	public function enqueue(v:Arrow<Dynamic,Dynamic>):Void {
 		this.queue.enqueue(v);
 	}
-	public inline function register(v:ArrowInstance):Void {
+	public inline function register(v:ArrowInstance<Dynamic>):Void {
 		this.pending.set(v.uuid, v);
 	}
-	public function unregister(v:ArrowInstance):Void {
+	public function unregister(v:ArrowInstance<Dynamic>):Void {
 		this.pending.remove(v.uuid);
 	}
-	public function cancel(v:ArrowInstance):Void {
-		//trace(v.stack);
-		v.stack.forEach( function(x) x.destroy() );
+	public function cancel(v:ArrowInstance<Dynamic>):Void {
+		this.current.destroy(v);
+		v.stack.forEach( function(x) x.destroy(v) );
 	}
 }

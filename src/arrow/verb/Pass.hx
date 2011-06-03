@@ -34,7 +34,7 @@ class Pass<P,R> extends Arrow<P,R>{
 		super( pass );
 		info = "Passes single argument unaltered.";
 	}
-	private function pass(x:P, a:ArrowInstance):Void {
+	private function pass(x:P, a:ArrowInstance<Dynamic>):Void {
 		a.cont(f(x));
 	}
 }

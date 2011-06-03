@@ -32,6 +32,8 @@ import haxe.util.Guid;
 import arrow.verb.Progress;
 import arrow.vo.ProgressEvent;
 
+using arrow.Arrow;
+
 #if neko
 	import neko.vm.Mutex;
 #end
@@ -40,17 +42,21 @@ import arrow.vo.ProgressEvent;
 * Bookkeeping object for Arrow arrow instances.
 * Keeps track of continuations composing arrows, and sends them to the scheduler.
 */
-class ArrowInstance{
+class ArrowInstance<T>{
 	
 	public var progress(default,null):Progress;
 	
-	public var stack:Array<Arrow<Dynamic,Dynamic>>;
-	public var uuid:String;
+	public var stack		: Array<Arrow<Dynamic,Dynamic>>;
+	public var uuid			: String;
 	
-	private var cancellers : Array < Void->Void > ;
+	private var cancellers 	: Array < Void->Void > ;
+	public var error		: Dynamic;
+	public var initial		: T;
+	private var start		: Arrow<Dynamic,Dynamic>;
 	
-	public function new(arr:Arrow<Dynamic,Dynamic>, x:Dynamic) {
-
+	public function new(arr:Arrow<Dynamic,Dynamic>, x:T) {
+		this.initial		= x;
+		this.start			= arr;
 		this.uuid 			= Guid.generate();	
 		this.cancellers 	= new Array();
 		this.stack 			= [Arrow.terminal(), arr];
@@ -125,7 +131,6 @@ class ArrowInstance{
 	public function addCanceller(canceller:CodeBlock){
 		cancellers.push(canceller);
 	}
-
 	/**
 	 * Notify progress arrow of step.
 	 * @param	canceller

@@ -36,7 +36,7 @@ class Join<AP,A0R,A1R> extends Arrow<AP,Tuple2<A0R,A1R>>{
 		this.a1 = Arrow.identity().fanout(a1);
 		super(compose);
 	}
-	private function compose(x:AP, a:ArrowInstance) {
+	private function compose(x:AP, a:ArrowInstance<Dynamic>) {
 		a.cont(x, a0, a1);
 	}
 }

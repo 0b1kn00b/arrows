@@ -35,7 +35,7 @@ class Bind<AP,AR,A0R> extends Arrow<AP,AR>{
 		this.a1 = a1;
 		super(  compose );
 	}
-	private function compose(x:AP, a:ArrowInstance) {
+	private function compose(x:AP, a:ArrowInstance<Dynamic>) {
 		a.cont(x,a0, a1);
 	}
 }

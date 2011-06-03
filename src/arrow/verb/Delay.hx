@@ -47,7 +47,7 @@ class Delay<I> extends Arrow<I,I>{
 	private function cancel() {
 		this.cancelled = true;
 	}
-	private var a : ArrowInstance;
+	private var a : ArrowInstance<Dynamic>;
 	
 	private function cont(x:I):Void {
 		if (!cancelled){
@@ -72,7 +72,7 @@ class Delay<I> extends Arrow<I,I>{
 			return ( t + this.ms/1000 ) < haxe.Timer.stamp();
 		}
 	#elseif ( flash || js )	
-		private function delay(x:I, a:ArrowInstance) {
+		private function delay(x:I, a:ArrowInstance<Dynamic>) {
 			this.a = a;
 			var self = this;
 			Timer.delay( function() { self.cont(x); } , this.ms);

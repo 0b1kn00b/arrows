@@ -34,7 +34,7 @@ import arrow.verb.Animate;
 import arrow.verb.Bind;
 import arrow.verb.Compose;
 import arrow.verb.Delay;
-//import arrow.verb.Element;
+import arrow.verb.Element;
 import arrow.verb.EventArrow;
 import arrow.verb.Fanout;
 import arrow.verb.First;
@@ -65,9 +65,10 @@ using haxe.framework.Injector;
 using Enums;
 
 class Arrow<AP,AR>{
-	public dynamic function error(e:Dynamic):Void {
-		Stax.error( e ) ;
-	}
+	/**
+	 * 
+	 */
+	
 	/**
 	 * @private
 	 * Used internally to skip cancelled arrows.
@@ -80,15 +81,19 @@ class Arrow<AP,AR>{
 	public var predicate	: Void->Bool;
 	
 	/**
-	 * @private
 	 * Reference to the arrow instance for cps.
 	 */
-	public var instance 	: ArrowInstance;
+	public var instance 	: ArrowInstance<Dynamic>;
+	
+	/**
+	 * @private
+	 */
+	private var failed:Bool;
 	
 	/**
 	 * The wrapped method.
 	 */
-	public var method		: AP->ArrowInstance-> Void;
+	public var method		: AP->ArrowInstance<Dynamic>-> Void;
 	
 	/**
 	 * Reference string.
@@ -100,13 +105,17 @@ class Arrow<AP,AR>{
 	 */
 	public var param		: AP;
 	
+	/**
+	 * Number of params in the called function. I may remove this.
+	 */
 	public var params		: Int;
-	public function new(method:AP->ArrowInstance-> Void, ?params:Int = 1) {
+	
+	public function new(method:AP->ArrowInstance<Dynamic>-> Void, ?params:Int = 1) {
 		this.active = true;
 		this.method = method;
 		this.params = params;
 	}
-	public inline function execute(x:AP,a:ArrowInstance){
+	public function execute(x:AP,a:ArrowInstance<Dynamic>){
 		this.method(x,a);
 	}
 	/**
@@ -114,7 +123,14 @@ class Arrow<AP,AR>{
 	 * Called by the scheduler.
 	 */
 	public inline function invoke() {
-		this.execute( this.param , this.instance );
+		try {
+			this.execute( this.param , this.instance );
+		}catch (e:Dynamic) {
+			this.instance.error = e;
+			Arrow.scheduler.cancel(this.instance);
+			//trace("carry on:" + (this.method == this.nothing));
+			this.execute( this.param , this.instance );
+		}
 	}
 	
 	/**
@@ -125,12 +141,14 @@ class Arrow<AP,AR>{
 	public function run(?args:Dynamic):Progress{
 		return new ArrowInstance(this,args).progress;
 	}
-	private function nothing(x:Dynamic,a:ArrowInstance) {
-		
+	private function nothing(x:Dynamic, a:ArrowInstance<Dynamic>) {
+		a.cont(x);
 	}
-	public function destroy() {
-		this.method = nothing;
-		this.active	= false;
+	public function destroy(instance:ArrowInstance<Dynamic>) {
+		if ( !Std.is( this , Terminal ) ) {
+			this.method = this.nothing;
+			this.active	= false;
+		}
 	}
 	public var name(getName, null):String;
 	public function getName() {
@@ -215,9 +233,9 @@ class Arrow<AP,AR>{
 		//return new Poll(predicate);
 	//}
 	#if js
-		//public static function elementA(value:Dynamic){
-			//return new Element(value);
-		//}
+		public static function elementA(value:Dynamic){
+			return new Element(value);
+		}
 	#end
 
 	/*
@@ -348,7 +366,7 @@ class Function1Arrow {
 	public static function fanout < P1 , R1 , R2 > (f:Function1 < P1 , R1 > , x:Arrow<P1,R2>) {
 		return new Consume1(f).fanout(x);
 	}
-	//public static function bind < P1 , R1 > (f:Function1 < P1, R1 > , x:Dynamic) {
+	//public static function bind < P1 , R1 > (f:Function1 < P1, R1 > , x:Arrow) {
 		//return new Consume1(f).bind(x);
 	//}
 	//public static function join < P1 , R1 > (f:Function1 < P1, R1 > , x:Dynamic) {

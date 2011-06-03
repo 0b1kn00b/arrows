@@ -1,5 +1,6 @@
 package arrow.blaze;
 import zen.data.XQueue;
+import arrow.Arrow;
 
 import Prelude;
 import PreludeExtensions;
@@ -12,8 +13,9 @@ using haxe.data.collections.IterableExtensions;
 using haxe.data.collections.ArrayExtensions;
 
 class InlineScheduler implements Scheduler {
+	var current		: Arrow<Dynamic,Dynamic>;
 	var queue		: XQueue<Arrow<Dynamic,Dynamic>>;
-	var pending 	: Hash<ArrowInstance>;
+	var pending 	: Hash<ArrowInstance<Dynamic>>;
 	var max_depth	: Int;
 	var count		: Int;
 	var state		: String;
@@ -58,13 +60,13 @@ class InlineScheduler implements Scheduler {
 	public function enqueue(v:Arrow<Dynamic,Dynamic>):Void {
 		this.queue.enqueue(v);
 	}
-	public function register(v:ArrowInstance):Void {
+	public function register(v:ArrowInstance<Dynamic>):Void {
 		this.pending.set(v.uuid, v);
 	}
-	public function unregister(v:ArrowInstance):Void {
+	public function unregister(v:ArrowInstance<Dynamic>):Void {
 		this.pending.remove(v.uuid);
 	}
-	public function cancel(v:ArrowInstance):Void {
-		v.stack.forEach( function(x) x.destroy() );
+	public function cancel(v:ArrowInstance<Dynamic>):Void {
+		v.stack.forEach( function(x) x.destroy(v) );
 	}
 }

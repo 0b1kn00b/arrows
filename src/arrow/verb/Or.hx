@@ -47,7 +47,7 @@ class Or<AP,AR> extends Arrow<AP,AR>{
 	var al1 : Progress;
 	var ar1 : Progress; 	
 	
-	var a	: ArrowInstance;
+	var a	: ArrowInstance<Dynamic>;
 	var f	: Arrow<AP,AR>;
 	var g	: Arrow<AP,AR>;
 	
@@ -56,7 +56,7 @@ class Or<AP,AR> extends Arrow<AP,AR>{
 		this.g = g;
 		super( or );
 	}
-	private function or(x:AP, a:ArrowInstance) {				
+	private function or(x:AP, a:ArrowInstance<Dynamic>) {				
 		a.addCanceller(cancel);
 		this.a = a;
 		

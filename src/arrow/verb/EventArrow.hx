@@ -39,7 +39,7 @@ class EventArrow<O> extends Arrow<#if flash EventDispatcher #else EventListener 
 		this.trigger = trigger;
 		super( event );
 	}
-	private function event(target: #if flash EventDispatcher #else EventListener #end, a:ArrowInstance) {
+	private function event(target: #if flash EventDispatcher #else EventListener #end, a:ArrowInstance<Dynamic>) {
 		var self = this;
 		cancel = function(){
 			target.removeEventListener(self.trigger,self.handler);

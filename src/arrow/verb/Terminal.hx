@@ -24,8 +24,14 @@ import arrow.Arrow;
 import arrow.ArrowInstance;
 
 class Terminal<I> extends Arrow<I,Void>{
-	public function new() { super(terminal); }
-	private function terminal(x:I, a:ArrowInstance) {
+	public function new() {
+		super(terminal);
+		this.info = "Last Arrow on ArrowInstance";
+	}
+	private function terminal(x:I, a:ArrowInstance<Dynamic>) {
 		Arrow.scheduler.unregister(a);
+		if (a.error != null) {
+			a.progress.recover().run(a);
+		}
 	}
 }

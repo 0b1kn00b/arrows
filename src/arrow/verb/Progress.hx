@@ -54,7 +54,7 @@ class Progress extends Arrow<Dynamic,Dynamic>, implements EventDispatcher, imple
 		dispatcher.dispatchEvent(m);
 	}
 	
-	public function new(instance:ArrowInstance) {
+	public function new(instance:ArrowInstance<Dynamic>) {
 		this.dispatcher = new EventSystem(this);
 		
 		this.instance = instance;
@@ -66,6 +66,14 @@ class Progress extends Arrow<Dynamic,Dynamic>, implements EventDispatcher, imple
 		);
 
 	}
+	/**
+	 * Returns the Arrow that is called if something goes wrong on the ArrowInstance.
+	 */ 
+	public dynamic function recover():Arrow <ArrowInstance<Dynamic>, Dynamic  > {
+		//return Stax.error.lift();
+		return ( function(x:ArrowInstance<Dynamic>) { trace(x.error); } .lift());
+	}
+	
 	public function cancel(){
 		instance.cancel();
 	}

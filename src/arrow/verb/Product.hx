@@ -38,7 +38,7 @@ class Product<P1,R1,P2,R2> extends Arrow<Tuple2<P1,P2>,Tuple2<P2,R2>>{
 		super (product);
 		info = "Executes " + f.getName() + " and " + g.getName() + " simultaneously";
 	}
-	private function product(x:Tuple2 < P1, P2 > , a:ArrowInstance) {
+	private function product(x:Tuple2 < P1, P2 > , a:ArrowInstance<Dynamic>) {
 		this.a = a;
 		a.addCanceller(cancel);
 		count = 2;
@@ -46,7 +46,7 @@ class Product<P1,R1,P2,R2> extends Arrow<Tuple2<P1,P2>,Tuple2<P2,R2>>{
 		rProgress = g.then(this.g1.pass()).run(x._2);
 	}
 	//TODO, shouldn't this be the same as ArrowInstance on the super, shouldn't it always be?
-	private var a			: ArrowInstance;
+	private var a			: ArrowInstance<Dynamic>;
 	private var count		: Int;
 	private var lOut		: R1;
 	private var rOut		: R2;

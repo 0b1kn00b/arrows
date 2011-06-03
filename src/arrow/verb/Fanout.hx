@@ -38,7 +38,7 @@ class Fanout<AP,FR1,FR2> extends Arrow<AP,Tuple2<FR1,FR2>>{
 		this.a1 = a0.pair(a1);
 		super( compose );
 	}
-	private function compose(x:AP, a:ArrowInstance) {
+	private function compose(x:AP, a:ArrowInstance<Dynamic>) {
 		a.cont(x,a0,a1);
 	}
 }

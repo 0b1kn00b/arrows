@@ -17,7 +17,7 @@ class Composition<AP1,AR1,AP2,AR2> extends Arrow<AP1,AR2> {
 		this.a1 = a1;
 		super(compose);
 	}
-	private function compose( x : AP1 , a : ArrowInstance ):Void {
+	private function compose( x : AP1 , a : ArrowInstance<Dynamic> ):Void {
 		throw new AbstractMethodError("execute");
 	}
 	

@@ -31,7 +31,7 @@ class Repeat<I,O> extends Arrow<I,O>{
 		this.f = f;
 		super(repeater);
 	}
-	private function repeater(x:I, a:ArrowInstance) {
+	private function repeater(x:I, a:ArrowInstance<Dynamic>) {
 		a.cont(x,f,new InnerRepeat(f,a));
 	}
 }
@@ -40,13 +40,13 @@ class InnerRepeat<I,O> extends Arrow<TaggedValue<Loop,I>,O>{
 	private var cancelled	: Bool;
 	private var f			: Arrow<I,O>;
 	
-	public function new(f:Arrow<I,O>,a:ArrowInstance){
+	public function new(f:Arrow<I,O>,a:ArrowInstance<Dynamic>){
 		this.cancelled 	= false;
 		this.f			= f; 
 		a.addCanceller(this.cancel);	
 		super( this.doit );
 	}
-	private function doit(x:TaggedValue<Loop,I>,a:ArrowInstance) {
+	private function doit(x:TaggedValue<Loop,I>,a:ArrowInstance<Dynamic>) {
 		if ( this.cancelled ) return;
 		switch(x.tag){
 			case repeat:

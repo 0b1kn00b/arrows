@@ -37,7 +37,7 @@ class Consume<R> extends Arrow<Dynamic,R>{
 		this.f = f;
 		super( thunk );
 	}
-	private function thunk(x:Dynamic, a:ArrowInstance) {
+	private function thunk(x:Dynamic, a:ArrowInstance<Dynamic>) {
 		f();
 	}
 	//public static function gen<F,P,R>(i:Int, f:F):Consumer<F,P,R> {
@@ -61,7 +61,7 @@ class Consume1<P1,R1> extends Arrow<P1,R1>{
 		this.info 	= "Contains a function arrity 1";
 		super( thunk );
 	}
-	private function thunk(x:P1,a:ArrowInstance) {
+	private function thunk(x:P1,a:ArrowInstance<Dynamic>) {
 		a.cont(f(x));
 	}
 }

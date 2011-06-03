@@ -28,7 +28,7 @@ class Full{
 		t.add(	new haxe.reactive.arrow.ArrowTest()			);
 		//t.add( 	new CancellerTest()		);
 		t.add(	new haxe.reactive.arrow.ComplexTest()		);
-		//t.add( 	new ErrorTest()			);
+		t.add( 	new haxe.reactive.arrow.ErrorTest()			);
 		//t.add( 	new FunctionArrowTest()	);
 		//t.add( 	new LambdaArrowTest()	);
 		//t.add( 	new SchedulerTest() 	);
@@ -37,7 +37,7 @@ class Full{
 		var r = Report.create(t);
 		
 		#if js
-			//t.add( new JsArrowTest() );
+			t.add( new haxe.reactive.arrow.JsArrowTest() );
 			js.Lib.window.onload = function (e) {t.run();};
 		#else
 			t.run();

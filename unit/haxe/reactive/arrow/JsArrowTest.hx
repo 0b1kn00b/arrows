@@ -18,7 +18,7 @@ class JsArrowTest extends TestCase{
 				Assert.notNull(x);
 			}
 		);
-		Arrow.elementA("test").then(async).run().start();
+		Arrow.elementA("test").then(async.lift()).run().start();
 	}
 
 }
