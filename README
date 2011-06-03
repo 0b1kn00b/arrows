@@ -7,10 +7,11 @@ Usage.
 	
 	Arrow.liftF(f).then( Arrow.lift(g) ).run(x).start();
 
-	function (x:){
-		return x * 2;
-	}.lift().then( g.lift() ).run();
+	function (x:){ return x * 2; }
+		.lift().then( g.lift() ).run();
+	
 	Arrow.begin();
+	
 	
 For more information on arrows, see:
 http://en.wikipedia.org/wiki/Arrow_(computer_science)
