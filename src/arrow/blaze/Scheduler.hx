@@ -13,8 +13,6 @@ using haxe.data.collections.ArrayExtensions;
 
 import zen.data.XQueue;
 
-import mvc.Messages;
-
 import arrow.ArrowInstance;
 import arrow.Arrow;
 

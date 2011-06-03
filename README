@@ -4,11 +4,10 @@ Usage.
 	//lifts function f and passes output to arrow/function g at completion.
 	//start initiates the arrow scheduler
 	//can use Arrow.begin();
-	Arrow.liftF(f).then( Arrow.liftF(g) ).run(x).start();
-	/*
-		or, with:z using haxe.functional.arrows.Arrow;
-	*/
-	function (x){
+	
+	Arrow.liftF(f).then( Arrow.lift(g) ).run(x).start();
+
+	function (x:){
 		return x * 2;
 	}.lift().then( g.lift() ).run();
 	Arrow.begin();
@@ -23,21 +22,26 @@ note: ONLY THE COMBINATORS ARE SUPPORTED, THE SCHEDULING ALGORITHM MAY CHANGE WI
 
 To begin the scheduler, either arrowInstance.start() or Arrow.begin() should be used, 
 being that the same name cannot be used for a static function and a class function in the same class. 
+GOTCHA
 No arrows can be guaranteed to be called after begin() or start() as functionality differs across schedulers 
 and platforms, this being the most restrictive case.
 
 DEPENDENCIES
-HxHsl(svn) is used as the basis for certain functions in Arrows, all platform specific events systems are mediated 
-through it, for a more even api. Stax is used for unit testing, to further integration between the two projects.
+HxHsl(svn).
+Stax.
 
 Known issues.
-1) 	Php and Cpp broken at present.
+1) 	Php broken.
 
 2) 	Animate is not implemented in single threaded environments.
 
-3) 	The poll system used for the delay arrow in single threaded systems is extremely rudimentary.
+3) 	Only js fully tested.
 
-4) 	natty Or combinator bug turns up now and again.
+Changes.
 
-5) 	I´m not sure the scheduler is completely reliable in terminating automatically, 
-	although no test cases have confirmed this yet.
+0.2.1
+Faster scheduler, still @40x slower than vanilla function calls.
+Fully Typed.
+Error mechanism: Drops all Arrows except terminal, which calls Progress.recover.
+Renaming of Combinators.
+File structure changes.
