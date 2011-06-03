@@ -1,4 +1,0 @@
-cpp
-haxe_207
-true
-C:\World\Stack\os\win\programs\lingos\haxe\lib\hxcpp/2,07,0/
