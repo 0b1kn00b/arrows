@@ -107,7 +107,7 @@ class AsynchronousGapScheduler implements Scheduler {
 		this.pending.remove(v.uuid);
 	}
 	public function cancel(v:ArrowInstance<Dynamic>):Void {
-		this.current.destroy(v);
+		if(this.current != null )this.current.destroy(v);
 		v.stack.forEach( function(x) x.destroy(v) );
 	}
 }

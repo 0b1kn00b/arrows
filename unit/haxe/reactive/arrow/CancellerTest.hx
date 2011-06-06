@@ -23,16 +23,16 @@ class CancellerTest extends TestCase{
 				self.assertTrue(true);
 			}
 		); 
-		var a = Arrow.delayA(10);
-		var b = Arrow.returnA().then(a).run();
+		var a = Arrow.delay(10);
+		var b = Arrow.identity().then(a).run();
 		trace ( untyped Arrow.scheduler.pending );
 		b.cancel();
 		Arrow.begin();
-		trace ( untyped Arrow.scheduler.pending );
-		Arrow.returnA().then(async).run().start();
-		trace ( untyped Arrow.scheduler.pending );
-		Arrow.begin();
-		trace ( untyped Arrow.scheduler.pending );
+		Assert.equals(0, Lambda.count( ( untyped Arrow.scheduler.pending ) ) );
+		Arrow.identity().then(async.lift()).run().start();
+		//trace ( untyped Arrow.scheduler.pending );
+		//Arrow.begin();
+		//trace ( untyped Arrow.scheduler.pending );
 		
 	}
 	

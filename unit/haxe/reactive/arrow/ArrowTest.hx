@@ -98,7 +98,7 @@ class ArrowTest extends TestCase{
 		var f2f 	= takesFloatReturnsFloat.pass();
 		var f2f2 	= takesFloatReturnsFloat2.pass();
 		
-		var a = f2f.pair(f2f2).then(as.pass()).run(Tuple2.create(10,10)).start();
+		var a = f2f.pair(f2f2).then(as.pass()).run(Tuple2.create(10.,10.)).start();
 	}
 	
 	public function testFirst(){
@@ -110,7 +110,7 @@ class ArrowTest extends TestCase{
 				}
 			);
 		var f2f = takesFloatReturnsFloat.lift();
-		f2f.first().then(as.pass()).run(Tuple2.create(10,10)).start();
+		f2f.first().then(as.pass()).run(Tuple2.create(10.,10.)).start();
 	}
 	
 	public function testSecond(){
@@ -121,7 +121,7 @@ class ArrowTest extends TestCase{
 			}
 		);
 		var f2f = takesFloatReturnsFloat.lift();
-		f2f.second().then(as.pass()).run(Tuple2.create(10,10)).start();
+		f2f.second().then(as.pass()).run(Tuple2.create(10.,10.)).start();
 	}
 
 	public function testFanout(){

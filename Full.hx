@@ -1,5 +1,3 @@
-import haxe.reactive.arrow.BootstrapTest;
-import haxe.reactive.arrow.Consume5Test;
 //import haxe.reactive.arrow.LeakCheck;
 //import haxe.reactive.arrow.SpeedTest;
 import haxe.test.Runner;
@@ -24,18 +22,18 @@ class Full{
 	}
 	public function new(){
 		var t = new Runner();
-		//t.add( new BootstrapTest() );
+		t.add( new haxe.reactive.arrow.BootstrapTest() );
 		//t.add(		new SpeedTest()			);
-		//t.add(	new haxe.reactive.arrow.ArrowTest()			);
-		//t.add( 	new CancellerTest()		);
-		//t.add(	new haxe.reactive.arrow.ComplexTest()		);
-		//t.add( 	new haxe.reactive.arrow.ErrorTest()			);
-		//t.add( 	new FunctionArrowTest()	);
+		t.add(	new haxe.reactive.arrow.ArrowTest()			);
+		t.add( 	new haxe.reactive.arrow.CancellerTest()		);
+		t.add(	new haxe.reactive.arrow.ComplexTest()		);
+		t.add( 	new haxe.reactive.arrow.ErrorTest()			);
+		t.add( 	new haxe.reactive.arrow.FunctionArrowTest()	);
 		//t.add( 	new LambdaArrowTest()	);
 		//t.add( 	new SchedulerTest() 	);
 		//t.add(	new TraceObjectTest()	);
 		//t.add( new LeakCheck() );
-		t.add( new Consume5Test() );
+		t.add( new haxe.reactive.arrow.FurtherTypingTest() );
 		var r = Report.create(t);
 		
 		#if js
