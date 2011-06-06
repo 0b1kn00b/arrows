@@ -57,18 +57,21 @@ import haxe.framework.Injector;
 #end
 
 import Prelude;
+import PreludeExtensions;
+import haxe.data.collections.IterableExtensions;
+import haxe.data.collections.ArrayExtensions;
+
 using Prelude;
+using PreludeExtensions;
+using haxe.data.collections.IterableExtensions;
+using haxe.data.collections.ArrayExtensions;
 
 using arrow.Arrow;
 using Reflect;
 using haxe.framework.Injector;
 using Enums;
 
-class Arrow<AP,AR>{
-	/**
-	 * 
-	 */
-	
+class Arrow<AP,AR>{	
 	/**
 	 * @private
 	 * Used internally to skip cancelled arrows.
@@ -251,41 +254,38 @@ class Arrow<AP,AR>{
 
 }
 class Combinators {
-	//public static function raise(f:Dynamic) {
-		//
-	//}
-	///**
-	//* Composititon combinator.
-	//* @param f, a function or a FunctionThunk
-	//* 
-	//* compose, next, >>>
-	//*/
+	/**
+	* Composititon combinator.
+	* @param f, a function or a FunctionThunk
+	* 
+	* compose, next, >>>
+	*/
 	public static function then<P1,R1,P2,R2>(a:Arrow<P1,R1>,a2:Arrow<R1,R2>) {
 		return new Compose(a,a2 );
 	}
-//
-	///**
-	//* Product combinator.
-	//* pair, ***
-	//*/
+
+	/**
+	* Product combinator.
+	* pair, ***
+	*/
 	public static function pair<P1,R1,P2,R2>(a:Arrow<P1,R1>,a2:Arrow<P2,R2>){
 		return new Product(a,a2);
 	}
-//
-	///**
-	//* First combinator.
-	//*/
+
+	/**
+	* First combinator.
+	*/
 	public static function first<P,R>(a:Arrow<P,R>):First<P,R>{
 		return new First(a);
 	}
-//
-	///**
-	//* Second combinator
-	//*/
+
+	/**
+	* Second combinator
+	*/
 	public static function second<P,R>(a:Arrow<P,R>):Second<P,R>{
 		return new Second(a);
 	}
-//
+
 	/**
 	* Fanout combinator.
 	* split &&&
@@ -293,7 +293,7 @@ class Combinators {
 	public static function fanout<AP,AR1,AR2>(a0:Arrow<AP,AR1>,a1:Arrow<AP,AR2>):Fanout<AP,AR1,AR2> {
 		return new Fanout(a0, a1);
 	}
-//
+
 	/*
 	* Equivalent to Arrow.returnA().fanout(f).then(g);
 	*/
@@ -315,10 +315,6 @@ class Combinators {
 	public static function repeat<A,B>(a:Arrow<A,B>):Repeat<A,B>{
 		return new Repeat(a);
 	}
-
-	//public static function forever<A,B>(a:Arrow<A,B>):Arrow<A,B> {
-		//return a.then( function(x) { return Arrow.doRepeat(x);}.pass() ).repeat();
-	//}
 	
 	/*
 	* Either-or combinator. 
@@ -330,30 +326,29 @@ class Combinators {
 	public static function animate<AP,AR>(a:Arrow<AP,AR>,ms:Int):Animate<AP,AR> {
 		return new Animate(a, ms);
 	}
-	///**
-	//* DEBUG
-	//*/
-	//public static function print<A,B>(a:Arrow<A,B>):Arrow<A,B>{
-		//return a.then(
-			//function(x:Dynamic):Dynamic{
-				//trace(x);
-				//return x;
-			//}.pass()
-		//);
-	//}
-//}
-//class ThunkArrow {
-	//public function lift<R>(f:Thunk<R>):Consume<R>{
-		//return new Consume(f);
-	//}
+	/**
+	* DEBUG
+	*/
+	public static function print<A,B>(a:Arrow<A,B>):Arrow<A,B>{
+		return a.then(
+			function(x:Dynamic):Dynamic{
+				return x;
+			}.pass()
+		);
+	}
+}
+class ThunkArrow {
+	public function lift<R>(f:Thunk<R>):Consume<R>{
+		return new Consume(f);
+	}
 }
 class Function1Arrow {
 	public static function lift<P1, R1>(f:Function1<P1, R1>):Consume1<P1,R1> {
 		return new Consume1(f);
 	}
-	//public static function pass< P1, R1 > (f:Function1 < P1, R1 > ):Pass<P1,R1>{
-		//return new Pass(f);
-	//}
+	public static function pass< P1, R1 > (f:Function1 < P1, R1 > ):Pass<P1,R1>{
+		return new Pass(f);
+	}
 	public static function then < P1, R1, P2,R2 > (f:Function1<P1,R1>,x:Arrow<R1,R2>) {
 		return new Consume1(f).then( x );
 	}
@@ -366,56 +361,163 @@ class Function1Arrow {
 	public static function fanout < P1 , R1 , R2 > (f:Function1 < P1 , R1 > , x:Arrow<P1,R2>) {
 		return new Consume1(f).fanout(x);
 	}
-	//public static function bind < P1 , R1 > (f:Function1 < P1, R1 > , x:Arrow) {
-		//return new Consume1(f).bind(x);
-	//}
-	//public static function join < P1 , R1 > (f:Function1 < P1, R1 > , x:Dynamic) {
-		//return new Consume1(f).join(x);
-	//}
-	//public static function repeat < P1, R1 > (f:Function1 < P1, R1 > ) {
-		//return new Consume1(f).repeat();
-	//}
+	public static function bind < P1 , R1 , AR> (f:Function1 < P1, R1 > , x:Arrow <Tuple2 <P1, R1> , AR>) {
+		return new Consume1(f).bind(x);
+	}
+	public static function join < P1 , R1 , A1R> (f:Function1 < P1, R1 > , x:Arrow<R1,A1R>) {
+		return new Consume1(f).join(x);
+	}
+	public static function repeat < P1, R1 > (f:Function1 < P1, R1 > ) {
+		return new Consume1(f).repeat();
+	}
+	public static function or<P1,R1>(f:Function1 < P1, R1 >,a){
+		return new Consume1(f).or(a);
+	}
+	public static function animate<P1,R1>(f:Function1<P1,R1>,ms:Int){
+		return new Consume1(f).animate(ms);
+	}
 }
-//class Function2Arrow {
-	//public static function lift < P1, P2, R > (f:Function2 < P1, P2, R > ):Consume2<P1,P2,R> {
-		//return new Consume2(f);
-	//}
-//}
-//class Function3Arrow {
-	//public static function lift < P1, P2, P3, R > (f:Function3 < P1, P2, P3, R > ):Consume3<P1,P2,P3,R> {
-		//return new Consume3(f);
-	//}
-//}
-//class Function4Arrow {
-	//public static function lift < P1, P2, P3, P4, R > (f:Function4 < P1 , P2 , P3 , P4, R > ):Consume4<P1,P2,P3,P4,R> {
-		//return new Consume4(f);
-	//}
-//}
-//class Function5Arrow {
-	//public static function lift < P1, P2 , P3 , P4 , P5, R > (f:Function5 < P1, P2, P3, P4, P5, R > ):Consume5<P1,P2,P3,P4,P5,R> {
-			//return new Consume5(f);
-	//}
-//}
-//using Std;
-//class TupleArrowExtension {
-	//public static function flatten(t:Dynamic) {
-		//if ( !t.is(Tuple2) || !t.is(Tuple3) || !t.is(Tuple4) || t.is(Tuple5) ) {
-			//Stax.error( "cannot flatten type other than Tuple" );
-		//}else {
-				//
-		//}
-	//}
-//}
-//class Tuple2ArrowExtension {
-	//public static function flatten<A,B>(t:Tuple2<A,B>) {
-		//
-	//}
-//}
-//class FactoryExtension {
-	//public static function lift<R>(f:Factory<R>):Arrow<Dynamic,R> {
-		//return function (x:Dynamic):R{
-				//return f();
-		//}.lift();
-		//
-	//}
-//}
+class Function2Arrow {
+	public static function lift<P1,P2,R>(f:Function2<P1,P2,R>) {
+		return new Consume2(f);
+	}
+	public static function then<P1,P2,R>(f:Function2<P1,P2,R>,x) {
+		return new Consume2(f).then( x );
+	}
+	public static function first<P1,P2,R>(f:Function2<P1,P2,R>){
+		return new Consume2(f).first();
+	}
+	public static function second<P1,P2,R>(f:Function2<P1,P2,R>){
+		return new Consume2(f).second();
+	}
+	public static function fanout<P1,P2,R>(f:Function2<P1,P2,R>,x) {
+		return new Consume2(f).fanout(x);
+	}
+	public static function bind<P1,P2,R>(f:Function2<P1,P2,R>, x) {
+		return new Consume2(f).bind(x);
+	}
+	public static function join<P1,P2,R>(f:Function2<P1,P2,R>, x) {
+		return new Consume2(f).join(x);
+	}
+	public static function repeat<P1,P2,R>(f:Function2<P1,P2,R>){
+		return new Consume2(f).repeat();
+	}
+	public static function or<P1,P2,R1>(f:Function2 < P1, P2, R1 >,a){
+		return new Consume2(f).or(a);
+	}
+	public static function animate<P1,P2,R1>(f:Function2<P1,P2,R1>,ms:Int){
+		return new Consume2(f).animate(ms);
+	}
+}
+class Function3Arrow {
+	public static function lift<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>) {
+		return new Consume3(f);
+	}
+	public static function then<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>,x) {
+		return new Consume3(f).then( x );
+	}
+	public static function first<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>){
+		return new Consume3(f).first();
+	}
+	public static function second<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>){
+		return new Consume3(f).second();
+	}
+	public static function fanout<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>,x) {
+		return new Consume3(f).fanout(x);
+	}
+	public static function bind<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>, x) {
+		return new Consume3(f).bind(x);
+	}
+	public static function join<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>, x) {
+		return new Consume3(f).join(x);
+	}
+	public static function repeat<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>){
+		return new Consume3(f).repeat();
+	}
+	public static function or<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>,a){
+		return new Consume3(f).or(a);
+	}
+	public static function animate<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>,ms:Int){
+		return new Consume3(f).animate(ms);
+	}
+}
+class Function4Arrow {
+	public static function lift<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>) {
+		return new Consume4(f);
+	}
+	public static function then<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>,x) {
+		return new Consume4(f).then( x );
+	}
+	public static function first<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>){
+		return new Consume4(f).first();
+	}
+	public static function second<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>){
+		return new Consume4(f).second();
+	}
+	public static function fanout<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>,x) {
+		return new Consume4(f).fanout(x);
+	}
+	public static function bind<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>, x) {
+		return new Consume4(f).bind(x);
+	}
+	public static function join<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>, x) {
+		return new Consume4(f).join(x);
+	}
+	public static function repeat<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>){
+		return new Consume4(f).repeat();
+	}
+	public static function or<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>,a){
+		return new Consume4(f).or(a);
+	}
+	public static function animate<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>,ms:Int){
+		return new Consume4(f).animate(ms);
+	}
+}
+class Function5Arrow {
+	public static function lift<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>) {
+		return new Consume5(f);
+	}
+	public static function then<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>,x) {
+		return new Consume5(f).then( x );
+	}
+	public static function first<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>){
+		return new Consume5(f).first();
+	}
+	public static function second<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>){
+		return new Consume5(f).second();
+	}
+	public static function fanout<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>,x) {
+		return new Consume5(f).fanout(x);
+	}
+	public static function bind<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>, x) {
+		return new Consume5(f).bind(x);
+	}
+	public static function join<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>, x) {
+		return new Consume5(f).join(x);
+	}
+	public static function repeat<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>){
+		return new Consume5(f).repeat();
+	}
+	public static function or<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>,a){
+		return new Consume5(f).or(a);
+	}
+	public static function animate<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>,ms:Int){
+		return new Consume5(f).animate(ms);
+	}
+}
+class Entuple {
+	public static function these<A,B,C,D,E>(a:A,b:B,?c:C,?d:D,?e:E) {
+
+		var o : AbstractProduct = a.entuple(b);
+		if (c != null) {
+			o = o.entuple(c);
+			if (d != null) {
+				o = o.entuple(d);
+				if (e != null) {
+					o = o.entuple(e);
+				}
+			}
+		}
+		return o;
+	}
+}

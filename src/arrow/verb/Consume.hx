@@ -65,13 +65,14 @@ class Consume1<P1,R1> extends Arrow<P1,R1>{
 		a.cont(f(x));
 	}
 }
-/*
-class Consume2<P1,P2,R> extends Consumer< P1 -> P2 -> R,Tuple2<P1,P2>,R>{
+
+class Consume2<P1,P2,R> extends Arrow<Tuple2<P1,P2>,R>{
+	var f : P1 -> P2 -> R;
 	public function new(f) {
 		this.f = f;
 		super( thunk , 2);
 	}
-	override private function thunk(t:Tuple2<P1,P2>,a:ArrowInstance) {
+	private function thunk(t:Tuple2<P1,P2>,a:ArrowInstance<Dynamic>) {
 		a.cont( f(t._1, t._2) );
 	}
 }
@@ -81,7 +82,7 @@ class Consume3<P1,P2,P3,R> extends Arrow<Tuple3<P1,P2,P3>,R>{
 		this.f = f;
 		super( thunk , 3);
 	}
-	override private function thunk(t:Tuple3<P1,P2,P3>,a:ArrowInstance) {
+	private function thunk(t:Tuple3<P1,P2,P3>,a:ArrowInstance<Dynamic>) {
 		a.cont( f(t._1, t._2, t._3) );
 	}
 }
@@ -91,7 +92,7 @@ class Consume4<P1,P2,P3,P4,R> extends Arrow<Tuple4<P1,P2,P3,P4>,R>{
 		this.f = f;
 		super( thunk , 4);
 	}
-	override private function thunk(t:Tuple4<P1,P2,P3,P4>,a:ArrowInstance) {
+	private function thunk(t:Tuple4<P1,P2,P3,P4>,a:ArrowInstance<Dynamic>) {
 		a.cont( f(t._1, t._2, t._3, t._4) );
 	}
 }
@@ -101,7 +102,7 @@ class Consume5<P1,P2,P3,P4,P5,R> extends Arrow<Tuple5<P1,P2,P3,P4,P5>,R>{
 		this.f = f;
 		super( thunk , 5);
 	}
-	override private function thunk(t:Tuple5<P1,P2,P3,P4,P5>,a:ArrowInstance) {
+	private function thunk(t:Tuple5<P1,P2,P3,P4,P5>,a:ArrowInstance<Dynamic>) {
 		a.cont( f(t._1, t._2, t._3, t._4, t._5) );
 	}
-}*/
+}

@@ -14,8 +14,6 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\os\x\src\hx\hxhsl\hsl-pico source" />
-    <class path="..\stax\src\main\haxe" />
     <class path="unit" />
   </classpaths>
   <!-- Build options -->

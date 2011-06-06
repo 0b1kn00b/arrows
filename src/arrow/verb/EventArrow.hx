@@ -25,6 +25,7 @@ import arrow.ArrowInstance;
 
 #if flash
 import flash.events.EventDispatcher;
+import flash.events.Event;
 #else
 import zen.env.event.Event;
 import zen.env.event.EventListener;

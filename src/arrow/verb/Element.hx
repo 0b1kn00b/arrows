@@ -21,6 +21,7 @@
 */
 package arrow.verb;
 import arrow.Arrow;
+#if js
 import js.Dom;
 import js.Lib;
 
@@ -50,3 +51,4 @@ class Element extends Arrow<Dynamic,Dynamic>{
 	}
 
 }
+#end

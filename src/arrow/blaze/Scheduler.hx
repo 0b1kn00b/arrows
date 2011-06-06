@@ -16,6 +16,7 @@ import zen.data.XQueue;
 import arrow.ArrowInstance;
 import arrow.Arrow;
 
+import haxe.Timer;
 interface Scheduler {
 	private var current	: Arrow<Dynamic,Dynamic>;
 	private var queue	: XQueue<Arrow<Dynamic,Dynamic>>;
@@ -86,8 +87,10 @@ class AsynchronousGapScheduler implements Scheduler {
 			return;
 		}
 		state = "waiting";
-		#if (flash || js)
+		#if (js)
 			untyped window.setTimeout("arrow.blaze.AsynchronousGapScheduler.self.start()",100);
+		#elseif (flash)
+			untyped (__global__["flash.utils.setTimeout"])(arrow.blaze.AsynchronousGapScheduler.self.start,100);
 		#end
 	}
 	public function stop():Void {
