@@ -63,7 +63,7 @@ class AsynchronousGapScheduler implements Scheduler {
 		count = 0;
 		while ((count++ < max_depth) && (empty == false)) {
 			current = this.queue.dequeue();
-			//a = this.stack.pop();
+			//a = this.stack.pop 	();
 			if (current == null) {
 				empty = true;
 				break;

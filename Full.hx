@@ -28,7 +28,6 @@ class Full{
 		t.add( 	new haxe.reactive.arrow.CancellerTest()		);
 		t.add(	new haxe.reactive.arrow.ComplexTest()		);
 		t.add( 	new haxe.reactive.arrow.ErrorTest()			);
-		t.add( 	new haxe.reactive.arrow.FunctionArrowTest()	);
 		//t.add( 	new LambdaArrowTest()	);
 		//t.add( 	new SchedulerTest() 	);
 		//t.add(	new TraceObjectTest()	);
