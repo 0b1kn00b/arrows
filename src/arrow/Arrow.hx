@@ -141,7 +141,7 @@ class Arrow<AP,AR>{
 	 * @param	?args
 	 * @return
 	 */
-	public function run(?args:Dynamic):Progress{
+	public function run(?args:AP):Progress{
 		return new ArrowInstance(this,args).progress;
 	}
 	private function nothing(x:Dynamic, a:ArrowInstance<Dynamic>) {
@@ -506,18 +506,37 @@ class Function5Arrow {
 	}
 }
 class Entuple {
-	public static function these<A,B,C,D,E>(a:A,b:B,?c:C,?d:D,?e:E) {
-
-		var o : AbstractProduct = a.entuple(b);
+	public static function these<A,B,C,D,E>(a:A,b:B,?c:C,?d:D,?e:E):AbstractProduct {
+		var n = 2;
 		if (c != null) {
-			o = o.entuple(c);
+			n = 3;
+			
 			if (d != null) {
-				o = o.entuple(d);
+				n = 4;
+				
 				if (e != null) {
-					o = o.entuple(e);
+					n = 5;
 				}
 			}
 		}
-		return o;
+		switch (n) {
+			case 2 : return two(a, b);
+			case 3 : return three(a, b, c);
+			case 4 : return four(a, b, c, d);
+			case 5 : return five(a, b, c, d, e);
+		}
+		return null;
+	}
+	public static function two<A,B>(a:A,b:B):Tuple2<A,B>{
+		return Tuple2.create(a,b);
+	}	
+	public static function three<A,B,C>(a:A,b:B,c:C):Tuple3<A,B,C>{
+		return Tuple3.create(a,b,c);
+	}
+	public static function four<A,B,C,D>(a:A,b:B,c:C,d:D):Tuple4<A,B,C,D>{
+		return Tuple4.create(a,b,c,d);
+	}
+	public static function five<A,B,C,D,E>(a:A,b:B,c:C,d:D,e:E):Tuple5<A,B,C,D,E>{
+		return Tuple5.create(a,b,c,d,e);
 	}
 }
