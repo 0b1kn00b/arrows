@@ -25,32 +25,31 @@ import arrow.Arrow;
 using arrow.Arrow;
 import arrow.ArrowInstance;
 
-class MapArrow extends Arrow {
+class MapArrow<AP,AR> extends Arrow<Iterable<AP>,AR> {
 
-	private var iterator 	: Iterator<Dynamic>;
-	private var out			: List<Dynamic>;
-	private var f			: Dynamic->Dynamic;
+	private var iterator 	: Iterator<AP>;
+	private var out			: List<AR>;
+	private var f			: AP->AR;
 	
-	public function new(f : Dynamic -> Dynamic ) {
+	public function new(f : AP -> AR ) {
 		var self = this;
 		this.f = f;
 		super(
-			function (x:Array<Dynamic>, a:ArrowInstance):Dynamic {
+			function (x:Iterable<AP>, a:ArrowInstance<Dynamic>) {
 				if (!Reflect.isFunction(x.iterator)){
 					throw " arg " + x + "is not Iterable";
 				}
 				self.out = new List();
-				self.iterator = new FastArrayIterator(x);
+				self.iterator = x.iterator();
 				var f1 = function(x:Dynamic) {
 					a.cont(self.out);
 				}
-				self.implementation.tuple().repeat().then(f1.lift()).run(x);
+				self.implementation.pass().repeat().then(f1.lift()).run(x);
 			}
 		);
 	}
 	private function implementation(x:Dynamic) {
 		if (iterator.hasNext()) {
-			
 			var n = iterator.next();
 			this.out.add( f(n) );
 			return Arrow.doRepeat();

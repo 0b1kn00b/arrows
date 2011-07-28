@@ -25,6 +25,7 @@ import arrow.Arrow;
 import arrow.ArrowInstance;
 import arrow.verb.Consume;
 
+using arrow.Arrow;
 /**
  * Compose two Arrows. Notice the Composition type signature, the output from the left arrow
  * is input into the right, so the type of Return1 (Arrow<P1,*R1>) must be the same as Parameter2 (Arrow<*R1,R2>) .

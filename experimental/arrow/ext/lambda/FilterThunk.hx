@@ -21,13 +21,13 @@
 */
 package arrow.ext.lambda;
 import arrow.Arrow;
+import arrow.ArrowInstance;
 
-class FilterThunk extends Arrow{
+class FilterThunk<AP,AR> extends Arrow<Iterable<AP>,AR>{
 	
-	
-	public function new(f:Dynamic,filter:Dynamic->Bool,?inverse:Bool){
+	public function new(f:Iterable<AP>,filter:AP->Bool,?inverse:Bool){
 		super(
-			function(x:Dynamic,a){
+			function(x:AP,a:ArrowInstance<Dynamic>){
 				//null is necessary here
 				a.cont(x,f,new FilterArrow(filter,inverse),null);
 			}

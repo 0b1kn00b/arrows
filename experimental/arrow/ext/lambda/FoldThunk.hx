@@ -22,9 +22,9 @@
 package arrow.ext.lambda;
 import arrow.Arrow;
 
-class FoldThunk extends Arrow{
+class FoldThunk<AP,AR> extends Arrow<AP,AR>{
 	
-	public function new(first:Dynamic,f:Dynamic,fold:Dynamic->Dynamic->Dynamic){
+	public function new(first:AP,f:Arrow<AP,AR>,fold:AP->AP->AR){
 		super(
 			function(x:Dynamic,a){
 				a.cont(x,f,new FoldArrow(fold,first),null);

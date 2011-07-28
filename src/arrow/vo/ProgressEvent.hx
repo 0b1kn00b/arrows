@@ -22,11 +22,15 @@
 
 package arrow.vo;
 
+#if flash
+import flash.events.Event;
+#else
 import zen.env.event.Event;
-class ProgressEvent extends Event{
+#end
+class ProgressEvent<T> extends Event{
 
-	public var detail:Dynamic;
-	public function new(name, ?source, ?detail) {
+	public var detail:T;
+	public function new(name, ?detail,?source) {
 		super(name, source);
 		this.detail = detail;
 	}

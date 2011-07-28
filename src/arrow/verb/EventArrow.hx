@@ -24,34 +24,40 @@ import arrow.Arrow;
 import arrow.ArrowInstance;
 
 #if flash
-import flash.events.EventDispatcher;
 import flash.events.Event;
+import flash.events.EventDispatcher;
+import flash.events.IEventDispatcher;
+#elseif js
+import Dom;
 #else
 import zen.env.event.Event;
 import zen.env.event.EventListener;
 #end
+
 import Prelude;
 using Prelude;
 
-class EventArrow<O> extends Arrow<#if flash EventDispatcher #else EventListener #end,O>{
+class EventArrow<O> extends Arrow< #if flash IEventDispatcher #elseif js Dynamic #else EventListener #end,O>{
 	
 	private var trigger : String;
 	public function new(trigger:String = "trigger") {
 		this.trigger = trigger;
-		super( event );
+		super( evt );
 	}
-	private function event(target: #if flash EventDispatcher #else EventListener #end, a:ArrowInstance<Dynamic>) {
+	private function evt(target:#if flash IEventDispatcher #elseif js Dynamic #else EventListener #end, a:ArrowInstance<Dynamic>) {
+		//trace("event " + trigger + " target " + target);
 		var self = this;
 		cancel = function(){
-			target.removeEventListener(self.trigger,self.handler);
+			target.removeEventListener(self.trigger,self.handler,false);
 		}
 		handler = function(value:Event) {
+			//trace("handle");
 			self.cancel();
 			a.advance(self.cancel);
-			a.cont(value);
+			a.cont(value,null,null);
 		}
 		a.addCanceller(cancel);
-		target.addEventListener(trigger, handler);
+		target.addEventListener(trigger, handler,false);
 	}
 	private var cancel	: Void -> Void;
 	private var handler	: Event -> Void;

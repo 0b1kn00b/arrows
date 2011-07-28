@@ -28,7 +28,7 @@ class IterThunk<AP,AR> extends Arrow<AP,Iterable<AR>>{
 	public function new(f:Dynamic,iter:AP->Void){
 		var self = this;
 		super(
-			function(x:Dynamic,a:ArrowInstance){
+			function(x:AP,a:ArrowInstance<Dynamic>){
 				//TODO but I forgot why. "null is necessary here."
 				a.cont(x,f,new IterArrow(iter),null);
 			}

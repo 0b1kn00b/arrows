@@ -104,7 +104,7 @@ class ArrowTest extends TestCase{
 	public function testFirst(){
 		var as  = 
 			Assert.createEvent( 
-				function(x:Tuple2<Float,Float>):Dynamic {
+				function(x:Tuple2<Float,Float>):Void {
 					Assert.equals(x.productElement(0),11);
 					Assert.equals(x.productElement(1), 10);
 				}
@@ -210,7 +210,8 @@ class ArrowTest extends TestCase{
 				Assert.equals("test",x);
 			}
 		);
-		Arrow.identity().then(as.lift()).run("test").start();
+		A.i().then(as.lift()).run("test")
+		.start();
 	}
 	
 	public function testEvent() {
@@ -227,7 +228,7 @@ class ArrowTest extends TestCase{
 				dispatcher.dispatchEvent(new #if !flash zen.env.event.#end Event("trigger")); 
 			}.lift()
 		).run();
-		Arrow.begin();
+		Arrow.start();
 	}
 	public function takesFloatReturnsFloat(x:Float):Float{
 		debug(["f2f",x]);

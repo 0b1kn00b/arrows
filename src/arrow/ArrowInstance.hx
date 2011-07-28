@@ -54,19 +54,22 @@ class ArrowInstance<T>{
 	public var initial		: T;
 	private var start		: Arrow<Dynamic,Dynamic>;
 	
-	public function new(arr:Arrow<Dynamic,Dynamic>, x:T) {
+	public function new<A,B>(arr:Arrow < A, B> , x:T) {
+		this.progress 		= new Progress(this);
+		this.uuid 			= Guid.generate();	
+		Arrow.scheduler.register( this );
 		this.initial		= x;
 		this.start			= arr;
-		this.uuid 			= Guid.generate();	
+		
 		this.cancellers 	= new Array();
-		this.stack 			= [Arrow.terminal(), arr];
-		this.progress 		= new Progress(this);
+		this.stack 			= new Array();
+		this.stack.push(Arrow.terminal());
+		this.stack.push(arr);
+		
 		
 		//TODO multithreaded scheduler. #if neko m = new Mutex(); #end
 		
-		Arrow.scheduler.register( this );
-		
-		this.cont(x);
+		this.cont(x,null,null);
 	}
 	//#if neko var m:Mutex; 	#end
 	
@@ -77,20 +80,23 @@ class ArrowInstance<T>{
 	 * @param g the second arrow
 	 * @param a predicate closure which returns true when the arrow is ready
 	 */
-	public inline function cont<A>(x:A = null, f:Arrow<Dynamic,Dynamic> = null, g:Arrow<Dynamic,Dynamic> = null, predicate:Void->Bool = null) {
+	public inline function cont<A,B,C,D,E>(x:A, f:Arrow<B,C>, g:Arrow<D,E>, predicate:Void->Bool = null) {
 		
-		//#if neko m.acquire(); 	#end
+		var a : Arrow<Dynamic,Dynamic> ;
 		
-		if (g != null) stack[stack.length] = g;
-		if (f != null) stack[stack.length] = f;
 		
-		#if arrow_debug_deep
-			trace(["\ncont:\n", "instance=", this, "\n", "x", x, "\n","f",f,"g",g,"length",stack.length]);
-		#end
-
-		var a : Arrow<Dynamic,Dynamic> = stack.pop();
-
+		
+		if (f != null) {
+			a		= f;
+			if (g != null) {
+				stack.push(g);
+			}
+		}else{
+			a 		= stack.pop();
+		}
+		
 		if (a != null) {
+			//trace( ["!", Std.string(a) , a.method , Std.string(x), Std.string(f), Std.string(g) ].join(" ") );
 			a.instance 	= this;
 			a.param 	= x;
 			if (predicate != null) a.predicate = predicate;
@@ -105,7 +111,8 @@ class ArrowInstance<T>{
 	/**
 	 * Invokes added cancellers.
 	 */
-	public function cancel(){
+	public function cancel() {
+		//trace("Instance CANCEL");
 		for (canceller in cancellers) {
 			canceller();
 		}	
@@ -135,11 +142,13 @@ class ArrowInstance<T>{
 	 * Notify progress arrow of step.
 	 * @param	canceller
 	 */
-	public function advance(canceller){
+	public function advance(canceller) {
+		//trace("advance");
 		cancellers.remove(canceller);	
 		this.signal("progress");
 	}
 
+	
 	public function toString():String{
 		var q = "[ ";
 		for (val in stack){

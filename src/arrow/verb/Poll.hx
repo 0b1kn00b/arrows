@@ -24,12 +24,21 @@ import arrow.Arrow;
 import arrow.ArrowInstance;
 class Poll<I> extends Arrow<I,I>{
 	
-	public function new(predicate:Void->Bool){
+	public function new(predicate:Void->Bool) {
+		var self = this;
 		super(
-			function (x:I,a:ArrowInstance){
+			function (x:I, a:ArrowInstance<Dynamic>) {
+				self.a = a;
+				//a.addCanceller( self.cancel );
 				a.cont(x,null,null,predicate);
 			}
 		);
+		this.info = "Polling Arrow";
 	}
-
+	private var a :ArrowInstance<Dynamic>;
+	private function cancel() {
+		trace("cancel poll: " + a);
+		this.active = false;
+	}
 }
+

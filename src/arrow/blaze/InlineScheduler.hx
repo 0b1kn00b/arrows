@@ -1,5 +1,7 @@
 package arrow.blaze;
-import zen.data.XQueue;
+import arrow.error.TimeoutError;
+import haxe.Timer;
+import zen.data.Queue;
 import arrow.Arrow;
 
 import Prelude;
@@ -12,61 +14,62 @@ using PreludeExtensions;
 using haxe.data.collections.IterableExtensions;
 using haxe.data.collections.ArrayExtensions;
 
-class InlineScheduler implements Scheduler {
-	var current		: Arrow<Dynamic,Dynamic>;
-	var queue		: XQueue<Arrow<Dynamic,Dynamic>>;
-	var pending 	: Hash<ArrowInstance<Dynamic>>;
-	var max_depth	: Int;
-	var count		: Int;
-	var state		: String;
-	
-	public function new() {
-		queue 		= new XQueue();
-		pending		= new Hash();
-		max_depth 	= 1000000; 
-		count		= 0;
-		state		= "initial";
-	}
-	
-	public function wait():Void {
-		
-	}
-	public function start():Void {
-		var a 	: Arrow<Dynamic,Dynamic> = null;
-		var empty		= false;
-		while ( true ) {
-			a = this.queue.dequeue();
-			if (a == null) {
-				empty = true;
-				#if neko
-				neko.Sys.sleep(0.1);
-				#end
-			}else if (a.active) {
-				if ( a.predicate() ) {
-					a.invoke();
-				}else {
+import arrow.blaze.Scheduler;
+import zen.data.Queue;
 
-				this.queue.enqueue(a);
+class InlineScheduler extends AbstractScheduler{
+	
+
+	var t:Float;
+	public function new() {
+		super();
+	}
+	override public function start():Void {
+		current 		= null;
+		var empty		= false;
+		t  = Timer.stamp();
+		
+		while ( true ) {
+			
+			current = this.queue.dequeue();
+			
+			if (current == null) {
+				empty = true;
+			}else {
+				//trace(current);
+				//trace(current.method);
+			}
+			if (empty) {
+				if(Lambda.count(pending) == 0){
+					break;
+				}else {
+					if ( Timer.stamp() > (t + this.timeout)) {
+							throw new TimeoutError( Std.string(this.pending)
+						);
+						break;
+					}
+					#if neko
+						#if !macro
+						neko.Sys.sleep(3);
+						#end
+					#elseif php
+						php.Sys.sleep(3);
+					#end
 				}
 			}
-			if (empty && (Lambda.count(pending) == 0)) {
-				break;
+			if (current!=null && current.active) {
+				if ( current.predicate() ) {
+					t  = Timer.stamp();
+					try {
+						current.invoke();
+					}catch (e:Dynamic) {
+						throw { error : e , arrow : current };
+					}
+				}else {
+					
+					this.queue.enqueue(current);
+				}
 			}
 		}
-	}
-	public function stop():Void {
-		state = "stopped";
-	}
-	public function enqueue(v:Arrow<Dynamic,Dynamic>):Void {
-		this.queue.enqueue(v);
-	}
-	public function register(v:ArrowInstance<Dynamic>):Void {
-		this.pending.set(v.uuid, v);
-	}
-	public function unregister(v:ArrowInstance<Dynamic>):Void {
-		this.pending.remove(v.uuid);
-	}
-	public function cancel(v:ArrowInstance<Dynamic>):Void {
-		v.stack.forEach( function(x) x.destroy(v) );
 	}
 }

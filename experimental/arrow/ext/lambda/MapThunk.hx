@@ -27,7 +27,7 @@ class MapThunk<AP,AR> extends Arrow<Iterable<AP>,Iterable<AR>>{
 	
 	public function new (f:Arrow<AP,AR>,g:AP->AR){
 		super(
-			function(x:Iterable<AP>,a:ArrowInstance){
+			function(x:Iterable<AP>,a:ArrowInstance<Dynamic>){
 				//null is necessary here.
 				a.cont(x,f,new MapArrow(g),null);
 			}

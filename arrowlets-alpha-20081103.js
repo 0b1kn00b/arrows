@@ -634,7 +634,7 @@ AsyncA.Instance.prototype.addCanceller = function AsyncA$Instance$prototype$addC
 }
 AsyncA.Instance.prototype.advance = function AsyncA$Instance$prototype$advance(canceller) {
     /* remove canceller function */
-    var index = this.cancellers.indexOf(canceller);
+f    var index = this.cancellers.indexOf(canceller);
     if (index >= 0) {
         this.cancellers.splice(index, 1);
     }

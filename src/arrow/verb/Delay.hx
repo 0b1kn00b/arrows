@@ -32,51 +32,50 @@ using arrow.Arrow;
 
 import arrow.ArrowInstance;
 
+#if (flash || js )
 class Delay<I> extends Arrow<I,I>{
 	
 	var cancelled	: Bool;
 	var ms 			: Int;
 	
 	public function new(milliseconds:Int){
-		var self 			= this;
 		this.ms 			= milliseconds;
 		this.cancelled		= false;
-		
-		super( delay );
+	
+		this.info = "Delay";
+		super(delay);
 	}
 	private function cancel() {
-		this.cancelled = true;
+		this.cancelled 	= true;
 	}
 	private var a : ArrowInstance<Dynamic>;
 	
 	private function cont(x:I):Void {
 		if (!cancelled){
 			a.advance(this.cancel);
-			a.cont(x);
+			a.cont(x,null,null);
+		}else{
+			trace(a);
 		}
 	}
-	
-	#if neko
-		private var t:Float;
-		private function delay(x:I, a:ArrowInstance) {
-			this.a = a;
-			this.t = haxe.Timer.stamp();
-			
-			a.addCanceller(self.cancel);
-			
-			Arrow.poll( done )
-				.then( cont )
-					.run(x);
-		}
-		private function done():Bool {
-			return ( t + this.ms/1000 ) < haxe.Timer.stamp();
-		}
-	#elseif ( flash || js )	
-		private function delay(x:I, a:ArrowInstance<Dynamic>) {
-			this.a = a;
-			var self = this;
-			Timer.delay( function() { self.cont(x); } , this.ms);
-		}
-	#end
+	private function delay(x:I, a:ArrowInstance<Dynamic>) {
+		this.a = a;
+		var self = this;
+		Timer.delay( function() { self.cont(x); } , this.ms);
+	}
 
 }
+#elseif ( neko || cpp || php )
+class Delay<I> extends Poll<I> {
+	var ms : Int;
+	var t  : Float;
+	public function new(milliseconds : Int) {
+		this.ms 		= milliseconds;
+		super(done);
+	}
+	private function done():Bool {
+		if (t == null) ( t = Timer.stamp() );
+		return ( t + this.ms/1000 ) < haxe.Timer.stamp();
+	}
+}
+#end

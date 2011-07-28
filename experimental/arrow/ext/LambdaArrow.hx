@@ -27,12 +27,9 @@ import arrow.ext.lambda.MapThunk;
 import arrow.ext.lambda.FoldThunk;
 import arrow.ext.lambda.FilterThunk;
 
-class LambdaArrow{
-
-	public static function gen(self:Arrow,i:Iterable<Dynamic>) {
-		
-	}
-	public static function iter(self:Arrow,f:Dynamic->Void):Arrow{
+class LambdaArrow {
+	
+	public static function iter<AP,AR>(self:Arrow<AP,AR>,f:AP->Void):Arrow<AP,AR>{
 		return new IterThunk(self,f);
 	}
 	public static function map(self:Arrow,f:Dynamic->Dynamic):Arrow{

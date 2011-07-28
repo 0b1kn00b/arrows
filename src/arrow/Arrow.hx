@@ -21,17 +21,21 @@
 */
 package arrow;
 
+import haxe.Log;
+import haxe.PosInfos;
 import zen.util.ReflectUtil;
 
 import arrow.blaze.Scheduler;
 import arrow.blaze.InlineScheduler;
+import arrow.blaze.EventScheduler;
 
 import arrow.verb.Pass;
 import arrow.verb.Consume;
 
 import arrow.verb.Animate;
-import arrow.verb.Animate;
+import arrow.verb.Apply;
 import arrow.verb.Bind;
+import arrow.verb.Choice;
 import arrow.verb.Compose;
 import arrow.verb.Delay;
 import arrow.verb.Element;
@@ -39,21 +43,36 @@ import arrow.verb.EventArrow;
 import arrow.verb.Fanout;
 import arrow.verb.First;
 import arrow.verb.Join;
+import arrow.verb.Left;
 import arrow.verb.Or;
-//import arrow.verb.Poll;
+import arrow.verb.Poll;
 import arrow.verb.Product;
 import arrow.verb.Progress;
 import arrow.verb.Repeat;
+import arrow.verb.Right;
 import arrow.verb.Second;
+import arrow.verb.StateArrow;
 import arrow.verb.Terminal;
 import arrow.verb.Loop;
-//
+
 import haxe.framework.Injector;
+using haxe.framework.Injector;
 
 #if js
 	import arrow.verb.Element;
+	import Dom;
 #elseif neko
 	import neko.vm.Thread;
+#end
+
+#if (flash)
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+#else
+	import zen.env.event.Event;
+	import zen.env.event.EventDispatcher;
+	import zen.env.event.EventListener;
+	import zen.env.event.EventSystem;
 #end
 
 import Prelude;
@@ -68,20 +87,23 @@ using haxe.data.collections.ArrayExtensions;
 
 using arrow.Arrow;
 using Reflect;
-using haxe.framework.Injector;
 using Enums;
 
+import haxe.macro.Expr;
+import haxe.macro.Context;
+import haxe.macro.Type;
+import haxe.macro.Compiler;
+
+import scuts.macro.F;
+
+typedef ApplyArgs<AP,AR>			= Tuple2< Arrow < AP, AR > , AP > ;
+//typedef Apply < AP, AR > 			= Arrow < ApplyArgs < AP, AR > , AR > ;
 class Arrow<AP,AR>{	
 	/**
 	 * @private
 	 * Used internally to skip cancelled arrows.
 	 */
 	public var active		: Bool;
-	/**
-	 * @private
-	 * Used by the inline scheduler to implement timers and event waiting
-	 */
-	public var predicate	: Void->Bool;
 	
 	/**
 	 * Reference to the arrow instance for cps.
@@ -98,11 +120,21 @@ class Arrow<AP,AR>{
 	 */
 	public var method		: AP->ArrowInstance<Dynamic>-> Void;
 	
+	
 	/**
 	 * Reference string.
 	 */
 	public var info			: String;
 	
+	public function setInfo(s:String) {
+		this.info = s;
+		return this;
+	}
+	public var fail			: String;
+	public function setFail(s:String) {
+		this.fail = s;
+		return this;
+	}
 	/**
 	 * 
 	 */
@@ -118,6 +150,14 @@ class Arrow<AP,AR>{
 		this.method = method;
 		this.params = params;
 	}
+	/**
+	 * @private
+	 * Used by the inline scheduler to implement timers and event waiting
+	 */
+	public dynamic function predicate()	: Bool {
+		return true;
+	}
+	
 	public function execute(x:AP,a:ArrowInstance<Dynamic>){
 		this.method(x,a);
 	}
@@ -129,6 +169,7 @@ class Arrow<AP,AR>{
 		try {
 			this.execute( this.param , this.instance );
 		}catch (e:Dynamic) {
+			//trace("ERROR:" + e);
 			this.instance.error = e;
 			Arrow.scheduler.cancel(this.instance);
 			//trace("carry on:" + (this.method == this.nothing));
@@ -141,13 +182,14 @@ class Arrow<AP,AR>{
 	 * @param	?args
 	 * @return
 	 */
-	public function run(?args:AP):Progress{
-		return new ArrowInstance(this,args).progress;
+	public function run(?run:AP):Progress {
+		return new ArrowInstance(this,run).progress;
 	}
 	private function nothing(x:Dynamic, a:ArrowInstance<Dynamic>) {
-		a.cont(x);
+		a.cont(x,null,null);
 	}
 	public function destroy(instance:ArrowInstance<Dynamic>) {
+		//trace("DESTROY");
 		if ( !Std.is( this , Terminal ) ) {
 			this.method = this.nothing;
 			this.active	= false;
@@ -161,46 +203,59 @@ class Arrow<AP,AR>{
 	public function toString(){
 			return "[Arrow ::" + name + " " + info + " ]" ;
 	}
-	public static var scheduler:Scheduler = Injector.enter( function (c) { c.bind( Scheduler , #if neko InlineScheduler #else AsynchronousGapScheduler #end , OneToMany ); return Scheduler.inject(); } );
-	
+	public static var scheduler:Scheduler = 
+		Injector.enter( 
+			function (c:InjectorConfig) {
+				var t = #if ( neko || cpp || macro || php ) InlineScheduler ; #else EventScheduler ; #end
+				c.bind( Scheduler , t , OneToMany ); 
+				return Scheduler.inject( ); 
+			} 
+		);
 	public static function terminal():Terminal<Dynamic>{
 		return new Terminal();
+	}
+	//EXPERIMENTAL
+	
+	public function state():StateArrow < AP, AR > {
+		return new StateArrow(this);
 	}
 	/*
 	* returns a function that builds a @code Tuple2 from one value;
 	*/
-	public static function fan() {
+	public static function fan<A>():Arrow<A,Tuple2<A,A>> {
 		return fan_impl.pass();
 	}
 	private static function fan_impl<A>(x:A):Tuple2<A,A>{
 		return Tuple2.create(x,x);
 	}
-	/*
-	* returns an Arrow based on f, that, if it encounters a tuple, 
-	* will unpack it and send multiple parameters to f.
-	*/
-	//public static function lift<F,P1,R>(f:Dynamic):Consumer<F,P1,R>{
-		//return Consume.create(f);
-	//}
 	/**
 	 * returns an Arrow based on f. f is assumed to be capable of consuming a @code Product.
 	 * @param	f
 	 */
-	public static function pass<P,R>(f:Function1<P,R>):Pass<P,R> {
+	public static function pass<P,R>(f:Function1<P,R>):Arrow<P,R> {
 		return new Pass(f);
+	}
+	/**
+	* First combinator.
+	*/
+	public function first(){
+		return new First(this);
 	}
 	/*
 	* returns an Arrow based on f. Input x will be passed unmodified to
 	* the output.
 	*/
-	public static function identity<A>():Pass<A,A>{
-		return function (x:A):A{
+	public static function identity<A>():Arrow<A,A>{
+		return function (x:A):A {
 			return x;
 		}.pass();
 	}
+	public static function i<A>():Arrow<A,A>{
+		return Arrow.identity();
+	}
 	public static function constant<A>(value:A):Arrow<Dynamic,A>{
 		var a : Function1<Dynamic,A> = function(v:Dynamic):A { return value; }
-		return a.lift();
+		return a.pass();
 	}
 	/*
 	* Loop repeat constant
@@ -225,6 +280,9 @@ class Arrow<AP,AR>{
 	public static function event<R>(trigger:String = "trigger"):EventArrow<R> {
 		return new EventArrow(trigger);
 	}
+	public static function so<R>(str:String):EventArrow<R> {
+		return new EventArrow(str);
+	}
 	//public static function signalA():SignalArrow {
 		//return new SignalArrow();
 	//}
@@ -232,36 +290,45 @@ class Arrow<AP,AR>{
 	* When the predicate returns true, the scheduled arrow is called
 	* The polling of the predicate is managed by the scheduler.
 	*/
-	//public static function poll(predicate:Void->Bool){
-		//return new Poll(predicate);
-	//}
+	public static function poll(predicate:Void->Bool){
+		return new Poll(predicate);
+	}
 	#if js
 		public static function elementA(value:Dynamic){
 			return new Element(value);
 		}
 	#end
 
+	public static function apply(inputClass, outputClass) {
+		return new Apply(inputClass, outputClass);
+	}
 	/*
 	* 
 	*/
-	public function start() {
-		scheduler.start();
-		return this;	
-	}
-	public static function begin() {
+	public static function start() {
 		Arrow.scheduler.start();
 	}
 
 }
 class Combinators {
+	public static function start<AP,AR>(a:Arrow<AP,AR>) {
+		Arrow.scheduler.start();
+		return a;
+	}
+	public static function right < B, C, D > (a: Arrow< B , C > ):Right<B,C,D>{
+		return new Right(a);
+	}
+	public static function left < B, C, D > (a:  Arrow<B,C> ):Left<B,C,D>{
+		return new Left(a);
+	}
 	/**
 	* Composititon combinator.
 	* @param f, a function or a FunctionThunk
 	* 
 	* compose, next, >>>
 	*/
-	public static function then<P1,R1,P2,R2>(a:Arrow<P1,R1>,a2:Arrow<R1,R2>) {
-		return new Compose(a,a2 );
+	public static function then<P1,R1,P2,R2>(thenL:Arrow<P1,R1>,thenR:Arrow<R1,R2>):Arrow<P1,R2> {
+		return new Compose(thenL,thenR );
 	}
 
 	/**
@@ -273,16 +340,9 @@ class Combinators {
 	}
 
 	/**
-	* First combinator.
-	*/
-	public static function first<P,R>(a:Arrow<P,R>):First<P,R>{
-		return new First(a);
-	}
-
-	/**
 	* Second combinator
 	*/
-	public static function second<P,R>(a:Arrow<P,R>):Second<P,R>{
+	public static function second<P,R>(a:Arrow<P,R>){
 		return new Second(a);
 	}
 
@@ -290,18 +350,18 @@ class Combinators {
 	* Fanout combinator.
 	* split &&&
 	*/
-	public static function fanout<AP,AR1,AR2>(a0:Arrow<AP,AR1>,a1:Arrow<AP,AR2>):Fanout<AP,AR1,AR2> {
-		return new Fanout(a0, a1);
+	public static function fanout<AP,AR1,AR2>(fanoutL:Arrow<AP,AR1>,fanoutR:Arrow<AP,AR2>):Arrow<AP,Tuple2<AR1,AR2>> {
+		return new Fanout(fanoutL, fanoutR);
 	}
 
-	/*
+	/**
 	* Equivalent to Arrow.returnA().fanout(f).then(g);
 	*/
-	public static function bind<AP,AR,A0R>(a0:Arrow<AP,A0R>,a1:Arrow<Tuple2<AP,A0R>,AR>):Bind<AP,AR,A0R> {
-		return new Bind(a0,a1);
+	public static function bind<AP,AR,A0R>(bindL:Arrow<AP,A0R>,bindR:Arrow<Tuple2<AP,A0R>,AR>):Arrow<AP,AR> {
+		return new Bind(bindL,bindR);
 	}
 
-	/*
+	/**
 	* Join combinator.
 	* Equivalent to f.then(Arrow.returnA().fanout(g))
 	*/
@@ -319,8 +379,8 @@ class Combinators {
 	/*
 	* Either-or combinator. 
 	*/
-	public static function or<AP,AR>(a0:Arrow<AP,AR>, a1:Arrow<AP,AR>):Or<AP,AR> {
-		return new Or(a0,a1);
+	public static function or<AP,A1R,AR>(orL:Arrow<AP,A1R>, orR:Arrow<AP,AR>):Or<AP,AR,A1R> {
+		return new Or(orL,orR);
 	}
 	
 	public static function animate<AP,AR>(a:Arrow<AP,AR>,ms:Int):Animate<AP,AR> {
@@ -328,37 +388,40 @@ class Combinators {
 	}
 	/**
 	* DEBUG
+	* TODO Tracing some values breaks things...
 	*/
-	public static function print<A,B>(a:Arrow<A,B>):Arrow<A,B>{
-		return a.then(
-			function(x:Dynamic):Dynamic{
+	public static function print<A,B>(print:Arrow<A,B>):Arrow<A,B>{
+		return print.then(
+			function(x:Dynamic):Dynamic {
+				Log.trace( Stax.getShowFor(x)(x) );
 				return x;
-			}.pass()
+			}.pass().setInfo("Print")
 		);
 	}
+	
 }
 class ThunkArrow {
-	public function lift<R>(f:Thunk<R>):Consume<R>{
+	public static function lift<R>(f:Thunk<R>):Consume<R>{
 		return new Consume(f);
 	}
 }
 class Function1Arrow {
-	public static function lift<P1, R1>(f:Function1<P1, R1>):Consume1<P1,R1> {
+	public static function lift<P1, R1>(f:P1->R1):Consume1<P1,R1> {
 		return new Consume1(f);
 	}
-	public static function pass< P1, R1 > (f:Function1 < P1, R1 > ):Pass<P1,R1>{
+	public static function pass< P1, R1 > (f:Function1 < P1, R1 > ):Arrow<P1,R1>{
 		return new Pass(f);
 	}
-	public static function then < P1, R1, P2,R2 > (f:Function1<P1,R1>,x:Arrow<R1,R2>) {
+	public static function then < P1, R1, P2,R2 > (f:Function1<P1,R1>,x:Arrow<R1,R2>):Arrow<P1,R2> {
 		return new Consume1(f).then( x );
 	}
 	public static function first<P1,R1> (f:Function1<P1,R1>) {
 		return new Consume1(f).first();
 	}
-	public static function second < P1, R1 > (f:Function1< P1, R1 > ):Second<P1,R1> {
+	public static function second < P1, R1 > (f:Function1< P1, R1 > ){
 		return new Consume1(f).second();
 	}
-	public static function fanout < P1 , R1 , R2 > (f:Function1 < P1 , R1 > , x:Arrow<P1,R2>) {
+	public static function fanout < P1 , R1 , R2 > (f:Function1 < P1 , R1 > , x:Arrow<P1,R2>):Arrow<P1,Tuple2<R1,R2>> {
 		return new Consume1(f).fanout(x);
 	}
 	public static function bind < P1 , R1 , AR> (f:Function1 < P1, R1 > , x:Arrow <Tuple2 <P1, R1> , AR>) {
@@ -381,7 +444,7 @@ class Function2Arrow {
 	public static function lift<P1,P2,R>(f:Function2<P1,P2,R>) {
 		return new Consume2(f);
 	}
-	public static function then<P1,P2,R>(f:Function2<P1,P2,R>,x) {
+	public static function then<P1,P2,R>(f:Function2<P1,P2,R>,x):Arrow<Tuple2<P1,P2>,R> {
 		return new Consume2(f).then( x );
 	}
 	public static function first<P1,P2,R>(f:Function2<P1,P2,R>){
@@ -413,7 +476,7 @@ class Function3Arrow {
 	public static function lift<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>) {
 		return new Consume3(f);
 	}
-	public static function then<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>,x) {
+	public static function then<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>,x):Arrow<Tuple3<P1,P2,P3>,R> {
 		return new Consume3(f).then( x );
 	}
 	public static function first<P1,P2,P3,R>(f:Function3<P1,P2,P3,R>){
@@ -445,7 +508,7 @@ class Function4Arrow {
 	public static function lift<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>) {
 		return new Consume4(f);
 	}
-	public static function then<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>,x) {
+	public static function then<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>,x):Arrow<Tuple4<P1,P2,P3,P4>,R> {
 		return new Consume4(f).then( x );
 	}
 	public static function first<P1,P2,P3,P4,R>(f:Function4<P1,P2,P3,P4,R>){
@@ -477,7 +540,7 @@ class Function5Arrow {
 	public static function lift<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>) {
 		return new Consume5(f);
 	}
-	public static function then<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>,x) {
+	public static function then<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>,x):Arrow<Tuple5<P1,P2,P3,P4,P5>,R> {
 		return new Consume5(f).then( x );
 	}
 	public static function first<P1,P2,P3,P4,P5,R>(f:Function5<P1,P2,P3,P4,P5,R>){
@@ -506,27 +569,6 @@ class Function5Arrow {
 	}
 }
 class Entuple {
-	public static function these<A,B,C,D,E>(a:A,b:B,?c:C,?d:D,?e:E):AbstractProduct {
-		var n = 2;
-		if (c != null) {
-			n = 3;
-			
-			if (d != null) {
-				n = 4;
-				
-				if (e != null) {
-					n = 5;
-				}
-			}
-		}
-		switch (n) {
-			case 2 : return two(a, b);
-			case 3 : return three(a, b, c);
-			case 4 : return four(a, b, c, d);
-			case 5 : return five(a, b, c, d, e);
-		}
-		return null;
-	}
 	public static function two<A,B>(a:A,b:B):Tuple2<A,B>{
 		return Tuple2.create(a,b);
 	}	
@@ -540,3 +582,4 @@ class Entuple {
 		return Tuple5.create(a,b,c,d,e);
 	}
 }
+typedef A<AP,AR> = arrow.Arrow<AP,AR>;

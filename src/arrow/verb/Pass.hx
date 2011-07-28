@@ -26,15 +26,28 @@ import arrow.Arrow;
 import arrow.ArrowInstance;
 import arrow.verb.Consume;
 
+import Prelude;
+import PreludeExtensions;
+import haxe.data.collections.IterableExtensions;
+import haxe.data.collections.ArrayExtensions;
+
+using Prelude;
+using PreludeExtensions;
+using haxe.data.collections.IterableExtensions;
+using haxe.data.collections.ArrayExtensions;
+
+import arrow.Arrow;
+using arrow.Arrow;
 class Pass<P,R> extends Arrow<P,R>{
 
-	var f : P -> R;
+	private var fn : Function1<P,R>;
 	public function new(f) {
-		this.f = f;
-		super( pass );
+		this.fn = f;
+		super(doPass);
 		info = "Passes single argument unaltered.";
 	}
-	private function pass(x:P, a:ArrowInstance<Dynamic>):Void {
-		a.cont(f(x));
+	private function doPass(x:P, a:ArrowInstance<Dynamic>):Void {
+		var o = this.fn(x);
+		a.cont(o,null,null);
 	}
 }

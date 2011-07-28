@@ -34,8 +34,8 @@ class Fanout<AP,FR1,FR2> extends Arrow<AP,Tuple2<FR1,FR2>>{
 	var a1 : Arrow<Tuple2<AP,AP>,Dynamic>;
 	
 	public function new(a0:Arrow<AP,FR1>,a1:Arrow<AP,FR2>) {
-		this.a0 = Arrow.fan();
-		this.a1 = a0.pair(a1);
+		this.a0 = Arrow.fan().setInfo("LHS of Fanout");
+		this.a1 = a0.pair(a1).setInfo("RHS of Fanout");
 		super( compose );
 	}
 	private function compose(x:AP, a:ArrowInstance<Dynamic>) {

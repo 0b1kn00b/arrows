@@ -45,7 +45,7 @@ class Element extends Arrow<Dynamic,Dynamic>{
 		}
 		super(
 			function(x,a){
-				a.cont(val);
+				a.cont(val,null,null);
 			}
 		);
 	}

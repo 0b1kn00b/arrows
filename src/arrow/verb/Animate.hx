@@ -43,7 +43,7 @@ class Animate<I,O> extends Arrow<I,O> {
 		this.info = "Delay every arrow call to allow the UI to update";
 	}
 	private function animate(x:I, a:ArrowInstance<Dynamic>) {
-		a.cont( Arrow.doRepeat(x), new AnimateInner(f, ms) );
+		a.cont( Arrow.doRepeat(x), new AnimateInner(f, ms) ,null);
 	}
 }
 class AnimateInner<I,O> extends Arrow<TaggedValue<Loop,I>,O> {
@@ -81,7 +81,7 @@ class AnimateInner<I,O> extends Arrow<TaggedValue<Loop,I>,O> {
 			//trace("done");
 			call = function() { };
 			a.advance(cancel);
-			a.cont(x.value);
+			a.cont(x.value,null,null);
 		}else throw "repeat or done";
 	}
 }

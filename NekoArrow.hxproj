@@ -1,21 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project>
+<project version="2">
   <!-- Output SWF options -->
   <output>
-    <movie disabled="False" />
+    <movie outputType="Application" />
     <movie input="" />
     <movie path="bin\NekoArrow.n" />
     <movie fps="0" />
     <movie width="0" />
     <movie height="0" />
-    <movie version="12" />
+    <movie version="0" />
+    <movie minorVersion="0" />
+    <movie platform="Neko" />
     <movie background="#FFFFFF" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
     <class path="unit" />
-    <class path="..\stax\src\main\haxe" />
+    <class path="experimental" />
+    <class path="dependencies\hxzmq" />
+    <class path="dependencies\scuts\src" />
+    <class path="dependencies\stax\src\main\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -48,4 +53,6 @@
     <option testMovie="Custom" />
     <option testMovieCommand="run.bat" />
   </options>
+  <!-- Plugin storage -->
+  <storage />
 </project>

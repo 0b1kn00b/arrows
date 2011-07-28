@@ -22,8 +22,14 @@
 package arrow.verb;
 
 import Prelude;
-using Prelude;
+import PreludeExtensions;
+import haxe.data.collections.IterableExtensions;
+import haxe.data.collections.ArrayExtensions;
 
+using Prelude;
+using PreludeExtensions;
+using haxe.data.collections.IterableExtensions;
+using haxe.data.collections.ArrayExtensions;
 using haxe.util.ObjectExtensions;
 
 import arrow.Arrow;
@@ -35,11 +41,13 @@ import arrow.ArrowInstance;
 	import neko.vm.Lock;
 #end
 
-class Or<AP,AR> extends Arrow<AP,AR>{
+class Or<AP,AR,A1R> extends Arrow<AP,Either<AR,A1R>>{
 
 	#if neko
 	var lock:Lock;
 	#end
+	
+	var cancelled : Bool;
 	
 	var al : Progress;
 	var ar : Progress;
@@ -47,40 +55,68 @@ class Or<AP,AR> extends Arrow<AP,AR>{
 	var al1 : Progress;
 	var ar1 : Progress; 	
 	
+	var lBlock : Arrow<A1R,A1R>;
+	var rBlock : Arrow<AR,AR>;
+	
 	var a	: ArrowInstance<Dynamic>;
-	var f	: Arrow<AP,AR>;
+	var f	: Arrow<AP,A1R>;
 	var g	: Arrow<AP,AR>;
 	
-	public function new(f:Arrow<AP,AR>,g:Arrow<AP,AR>){
-		this.f = f;
-		this.g = g;
+	public function new(f:Arrow<AP,A1R>,g:Arrow<AP,AR>){
+		this.f 			= f.setInfo("Left Or");
+		this.g 			= g.setInfo("Right Or");
+		this.cancelled 	= false;
 		super( or );
+		this.info = "Or combinator";
 	}
 	private function or(x:AP, a:ArrowInstance<Dynamic>) {				
 		a.addCanceller(cancel);
 		this.a = a;
 		
-		al		= f.then( fl.pass() ).run(x);
-		al1		= Arrow.event().then( fl.pass() ).run(a.progress);
+		lBlock = fl.pass();
+		lBlock.setInfo("lBlock");
+		rBlock = fr.pass();
+		rBlock.setInfo("rBlock");
 		
-		ar 		= g.then( fr.pass() ).run(x);
-		ar1		= Arrow.event().then( fr.pass() ).run(a.progress);
+		al		= f.then( lBlock ).run(x);
+		
+		al.setInfo("Temporary Arrow for Or Combinator Left: f.then( _fl ) ");
+		#if (flash || js)
+		al1		= Arrow.event().then( lBlock ).run(a.progress);
+		#end
+		
+		ar 		= g.then( rBlock  ).run(x);
+		ar.setInfo("Temporary Arrow for Or Combinator Right: g.then( _fr ) ");
+		
+		
+		#if ( flash || js )
+		ar1		= Arrow.event().then( rBlock ).run(a.progress);
+		#end
+		
 	}
 	
 	private function cancel() {
 		al.cancel();
 		ar.cancel();
 	}
-	private function fl(x:AR):Dynamic {
-		if (ar.cancel != null) { ar.cancel(); }
-		if (ar1 != null && ar1.cancel != null) { ar1.cancel(); }
-		a.advance(cancel);
-		a.cont(x);
+	private function fl(x:A1R):Dynamic {
+		if (!cancelled) {
+			//trace("Fl");
+			this.cancelled = true;
+			if (ar.cancel != null) { ar.cancel(); }
+			if (ar1 != null && ar1.cancel != null) { ar1.cancel(); }
+			a.advance(cancel);
+			a.cont(Left(x),null,null);
+		}
 	}
 	private function fr(x:AR):Dynamic {
-		if (al.cancel != null) { al.cancel(); }
-		if (al1 != null && al1.cancel != null) { al1.cancel(); }
-		a.advance(cancel);
-		a.cont(x);
+		if (!cancelled) {
+			//trace("Fr");
+			this.cancelled = true;
+			if (al.cancel != null) { al.cancel(); }
+			if (al1 != null && al1.cancel != null) { al1.cancel(); }
+			a.advance(cancel);
+			a.cont(Right(x),null,null);
+		}
 	}
 }

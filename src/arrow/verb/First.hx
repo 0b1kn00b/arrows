@@ -25,9 +25,9 @@ import arrow.verb.Product;
 
 import arrow.Arrow;
 
-class First<P,R> extends Product<P,R,P,P>{
+class First<P1,R1,P2,P2> extends Product<P1,R1,P2,P2>{
 	
-	public function new(f){
+	public function new(f:Arrow<P1,R1>){
 		super(f,Arrow.identity());
 	}
 }

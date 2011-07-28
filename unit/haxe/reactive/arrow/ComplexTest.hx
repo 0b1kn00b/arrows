@@ -23,22 +23,28 @@ class ComplexTest extends TestCase{
 		return x;
 	}
 
+	
 	public function testOr(){
 		var as = Assert.createEvent(
 			function (x:Dynamic):Void {
-				Assert.equals("g", x);
+				//trace("assert");
+				Assert.equals(Right("g"), x);
 			}
 		,2000);
-		var f = function (x:Dynamic):String{
+		var f = function (x:Dynamic):String {
+			//trace("f");
 			return "f";
 		}
-		var g = function (x:Dynamic):String{
+		var g = function (x:Dynamic):String {
+			//trace("g");	
 			return "g";
 		}
-		// f called later than g, should therefore be cancelled.
-		var a0 = Arrow.delay(500).then(f.lift());
-		var a1 = Arrow.delay(400).then(g.lift());
-		a0.or(a1).then(as.lift()).run(2).start();
+		// f called later than g, should therefore pass the result of g to as.
+		var a0 = Arrow.delay(500).then(f.lift().setInfo("TestF")).setInfo("TestA0");
+		var a1 = Arrow.delay(400).then(g.lift().setInfo("TestG")).setInfo("TestA1");
+		a0.or(a1).then(as.lift()).run(2);
+		
+		Arrow.start();
 	}
 	
 	public function testRepeat(){

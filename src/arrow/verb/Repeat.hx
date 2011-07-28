@@ -53,7 +53,7 @@ class InnerRepeat<I,O> extends Arrow<TaggedValue<Loop,I>,O>{
 				a.cont(x.value,f,this);
 			case done:
 				a.advance(this.cancel);
-				a.cont(x.value);
+				a.cont(x.value,null,null);
 		}
 	}
 	private function cancel():Void {

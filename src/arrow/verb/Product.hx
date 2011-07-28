@@ -30,7 +30,7 @@ using arrow.Arrow;
 
 import arrow.ArrowInstance;
 
-class Product<P1,R1,P2,R2> extends Arrow<Tuple2<P1,P2>,Tuple2<P2,R2>>{
+class Product<P1,R1,P2,R2> extends Arrow<Tuple2<P1,P2>,Tuple2<R1,R2>>{
 
 	public function new(f:Arrow<P1,R1>,g:Arrow<P2,R2>){
 		this.f = f;
@@ -62,14 +62,16 @@ class Product<P1,R1,P2,R2> extends Arrow<Tuple2<P1,P2>,Tuple2<P2,R2>>{
 	private function barrier() {
 		if (--count == 0){
 			a.advance(cancel);
-			a.cont(Tuple2.create(lOut,rOut));
+			a.cont(Tuple2.create(lOut,rOut),null,null);
 		}
 	}
 	private function f1(x:R1):Void {
+		//trace("f1");
 		this.lOut = x;
 		this.barrier();
 	}
 	private function g1(x:R2):Void {
+		//trace("g1");
 		this.rOut = x;
 		this.barrier();
 	}
