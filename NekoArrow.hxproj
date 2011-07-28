@@ -18,15 +18,15 @@
     <class path="src" />
     <class path="unit" />
     <class path="experimental" />
-    <class path="dependencies\hxzmq" />
-    <class path="dependencies\scuts\src" />
-    <class path="dependencies\stax\src\main\haxe" />
+    <class path="dep\hxzmq" />
+    <class path="dep\scuts\src" />
+    <class path="dep\stax\src\main\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
     <option directives="" />
     <option flashStrict="False" />
-    <option mainClass="Full" />
+    <option mainClass="Dev" />
     <option enabledebug="False" />
     <option additional="" />
   </build>

@@ -159,22 +159,15 @@ class Arrow<AP,AR>{
 	}
 	
 	public function execute(x:AP,a:ArrowInstance<Dynamic>){
-		this.method(x,a);
+		this.method(x, a);
 	}
 	/**
 	 * @private
 	 * Called by the scheduler.
 	 */
 	public inline function invoke() {
-		try {
-			this.execute( this.param , this.instance );
-		}catch (e:Dynamic) {
-			//trace("ERROR:" + e);
-			this.instance.error = e;
-			Arrow.scheduler.cancel(this.instance);
-			//trace("carry on:" + (this.method == this.nothing));
-			this.execute( this.param , this.instance );
-		}
+		trace("invoke");
+		this.execute( this.param , this.instance );
 	}
 	
 	/**
@@ -214,11 +207,6 @@ class Arrow<AP,AR>{
 	public static function terminal():Terminal<Dynamic>{
 		return new Terminal();
 	}
-	//EXPERIMENTAL
-	
-	public function state():StateArrow < AP, AR > {
-		return new StateArrow(this);
-	}
 	/*
 	* returns a function that builds a @code Tuple2 from one value;
 	*/
@@ -250,6 +238,9 @@ class Arrow<AP,AR>{
 			return x;
 		}.pass();
 	}
+	/**
+	 * alias of @code identity;
+	 */
 	public static function i<A>():Arrow<A,A>{
 		return Arrow.identity();
 	}
@@ -303,10 +294,16 @@ class Arrow<AP,AR>{
 		return new Apply(inputClass, outputClass);
 	}
 	/*
-	* 
+	* Starts the scheduler, like this so you can run() several arrows before starting them on
+	* single threaded architectures.
 	*/
 	public static function start() {
 		Arrow.scheduler.start();
+	}
+	//EXPERIMENTAL
+	
+	public function state():StateArrow < AP, AR > {
+		return new StateArrow(this);
 	}
 
 }
@@ -314,12 +311,6 @@ class Combinators {
 	public static function start<AP,AR>(a:Arrow<AP,AR>) {
 		Arrow.scheduler.start();
 		return a;
-	}
-	public static function right < B, C, D > (a: Arrow< B , C > ):Right<B,C,D>{
-		return new Right(a);
-	}
-	public static function left < B, C, D > (a:  Arrow<B,C> ):Left<B,C,D>{
-		return new Left(a);
 	}
 	/**
 	* Composititon combinator.
@@ -388,7 +379,6 @@ class Combinators {
 	}
 	/**
 	* DEBUG
-	* TODO Tracing some values breaks things...
 	*/
 	public static function print<A,B>(print:Arrow<A,B>):Arrow<A,B>{
 		return print.then(
@@ -399,7 +389,17 @@ class Combinators {
 		);
 	}
 	
+	//EXPERIMENTAL
+	public static function right < B, C, D > (a: Arrow< B , C > ):Right<B,C,D>{
+		return new Right(a);
+	}
+	public static function left < B, C, D > (a:  Arrow<B,C> ):Left<B,C,D>{
+		return new Left(a);
+	}
 }
+/**
+ * Contains functions for @see Thunks, 
+ */
 class ThunkArrow {
 	public static function lift<R>(f:Thunk<R>):Consume<R>{
 		return new Consume(f);

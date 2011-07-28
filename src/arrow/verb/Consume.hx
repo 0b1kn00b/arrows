@@ -61,13 +61,8 @@ class Consume1<P1,R1> extends Arrow<P1,R1>{
 		super( thunk );
 	}
 	private function thunk(x:P1, ar:ArrowInstance<Dynamic>) {
-		try {
-			var o = f(x);
-			ar.cont(o,null,null);
-		}catch (e:Dynamic) {
-			
-		}
-		
+		var o = f(x);
+		ar.cont(o,null,null);
 	}
 }
 

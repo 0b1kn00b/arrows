@@ -92,6 +92,7 @@ class Progress extends Arrow<Dynamic,Dynamic>, #if flash implements IEventDispat
 	 * Returns the Arrow that is called if something goes wrong on the ArrowInstance.
 	 */ 
 	public dynamic function recover():Arrow <ArrowInstance<Dynamic>, Dynamic  > {
+		trace("here");
 		//return Stax.error.lift();
 		return ( function(x:ArrowInstance<Dynamic>) { trace(haxe.Stack.exceptionStack() ); } .lift());
 	}

@@ -13,10 +13,10 @@ class ErrorTest extends TestCase{
 		super();
 	}
 	public function testFuckUp() {
-		var assert = Assert.createEvent( function(x) Assert.isTrue(true) , 1000 );
-		var progress = Arrow.identity().then( throwAnError.lift() ).run(0);
-		progress.recover = function() { return function(x) { assert(x) ; } .lift(); };
-		Arrow.begin();
+		var assert 		= Assert.createEvent( function(x) Assert.isTrue(true) , 1000 );
+		var progress 	= Arrow.identity().then( throwAnError.lift() ).run(0);
+		//progress.recover = function() { return function(x) { assert(x) ; } .lift(); };
+		Arrow.start();
 	}
 	private function throwAnError(s) {
 		throw "wobbly";

@@ -60,11 +60,7 @@ class InlineScheduler extends AbstractScheduler{
 			if (current!=null && current.active) {
 				if ( current.predicate() ) {
 					t  = Timer.stamp();
-					try {
 						current.invoke();
-					}catch (e:Dynamic) {
-						throw { error : e , arrow : current };
-					}
 				}else {
 					
 					this.queue.enqueue(current);

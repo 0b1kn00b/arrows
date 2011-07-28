@@ -46,22 +46,22 @@ class ArrowInstance<T>{
 	
 	public var progress(default,null):Progress;
 	
-	public var stack		: Array<Arrow<Dynamic,Dynamic>>;
-	public var uuid			: String;
+	public var stack				: Array<Arrow<Dynamic,Dynamic>>;
+	public var uuid					: String;
 	
 	private var cancellers 	: Array < Void->Void > ;
-	public var error		: Dynamic;
-	public var initial		: T;
-	private var start		: Arrow<Dynamic,Dynamic>;
+	public var error				: Dynamic;
+	public var initial			: T;
+	private var start				: Arrow<Dynamic,Dynamic>;
 	
 	public function new<A,B>(arr:Arrow < A, B> , x:T) {
-		this.progress 		= new Progress(this);
+		this.progress 	= new Progress(this);
 		this.uuid 			= Guid.generate();	
 		Arrow.scheduler.register( this );
 		this.initial		= x;
 		this.start			= arr;
 		
-		this.cancellers 	= new Array();
+		this.cancellers = new Array();
 		this.stack 			= new Array();
 		this.stack.push(Arrow.terminal());
 		this.stack.push(arr);
@@ -83,8 +83,6 @@ class ArrowInstance<T>{
 	public inline function cont<A,B,C,D,E>(x:A, f:Arrow<B,C>, g:Arrow<D,E>, predicate:Void->Bool = null) {
 		
 		var a : Arrow<Dynamic,Dynamic> ;
-		
-		
 		
 		if (f != null) {
 			a		= f;
@@ -112,7 +110,7 @@ class ArrowInstance<T>{
 	 * Invokes added cancellers.
 	 */
 	public function cancel() {
-		//trace("Instance CANCEL");
+		trace("Instance CANCEL");
 		for (canceller in cancellers) {
 			canceller();
 		}	
