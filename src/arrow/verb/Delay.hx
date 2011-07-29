@@ -36,17 +36,17 @@ import arrow.ArrowInstance;
 class Delay<I> extends Arrow<I,I>{
 	
 	var cancelled	: Bool;
-	var ms 			: Int;
+	var ms 				: Int;
 	
 	public function new(milliseconds:Int){
-		this.ms 			= milliseconds;
+		this.ms 					= milliseconds;
 		this.cancelled		= false;
-	
-		this.info = "Delay";
+		this.info 				= "Delay";
+		
 		super(delay);
 	}
 	private function cancel() {
-		this.cancelled 	= true;
+		this.cancelled 		= true;
 	}
 	private var a : ArrowInstance<Dynamic>;
 	
@@ -67,15 +67,18 @@ class Delay<I> extends Arrow<I,I>{
 }
 #elseif ( neko || cpp || php )
 class Delay<I> extends Poll<I> {
-	var ms : Int;
-	var t  : Float;
+	var ms 					: Int;
+	var t  					: Null<Float>;
+	var cancelled		: Bool;
+	
 	public function new(milliseconds : Int) {
 		this.ms 		= milliseconds;
 		super(done);
 	}
 	private function done():Bool {
-		if (t == null) ( t = Timer.stamp() );
-		return ( t + this.ms/1000 ) < haxe.Timer.stamp();
+		if (this.t == null) ( this.t = Timer.stamp() );
+		var o = (( t + this.ms / 1000 ) < haxe.Timer.stamp() );
+		return o;
 	}
 }
 #end

@@ -23,7 +23,7 @@ package arrow.verb;
 import arrow.Arrow;
 import arrow.ArrowInstance;
 
-#if flash
+#if flash9
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.events.IEventDispatcher;
@@ -37,14 +37,14 @@ import zen.env.event.EventListener;
 import Prelude;
 using Prelude;
 
-class EventArrow<O> extends Arrow< #if flash IEventDispatcher #elseif js Dynamic #else EventListener #end,O>{
+class EventArrow<O> extends Arrow< #if flash9 IEventDispatcher #elseif js Dynamic #else EventListener #end,O>{
 	
 	private var trigger : String;
 	public function new(trigger:String = "trigger") {
 		this.trigger = trigger;
 		super( evt );
 	}
-	private function evt(target:#if flash IEventDispatcher #elseif js Dynamic #else EventListener #end, a:ArrowInstance<Dynamic>) {
+	private function evt(target:#if flash9 IEventDispatcher #elseif js Dynamic #else EventListener #end, a:ArrowInstance<Dynamic>) {
 		//trace("event " + trigger + " target " + target);
 		var self = this;
 		cancel = function(){

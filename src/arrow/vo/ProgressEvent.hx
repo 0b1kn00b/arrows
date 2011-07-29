@@ -22,7 +22,7 @@
 
 package arrow.vo;
 
-#if flash
+#if flash9
 import flash.events.Event;
 #else
 import zen.env.event.Event;

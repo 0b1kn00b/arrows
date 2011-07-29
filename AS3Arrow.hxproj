@@ -17,8 +17,9 @@
   <classpaths>
     <class path="src" />
     <class path="unit" />
-    <class path="scuts\src" />
-    <class path="stax\src\main\haxe" />
+    <class path="dep\scuts\src" />
+    <class path="dep\stax\src\main\haxe" />
+    <class path="experimental" />
   </classpaths>
   <!-- Build options -->
   <build>

@@ -63,11 +63,11 @@ class Or<AP,AR,A1R> extends Arrow<AP,Either<AR,A1R>>{
 	var g	: Arrow<AP,AR>;
 	
 	public function new(f:Arrow<AP,A1R>,g:Arrow<AP,AR>){
-		this.f 			= f.setInfo("Left Or");
-		this.g 			= g.setInfo("Right Or");
+		this.f 					= f.setInfo("Left Or");
+		this.g 					= g.setInfo("Right Or");
 		this.cancelled 	= false;
 		super( or );
-		this.info = "Or combinator";
+		this.info 			= "Or combinator";
 	}
 	private function or(x:AP, a:ArrowInstance<Dynamic>) {				
 		a.addCanceller(cancel);
@@ -79,7 +79,6 @@ class Or<AP,AR,A1R> extends Arrow<AP,Either<AR,A1R>>{
 		rBlock.setInfo("rBlock");
 		
 		al		= f.then( lBlock ).run(x);
-		
 		al.setInfo("Temporary Arrow for Or Combinator Left: f.then( _fl ) ");
 		#if (flash || js)
 		al1		= Arrow.event().then( lBlock ).run(a.progress);
@@ -104,19 +103,28 @@ class Or<AP,AR,A1R> extends Arrow<AP,Either<AR,A1R>>{
 			//trace("Fl");
 			this.cancelled = true;
 			if (ar.cancel != null) { ar.cancel(); }
+			#if (flash || js)
 			if (ar1 != null && ar1.cancel != null) { ar1.cancel(); }
+			#end
 			a.advance(cancel);
 			a.cont(Left(x),null,null);
 		}
+		//FIX Cpp requirement
+		return null;
 	}
 	private function fr(x:AR):Dynamic {
 		if (!cancelled) {
 			//trace("Fr");
 			this.cancelled = true;
+			//trace(al.cancel);
 			if (al.cancel != null) { al.cancel(); }
+			#if (flash || js)
 			if (al1 != null && al1.cancel != null) { al1.cancel(); }
+			#end
 			a.advance(cancel);
 			a.cont(Right(x),null,null);
 		}
+		//FIX Cpp requirement
+		return null;
 	}
 }

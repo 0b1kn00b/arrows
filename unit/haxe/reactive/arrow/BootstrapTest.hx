@@ -38,9 +38,11 @@ class BootstrapTest extends TestCase{
 		//Assert.isTrue(  == 0);
 	}
 	public function testCancelDelay() {
-		var o = Assert.createEvent( function(x) { } , 10000);
-		var a0 = Arrow.delay(1000).run();
-		a0.cancel();
+		var o = Assert.createEvent( function(x) { 
+				//trace( untyped Arrow.scheduler.queue );
+		} , 10000);
+		var a0 = Arrow.delay(3000).run();
+		var a1 = Arrow.delay(2000).then( function (x) { a0.cancel(); } .lift() ).run();
 		//This would run forever if there was something stuck in the queue
 		Arrow.start();
 		Assert.isTrue(true);

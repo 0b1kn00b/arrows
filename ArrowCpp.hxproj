@@ -1,22 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project>
+<project version="2">
   <!-- Output SWF options -->
   <output>
-    <movie disabled="False" />
+    <movie outputType="Application" />
     <movie input="" />
     <movie path="bin" />
     <movie fps="0" />
     <movie width="0" />
     <movie height="0" />
-    <movie version="14" />
+    <movie version="0" />
+    <movie minorVersion="0" />
+    <movie platform="C++" />
     <movie background="#FFFFFF" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
     <class path="unit" />
-    <class path="..\stax\src\main\haxe" />
-    <class path="..\..\platform\x\src\hx\hxhsl\hsl-pico source" />
+    <class path="dep\hxzmq\src" />
+    <class path="dep\scuts\src" />
+    <class path="dep\stax\src\main\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -46,6 +49,8 @@
   <options>
     <option showHiddenPaths="False" />
     <option testMovie="Custom" />
-    <option testMovieCommand="run.bat" />
+    <option testMovieCommand="cpp.bat" />
   </options>
+  <!-- Plugin storage -->
+  <storage />
 </project>

@@ -44,28 +44,34 @@ class InlineScheduler extends AbstractScheduler{
 					break;
 				}else {
 					if ( Timer.stamp() > (t + this.timeout)) {
-							throw new TimeoutError( Std.string(this.pending)
-						);
+							throw new TimeoutError( Std.string(this.pending) );
 						break;
 					}
-					#if neko
-						#if !macro
-						neko.Sys.sleep(3);
-						#end
-					#elseif php
-						php.Sys.sleep(3);
-					#end
+					this.wait();
 				}
 			}
-			if (current!=null && current.active) {
+			if (current != null && current.active) {
 				if ( current.predicate() ) {
-					t  = Timer.stamp();
+						t  = Timer.stamp();
+						
 						current.invoke();
 				}else {
-					
+					this.wait();
 					this.queue.enqueue(current);
 				}
 			}
 		}
+	}
+
+	override public function wait() {
+		#if neko
+			#if !macro
+				neko.Sys.sleep(0.2);
+			#end
+		#elseif php
+			php.Sys.sleep(0.2);
+		#elseif cpp
+			cpp.Sys.sleep(2);
+		#end
 	}
 }

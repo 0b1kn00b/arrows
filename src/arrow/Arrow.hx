@@ -65,7 +65,7 @@ using haxe.framework.Injector;
 	import neko.vm.Thread;
 #end
 
-#if (flash)
+#if (flash9)
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 #else
@@ -99,11 +99,11 @@ import scuts.macro.F;
 typedef ApplyArgs<AP,AR>			= Tuple2< Arrow < AP, AR > , AP > ;
 //typedef Apply < AP, AR > 			= Arrow < ApplyArgs < AP, AR > , AR > ;
 class Arrow<AP,AR>{	
+	public var active : Bool;
 	/**
 	 * @private
-	 * Used internally to skip cancelled arrows.
 	 */
-	public var active		: Bool;
+	public static var version : Array<Int> = [0, 2, 0];
 	
 	/**
 	 * Reference to the arrow instance for cps.
@@ -130,6 +130,9 @@ class Arrow<AP,AR>{
 		this.info = s;
 		return this;
 	}
+	/**
+	 * 
+	 */
 	public var fail			: String;
 	public function setFail(s:String) {
 		this.fail = s;
@@ -145,6 +148,20 @@ class Arrow<AP,AR>{
 	 */
 	public var params		: Int;
 	
+	/**
+	 * Arrow to run on uncaught error.
+	 */
+	private var error		: Arrow<Dynamic,Dynamic>;
+	
+	public function setError(a:Arrow<Dynamic,Dynamic>):Arrow<AP,AR> {
+		this.error = a;
+		return this;
+	}
+	/**
+	 * 
+	 * @param	method
+	 * @param	?params
+	 */
 	public function new(method:AP->ArrowInstance<Dynamic>-> Void, ?params:Int = 1) {
 		this.active = true;
 		this.method = method;
@@ -157,7 +174,11 @@ class Arrow<AP,AR>{
 	public dynamic function predicate()	: Bool {
 		return true;
 	}
-	
+	/**
+	 * 
+	 * @param	x
+	 * @param	a
+	 */
 	public function execute(x:AP,a:ArrowInstance<Dynamic>){
 		this.method(x, a);
 	}
@@ -166,8 +187,15 @@ class Arrow<AP,AR>{
 	 * Called by the scheduler.
 	 */
 	public inline function invoke() {
-		trace("invoke");
-		this.execute( this.param , this.instance );
+		try{
+				this.execute( this.param , this.instance );
+		}catch (e:Dynamic) {
+				if (this.error != null ) {
+					this.error.execute( e , this.instance );
+				}else {
+					this.instance.error.execute( e , this.instance );
+				}
+		}
 	}
 	
 	/**
@@ -185,7 +213,6 @@ class Arrow<AP,AR>{
 		//trace("DESTROY");
 		if ( !Std.is( this , Terminal ) ) {
 			this.method = this.nothing;
-			this.active	= false;
 		}
 	}
 	public var name(getName, null):String;
@@ -274,9 +301,6 @@ class Arrow<AP,AR>{
 	public static function so<R>(str:String):EventArrow<R> {
 		return new EventArrow(str);
 	}
-	//public static function signalA():SignalArrow {
-		//return new SignalArrow();
-	//}
 	/*
 	* When the predicate returns true, the scheduled arrow is called
 	* The polling of the predicate is managed by the scheduler.
@@ -294,7 +318,7 @@ class Arrow<AP,AR>{
 		return new Apply(inputClass, outputClass);
 	}
 	/*
-	* Starts the scheduler, like this so you can run() several arrows before starting them on
+	* Starts the scheduler, like this so you can run() several Arrows before starting them on
 	* single threaded architectures.
 	*/
 	public static function start() {
@@ -368,6 +392,7 @@ class Combinators {
 	}
 	
 	/*
+	* TODO May sub this under verb.Event due to its inconsistent semantics.
 	* Either-or combinator. 
 	*/
 	public static function or<AP,A1R,AR>(orL:Arrow<AP,A1R>, orR:Arrow<AP,AR>):Or<AP,AR,A1R> {
@@ -396,7 +421,13 @@ class Combinators {
 	public static function left < B, C, D > (a:  Arrow<B,C> ):Left<B,C,D>{
 		return new Left(a);
 	}
+	//public static function signalA():SignalArrow {
+			//return new SignalArrow();
+	//}
 }
+
+
+//MOSTLY TYPE SYSTEM HACKS SOUTH OF HERE.
 /**
  * Contains functions for @see Thunks, 
  */

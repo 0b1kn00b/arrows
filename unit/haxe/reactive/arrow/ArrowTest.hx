@@ -194,14 +194,7 @@ class ArrowTest extends TestCase{
 		g0.lift().repeat().then(as.lift()).run(0).start();
 	}
 	
-	public function testDelay(){
-		var as = Assert.createEvent(
-			function (x:Dynamic){
-				Assert.isTrue(true);
-			}
-		,3000);
-		Arrow.delay(2000).then(as.lift()).run().start();
-	}
+
 	
 	public function testIdentity(){
 		var self = this;
@@ -214,22 +207,7 @@ class ArrowTest extends TestCase{
 		.start();
 	}
 	
-	public function testEvent() {
-		var self = this;
-		var dispatcher = #if flash new EventDispatcher(); #else new zen.env.event.EventSystem(this); #end
-		var as = Assert.createEvent(
-			function(x) {
-					Assert.isTrue(true);
-			}
-		);
-		Arrow.event("trigger").then(as.lift()).run(dispatcher);
-		Arrow.delay(100).then( 
-			function(x) { 
-				dispatcher.dispatchEvent(new #if !flash zen.env.event.#end Event("trigger")); 
-			}.lift()
-		).run();
-		Arrow.start();
-	}
+	
 	public function takesFloatReturnsFloat(x:Float):Float{
 		debug(["f2f",x]);
 		var out =  x+1;

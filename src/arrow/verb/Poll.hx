@@ -20,25 +20,31 @@
  THE SOFTWARE.
 */
 package arrow.verb;
+
 import arrow.Arrow;
 import arrow.ArrowInstance;
+
 class Poll<I> extends Arrow<I,I>{
 	
+	var p :Void->Bool;
 	public function new(predicate:Void->Bool) {
+		//trace("poll created");
+		Arrow.
+		this.p = predicate;
 		var self = this;
 		super(
 			function (x:I, a:ArrowInstance<Dynamic>) {
 				self.a = a;
-				//a.addCanceller( self.cancel );
-				a.cont(x,null,null,predicate);
+				a.addCanceller( self.cancel );
+				a.cont(x, null, null, function() { return ( (self.p() == true) ); } );
 			}
 		);
 		this.info = "Polling Arrow";
 	}
-	private var a :ArrowInstance<Dynamic>;
 	private function cancel() {
-		trace("cancel poll: " + a);
 		this.active = false;
+		this.p = function() { return true; };
 	}
+	private var a :ArrowInstance<Dynamic>;
 }
 

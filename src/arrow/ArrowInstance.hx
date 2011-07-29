@@ -21,6 +21,7 @@
 */
 package arrow;
 
+import haxe.Stack;
 import Prelude;
 using Prelude;
 
@@ -32,6 +33,7 @@ import haxe.util.Guid;
 import arrow.verb.Progress;
 import arrow.vo.ProgressEvent;
 
+import arrow.Arrow;
 using arrow.Arrow;
 
 #if neko
@@ -50,11 +52,13 @@ class ArrowInstance<T>{
 	public var uuid					: String;
 	
 	private var cancellers 	: Array < Void->Void > ;
-	public var error				: Dynamic;
+	public var error				: Arrow <Dynamic,Dynamic>;
+	
 	public var initial			: T;
 	private var start				: Arrow<Dynamic,Dynamic>;
 	
 	public function new<A,B>(arr:Arrow < A, B> , x:T) {
+		this.error 			= ArrowInstanceTools.error;
 		this.progress 	= new Progress(this);
 		this.uuid 			= Guid.generate();	
 		Arrow.scheduler.register( this );
@@ -110,7 +114,6 @@ class ArrowInstance<T>{
 	 * Invokes added cancellers.
 	 */
 	public function cancel() {
-		trace("Instance CANCEL");
 		for (canceller in cancellers) {
 			canceller();
 		}	
@@ -155,4 +158,13 @@ class ArrowInstance<T>{
 		q+="]";
 		return "[ArrowInstance (" + uuid  + ") " +  "Q: " + q + "]";
 	}
+}
+class ArrowInstanceTools {
+	public static var error : Arrow<Dynamic,Dynamic> = 
+		function (x:Dynamic) { 
+			trace("caught");
+			trace(Stack.callStack());
+			trace(x);
+			throw(x);
+		}.lift();
 }

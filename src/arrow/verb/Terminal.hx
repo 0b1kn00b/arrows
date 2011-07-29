@@ -30,8 +30,5 @@ class Terminal<I> extends Arrow<I,Void>{
 	}
 	private function term(x:I, a:ArrowInstance<Dynamic>) {
 		Arrow.scheduler.unregister(a);
-		if (a.error != null) {
-			a.progress.recover().run(a);
-		}
 	}
 }

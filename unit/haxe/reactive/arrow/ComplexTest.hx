@@ -22,32 +22,8 @@ class ComplexTest extends TestCase{
 		trace("result = " + x);
 		return x;
 	}
-
 	
-	public function testOr(){
-		var as = Assert.createEvent(
-			function (x:Dynamic):Void {
-				//trace("assert");
-				Assert.equals(Right("g"), x);
-			}
-		,2000);
-		var f = function (x:Dynamic):String {
-			//trace("f");
-			return "f";
-		}
-		var g = function (x:Dynamic):String {
-			//trace("g");	
-			return "g";
-		}
-		// f called later than g, should therefore pass the result of g to as.
-		var a0 = Arrow.delay(500).then(f.lift().setInfo("TestF")).setInfo("TestA0");
-		var a1 = Arrow.delay(400).then(g.lift().setInfo("TestG")).setInfo("TestA1");
-		a0.or(a1).then(as.lift()).run(2);
-		
-		Arrow.start();
-	}
-	
-	public function testRepeat(){
+/*	public function testRepeat(){
 		var count = 0;
 		var as = Assert.createEvent(
 			function (x:Dynamic){
@@ -62,9 +38,9 @@ class ComplexTest extends TestCase{
 				return Arrow.doDone();
 			}
 		}.lift().repeat().then(as.lift()).run().start();
-	}
+	}*/
 	
-	#if !neko
+	#if !(neko || cpp || php)
 	public function testAnimate() {
 		var t = Timer.stamp();
 		var t1 = t + 3;

@@ -26,7 +26,7 @@
   <build>
     <option directives="" />
     <option flashStrict="False" />
-    <option mainClass="Dev" />
+    <option mainClass="Full" />
     <option enabledebug="False" />
     <option additional="" />
   </build>

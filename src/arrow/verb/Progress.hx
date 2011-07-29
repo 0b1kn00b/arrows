@@ -26,7 +26,7 @@ import arrow.ArrowInstance;
 import arrow.vo.ProgressEvent;
 import haxe.Stack;
 
-#if flash
+#if flash9
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
@@ -39,11 +39,11 @@ import haxe.Stack;
 
 using arrow.Arrow;
 
-class Progress extends Arrow<Dynamic,Dynamic>, #if flash implements IEventDispatcher #else implements zen.env.event.EventListener, implements EventDispatcher #end{
+class Progress extends Arrow<Dynamic,Dynamic>, #if flash9 implements IEventDispatcher #else implements zen.env.event.EventListener, implements EventDispatcher #end{
  
-	var dispatcher : #if flash EventDispatcher #else EventSystem #end;
+	var dispatcher : #if flash9 EventDispatcher #else EventSystem #end;
 	
-	#if flash
+	#if flash9
 		public function addEventListener(type:String, listener:Dynamic->Void, ?useCapture:Bool = false, ?priority:Int = 0, ?useWeakReference:Bool = false):Void {
 			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
@@ -76,28 +76,20 @@ class Progress extends Arrow<Dynamic,Dynamic>, #if flash implements IEventDispat
 	#end
 	
 	public function new(instance:ArrowInstance<Dynamic>) {
-		this.dispatcher = #if flash new EventDispatcher(this) #else new EventSystem(this) #end;
+		this.dispatcher = #if flash9 new EventDispatcher(this) #else new EventSystem(this) #end;
 		
 		this.instance = instance;
 		var self = this;
 		super(
 			function(x, a) {
-				trace("progress");
+				//trace("progress");
 				a.cont(self,null,null);
 			}
 		);
 
 	}
-	/**
-	 * Returns the Arrow that is called if something goes wrong on the ArrowInstance.
-	 */ 
-	public dynamic function recover():Arrow <ArrowInstance<Dynamic>, Dynamic  > {
-		trace("here");
-		//return Stax.error.lift();
-		return ( function(x:ArrowInstance<Dynamic>) { trace(haxe.Stack.exceptionStack() ); } .lift());
-	}
-	
 	public function cancel() {
+		this.active = false;
 		instance.cancel();
 	}	
 }

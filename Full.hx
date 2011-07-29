@@ -12,7 +12,7 @@ class Full{
 		var t = new Runner();
 		t.add( new haxe.reactive.arrow.BootstrapTest() );
 		//t.add(		new SpeedTest()			);
-		t.add(		new haxe.reactive.arrow.ArrowTest()			);
+		t.add(	new haxe.reactive.arrow.ArrowTest()			);
 		//t.add( 	new haxe.reactive.arrow.CancellerTest()		);
 		t.add(	new haxe.reactive.arrow.ComplexTest()		);
 		//t.add( 	new haxe.reactive.arrow.ErrorTest()			);
@@ -22,6 +22,7 @@ class Full{
 		//t.add( new LeakCheck() );
 		//t.add( new haxe.reactive.arrow.FurtherTypingTest() );
 		//t.add( new haxe.reactive.arrow.OrderingTest() );
+		t.add(new arrow.AsyncTest() );
 		var r = Report.create(t);
 		
 		#if js
