@@ -17,8 +17,8 @@
   <classpaths>
     <class path="src" />
     <class path="unit" />
-    <class path="..\stax\src\main\haxe" />
-    <class path="..\..\platform\x\src\hx\hxhsl\hsl-pico source" />
+    <class path="dep\hxzmq" />
+    <class path="dep\stax\src\main\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -48,7 +48,7 @@
   <options>
     <option showHiddenPaths="False" />
     <option testMovie="Custom" />
-    <option testMovieCommand="http://localhost/index.php" />
+    <option testMovieCommand="php bin/index.php" />
   </options>
   <!-- Plugin storage -->
   <storage />

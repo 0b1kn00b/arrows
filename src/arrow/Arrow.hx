@@ -94,8 +94,6 @@ import haxe.macro.Context;
 import haxe.macro.Type;
 import haxe.macro.Compiler;
 
-import scuts.macro.F;
-
 typedef ApplyArgs<AP,AR>			= Tuple2< Arrow < AP, AR > , AP > ;
 //typedef Apply < AP, AR > 			= Arrow < ApplyArgs < AP, AR > , AR > ;
 class Arrow<AP,AR>{	

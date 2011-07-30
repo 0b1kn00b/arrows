@@ -29,7 +29,6 @@ class Poll<I> extends Arrow<I,I>{
 	var p :Void->Bool;
 	public function new(predicate:Void->Bool) {
 		//trace("poll created");
-		Arrow.
 		this.p = predicate;
 		var self = this;
 		super(
