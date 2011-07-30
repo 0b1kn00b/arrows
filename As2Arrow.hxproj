@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\As2Arrow.swf" />
+    <movie path="bin\AS2Arrow.swf" />
     <movie fps="30" />
     <movie width="800" />
     <movie height="600" />

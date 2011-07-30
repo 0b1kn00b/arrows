@@ -1,11 +1,21 @@
 Arrows lib released under M.I.T license
 
+BUILD
+
+get dependencies with :
+
+git submodule init
+git submodule update
+
+either use the FlashDevelop projects or
+
+haxe NekoArrow.hxml
+
 Usage.
 	//lifts function f and passes output to arrow/function g at completion.
-	//start initiates the arrow scheduler
-	//can use Arrow.begin();
+	//start() runs the arrow scheduler
 	
-	Arrow.liftF(f).then( Arrow.lift(g) ).run(x).start();
+	Arrow.lift(f).then( g.lift() ).run(x).start();
 
 	function (x:){ return x * 2; }
 		.lift().then( g.lift() ).run();
@@ -18,27 +28,25 @@ http://en.wikipedia.org/wiki/Arrow_(computer_science)
 http://www.cs.umd.edu/projects/PL/arrowlets/
 http://www.cs.umd.edu/~jfoster/arrows.pdf
 
+see doc/arrows.jpg for a visual outlay of the basic combinators.
 
 note: ONLY THE COMBINATORS ARE SUPPORTED, THE SCHEDULING ALGORITHM MAY CHANGE WITHOUT WARNING.
 
-To begin the scheduler, either arrowInstance.start() or Arrow.begin() should be used, 
-being that the same name cannot be used for a static function and a class function in the same class. 
 GOTCHA
-No arrows can be guaranteed to be called after begin() or start() as functionality differs across schedulers 
-and platforms, this being the most restrictive case.
+No arrows can be guaranteed to be called after start() as a single threaded scheduler (InlineScheduler) will block until completion.
 
 DEPENDENCIES
-HxHsl(svn).
 Stax.
 
 Known issues.
-1) 	Php broken.
 
 2) 	Animate is not implemented in single threaded environments.
 
-3) 	Only js fully tested.
-
 Changes.
+
+0.2.2
+Works on cpp/as2/as3/neko/js
+Error handling by arrow.error, not stable yet.
 
 0.2.1
 Faster scheduler, still @40x slower than vanilla function calls.

@@ -101,7 +101,7 @@ class Arrow<AP,AR>{
 	/**
 	 * @private
 	 */
-	public static var version : Array<Int> = [0, 2, 0];
+	public static var version : Array<Int> = [0, 2, 1];
 	
 	/**
 	 * Reference to the arrow instance for cps.
