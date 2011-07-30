@@ -1,0 +1,6 @@
+[submodule "dep/stax"]
+	path = dep/stax
+	url = git://github.com/0b1kn00b/stax.git
+[submodule "dep/zmq"]
+	path = dep/zmq
+	url = git://github.com/rjsmith/hxzmq.git

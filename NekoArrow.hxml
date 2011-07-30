@@ -1,0 +1,10 @@
+-cp src
+-cp unit
+-cp experimental
+-cp dep/hxzmq
+-cp dep/scuts/src
+-cp dep/stax/src/main/haxe
+-lib hx3ds
+-lib hxevents
+-neko bin/NekoArrow.n
+-main Full

@@ -1,0 +1,9 @@
+-cp src
+-cp unit
+-cp dep/scuts/src
+-cp dep/stax/src/main/haxe
+-cp experimental
+-swf9 bin/AS3Arrow.swf
+-swf-header 800:600:30:FFFFFF
+-swf-version 9
+-main Full
