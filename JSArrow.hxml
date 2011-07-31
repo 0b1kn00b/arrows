@@ -1,0 +1,7 @@
+-cp src
+-cp unit
+-cp experimental
+-cp dep/stax/src/main/haxe
+-lib hx3ds
+-js bin/JSArrow.js
+-main Full

@@ -1,0 +1,7 @@
+-cp src
+-cp unit
+-cp dep/hxzmq/src
+-cp dep/scuts/src
+-cp dep/stax/src/main/haxe
+-cpp bin
+-main Full
