@@ -4,3 +4,6 @@
 [submodule "dep/zmq"]
 	path = dep/zmq
 	url = git://github.com/rjsmith/hxzmq.git
+[submodule "dep/thx-core"]
+	path = dep/thx-core
+	url = git://github.com/0b1kn00b/thx-core

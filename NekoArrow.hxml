@@ -4,7 +4,8 @@
 -cp dep/hxzmq
 -cp dep/scuts/src
 -cp dep/stax/src/main/haxe
+-cp dep/thx-core/src
 -lib hx3ds
 -lib hxevents
 -neko bin/NekoArrow.n
--main Full
+-main Dev

@@ -18,7 +18,7 @@ using haxe.data.collections.ArrayExtensions;
 import arrow.Arrow;
 using arrow.Arrow;
 
-class Right<B,C,D> extends Arrow<Either<D,B>,Dynamic> {
+class Right<B,C> extends Arrow<Either<B,C>,Either<B,C>> {
 
 	private var f : Arrow<B,C> ;
 	
@@ -26,7 +26,7 @@ class Right<B,C,D> extends Arrow<Either<D,B>,Dynamic> {
 		var self = this;
 		this.f = f;
 		super(
-			function(x:Either<D,B>,a:ArrowInstance<Dynamic>) {
+			function(x:Either<B,C>,a:ArrowInstance<Dynamic>) {
 				switch(x) {
 					case Right(v) 	: a.cont(v, self.f ,null,null);
 					case Left(v) 	: a.cont(v,null,null);

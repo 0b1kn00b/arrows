@@ -2,8 +2,6 @@
 import haxe.test.Runner;
 import haxe.test.ui.Report;
 
-import haxe.reactive.arrow.ArrityTest;
-
 class Dev{
 	public static function main(){
 		var a = new Dev();
@@ -29,7 +27,8 @@ class Dev{
 		//t.add( new ArrityTest() );
 		//t.add( new haxe.reactive.arrow.MacroTest() );
 		//t.add( new arrow.ext.ProcessTest() );
-		t.add( new haxe.reactive.arrow.ErrorTest() );
+		//t.add( new haxe.reactive.arrow.ErrorTest() );
+		t.add( new arrow.verb.DirectionTest() );
 		#if js
 			//js.Lib.window.onload = function (e) {t.run();};
 		#else

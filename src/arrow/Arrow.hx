@@ -101,7 +101,7 @@ class Arrow<AP,AR>{
 	/**
 	 * @private
 	 */
-	public static var version : Array<Int> = [0, 2, 1];
+	public static var version : Array<Int> = [0, 2, 2];
 	
 	/**
 	 * Reference to the arrow instance for cps.
@@ -195,7 +195,6 @@ class Arrow<AP,AR>{
 				}
 		}
 	}
-	
 	/**
 	 * 
 	 * @param	?args
@@ -327,7 +326,6 @@ class Arrow<AP,AR>{
 	public function state():StateArrow < AP, AR > {
 		return new StateArrow(this);
 	}
-
 }
 class Combinators {
 	public static function start<AP,AR>(a:Arrow<AP,AR>) {
@@ -413,10 +411,10 @@ class Combinators {
 	}
 	
 	//EXPERIMENTAL
-	public static function right < B, C, D > (a: Arrow< B , C > ):Right<B,C,D>{
+	public static function right < B, C, D > (a: Arrow< B , C > ):Right<B,C>{
 		return new Right(a);
 	}
-	public static function left < B, C, D > (a:  Arrow<B,C> ):Left<B,C,D>{
+	public static function left < B, C, D > (a:  Arrow<B,C> ):Left<B,C>{
 		return new Left(a);
 	}
 	//public static function signalA():SignalArrow {
@@ -467,6 +465,29 @@ class Function1Arrow {
 	}
 	public static function animate<P1,R1>(f:Function1<P1,R1>,ms:Int){
 		return new Consume1(f).animate(ms);
+	}
+}
+class Function1Lifter {
+	public static function then < P1, R1, P2,R2 > (f:Function1<P1,R1>,x:Function1<R1,R2>):Arrow<P1,R2> {
+		return new Consume1(f).then( x.lift() );
+	}
+	public static function fanout < P1 , R1 , R2 > (f:Function1 < P1 , R1 > , x:Function1<P1,R2>):Arrow<P1,Tuple2<R1,R2>> {
+		return new Consume1(f).fanout(x.lift());
+	}
+	public static function bind < P1 , R1 , AR> (f:Function1 < P1, R1 > , x : Function2 <P1, R1 , AR>) {
+		return new Consume1(f).bind(x.lift());
+	}
+	public static function join < P1 , R1 , A1R> (f:Function1 < P1, R1 > , x:Function1<R1,A1R>) {
+		return new Consume1(f).join(x.lift());
+	}
+	public static function or<P1,R1>(f:Function1 < P1, R1 >,a:Function1<P1,R1>){
+		return new Consume1(f).or(a.lift());
+	}
+	
+}
+class ArrowFunction1Lifter {
+	public static function then<AP,AR,FR>(a:Arrow<AP,AR>,f:Function1<AR,FR>):Arrow<AP,FR> {
+		return a.then( f.lift() );
 	}
 }
 class Function2Arrow {
