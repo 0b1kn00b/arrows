@@ -20,7 +20,7 @@
  THE SOFTWARE.
 */
 package arrow.ext;
-import Arrow
+import Viaz
 import colhx.TreeNode;
 
 import util.FileSystemUtil;
@@ -32,7 +32,7 @@ using util.StringUtil;
 
 class FileSystemArrow {
 
-	public static function getFileTree(arrow:Arrow, dir:String):TreeNode<String> {
+	public static function getFileTree(arrow:Viaz, dir:String):TreeNode<String> {
 		if ( dir.endsWith(FileSystemUtil.sep()) ) dir = dir.substr( -2);
 		var treenode = new TreeNode(dir);
 		var contents = FileSystem.readDirectory(dir);

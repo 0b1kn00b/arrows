@@ -20,11 +20,11 @@
  THE SOFTWARE.
 */
 package arrow.ext;
-import Arrow
+import Viaz
 
 class ChoiceArrow {
-	public static function choose(self:Arrow, left : Arrow , right : Arrow, discriminator:Dynamic->Bool) {
-		var to_call : Arrow = left;
+	public static function choose(self:Viaz, left : Viaz , right : Viaz, discriminator:Dynamic->Bool) {
+		var to_call : Viaz = left;
 		return self.then(
 			function(x:Dynamic) {
 				if (discriminator(x)) {

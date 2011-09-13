@@ -1,7 +1,7 @@
 package haxe.reactive.arrow;
  
 import haxe.test.TestCase;
-import arrow.Arrow;
+import arrow.Viaz;
 
 import hsl.haxe.Signaler;
 import hsl.haxe.direct.DirectSignaler;
@@ -15,14 +15,14 @@ class SignalTest extends TestCase{
 	}
 	function testSignal(){
 		var as = asyncHandler( callback( handler , assertT ) );
-		var a = Arrow.signal().then(as).run(s);
+		var a = Viaz.signal().then(as).run(s);
 		var self = this;
-		Arrow.delayA(300).then(
+		Viaz.delayA(300).then(
 			function(x:Dynamic){
 				self.s.dispatch();
 			}
 		).run();
-		Arrow.begin();
+		Viaz.begin();
 	}
 	function assertT(v:Dynamic){
 		assertTrue(true);

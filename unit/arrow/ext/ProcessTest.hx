@@ -8,10 +8,10 @@ import haxe.io.Input;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
-using arrow.ext.Process;
+using Viaz.ext.Process;
 
 import Prelude;
 using Prelude;

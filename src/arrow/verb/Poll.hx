@@ -21,10 +21,10 @@
 */
 package arrow.verb;
 
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
-class Poll<I> extends Arrow<I,I>{
+class Poll<I> extends Viaz<I,I>{
 	
 	var p :Void->Bool;
 	public function new(predicate:Void->Bool) {
@@ -38,7 +38,7 @@ class Poll<I> extends Arrow<I,I>{
 				a.cont(x, null, null, function() { return ( (self.p() == true) ); } );
 			}
 		);
-		this.info = "Polling Arrow";
+		this.info = "Polling Viaz";
 	}
 	private function cancel() {
 		this.active = false;

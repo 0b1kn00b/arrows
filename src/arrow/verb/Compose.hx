@@ -21,18 +21,18 @@
 */
 package arrow.verb;
 
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 import arrow.verb.Consume;
 
-using arrow.Arrow;
+using Viaz.Viaz;
 /**
  * Compose two Arrows. Notice the Composition type signature, the output from the left arrow
- * is input into the right, so the type of Return1 (Arrow<P1,*R1>) must be the same as Parameter2 (Arrow<*R1,R2>) .
+ * is input into the right, so the type of Return1 (Viaz<P1,*R1>) must be the same as Parameter2 (Viaz<*R1,R2>) .
  */
 class Compose<AP1,AR1,AR2> extends Composition<AP1,AR1,AR1,AR2>{
 	
-	public function new(f:Arrow<AP1,AR1>, g:Arrow<AR1,AR2>) {
+	public function new(f:Viaz<AP1,AR1>, g:Viaz<AR1,AR2>) {
 		super( f , g );
 	}
 	override private function compose(x:AP1, a:ArrowInstance<Dynamic>):Void {

@@ -24,13 +24,14 @@ package arrow.verb;
 import Prelude;
 using Prelude;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 
 import arrow.ArrowInstance;
 
-class Product<P1,R1,P2,R2> extends Arrow<Tuple2<P1,P2>,Tuple2<R1,R2>>{
+class Product<P1,R1,P2,R2> extends Viaz<Tuple2<P1,P2>,Tuple2<R1,R2>>{
 
 	public function new(f:Arrow<P1,R1>,g:Arrow<P2,R2>){
 		this.f = f;

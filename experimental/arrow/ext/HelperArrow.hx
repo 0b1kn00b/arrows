@@ -20,17 +20,17 @@
  THE SOFTWARE.
 */
 package arrow.ext;
-import Arrow
+import Viaz
 import arrow.ext.LambdaArrow;
 
-using arrow.ext.LambdaArrow;
+using Viaz.ext.LambdaArrow;
 
 class HelperArrow {
 
-	public static function loop(self:Arrow) {
+	public static function loop(self:Viaz) {
 		return self.doWhile(function() { return true; } );
 	}
-	public static function print(self:Arrow) {
+	public static function print(self:Viaz) {
 		return self.then(
 			function(x) {
 				trace(x);

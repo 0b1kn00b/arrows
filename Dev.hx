@@ -9,26 +9,26 @@ class Dev{
 	public function new(){
 		var t = new Runner();
 		var r = Report.create(t);
-		//t.addSuite(haxe.reactive.arrow.SchedulerTestSuite);
+		//t.addSuite(haxe.reactive.Viaz.SchedulerTestSuite);
 		//t.select(["testEventA"]);
-		//t.addCase(haxe.reactive.arrow.ArrowInstanceTest);
-		//t.add(haxe.reactive.arrow.ArrowTest);
+		//t.addCase(haxe.reactive.Viaz.ViazInstanceTest);
+		//t.add(haxe.reactive.Viaz.ViazTest);
 		//t.select(["testJoin"]);
-		//t.addCase(haxe.reactive.arrow.SignalTest);
-		//t.addCase(haxe.reactive.arrow.NumPendingTest);
-		//t.add(haxe.reactive.arrow.ComplexTest);
-		//t.addCase(haxe.reactive.arrow.SocketTest);
-		//t.addCase(haxe.reactive.arrow.TupleTest);
+		//t.addCase(haxe.reactive.Viaz.SignalTest);
+		//t.addCase(haxe.reactive.Viaz.NumPendingTest);
+		//t.add(haxe.reactive.Viaz.ComplexTest);
+		//t.addCase(haxe.reactive.Viaz.SocketTest);
+		//t.addCase(haxe.reactive.Viaz.TupleTest);
 		//t.select(["testSimpleArrow"]);
 		//t.select(["testOr"]);
 		//t.select(["testPair"]);
-		//t.addCase(haxe.reactive.arrow.CancellerTest);
+		//t.addCase(haxe.reactive.Viaz.CancellerTest);
 		//t.addCase(FunctionArrowTest);
 		//t.add( new ArrityTest() );
-		//t.add( new haxe.reactive.arrow.MacroTest() );
-		//t.add( new arrow.ext.ProcessTest() );
-		//t.add( new haxe.reactive.arrow.ErrorTest() );
-		t.add( new arrow.verb.DirectionTest() );
+		//t.add( haxe.reactive.arrowMacroTest() );
+		//t.add( new Viaz.ext.ProcessTest() );
+		//t.add( haxe.reactive.arrowErrorTest() );
+		t.add( new Viaz.verb.DirectionTest() );
 		#if js
 			//js.Lib.window.onload = function (e) {t.run();};
 		#else

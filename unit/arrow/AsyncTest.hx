@@ -11,8 +11,8 @@ import flash.events.Event;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using arrow.Viaz;
 
 import Prelude;
 
@@ -38,11 +38,11 @@ class AsyncTest extends TestCase {
 		}
 
 		// f called later than g, should therefore pass the result of g to as.
-		var a0 = Arrow.delay(20000).then(f.lift().setInfo("TestF")).setInfo("TestA0");
-		var a1 = Arrow.delay(10).then(g.lift().setInfo("TestG")).setInfo("TestA1");
-		a0.or(a1).then(as.lift()).run(2);
+		var a0 = Viaz.delay(20000).then(f.lift().setInfo("TestF")).setInfo("TestA0");
+		var a1 = Viaz.delay(10).then(g.lift().setInfo("TestG")).setInfo("TestA1");
+		a0.front(a1).then(as.lift()).run(2);
 		
-		Arrow.start();
+		Viaz.scheduler.start();
 	}
 	public function testDelay(){
 		var as = Assert.createEvent(
@@ -50,7 +50,7 @@ class AsyncTest extends TestCase {
 				Assert.isTrue(true);
 			}
 		,10000);
-		Arrow.delay(100).then(as.lift()).run().start();
+		Viaz.delay(100).then(as.lift()).run().start();
 	}
 	public function testEvent() {
 		var self = this;
@@ -60,12 +60,12 @@ class AsyncTest extends TestCase {
 					Assert.isTrue(true);
 			}
 		);
-		Arrow.event("trigger").then(as.lift()).run(dispatcher);
-		Arrow.delay(100).then( 
+		Viaz.event("trigger").then(as.lift()).run(dispatcher);
+		Viaz.delay(100).then( 
 			function(x) { 
 				dispatcher.dispatchEvent(new #if !flash9 zen.env.event.#end Event("trigger")); 
 			}.lift()
 		).run();
-		Arrow.start();
+		Viaz.scheduler.start();
 	}
 }

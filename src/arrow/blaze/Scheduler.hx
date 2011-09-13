@@ -14,7 +14,8 @@ using haxe.data.collections.ArrayExtensions;
 import zen.data.Queue;
 
 import arrow.ArrowInstance;
-import arrow.Arrow;
+import arrow.Viaz;
+import arrow.Viaz;
 
 import haxe.Timer;
 

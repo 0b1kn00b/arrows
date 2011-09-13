@@ -13,20 +13,20 @@ class Full{
 		t.add( new haxe.reactive.arrow.BootstrapTest() );
 		//t.add(		new SpeedTest()			);
 		t.add(	new haxe.reactive.arrow.ArrowTest()			);
-		//t.add( 	new haxe.reactive.arrow.CancellerTest()		);
+		//t.add( 	haxe.reactive.arrowCancellerTest()		);
 		t.add(	new haxe.reactive.arrow.ComplexTest()		);
-		//t.add( 	new haxe.reactive.arrow.ErrorTest()			);
-		//t.add( 	new haxe.reactive.arrow.LambdaArrowTest()	);
+		//t.add( 	haxe.reactive.arrowErrorTest()			);
+		//t.add( 	haxe.reactive.arrowLambdaArrowTest()	);
 		//t.add( 	new SchedulerTest() 	);
 		//t.add(	new TraceObjectTest()	);
 		//t.add( new LeakCheck() );
-		//t.add( new haxe.reactive.arrow.FurtherTypingTest() );
-		//t.add( new haxe.reactive.arrow.OrderingTest() );
+		//t.add( haxe.reactive.arrowFurtherTypingTest() );
+		//t.add( haxe.reactive.arrowOrderingTest() );
 		t.add(new arrow.AsyncTest() );
 		var r = Report.create(t);
 		
 		#if js
-			t.add( new haxe.reactive.arrow.JsArrowTest() );
+			t.add( haxe.reactive.arrowJsArrowTest() );
 			js.Lib.window.onload = function (e) {t.run();};
 		#else
 			t.run();

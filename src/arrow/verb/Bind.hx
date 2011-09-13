@@ -20,18 +20,19 @@
  THE SOFTWARE.
 */
 package arrow.verb;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
-using arrow.Arrow;
+using Viaz.Viaz;
 import Prelude;
 
-class Bind<AP,AR,A0R> extends Arrow<AP,AR>{
+class Bind<AP,AR,A0R> extends Viaz<AP,AR>{
+
 
 	private var a0:Arrow < AP, Tuple2 < AP, A0R> >;
 	private var a1:Arrow < Tuple2<AP,A0R>,AR>;
 	
-	public function new(a0:Arrow < AP, A0R > , a1:Arrow < Tuple2 < AP, A0R > , AR  > ) {
-		this.a0 = Arrow.identity().fanout(a0);
+	public function new(a0:Arrow<AP,A0R>,a1:Arrow<Tuple2<AP,A0R>,AR>) {
+		this.a0 = Viaz.identity().split(a0);
 		this.a1 = a1;
 		super(  compose );
 	}

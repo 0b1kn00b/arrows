@@ -7,9 +7,9 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Arrow;
+import arrow.Viaz;
 
-using arrow.Arrow;
+using Viaz.Viaz;
 
 class CancellerTest extends TestCase{
 
@@ -23,15 +23,15 @@ class CancellerTest extends TestCase{
 				self.assertTrue(true);
 			}
 		); 
-		var a = Arrow.delay(10);
-		var b = Arrow.identity().then(a).run();
+		var a = Viaz.delay(10);
+		var b = Viaz.identity().then(a).run();
 		b.cancel();
-		Arrow.start();
-		Assert.equals(0, Lambda.count( ( untyped Arrow.scheduler.pending ) ) );
-		Arrow.identity().then(async.lift()).run().start();
-		//trace ( untyped Arrow.scheduler.pending );
-		//Arrow.begin();
-		//trace ( untyped Arrow.scheduler.pending );
+		Viaz.start();
+		Assert.equals(0, Lambda.count( ( untyped Viaz.scheduler.pending ) ) );
+		Viaz.identity().then(async.lift()).run().start();
+		//trace ( untyped Viaz.scheduler.pending );
+		//Viaz.begin();
+		//trace ( untyped Viaz.scheduler.pending );
 		
 	}
 	

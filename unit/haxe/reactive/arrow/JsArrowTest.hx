@@ -3,9 +3,9 @@ package haxe.reactive.arrow;
 import haxe.test.Assert;
 import haxe.test.TestCase;
 
-import arrow.Arrow;
+import arrow.Viaz;
 
-using arrow.Arrow;
+using Viaz.Viaz;
 class JsArrowTest extends TestCase{
 	
 	public function new(){
@@ -18,7 +18,7 @@ class JsArrowTest extends TestCase{
 				Assert.notNull(x);
 			}
 		);
-		Arrow.elementA("test").then(async.lift()).run().start();
+		Viaz.elementA("test").then(async.lift()).run().start();
 	}
 
 }

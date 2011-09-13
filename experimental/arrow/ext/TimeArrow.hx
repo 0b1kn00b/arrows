@@ -20,16 +20,16 @@
  THE SOFTWARE.
 */
 package arrow.ext;
-import Arrow
+import Viaz
 import arrow.ArrowInstance;
 import arrow.TaggedValue;
 import data.type.TimeLine;
 import data.type.Time;
 import haxe.Timer;
 
-class TimeArrow extends Arrow {
+class TimeArrow extends Viaz {
 
-	public function new(f:Arrow, interval:Time, duration:Time) {
+	public function new(f:Viaz, interval:Time, duration:Time) {
 		var timeline = new TimeLine(duration);
 		super(
 			function(x, a:ArrowInstance) {
@@ -41,11 +41,11 @@ class TimeArrow extends Arrow {
 			}
 		);
 	}
-	public static function time(self:Arrow, interval:Time, duration:Time) {
+	public static function time(self:Viaz, interval:Time, duration:Time) {
 		return new TimeArrow(self, interval, duration);
 	}
 }
-class TimeArrowInnerThunk extends Arrow {
+class TimeArrowInnerThunk extends Viaz {
 	public function new(f, interval:Time, duration:Time, line:TimeLine) {
 		var self = this;
 		super(

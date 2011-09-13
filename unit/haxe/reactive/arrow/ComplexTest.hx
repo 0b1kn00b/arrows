@@ -1,8 +1,8 @@
 package haxe.reactive.arrow;
 
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.verb.Progress;
-using arrow.Arrow;
+using arrow.Viaz;
 
 import Prelude;
 using Prelude;
@@ -33,9 +33,9 @@ class ComplexTest extends TestCase{
 		function (?x:Dynamic){
 			count++;
 			if (count < 10){
-				return Arrow.doRepeat();
+				return Viaz.doRepeat();
 			}else{
-				return Arrow.doDone();
+				return Viaz.doDone();
 			}
 		}.lift().repeat().then(as.lift()).run().start();
 	}*/
@@ -53,9 +53,9 @@ class ComplexTest extends TestCase{
 		
 		function (x) {
 			if ( Timer.stamp() < t1) {
-				return Arrow.doRepeat(x);
+				return Viaz.doRepeat(x);
 			}else {
-				return Arrow.doDone(x);
+				return Viaz.doDone(x);
 			}
 		}.lift().animate(200).then(as.lift()).run().start();
 	}

@@ -8,12 +8,12 @@ package arrow.verb;
 import Prelude;
 using Prelude;
 
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
 import hsl.haxe.Signaler;
 
-class Signal<I> extends Arrow<I,Void> {
+class Signal<I> extends Viaz<I,Void> {
 
 	public function new() {
 		super(

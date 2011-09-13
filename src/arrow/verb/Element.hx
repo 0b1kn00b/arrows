@@ -20,12 +20,12 @@
  THE SOFTWARE.
 */
 package arrow.verb;
-import arrow.Arrow;
+import arrow.Viaz;
 #if js
 import js.Dom;
 import js.Lib;
 
-class Element extends Arrow<Dynamic,Dynamic>{
+class Element extends Viaz<Dynamic,Dynamic>{
 	
 	public function new(element:Dynamic) {
 		var val :  Dynamic = null;

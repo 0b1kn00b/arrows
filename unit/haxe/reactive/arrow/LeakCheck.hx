@@ -4,8 +4,8 @@ import haxe.test.Assert;
 import zen.env.event.EventSystem;
 import zen.env.event.Event;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 class LeakCheck extends TestCase{
 
@@ -29,15 +29,15 @@ class LeakCheck extends TestCase{
 		var self = this;
 		
 		
-		var b = Arrow.eventA("trigger");
-		var c = Arrow.constA(e).then(dispatch);
+		var b = Viaz.eventA("trigger");
+		var c = Viaz.constA(e).then(dispatch);
 		
 		//a.then(b).run(e);
 		
-		Arrow.constA(e).then( Arrow.fanoutA().then( b.pair(c) ).then(handle)).repeat().then(a).run(e);
+		Viaz.constA(e).then( Viaz.fanoutA().then( b.pair(c) ).then(handle)).repeat().then(a).run(e);
 		
 		t = Timer.stamp();
-		Arrow.begin();
+		Viaz.begin();
 		
 	}
 	function async(x) {
@@ -48,7 +48,7 @@ class LeakCheck extends TestCase{
 	function handle(x) {
 		//trace("add to total");
 		total++;
-		return ((Timer.stamp() - t)  < (secs - 1) ) ?  Arrow.doRepeat(x) : Arrow.doDone(x) ;
+		return ((Timer.stamp() - t)  < (secs - 1) ) ?  Viaz.doRepeat(x) : Viaz.doDone(x) ;
 	}
 	function dispatch(x) {
 		//trace("dispatch : " + Std.string(x) );
@@ -66,9 +66,9 @@ class LeakCheck extends TestCase{
 		function (?x:Dynamic){
 			count++;
 			if (count < 10000){
-				return Arrow.doRepeat();
+				return Viaz.doRepeat();
 			}else{
-				return Arrow.doDone();
+				return Viaz.doDone();
 			}
 		}.lift().repeat().then(as.lift()).run().start();
 	}*/

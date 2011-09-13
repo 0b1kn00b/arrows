@@ -4,8 +4,8 @@ import arrow.ArrowInstance;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 class ErrorTest extends TestCase{
 
@@ -14,18 +14,18 @@ class ErrorTest extends TestCase{
 	}
 	public function testFuckUp() {
 		var assert 		= Assert.createEvent( function(x) Assert.isTrue(true) , 1000 );
-		var progress 	= Arrow.identity().then( throwAnError.lift() ).run(0);
+		var progress 	= Viaz.identity().then( throwAnError.lift() ).run(0);
 		//progress.recover = function() { return function(x) { assert(x) ; } .lift(); };
-		Arrow.start();
+		Viaz.start();
 	}
 	private function throwAnError(s) {
 		throw "wobbly";
 	}
 /*	function testParameterMismatchNumberError_ExpectOneReceiveZero(){
-		Arrow.lift(f0).then(simpleAssert()).run().start();
+		Viaz.lift(f0).then(simpleAssert()).run().start();
 	}
 	function testParameterMismatchNumberError_ExpectZeroReceiveOne(){
-		Arrow.lift(f1).then(simpleAssert()).run("bosh").start();
+		Viaz.lift(f1).then(simpleAssert()).run("bosh").start();
 	}
 	function f0(x){
 		return x;

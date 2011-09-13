@@ -20,11 +20,11 @@
  THE SOFTWARE.
 */
 package arrow.ext.lambda;
-import arrow.Arrow;
+import arrow.Viaz;
 
-class FoldThunk<AP,AR> extends Arrow<AP,AR>{
+class FoldThunk<AP,AR> extends Viaz<AP,AR>{
 	
-	public function new(first:AP,f:Arrow<AP,AR>,fold:AP->AP->AR){
+	public function new(first:AP,f:Viaz<AP,AR>,fold:AP->AP->AR){
 		super(
 			function(x:Dynamic,a){
 				a.cont(x,f,new FoldArrow(fold,first),null);

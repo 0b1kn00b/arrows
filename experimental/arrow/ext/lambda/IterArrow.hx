@@ -21,14 +21,14 @@
 */
 package arrow.ext.lambda;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 import arrow.ArrowInstance;
 import arrow.TaggedValue;
 import arrow.verb.Loop;
 
-class IterArrow<AP,AR> extends Arrow<AP,AR>{
+class IterArrow<AP,AR> extends Viaz<AP,AR>{
 	
 	var f : AP->Void;
 	var it: Iterator<AP>;
@@ -49,12 +49,12 @@ class IterArrow<AP,AR> extends Arrow<AP,AR>{
 		}
 		f1.pass().repeat().then(f0.lift()).run(x);
 	}
-	private function step(x:Dynamic):arrow.TaggedValue<Loop,Dynamic> {
+	private function step(x:Dynamic):Viaz.TaggedValue<Loop,Dynamic> {
 		if (it.hasNext()){ 
 			f(it.next());
-			return Arrow.doRepeat(x);
+			return Viaz.doRepeat(x);
 		}else{
-			return Arrow.doDone(x);
+			return Viaz.doDone(x);
 		}
 	}
 

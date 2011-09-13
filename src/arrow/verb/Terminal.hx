@@ -20,15 +20,15 @@
  THE SOFTWARE.
 */
 package arrow.verb;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
-class Terminal<I> extends Arrow<I,Void>{
+class Terminal<I> extends Viaz<I,Void>{
 	public function new() {
 		super(term);
-		this.info = "Last Arrow on ArrowInstance";
+		this.info = "Last Viaz on ArrowInstance";
 	}
 	private function term(x:I, a:ArrowInstance<Dynamic>) {
-		Arrow.scheduler.unregister(a);
+		Viaz.scheduler.unregister(a);
 	}
 }

@@ -21,13 +21,13 @@
 */
 package arrow.verb;
 import arrow.ArrowInstance;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.TaggedValue;
 import arrow.verb.Loop;
 
-class Repeat<I,O> extends Arrow<I,O>{
-	var f : Arrow<I,O>;
-	public function new(f:Arrow < I, O > ) {
+class Repeat<I,O> extends Viaz<I,O>{
+	var f : Viaz<I,O>;
+	public function new(f:Viaz < I, O > ) {
 		this.f = f;
 		super(repeater);
 	}
@@ -35,12 +35,12 @@ class Repeat<I,O> extends Arrow<I,O>{
 		a.cont(x,f,new InnerRepeat(f,a));
 	}
 }
-class InnerRepeat<I,O> extends Arrow<TaggedValue<Loop,I>,O>{
+class InnerRepeat<I,O> extends Viaz<TaggedValue<Loop,I>,O>{
 	
 	private var cancelled	: Bool;
-	private var f			: Arrow<I,O>;
+	private var f			: Viaz<I,O>;
 	
-	public function new(f:Arrow<I,O>,a:ArrowInstance<Dynamic>){
+	public function new(f:Viaz<I,O>,a:ArrowInstance<Dynamic>){
 		this.cancelled 	= false;
 		this.f			= f; 
 		a.addCanceller(this.cancel);	

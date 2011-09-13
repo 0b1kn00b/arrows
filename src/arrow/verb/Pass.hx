@@ -22,7 +22,7 @@
 package arrow.verb;
 
 import haxe.PosInfos;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 import arrow.verb.Consume;
 
@@ -36,9 +36,9 @@ using PreludeExtensions;
 using haxe.data.collections.IterableExtensions;
 using haxe.data.collections.ArrayExtensions;
 
-import arrow.Arrow;
-using arrow.Arrow;
-class Pass<P,R> extends Arrow<P,R>{
+import arrow.Viaz;
+using Viaz.Viaz;
+class Pass<P,R> extends Viaz<P,R>{
 
 	private var fn : Function1<P,R>;
 	public function new(f) {

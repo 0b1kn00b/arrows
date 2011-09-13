@@ -23,18 +23,20 @@ package arrow.verb;
 
 import arrow.ArrowInstance;
 import Prelude;
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+import arrow.Viaz;
+
+using Viaz.Viaz;
 
 import arrow.verb.Consume;
 
-class Fanout<AP,FR1,FR2> extends Arrow<AP,Tuple2<FR1,FR2>>{
+class Fanout<AP,FR1,FR2> extends Viaz<AP,Tuple2<FR1,FR2>>{
 	
 	var a0 : Arrow<AP,Tuple2<AP,AP>>;
 	var a1 : Arrow<Tuple2<AP,AP>,Dynamic>;
 	
-	public function new(a0:Arrow<AP,FR1>,a1:Arrow<AP,FR2>) {
-		this.a0 = Arrow.fan().setInfo("LHS of Fanout");
+	public function new(a0:Viaz<AP,FR1>,a1:Viaz<AP,FR2>) {
+		this.a0 = Viaz.fan().setInfo("LHS of Fanout");
 		this.a1 = a0.pair(a1).setInfo("RHS of Fanout");
 		super( compose );
 	}

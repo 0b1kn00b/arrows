@@ -23,7 +23,7 @@ package arrow.verb;
 
 import Prelude;
 using Prelude;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 import arrow.TaggedValue;
 import arrow.verb.Loop;
@@ -32,22 +32,22 @@ import haxe.Timer;
 /**
  * Repeats until arrow returns Tagged value with tag == "done"
  */
-class Animate<I,O> extends Arrow<I,O> {
+class Animate<I,O> extends Viaz<I,O> {
 
-	var f 	: Arrow<I,O>;
+	var f 	: Viaz<I,O>;
 	var ms	: Int;
-	public function new(f:Arrow<I,O>,ms:Int) {
+	public function new(f:Viaz<I,O>,ms:Int) {
 		this.ms = ms;
 		this.f	= f;
 		super( animate	);
 		this.info = "Delay every arrow call to allow the UI to update";
 	}
 	private function animate(x:I, a:ArrowInstance<Dynamic>) {
-		a.cont( Arrow.doRepeat(x), new AnimateInner(f, ms) ,null);
+		a.cont( Viaz.doRepeat(x), new AnimateInner(f, ms) ,null);
 	}
 }
-class AnimateInner<I,O> extends Arrow<TaggedValue<Loop,I>,O> {
-	var f 	: Arrow<I,O>;
+class AnimateInner<I,O> extends Viaz<TaggedValue<Loop,I>,O> {
+	var f 	: Viaz<I,O>;
 	var ms	: Int;
 	public function new(f, ms:Int) {
 		this.ms = ms;

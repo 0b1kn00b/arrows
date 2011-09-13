@@ -21,7 +21,7 @@
 */
 package arrow.verb;
 
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 import arrow.vo.ProgressEvent;
 import haxe.Stack;
@@ -37,9 +37,9 @@ import haxe.Stack;
 	import zen.env.event.Event;
 #end
 
-using arrow.Arrow;
+using Viaz.Viaz;
 
-class Progress extends Arrow<Dynamic,Dynamic>, #if flash9 implements IEventDispatcher #else implements zen.env.event.EventListener, implements EventDispatcher #end{
+class Progress extends Viaz<Dynamic,Dynamic>, #if flash9 implements IEventDispatcher #else implements zen.env.event.EventListener, implements EventDispatcher #end{
  
 	var dispatcher : #if flash9 EventDispatcher #else EventSystem #end;
 	
@@ -90,6 +90,6 @@ class Progress extends Arrow<Dynamic,Dynamic>, #if flash9 implements IEventDispa
 	}
 	public function cancel() {
 		this.active = false;
-		instance.cancel();
+		this.instance.cancel();
 	}	
 }

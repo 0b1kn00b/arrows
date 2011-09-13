@@ -14,10 +14,10 @@ using PreludeExtensions;
 using haxe.data.collections.IterableExtensions;
 using haxe.data.collections.ArrayExtensions;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
-using arrow.ext.LambdaArrow;
+using Viaz.ext.LambdaArrow;
 
 class SpeedTest extends TestCase {
 
@@ -48,7 +48,7 @@ class SpeedTest extends TestCase {
 				self.out = x;
 			}
 		,100000);
-		Arrow.returnA().map( lambda ).then(async.lift()).run(in0).start();
+		Viaz.returnA().map( lambda ).then(async.lift()).run(in0).start();
 	}
 	public function genRandomArray(length:Int) {
 		var a  = [];

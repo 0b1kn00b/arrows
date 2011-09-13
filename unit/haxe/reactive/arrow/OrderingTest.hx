@@ -10,8 +10,8 @@ import haxe.test.Assert;
 
 import scuts.macro.F;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 import zen.env.event.Event;
 import zen.env.event.EventDispatcher;
@@ -46,14 +46,14 @@ class OrderingTest extends TestCase {
 		var sys : EventSystem 		= new EventSystem(this);
 		var dis : EventDispatcher  	= sys;
 		
-		var a2 = Arrow.event("ok").print();
-		var a4 = Arrow.event("not_ok").print();
-		var a6 = a2.then(a4).then( Arrow.doRepeat.lift() ).repeat();
+		var a2 = Viaz.event("ok").print();
+		var a4 = Viaz.event("not_ok").print();
+		var a6 = a2.then(a4).then( Viaz.doRepeat.lift() ).repeat();
 		
 		var a3 = function(x:Dynamic) { trace("ok"); dis.dispatchEvent( new Event("ok") ); return x; } .lift();
 		var a5 = function(x:Dynamic) { trace("not_ok"); dis.dispatchEvent( new Event("not_ok") ); return x; } .lift();
 		
-		//a6.run(sys).then( a3.then(a5) ).then(Arrow.doRepeat.lift()).run();
+		//a6.run(sys).then( a3.then(a5) ).then(Viaz.doRepeat.lift()).run();
 		
 		//a2.run(sys);
 		
@@ -63,7 +63,7 @@ class OrderingTest extends TestCase {
 		f2.run(1);
 		f3.run(2);
 		//f2.lift().pair(f3.lift()).run(Tuple2.create("One", "Two"));
-		//Arrow.i().print().print().run("test");
-		Arrow.begin();
+		//Viaz.i().print().print().run("test");
+		Viaz.begin();
 	}
 }

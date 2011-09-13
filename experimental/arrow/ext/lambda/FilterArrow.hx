@@ -21,12 +21,12 @@
 */
 package arrow.ext.lambda;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 import arrow.ArrowInstance;
 
-class FilterArrow extends Arrow{
+class FilterArrow extends Viaz{
 	
 	var f:Dynamic->Bool;	
 	public function new(filter:Dynamic->Bool,inverse:Bool = false,?pos:haxe.PosInfos){
@@ -47,9 +47,9 @@ class FilterArrow extends Arrow{
 								out.push(n);
 							}
 						}
-						return Arrow.doRepeat(out);
+						return Viaz.doRepeat(out);
 					}else{
-						return Arrow.doDone(out);
+						return Viaz.doDone(out);
 					}	
 				}
 				var f1 = function(x:Dynamic){

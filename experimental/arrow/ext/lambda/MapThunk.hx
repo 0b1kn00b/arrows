@@ -20,12 +20,12 @@
  THE SOFTWARE.
 */
 package arrow.ext.lambda;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
-class MapThunk<AP,AR> extends Arrow<Iterable<AP>,Iterable<AR>>{
+class MapThunk<AP,AR> extends Viaz<Iterable<AP>,Iterable<AR>>{
 	
-	public function new (f:Arrow<AP,AR>,g:AP->AR){
+	public function new (f:Viaz<AP,AR>,g:AP->AR){
 		super(
 			function(x:Iterable<AP>,a:ArrowInstance<Dynamic>){
 				//null is necessary here.

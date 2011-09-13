@@ -34,14 +34,16 @@ import arrow.verb.Progress;
 import arrow.vo.ProgressEvent;
 
 import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+
+using arrow.Viaz;
 
 #if neko
 	import neko.vm.Mutex;
 #end
 
 /*
-* Bookkeeping object for Arrow arrow instances.
+* Bookkeeping object for Viaz arrow instances.
 * Keeps track of continuations composing arrows, and sends them to the scheduler.
 */
 class ArrowInstance<T>{
@@ -61,13 +63,13 @@ class ArrowInstance<T>{
 		this.error 			= ArrowInstanceTools.error;
 		this.progress 	= new Progress(this);
 		this.uuid 			= Guid.generate();	
-		Arrow.scheduler.register( this );
+		Viaz.scheduler.register( this );
 		this.initial		= x;
 		this.start			= arr;
 		
 		this.cancellers = new Array();
 		this.stack 			= new Array();
-		this.stack.push(Arrow.terminal());
+		this.stack.push(Viaz.terminal());
 		this.stack.push(arr);
 		
 		
@@ -102,7 +104,7 @@ class ArrowInstance<T>{
 			a.instance 	= this;
 			a.param 	= x;
 			if (predicate != null) a.predicate = predicate;
-			Arrow.scheduler.enqueue( a );
+			Viaz.scheduler.enqueue( a );
 		}
 
 		//#if neko m.release(); 	#end
@@ -118,8 +120,8 @@ class ArrowInstance<T>{
 			canceller();
 		}	
 		this.cancellers = [];
-		Arrow.scheduler.unregister(this);
-		Arrow.scheduler.cancel(this);
+		Viaz.scheduler.unregister(this);
+		Viaz.scheduler.cancel(this);
 	}
 
 	/**

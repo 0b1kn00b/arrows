@@ -27,13 +27,13 @@ package arrow.verb;
 //#end
 import haxe.Timer;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 import arrow.ArrowInstance;
 
 #if (flash || js )
-class Delay<I> extends Arrow<I,I>{
+class Delay<I> extends Viaz<I,I>{
 	
 	var cancelled	: Bool;
 	var ms 				: Int;

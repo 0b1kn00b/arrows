@@ -20,7 +20,7 @@
  THE SOFTWARE.
 */
 package arrow.ext.signals;
-import Arrow
+import Viaz
 import org.osflash.signals.Event;
 
 class ArrowSignal<T>{
@@ -36,14 +36,14 @@ class ArrowSignal<T>{
 	private function getLength():Int {
 		return __data__.length;
 	}
-	public function add(listener:Arrow):Void {
+	public function add(listener:Viaz):Void {
 		__data__.push(listener);
 	}
-	function addOnce(listener:Arrow):Void {
+	function addOnce(listener:Viaz):Void {
 		__data__.push(listener);
 		__oncers__.push(listener);
 	}
-	function remove(listener:Arrow):Void {
+	function remove(listener:Viaz):Void {
 		__data__.remove(listener);
 		__oncers__.remove(listener);
 	}
@@ -61,6 +61,6 @@ class ArrowSignal<T>{
 			__data__.remove(rem);
 		}
 	}
-	var __data__:Array<Arrow>;
-	var __oncers__:Array<Arrow>;
+	var __data__:Array<Viaz>;
+	var __oncers__:Array<Viaz>;
 }

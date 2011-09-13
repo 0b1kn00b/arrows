@@ -20,8 +20,8 @@
  THE SOFTWARE.
 */
 package arrow.ext;
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 import arrow.ext.lambda.IterThunk;
 import arrow.ext.lambda.MapThunk;
 import arrow.ext.lambda.FoldThunk;
@@ -29,19 +29,19 @@ import arrow.ext.lambda.FilterThunk;
 
 class LambdaArrow {
 	
-	public static function iter<AP,AR>(self:Arrow<AP,AR>,f:AP->Void):Arrow<AP,AR>{
+	public static function iter<AP,AR>(self:Viaz<AP,AR>,f:AP->Void):Viaz<AP,AR>{
 		return new IterThunk(self,f);
 	}
-	public static function map(self:Arrow,f:Dynamic->Dynamic):Arrow{
+	public static function map(self:Viaz,f:Dynamic->Dynamic):Viaz{
 		return new MapThunk(self,f);
 	}
-	public static function fold(self:Arrow,first:Dynamic,f:Dynamic->Dynamic->Dynamic){
+	public static function fold(self:Viaz,first:Dynamic,f:Dynamic->Dynamic->Dynamic){
 		return new FoldThunk(first,self,f);
 	}
-	public static function filter(self:Arrow,f:Dynamic->Bool,?inverse:Bool){
+	public static function filter(self:Viaz,f:Dynamic->Bool,?inverse:Bool){
 		return new FilterThunk(self,f,inverse);
 	}
-	public static function set(self:Arrow,?compare:Dynamic->Dynamic->Int){
+	public static function set(self:Viaz,?compare:Dynamic->Dynamic->Int){
 		return fold(self,new List<Dynamic>(),
 			function(first:List<Dynamic>,x:Dynamic){
 				var count = Lambda.count(first);
@@ -66,13 +66,13 @@ class LambdaArrow {
 			}
 		);
 	}
-	public static function doWhile(self:Arrow, proceed:Void->Bool) {
+	public static function doWhile(self:Viaz, proceed:Void->Bool) {
 		return self.repeat().then(
 			function (x:Dynamic) {
 				if (proceed()) {
-					Arrow.doRepeat(x);
+					Viaz.doRepeat(x);
 				}else {
-					Arrow.doDone(x);
+					Viaz.doDone(x);
 				}
 			}.lift()
 		);

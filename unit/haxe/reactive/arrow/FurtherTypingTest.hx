@@ -13,8 +13,8 @@ using PreludeExtensions;
 using haxe.data.collections.IterableExtensions;
 using haxe.data.collections.ArrayExtensions;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 class FurtherTypingTest extends TestCase{
 

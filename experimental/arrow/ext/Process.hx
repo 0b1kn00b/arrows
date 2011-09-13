@@ -4,9 +4,9 @@ package arrow.ext;
  * ...
  * @author 0b1kn00b
  */
-import arrow.Arrow;
+import arrow.Viaz;
 import haxe.Stack;
-using arrow.Arrow;
+using Viaz.Viaz;
 
 import haxe.io.Input;
 
@@ -23,7 +23,7 @@ typedef Proc =
 								#end
 class Process {
 
-	public static function call<AP>(a:Arrow<AP,Array<String>>,cmd:String):Arrow<AP,Either<Input,Input>> {
+	public static function call<AP>(a:Viaz<AP,Array<String>>,cmd:String):Viaz<AP,Either<Input,Input>> {
 		return 
 				a.then(
 						function(args:Array<String>) {
@@ -39,7 +39,7 @@ class Process {
 						}.lift()
 				);
 	} 
-	public static function process<AP>(a:Arrow<AP,Tuple2<String,Array<String>>>):Arrow<AP,Proc> {
+	public static function process<AP>(a:Viaz<AP,Tuple2<String,Array<String>>>):Viaz<AP,Proc> {
 				return
 						a.then(
 								function(prg:String, args:Array<String>) {

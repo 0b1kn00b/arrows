@@ -4,7 +4,7 @@ package arrow.verb;
  * ...
  * @author 
  */
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
 import zen.env.event.Packet;
@@ -15,7 +15,7 @@ import flash.events.Event;
 #else
 import zen.env.event.EventDispatcher;
 #end
-class Remote<AP,AR> extends Arrow<AP,AR> {
+class Remote<AP,AR> extends Viaz<AP,AR> {
 
 	public static function create(dispatcher, trigger) {
 		return new Remote(dispatcher, trigger);

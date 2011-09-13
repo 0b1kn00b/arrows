@@ -22,18 +22,19 @@
 package arrow.verb;
 
 import Prelude;
-import arrow.Arrow;
+import arrow.Viaz;
+import arrow.Viaz;
 import arrow.ArrowInstance;
-using arrow.Arrow;
+using Viaz.Viaz;
 
-class Join<AP,A0R,A1R> extends Arrow<AP,Tuple2<A0R,A1R>>{
+class Join<AP,A0R,A1R> extends Viaz<AP,Tuple2<A0R,A1R>>{
 	
 	var a0 : Arrow<AP,A0R>;
 	var a1 : Arrow<A0R,Tuple2<A0R,A1R>>;
 	
 	public function new(a0:Arrow<AP,A0R>,a1:Arrow<A0R,A1R>){
 		this.a0 = a0;
-		this.a1 = Arrow.identity().fanout(a1);
+		this.a1 = Viaz.identity().split(a1);
 		super(compose);
 	}
 	private function compose(x:AP, a:ArrowInstance<Dynamic>) {

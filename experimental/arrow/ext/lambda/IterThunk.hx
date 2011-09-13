@@ -20,10 +20,10 @@
  THE SOFTWARE.
 */
 package arrow.ext.lambda;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
-class IterThunk<AP,AR> extends Arrow<AP,Iterable<AR>>{
+class IterThunk<AP,AR> extends Viaz<AP,Iterable<AR>>{
 	
 	public function new(f:Dynamic,iter:AP->Void){
 		var self = this;

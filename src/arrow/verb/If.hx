@@ -4,11 +4,11 @@ package arrow.verb;
  * ...
  * @author 
  */
-import arrow.Arrow;
+import arrow.Viaz;
 
-class If extends Arrow{
+class If extends Viaz{
 
-	public function new(predicate:Arrow<A) {
+	public function new(predicate:Viaz<A) {
 		
 	}
 	

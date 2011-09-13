@@ -6,8 +6,8 @@ package arrow.verb;
  */
 
 import arrow.ArrowInstance;
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 
 import Prelude;
 import PreludeExtensions;
@@ -19,17 +19,17 @@ using PreludeExtensions;
 using haxe.data.collections.IterableExtensions;
 using haxe.data.collections.ArrayExtensions;
 
-class Choice<AP,AR> extends Arrow<AP,AR>{
+class Choice<AP,AR> extends Viaz<AP,AR>{
 
-	var f : Arrow<AP,AR>;
+	var f : Viaz<AP,AR>;
 	
-	public function new(f:Arrow < AP, AR > ) {
+	public function new(f:Viaz < AP, AR > ) {
 		this.f = f;
 		super(f.method);
 	}
-	//public function left():Arrow<Either<AP,AP>,Either<AR,AP>> {
+	//public function left():Viaz<Either<AP,AP>,Either<AR,AP>> {
 		//var self = this;
-		//return new Arrow( 
+		//return new Viaz( 
 			//function(x:Either<AP,AP>,a:ArrowInstance<Dynamic>) {
 				//switch(x) {
 					//case Left(v) 	: a.cont(v, self.f.then( function(x) { return Left(x); } .lift()  ));
@@ -38,9 +38,9 @@ class Choice<AP,AR> extends Arrow<AP,AR>{
 			//}
 		//);
 	//}
-	//public function right():Arrow<Either<AP,AP>,Either<AP,AR>>  {
+	//public function right():Viaz<Either<AP,AP>,Either<AP,AR>>  {
 		//var self = this;
-		//return new Arrow(
+		//return new Viaz(
 			//function(x:Either < AP, AP > , a:ArrowInstance<Dynamic>) {
 				//switch(x) {
 					//case Right(v) 	: a.cont(v, self.f.then( function(x) { return Right(x); } .lift()  ));

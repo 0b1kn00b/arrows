@@ -21,11 +21,11 @@
 */
 package arrow.ext.lambda;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 import arrow.ArrowInstance;
 
-class MapArrow<AP,AR> extends Arrow<Iterable<AP>,AR> {
+class MapArrow<AP,AR> extends Viaz<Iterable<AP>,AR> {
 
 	private var iterator 	: Iterator<AP>;
 	private var out			: List<AR>;
@@ -52,9 +52,9 @@ class MapArrow<AP,AR> extends Arrow<Iterable<AP>,AR> {
 		if (iterator.hasNext()) {
 			var n = iterator.next();
 			this.out.add( f(n) );
-			return Arrow.doRepeat();
+			return Viaz.doRepeat();
 		}else{
-			return Arrow.doDone();
+			return Viaz.doDone();
 		}
 	}
 

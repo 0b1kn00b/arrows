@@ -26,11 +26,11 @@ import zen.env.error.AbstractMethodError;
 
 import Prelude;
 
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
 
-class Consume<R> extends Arrow<Void,R>{
+class Consume<R> extends Viaz<Void,R>{
 	
 	var f	: Void->R;
 	public function new(f) {
@@ -53,7 +53,7 @@ class Consume<R> extends Arrow<Void,R>{
 		//return out;
 	//}
 }
-class Consume1<P1,R1> extends Arrow<P1,R1>{
+class Consume1<P1,R1> extends Viaz<P1,R1>{
 	var f : P1 -> R1;
 	public function new(f:P1->R1) {
 		this.f = f;
@@ -66,7 +66,7 @@ class Consume1<P1,R1> extends Arrow<P1,R1>{
 	}
 }
 
-class Consume2<P1,P2,R> extends Arrow<Tuple2<P1,P2>,R>{
+class Consume2<P1,P2,R> extends Viaz<Tuple2<P1,P2>,R>{
 	var f : P1 -> P2 -> R;
 	public function new(f) {
 		this.f = f;
@@ -76,7 +76,7 @@ class Consume2<P1,P2,R> extends Arrow<Tuple2<P1,P2>,R>{
 		a.cont( f(t._1, t._2) ,null,null);
 	}
 }
-class Consume3<P1,P2,P3,R> extends Arrow<Tuple3<P1,P2,P3>,R>{
+class Consume3<P1,P2,P3,R> extends Viaz<Tuple3<P1,P2,P3>,R>{
 	private var f : P1 -> P2 -> P3 -> R;
 	public function new(f) {
 		this.f = f;
@@ -86,7 +86,7 @@ class Consume3<P1,P2,P3,R> extends Arrow<Tuple3<P1,P2,P3>,R>{
 		a.cont( f(t._1, t._2, t._3) ,null,null);
 	}
 }
-class Consume4<P1,P2,P3,P4,R> extends Arrow<Tuple4<P1,P2,P3,P4>,R>{
+class Consume4<P1,P2,P3,P4,R> extends Viaz<Tuple4<P1,P2,P3,P4>,R>{
 	private var f : P1 -> P2 -> P3 -> P4 -> R;
 	public function new(f) {
 		this.f = f;
@@ -96,7 +96,7 @@ class Consume4<P1,P2,P3,P4,R> extends Arrow<Tuple4<P1,P2,P3,P4>,R>{
 		a.cont( f(t._1, t._2, t._3, t._4),null,null );
 	}
 }
-class Consume5<P1,P2,P3,P4,P5,R> extends Arrow<Tuple5<P1,P2,P3,P4,P5>,R>{
+class Consume5<P1,P2,P3,P4,P5,R> extends Viaz<Tuple5<P1,P2,P3,P4,P5>,R>{
 	private var f : P1 -> P2 -> P3 -> P4 -> P5 -> R;
 	public function new(f) {
 		this.f = f;

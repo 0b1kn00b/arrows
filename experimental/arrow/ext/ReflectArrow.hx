@@ -26,9 +26,9 @@ import haxe.data.collections.List;
 import haxe.util.ObjectExtensions;
 import haxe.util.StringExtensions;
 
-import arrow.Arrow;
+import arrow.Viaz;
 
-using arrow.Arrow;
+using Viaz.Viaz;
 using haxe.util.StringExtensions;
 class ReflectArrow {
 	

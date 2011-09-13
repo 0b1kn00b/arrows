@@ -23,12 +23,12 @@
 package arrow.verb;
 
 import arrow.ArrowInstance;
-import Arrow
+import Viaz
 
 import arrow.pattern.Observer;
 import arrow.pattern.Subject;
 
-class ObserverThunk extends Arrow{
+class ObserverThunk extends Viaz{
 
 	public function new(s:Subject) {
 		super(

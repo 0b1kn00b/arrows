@@ -20,11 +20,11 @@
  THE SOFTWARE.
 */
 package arrow.ext.flow;
-import Arrow
+import Viaz
 
 class Segment implements Sendable{
 
-	var __arrow__:Arrow;
+	var __arrow__:Viaz;
 	public var OUT:Link;
 	
 	public function new(?arr) {

@@ -4,10 +4,10 @@ package arrow.verb;
  * ...
  * @author 
  */
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
-class Signal<AP,AR> extends Arrow<AP,AR> {
+class Signal<AP,AR> extends Viaz<AP,AR> {
 
 	public static function create(trigger:String) {
 		return new Signal(trigger);

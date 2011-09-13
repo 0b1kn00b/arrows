@@ -21,15 +21,15 @@ import PreludeExtensions;
 import haxe.test.Assert;
 import haxe.test.TestCase;
 
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 import arrow.verb.Product;
 
 using Prelude;
 using PreludeExtensions;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using arrow.Viaz;
 
 class ArrowTest extends TestCase{
 	public function new() {
@@ -135,7 +135,7 @@ class ArrowTest extends TestCase{
 		);
 		var a0 = takesFloatReturnsFloat.lift();
 		var a1 = takesFloatReturnsFloat2.lift();
-		a0.fanout(a1)
+		a0.split(a1)
 				.then(as.pass())
 					.run(10).start();
 	}
@@ -151,7 +151,7 @@ class ArrowTest extends TestCase{
 		);
 		var a0 = takesFloatReturnsFloat.lift();
 		var a1 = takesFloatReturnsString.lift();
-		a0.fanout(a1)
+		a0.split(a1)
 				.then(as.pass())
 					.run(10).start();
 	}
@@ -186,12 +186,12 @@ class ArrowTest extends TestCase{
 		var g0 = function(x:Dynamic):Dynamic{
 			var out  = x + 1;
 			if (out<num){
-				return Arrow.doRepeat(out);
+				return Viaz.doRepeat(out);
 			}else{
-				return Arrow.doDone(out);
+				return Viaz.doDone(out);
 			}
 		}
-		g0.lift().repeat().then(as.lift()).run(0).start();
+		g0.lift().loop().then(as.lift()).run(0).start();
 	}
 	
 

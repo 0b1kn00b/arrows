@@ -21,11 +21,11 @@
 */
 package arrow.ext.lambda;
 
-import arrow.Arrow;
-using arrow.Arrow;
+import arrow.Viaz;
+using Viaz.Viaz;
 import arrow.ArrowInstance;
 
-class FoldArrow extends Arrow{
+class FoldArrow extends Viaz{
 	
 	public function new(f:Dynamic->Dynamic->Dynamic,first:Dynamic){
 		super(
@@ -35,9 +35,9 @@ class FoldArrow extends Arrow{
 					if(it.hasNext()){
 						var n = it.next();
 						first = f(n,first);
-						return Arrow.doRepeat(first);
+						return Viaz.doRepeat(first);
 					}else{
-						return Arrow.doDone(first);
+						return Viaz.doDone(first);
 					}
 				}
 				var f1 = function(x:Dynamic){

@@ -20,13 +20,13 @@
  THE SOFTWARE.
 */
 package arrow.verb;
-import arrow.Arrow;
+import arrow.Viaz;
 
 import arrow.verb.Product;
 
 class Second<P1,P1,P2,R2> extends Product<P1,P1,P2,R2>{
 	
-	public function new(g:Arrow<P2,R2>){
-		super(Arrow.identity(),g);
+	public function new(g:Viaz<P2,R2>){
+		super(Viaz.identity(),g);
 	}
 }

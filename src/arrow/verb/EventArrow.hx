@@ -20,7 +20,7 @@
  THE SOFTWARE.
 */
 package arrow.verb;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
 #if flash9
@@ -37,7 +37,7 @@ import zen.env.event.EventListener;
 import Prelude;
 using Prelude;
 
-class EventArrow<O> extends Arrow< #if flash9 IEventDispatcher #elseif js Dynamic #else EventListener #end,O>{
+class EventArrow<O> extends Viaz< #if flash9 IEventDispatcher #elseif js Dynamic #else EventListener #end,O>{
 	
 	private var trigger : String;
 	public function new(trigger:String = "trigger") {

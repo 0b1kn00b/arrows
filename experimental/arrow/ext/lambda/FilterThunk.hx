@@ -20,10 +20,10 @@
  THE SOFTWARE.
 */
 package arrow.ext.lambda;
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ArrowInstance;
 
-class FilterThunk<AP,AR> extends Arrow<Iterable<AP>,AR>{
+class FilterThunk<AP,AR> extends Viaz<Iterable<AP>,AR>{
 	
 	public function new(f:Iterable<AP>,filter:AP->Bool,?inverse:Bool){
 		super(

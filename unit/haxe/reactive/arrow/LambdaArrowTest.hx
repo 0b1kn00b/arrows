@@ -3,13 +3,13 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Arrow;
+import arrow.Viaz;
 import arrow.ext.LambdaArrow;
 
 
 
-using arrow.Arrow;
-using arrow.ext.LambdaArrow;
+using Viaz.Viaz;
+using Viaz.ext.LambdaArrow;
 
 class LambdaArrowTest extends TestCase{
 
@@ -30,7 +30,7 @@ class LambdaArrowTest extends TestCase{
 			}
 		);
 		//TODO, optional args break for runtime resolve. + everything after.
-		var a = Arrow.returnA().map(
+		var a = Viaz.returnA().map(
 			function(x:Dynamic){
 				return switch (x){
 					case "a" : 1;
@@ -51,7 +51,7 @@ class LambdaArrowTest extends TestCase{
 				Assert.equals(6,a);
 			}
 		);
-		Arrow.returnA().iter(
+		Viaz.returnA().iter(
 			function(x){
 				a += x;
 			}
@@ -64,7 +64,7 @@ class LambdaArrowTest extends TestCase{
 				self.assertTrue(Lambda.count(x) == 1);
 			}
 		);
-		Arrow.returnA().filter(
+		Viaz.returnA().filter(
 			function (x){
 				return x == 1;
 			}
@@ -82,7 +82,7 @@ class LambdaArrowTest extends TestCase{
 		for (i in 0...10000){
 			list.add(Math.random());
 		}	
-		Arrow.returnA().map(
+		Viaz.returnA().map(
 			function(x){
 				var a = x+1/2;
 				var b = 87984+134123412233 ;
@@ -102,13 +102,13 @@ class LambdaArrowTest extends TestCase{
 			arr2.push(i + 4);
 		}
 		var self = this;
-		var a = Arrow.returnA().iter(
+		var a = Viaz.returnA().iter(
 			function (x:Dynamic){
 				comp.push(x);
 			}
 		);
 		a.info = "show count a";
-		var b = Arrow.returnA().iter(
+		var b = Viaz.returnA().iter(
 			function(x:Dynamic){
 				comp.push(x);
 			}
@@ -129,12 +129,12 @@ class LambdaArrowTest extends TestCase{
 				self.assertTrue(true);
 			}
 		,new data.type.Time(100000));
-		AsyncArrow.lift(
+		AsyncViaz.lift(
 			function(x){
-				return AsyncArrow.doRepeat();
+				return AsyncViaz.doRepeat();
 			}
 		).repeat().run();
 
-		arrow.scheduler.SchedulerFactory.run();
+		Viaz.scheduler.SchedulerFactory.run();
 	}*/
 }

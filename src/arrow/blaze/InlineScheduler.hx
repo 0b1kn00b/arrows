@@ -2,7 +2,7 @@ package arrow.blaze;
 import arrow.error.TimeoutError;
 import haxe.Timer;
 import zen.data.Queue;
-import arrow.Arrow;
+import arrow.Viaz;
 
 import Prelude;
 import PreludeExtensions;
