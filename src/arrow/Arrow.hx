@@ -142,6 +142,7 @@ class Arrow<AP,AR>{
 	public var param		: AP;
 	
 	/**
+	/**
 	 * Number of params in the called function. I may remove this.
 	 */
 	public var params		: Int;
@@ -184,14 +185,14 @@ class Arrow<AP,AR>{
 	 * @private
 	 * Called by the scheduler.
 	 */
-	public inline function invoke() {
+	public function invoke() {
 		try{
 				this.execute( this.param , this.instance );
-		}catch (e:Dynamic) {
+		}catch (err:Dynamic) {
 				if (this.error != null ) {
-					this.error.execute( e , this.instance );
+					this.error.execute( err , this.instance );
 				}else {
-					this.instance.error.execute( e , this.instance );
+					this.instance.error.execute( err , this.instance );
 				}
 		}
 	}
@@ -411,10 +412,10 @@ class Combinators {
 	}
 	
 	//EXPERIMENTAL
-	public static function right < B, C, D > (a: Arrow< B , C > ):Right<B,C>{
+	public static function right < B, C > (a: Arrow< B , C > ): Arrow<Either<B,C>,Either<B,C>>{
 		return new Right(a);
 	}
-	public static function left < B, C, D > (a:  Arrow<B,C> ):Left<B,C>{
+	public static function left < B, C> (a:  Arrow<B,C> ): Arrow<Either<B,C>,Either<B,C>>{
 		return new Left(a);
 	}
 	//public static function signalA():SignalArrow {

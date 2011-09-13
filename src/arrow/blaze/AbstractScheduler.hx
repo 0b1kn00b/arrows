@@ -14,11 +14,11 @@ using haxe.data.collections.ArrayExtensions;
 
 class AbstractScheduler implements Scheduler {
 	var current				: Arrow<Dynamic,Dynamic>;
-	var queue				: Queue<Arrow<Dynamic,Dynamic>>;
+	var queue					: Queue<Arrow<Dynamic,Dynamic>>;
 	
 	var pending 			: Hash<ArrowInstance<Dynamic>>;
-	var count				: Int;
-	var state				: String;
+	var count					: Int;
+	var state					: String;
 	
 	public static var self	: Scheduler;
 

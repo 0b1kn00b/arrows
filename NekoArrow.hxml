@@ -8,4 +8,4 @@
 -lib hx3ds
 -lib hxevents
 -neko bin/NekoArrow.n
--main Dev
+-main Full
