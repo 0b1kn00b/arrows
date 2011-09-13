@@ -53,12 +53,12 @@ class EventScheduler extends AbstractScheduler {
 		}
 		state = "waiting";
 		#if (js)
-			untyped window.setTimeout("Viaz.blaze.AbstractScheduler.self.start()",100);
+			untyped window.setTimeout("arrow.blaze.AbstractScheduler.self.start()",100);
 		#elseif (flash9)
-			untyped (__global__["flash.utils.setTimeout"])(Viaz.blaze.AbstractScheduler.self.start, 100);
+			untyped (__global__["flash.utils.setTimeout"])(arrow.blaze.AbstractScheduler.self.start, 100);
 		#elseif flash
 			var me = this;
-			untyped _global["setTimeout"](Viaz.blaze.AbstractScheduler.self.start, 100);
+			untyped _global["setTimeout"](arrow.blaze.AbstractScheduler.self.start, 100);
 		#end
 	}
 }

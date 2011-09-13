@@ -32,7 +32,7 @@ using arrow.Viaz;
  */
 class Compose<AP1,AR1,AR2> extends Composition<AP1,AR1,AR1,AR2>{
 	
-	public function new(f:Viaz<AP1,AR1>, g:Viaz<AR1,AR2>) {
+	public function new(f:Arrow<AP1,AR1>, g:Arrow<AR1,AR2>) {
 		super( f , g );
 	}
 	override private function compose(x:AP1, a:ArrowInstance<Dynamic>):Void {

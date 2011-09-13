@@ -47,14 +47,14 @@ class Product<P1,R1,P2,R2> extends Viaz<Tuple2<P1,P2>,Tuple2<R1,R2>>{
 		rProgress = g.then(this.g1.pass()).run(x._2);
 	}
 	//TODO, shouldn't this be the same as ArrowInstance on the super, shouldn't it always be?
-	private var a			: ArrowInstance<Dynamic>;
-	private var count		: Int;
-	private var lOut		: R1;
-	private var rOut		: R2;
-	private var f			: Arrow<P1,R1>;
-	private var g			: Arrow<P2,R2>;
+	private var a						: ArrowInstance<Dynamic>;
+	private var count				: Int;
+	private var lOut				: R1;
+	private var rOut				: R2;
+	private var f						: Arrow<P1,R1>;
+	private var g						: Arrow<P2,R2>;
 	private var lProgress 	: Progress;
-	private var rProgress	: Progress;
+	private var rProgress		: Progress;
 	
 	private function cancel () {
 		lProgress.cancel();

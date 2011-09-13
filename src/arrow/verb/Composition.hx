@@ -9,8 +9,8 @@ import zen.env.error.AbstractMethodError;
 
 class Composition<AP1,AR1,AP2,AR2> extends Viaz<AP1,AR2> {
 
-	var a0	: Viaz<AP1,AR1>;
-	var a1  : Viaz<AP2,AR2>;
+	var a0	: Arrow<AP1,AR1>;
+	var a1  : Arrow<AP2,AR2>;
 	
 	public function new(a0,a1) {
 		this.a0 = a0;

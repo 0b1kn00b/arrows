@@ -99,28 +99,28 @@ class Viaz<AP,AR> implements Arrow<AP,AR>, extends Archer<AP,AR>{
 	 */
 	public function then<R1>(thenR:Arrow<AR,R1>):Arrow<AP,R1> {
 		//HERE
-		return new Compose(this,cast thenR );
+		return new Compose(this,thenR );
 	}
 	
 	/**
 	 * @inheritDoc
 	 */
 	public function pair<P2,R2>(a2:Arrow<P2,R2>):Arrow<Tuple2<AP,P2>,Tuple2<AR,R2>>{
-		return new Product(this,cast a2);
+		return new Product(this,a2);
 	}
 	
 	/**
 	 * @inheritDoc
 	 */
 	public function split<AR2>(splitR:Arrow<AP,AR2>):Arrow<AP,Tuple2<AR,AR2>> {
-		return new Fanout(this, cast splitR);
+		return new Fanout(this, splitR);
 	}
 
 	/**
 	 * @inheritDoc 
 	 */
 	public function bind<A0R>(bindR:Arrow<Tuple2<AP,AR>,A0R>):Arrow<AP,A0R> {
-		return new Bind(this,cast bindR);
+		return new Bind(this,bindR);
 	}
 	
 	/**
@@ -147,9 +147,9 @@ class Viaz<AP,AR> implements Arrow<AP,AR>, extends Archer<AP,AR>{
 	/**
 	 * @inheritDoc
 	 */
-	public function second<AP2>():Arrow<Tuple2<AP,AP2>,Tuple2<AP,AR>>{
+	public function second<AP2>():Arrow<Tuple2<AP2,AP>,Tuple2<AP2,AR>>{
 		//HERE
-		return new Second(cast this);
+		return new Second(this);
 	}
 	
 	/**
@@ -171,7 +171,7 @@ class Viaz<AP,AR> implements Arrow<AP,AR>, extends Archer<AP,AR>{
 	* Either-front combinator. 
 	*/
 	public function front<A1R>(orR:Arrow<AP,A1R>):Arrow<AP,Either<A1R,AR>> {
-		return new Front(this,cast orR);
+		return new Front(this,orR);
 	}
 	public var active : Bool;
 

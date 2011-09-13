@@ -38,7 +38,7 @@ class ComplexTest extends TestCase{
 			}
 		}.lift().repeat().then(as.lift()).run().start();
 	}*/
-	
+	/*
 	#if !(neko || cpp || php)
 	public function testAnimate() {
 		var t = Timer.stamp();
@@ -58,5 +58,5 @@ class ComplexTest extends TestCase{
 			}
 		}.lift().animate(200).then(as.lift()).run().start();
 	}
-	#end	
+	#end	*/
 }

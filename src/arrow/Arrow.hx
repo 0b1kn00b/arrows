@@ -38,13 +38,13 @@ interface Arrow<P,R> {
 	* Product combinator, returns an Viaz Tuple2(f(x._1),g(x._2)))
 	* pair, ***
 	*/
-	public function pair<P2,R2>(r:Arrow<P,R>):Arrow<Tuple2<P,P2>,Tuple2<R,R2>>;
+	public function pair<P2,R2>(r:Arrow<P2,R2>):Arrow<Tuple2<P,P2>,Tuple2<R,R2>>;
 	
 	/**
 	* Fanout combinator, entuples input reference and runs as Product.
 	* split &&&
 	*/
-	public function split<R2>(r:Arrow<P,R>):Arrow<P,Tuple2<R,R2>>;
+	public function split<R2>(r:Arrow<P,R2>):Arrow<P,Tuple2<R,R2>>;
 	
 	/**
 	* Equivalent to Viaz.returnA().split(f).then(g);
