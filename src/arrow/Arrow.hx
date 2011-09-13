@@ -10,6 +10,7 @@ import arrow.verb.Progress;
 
 interface Arrow<P,R> {
 	
+	//TODO refactor
 	public function execute(x:P, a:ArrowInstance<Dynamic>):Void;
 	public var params 		: Int;
 	public var instance 	: ArrowInstance<Dynamic>;

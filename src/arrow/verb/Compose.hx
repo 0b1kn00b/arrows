@@ -25,7 +25,7 @@ import arrow.Viaz;
 import arrow.ArrowInstance;
 import arrow.verb.Consume;
 
-using Viaz.Viaz;
+using arrow.Viaz;
 /**
  * Compose two Arrows. Notice the Composition type signature, the output from the left arrow
  * is input into the right, so the type of Return1 (Viaz<P1,*R1>) must be the same as Parameter2 (Viaz<*R1,R2>) .

@@ -12,7 +12,6 @@ import haxe.test.Assert;
 
 import haxe.Timer;
 
-
 class ComplexTest extends TestCase{
 	
 	public function new(){
