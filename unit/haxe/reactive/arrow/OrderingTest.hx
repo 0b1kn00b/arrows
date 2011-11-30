@@ -10,7 +10,7 @@ import haxe.test.Assert;
 
 import scuts.macro.F;
 
-import arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
 using Viaz.Viaz;
 
 import zen.env.event.Event;

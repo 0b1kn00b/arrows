@@ -21,15 +21,15 @@ import PreludeExtensions;
 import haxe.test.Assert;
 import haxe.test.TestCase;
 
-import arrow.Viaz;
-import arrow.ArrowInstance;
-import arrow.verb.Product;
+import haxe.reactive.arrow.Viaz;
+import haxe.reactive.arrow.ArrowInstance;
+import haxe.reactive.arrow.verb.Product;
 
 using Prelude;
 using PreludeExtensions;
 
-import arrow.Viaz;
-using arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
+using haxe.reactive.arrow.Viaz;
 
 class ArrowTest extends TestCase{
 	public function new() {

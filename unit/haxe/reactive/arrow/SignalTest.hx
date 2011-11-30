@@ -1,7 +1,7 @@
 package haxe.reactive.arrow;
  
 import haxe.test.TestCase;
-import arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
 
 import hsl.haxe.Signaler;
 import hsl.haxe.direct.DirectSignaler;

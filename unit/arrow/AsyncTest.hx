@@ -11,8 +11,8 @@ import flash.events.Event;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Viaz;
-using arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
+using haxe.reactive.arrow.Viaz;
 
 import Prelude;
 

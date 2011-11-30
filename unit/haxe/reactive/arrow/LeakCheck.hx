@@ -4,7 +4,7 @@ import haxe.test.Assert;
 import zen.env.event.EventSystem;
 import zen.env.event.Event;
 
-import arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
 using Viaz.Viaz;
 
 class LeakCheck extends TestCase{

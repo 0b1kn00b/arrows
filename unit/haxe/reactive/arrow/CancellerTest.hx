@@ -7,7 +7,7 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
 
 using Viaz.Viaz;
 

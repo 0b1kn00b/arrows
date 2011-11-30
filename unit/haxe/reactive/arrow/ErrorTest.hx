@@ -1,10 +1,10 @@
 package haxe.reactive.arrow;
  
-import arrow.ArrowInstance;
+import haxe.reactive.arrow.ArrowInstance;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
 using Viaz.Viaz;
 
 class ErrorTest extends TestCase{

@@ -1,4 +1,4 @@
-package arrow.verb;
+package haxe.reactive.arrow.verb;
 
 /**
  * ...
@@ -9,7 +9,7 @@ import haxe.test.Assert;
 
 import Prelude;
 
-import arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
 using Viaz.Viaz;
 
 class DirectionTest extends TestCase{

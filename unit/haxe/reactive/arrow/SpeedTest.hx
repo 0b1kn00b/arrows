@@ -14,7 +14,7 @@ using PreludeExtensions;
 using haxe.data.collections.IterableExtensions;
 using haxe.data.collections.ArrayExtensions;
 
-import arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
 using Viaz.Viaz;
 
 using Viaz.ext.LambdaArrow;

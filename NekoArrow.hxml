@@ -1,10 +1,11 @@
--cp src
 -cp unit
 -cp experimental
 -cp dep/hxzmq
 -cp dep/scuts/src
 -cp dep/stax/src/main/haxe
 -cp dep/thx-core/src
+-cp src/main/haxe
+-cp src
 -lib hx3ds
 -lib hxevents
 -neko bin/NekoArrow.n

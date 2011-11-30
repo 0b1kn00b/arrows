@@ -3,8 +3,8 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.Viaz;
-import arrow.ext.LambdaArrow;
+import haxe.reactive.arrow.Viaz;
+import haxe.reactive.arrow.ext.LambdaArrow;
 
 
 

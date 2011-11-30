@@ -1,13 +1,13 @@
 package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
-import arrow.Viaz;
-import arrow.blaze.Scheduler;
+import haxe.reactive.arrow.Viaz;
+import haxe.reactive.arrow.blaze.Scheduler;
 
 import Prelude;
 using Prelude;
 
-using arrow.Viaz;
+using haxe.reactive.arrow.Viaz;
 
 class BootstrapTest extends TestCase{
 

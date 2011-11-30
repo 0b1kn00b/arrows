@@ -1,8 +1,8 @@
 package haxe.reactive.arrow;
 
-import arrow.Viaz;
-import arrow.verb.Progress;
-using arrow.Viaz;
+import haxe.reactive.arrow.Viaz;
+import haxe.reactive.arrow.verb.Progress;
+using haxe.reactive.arrow.Viaz;
 
 import Prelude;
 using Prelude;

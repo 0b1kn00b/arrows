@@ -3,7 +3,7 @@ package haxe.reactive.arrow;
 import haxe.test.TestCase;
 import haxe.test.Assert;
 
-import arrow.verb.Consume;
+import haxe.reactive.arrow.verb.Consume;
 
 import mojo.Extractor;
 
