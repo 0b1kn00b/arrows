@@ -1,0 +1,7 @@
+-cp src
+-cp dependencies/hxzmq
+-cp dependencies/scuts/src
+-cp dependencies/stax/src/main/haxe
+-neko bin/ZmqNekoArrow.n
+-main Main
+-D mulithread
