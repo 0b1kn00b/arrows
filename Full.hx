@@ -26,7 +26,7 @@ class Full{
 		var r = Report.create(t);
 		
 		#if js
-			t.add( haxe.reactive.arrowJsArrowTest() );
+			t.add( new haxe.reactive.arrow.JsArrowTest() );
 			js.Lib.window.onload = function (e) {t.run();};
 		#else
 			t.run();

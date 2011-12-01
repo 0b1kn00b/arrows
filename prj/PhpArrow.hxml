@@ -1,6 +1,7 @@
--cp src
--cp unit
--cp dep/hxzmq
--cp dep/stax/src/main/haxe
--php bin
+-cp ../src/main/haxe
+-cp ../src
+-cp ../dep/stax/src/main/haxe
+-cp ../
+-cp ../src/test
+-php ../bin/php
 -main Full

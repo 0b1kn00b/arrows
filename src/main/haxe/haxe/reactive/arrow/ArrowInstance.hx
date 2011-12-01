@@ -86,7 +86,7 @@ class ArrowInstance<T>{
 	 * @param g the second arrow
 	 * @param a predicate closure which returns true when the arrow is ready
 	 */
-	public inline function cont<A,B,C,D,E>(x:A, f:Arrow<B,C>, g:Arrow<D,E>, predicate:Void->Bool = null) {
+	public inline function cont<A,B,C,D,E>(x:A, f:Arrow<B,C>, g:Arrow<D,E>, pred:Void->Bool = null) {
 		
 		var a : Arrow<Dynamic,Dynamic> ;
 		
@@ -103,7 +103,7 @@ class ArrowInstance<T>{
 			//trace( ["!", Std.string(a) , a.method , Std.string(x), Std.string(f), Std.string(g) ].join(" ") );
 			a.instance 	= this;
 			a.param 	= x;
-			if (predicate != null) a.predicate = predicate;
+			if (pred != null) a.predicate = pred;
 			Viaz.scheduler.enqueue( a );
 		}
 

@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin" />
+    <movie path="../bin/php" />
     <movie fps="0" />
     <movie width="0" />
     <movie height="0" />
@@ -15,10 +15,11 @@
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="src" />
-    <class path="unit" />
-    <class path="dep\hxzmq" />
-    <class path="dep\stax\src\main\haxe" />
+    <class path="..\src\main\haxe" />
+    <class path="..\src" />
+    <class path="..\dep\stax\src\main\haxe" />
+    <class path="..\" />
+    <class path="..\src\test" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -48,7 +49,7 @@
   <options>
     <option showHiddenPaths="False" />
     <option testMovie="Custom" />
-    <option testMovieCommand="php bin/index.php" />
+    <option testMovieCommand="php ../bin/php/index.php" />
   </options>
   <!-- Plugin storage -->
   <storage />

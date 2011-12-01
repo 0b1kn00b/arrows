@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\AS3Arrow.swf" />
+    <movie path="..\bin\as3\AS3Arrow.swf" />
     <movie fps="30" />
     <movie width="800" />
     <movie height="600" />
@@ -15,11 +15,11 @@
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="src" />
-    <class path="unit" />
-    <class path="dep\scuts\src" />
-    <class path="dep\stax\src\main\haxe" />
-    <class path="experimental" />
+    <class path="..\src\main\haxe" />
+    <class path="..\src" />
+    <class path="..\dep\stax\src\main\haxe" />
+    <class path="..\" />
+    <class path="..\src\test" />
   </classpaths>
   <!-- Build options -->
   <build>

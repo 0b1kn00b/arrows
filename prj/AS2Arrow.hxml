@@ -1,8 +1,9 @@
--cp src
--cp unit
--cp dep/scuts/src
--cp dep/stax/src/main/haxe
--swf bin/AS2Arrow.swf
+-cp ../src/main/haxe
+-cp ../src
+-cp ../dep/stax/src/main/haxe
+-cp ../
+-cp ../src/test
+-swf ../bin/as2/arrow.swf
 -swf-header 800:600:30:FFFFFF
 -swf-version 8
 -main Full

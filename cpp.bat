@@ -1,4 +1,4 @@
 @echo off
-cd bin
-Full-debug.exe
+cd ../bin/cpp
+Full.exe
 pause

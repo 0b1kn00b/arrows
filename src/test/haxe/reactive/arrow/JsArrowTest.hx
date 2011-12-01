@@ -3,9 +3,10 @@ package haxe.reactive.arrow;
 import haxe.test.Assert;
 import haxe.test.TestCase;
 
-import haxe.reactive.arrow.Viaz;
+import haxe.reactive.arrow.Viaz; 
 
-using Viaz.Viaz;
+using haxe.reactive.arrow.Viaz;
+
 class JsArrowTest extends TestCase{
 	
 	public function new(){

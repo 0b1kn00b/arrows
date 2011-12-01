@@ -15,10 +15,11 @@
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="src" />
-    <class path="dependencies\hxzmq" />
-    <class path="dependencies\scuts\src" />
-    <class path="dependencies\stax\src\main\haxe" />
+   	<class path="..\src\main\haxe" />
+		<class path="..\src"/>			
+		<class path="..\dep\stax\src\main\haxe" />
+		<class path="..\"/>
+		<class path="..\src\test"/>
   </classpaths>
   <!-- Build options -->
   <build>

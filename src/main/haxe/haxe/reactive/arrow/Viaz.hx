@@ -209,17 +209,23 @@ class Viaz<AP,AR> implements Arrow<AP,AR>, extends Archer<AP,AR>{
 	 */
 	public function new(method:AP->ArrowInstance<Dynamic>-> Void,?params = 0) {
 		super();
+		Reflect.setField(this, "predicate", function() { return true; } );
 		this.params = params;
 		this.active = true;
 		this.method = method;
 	}
+	
 	/**
 	 * @private
 	 * Used by the inline scheduler to implement timers and event waiting
 	 */
-	public dynamic function predicate()	: Bool {
+	#if !cpp
+	public dynamic function predicate():Bool {
 		return true;
 	}
+	#else
+	public var predicate : Void -> Bool;
+	#end
 	/**
 	 * @private
 	 * Called by the scheduler.

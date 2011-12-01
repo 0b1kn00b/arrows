@@ -16,7 +16,11 @@ interface Arrow<P,R> {
 	public var instance 																			: ArrowInstance<Dynamic>;
 	public var param																					: P;
 	
+	#if !cpp
 	public dynamic function predicate():Bool;
+	#else
+	public var predicate : Void -> Bool;
+	#end
 	
 	public function destroy(instance:ArrowInstance<Dynamic>)	: Void;
 	public function invoke():Void;
